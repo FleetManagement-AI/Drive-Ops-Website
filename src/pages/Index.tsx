@@ -26,7 +26,7 @@ const Index = () => (
       {/* 6. Pricing */}
       <PricingSection />
       {/* 7. Testimonials */}
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       {/* 8. CTA Banner */}
       <CTASection />
     </main>
