@@ -1,27 +1,28 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "Why DriveOps", href: "#why" },
-];
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Pricing", href: "#pricing" },
+]
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass glow-border" : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass glow-border" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-8">
         <a href="#" className="flex items-center gap-2 font-heading text-xl font-bold tracking-tight">
@@ -33,7 +34,7 @@ const Navbar = () => {
           <span>Drive<span className="gradient-text">Ops</span></span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((l) => (
             <a
               key={l.href}
@@ -51,9 +52,15 @@ const Navbar = () => {
           </a>
           <a
             href="#cta"
+            className="border border-primary/40 text-primary text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors"
+          >
+            Book a Demo
+          </a>
+          <a
+            href="https://driveops.chatserve.in/signup"
             className="gradient-accent text-primary-foreground text-sm font-semibold px-5 py-2 rounded-lg hover:opacity-90 transition-opacity"
           >
-            Get Started
+            Start Free Trial
           </a>
         </div>
 
@@ -86,9 +93,12 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border/50">
-                <a href="#" className="text-sm text-muted-foreground">Sign In</a>
-                <a href="#cta" className="gradient-accent text-primary-foreground text-sm font-semibold px-5 py-2 rounded-lg text-center">
-                  Get Started
+                <a href="https://driveops.chatserve.in/signup" className="text-sm text-muted-foreground">Sign In</a>
+                <a href="#cta" className="border border-primary/40 text-primary text-sm font-semibold px-5 py-2 rounded-lg text-center hover:bg-primary/10 transition-colors">
+                  Book a Demo
+                </a>
+                <a href="https://driveops.chatserve.in/signup" className="gradient-accent text-primary-foreground text-sm font-semibold px-5 py-2 rounded-lg text-center">
+                  Start Free Trial
                 </a>
               </div>
             </div>
@@ -96,7 +106,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

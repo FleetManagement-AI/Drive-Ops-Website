@@ -1,39 +1,62 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { LayoutDashboard, Car, Navigation, UserCircle, FileCheck } from "lucide-react";
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import {
+  MapPin,
+  Car,
+  Users,
+  CalendarCheck,
+  Wrench,
+  BarChart3,
+  FileText,
+  ShieldCheck,
+} from "lucide-react"
 
 const features = [
   {
-    icon: LayoutDashboard,
-    title: "Intelligent Command Center",
-    desc: "Real-time fleet overview with actionable insights, KPIs, and operational metrics at your fingertips.",
+    icon: MapPin,
+    title: "Real-Time GPS Tracking",
+    desc: "Monitor every vehicle's live location, speed, and route on an interactive map. Never lose sight of your fleet.",
   },
   {
     icon: Car,
-    title: "Advanced Vehicle Lifecycle Management",
-    desc: "Track every vehicle from acquisition through maintenance, compliance, and eventual retirement.",
+    title: "Vehicle Management",
+    desc: "Manage your entire fleet from a single dashboard — registration details, insurance, permits, and vehicle history.",
   },
   {
-    icon: Navigation,
-    title: "Smart Dispatch & Trip Tracking",
-    desc: "Optimize routes, assign trips, and monitor journeys in real-time with intelligent scheduling.",
+    icon: Users,
+    title: "Driver Management",
+    desc: "Maintain driver profiles, licenses, performance scores, and assignment history with complete traceability.",
   },
   {
-    icon: UserCircle,
-    title: "Driver Management & Profiles",
-    desc: "Comprehensive driver profiles with performance analytics, certifications, and assignment history.",
+    icon: CalendarCheck,
+    title: "Trip & Booking Management",
+    desc: "Assign trips, track active bookings, calculate fares, and manage customer reservations seamlessly.",
   },
   {
-    icon: FileCheck,
-    title: "Secure Document Vault",
-    desc: "Centralized, encrypted storage for licenses, insurance, permits, and compliance documents.",
+    icon: Wrench,
+    title: "Maintenance & Expense Tracking",
+    desc: "Log service records, schedule preventive maintenance, and track fuel and repair costs per vehicle.",
   },
-];
+  {
+    icon: BarChart3,
+    title: "Revenue & Profit Analytics",
+    desc: "Visualize earnings, profitability by vehicle, and operational costs. Make data-driven decisions with ease.",
+  },
+  {
+    icon: FileText,
+    title: "Automated Reports & Insights",
+    desc: "Generate daily, weekly, and monthly reports on trips, earnings, and driver performance automatically.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Secure Cloud-Based Platform",
+    desc: "Enterprise-grade security with encrypted data storage, regular backups, and role-based access control.",
+  },
+]
 
 const FeaturesSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
     <section id="features" className="py-24 relative" ref={ref}>
@@ -43,35 +66,41 @@ const FeaturesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-4"
         >
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Features</p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold">
-            Everything You Need to{" "}
-            <span className="gradient-text">Manage Your Fleet</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            Everything Your Rental Business{" "}
+            <span className="gradient-text">Needs to Succeed</span>
           </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            From GPS tracking to revenue analytics, DriveOps gives rental car businesses,
+            taxi operators, and travel agencies a complete operational toolkit.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto mt-14">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="glass rounded-2xl p-7 group hover:glow-border hover:glow-cyan transition-all duration-500"
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="glass rounded-2xl p-6 group hover:glow-border hover:glow-cyan transition-all duration-500 flex flex-col gap-4"
             >
-              <div className="w-10 h-10 rounded-lg gradient-accent flex items-center justify-center mb-5">
+              <div className="w-10 h-10 rounded-lg gradient-accent flex items-center justify-center shrink-0">
                 <f.icon className="w-5 h-5 text-primary-foreground" />
               </div>
-              <h3 className="font-heading text-lg font-semibold mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              <div>
+                <h3 className="font-heading text-base font-semibold mb-2">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FeaturesSection;
+export default FeaturesSection
