@@ -15,7 +15,7 @@ const Footer = () => (
             Drive<span className="gradient-text">Ops</span>
           </span>
           <p className="text-sm text-muted-foreground mt-3 max-w-xs">
-            The future of fleet management. Built for modern logistics.
+            Smarter fleet management for the future of mobility.
           </p>
           <div className="flex gap-3 mt-4">
             {[Twitter, Github, Linkedin].map((Icon, i) => (

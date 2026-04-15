@@ -26,7 +26,7 @@ const CTASection = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#"
+                href="https://driveops.chatserve.in/signup"
                 className="gradient-accent text-primary-foreground font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
               >
                 Start Free Trial <ArrowRight size={16} />
