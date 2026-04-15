@@ -24,7 +24,7 @@ const HeroSection = () => (
     <div className="absolute inset-0 radial-glow" />
 
     <div className="container mx-auto px-4 md:px-8 pt-24 pb-16 relative z-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 items-center">
         <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
 
 
@@ -75,7 +75,7 @@ const HeroSection = () => (
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-full aspect-square md:aspect-video lg:aspect-[4/3] xl:aspect-square max-w-2xl mx-auto mt-12 lg:mt-0"
+          className="relative w-full aspect-square md:aspect-video lg:aspect-[4/3] xl:aspect-square max-w-none mx-auto mt-12 lg:mt-0"
         >
           {/* Soft neon blue radial glow behind the image */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#06B6D4]/15 blur-[120px] rounded-full pointer-events-none" />
@@ -98,9 +98,9 @@ const HeroSection = () => (
 
               {/* The transparent provided image */}
               <img
-                src="/images/rental-car-dashboard-bg-transparent.png"
+                src="/images/Gemini_Generated_Image2.png"
                 alt="DriveOps Dashboard Demo"
-                className="relative z-10 w-full h-auto object-contain transform transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_20px_50px_rgba(0,194,255,0.25)]"
+                className="relative z-10 w-full h-auto object-contain transform scale-125 transition-transform duration-700 group-hover:scale-135 drop-shadow-[0_20px_60px_rgba(0,194,255,0.3)]"
               />
 
               {/* Floating GPS Pins */}
