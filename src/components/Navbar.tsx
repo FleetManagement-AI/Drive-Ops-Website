@@ -25,7 +25,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-8">
-        <a href="#" className="flex items-center gap-2 font-heading text-xl font-bold tracking-tight">
+        <a href="#" className="flex items-center gap-2 font-heading text-xl font-bold tracking-tight text-white">
           <img
             src="/logo/driveops-logo-white-edited.png"
             alt="DriveOps Logo"
@@ -39,7 +39,7 @@ const Navbar = () => {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-white/90 hover:text-white transition-colors"
             >
               {l.label}
             </a>
@@ -47,7 +47,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://driveops.chatserve.in/signup" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <a
+            href="https://driveops.chatserve.in/signup"
+            className="text-sm text-white/90 hover:text-white transition-colors"
+          >
             Sign In
           </a>
           <a
@@ -65,7 +68,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -87,13 +90,18 @@ const Navbar = () => {
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-white/90 hover:text-white transition-colors"
                 >
                   {l.label}
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border/50">
-                <a href="https://driveops.chatserve.in/signup" className="text-sm text-muted-foreground">Sign In</a>
+                <a
+                  href="https://driveops.chatserve.in/signup"
+                  className="text-sm text-white/90 hover:text-white"
+                >
+                  Sign In
+                </a>
                 <a href="#cta" className="border border-primary/40 text-primary text-sm font-semibold px-5 py-2 rounded-lg text-center hover:bg-primary/10 transition-colors">
                   Book a Demo
                 </a>

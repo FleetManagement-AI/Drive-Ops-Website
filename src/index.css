@@ -96,4 +96,28 @@
   .radial-glow {
     background: radial-gradient(ellipse 50% 50% at 50% 0%, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
   }
+
+  .hero-readability-gradient {
+    background: linear-gradient(
+      105deg,
+      rgba(3, 7, 18, 0.92) 0%,
+      rgba(3, 7, 18, 0.78) 38%,
+      rgba(3, 7, 18, 0.35) 58%,
+      rgba(3, 7, 18, 0.08) 72%,
+      transparent 100%
+    );
+  }
+
+  @media (max-width: 1023px) {
+    .hero-readability-gradient {
+      background: linear-gradient(
+        105deg,
+        rgba(3, 7, 18, 0.94) 0%,
+        rgba(3, 7, 18, 0.82) 45%,
+        rgba(3, 7, 18, 0.45) 65%,
+        rgba(3, 7, 18, 0.12) 80%,
+        transparent 100%
+      );
+    }
+  }
 }
