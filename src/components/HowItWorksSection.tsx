@@ -1,92 +1,86 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { CarFront, Activity, TrendingUp } from "lucide-react"
+import { FileText, UserPlus, Navigation, BarChart3 } from "lucide-react"
 
-const steps = [
+const timelineSteps = [
   {
-    number: "01",
-    icon: CarFront,
-    title: "Add Vehicles and Drivers",
-    desc: "Onboard your entire fleet in minutes. Add vehicle details, driver profiles, documents, and insurance records in one place. No spreadsheets needed.",
-    highlights: ["Vehicle registration & documents", "Driver profiles & license tracking", "Insurance & permit management"],
+    step: "01",
+    icon: FileText,
+    title: "Create Trip Booking",
+    desc: "Enter client booking details and select pricing rate or rental package.",
   },
   {
-    number: "02",
-    icon: Activity,
-    title: "Monitor Trips and Bookings",
-    desc: "Track every trip on a live map, manage customer bookings, assign drivers instantly, and get real-time alerts on vehicle status and driver activity.",
-    highlights: ["Live GPS vehicle tracking", "Real-time trip assignment", "Booking & customer management"],
+    step: "02",
+    icon: UserPlus,
+    title: "Assign Driver & Car",
+    desc: "Pair an active, service-ready vehicle with an available scheduled driver.",
   },
   {
-    number: "03",
-    icon: TrendingUp,
-    title: "Optimize Revenue and Operations",
-    desc: "Analyze earnings per vehicle, identify top-performing drivers, reduce idle time, and generate automated reports to make smarter business decisions.",
-    highlights: ["Revenue & profit dashboards", "Automated expense reports", "Actionable operational insights"],
+    step: "03",
+    icon: Navigation,
+    title: "Dispatch & Track",
+    desc: "Queue trip for dispatch, generate trip sheet, and monitor status.",
+  },
+  {
+    step: "04",
+    icon: BarChart3,
+    title: "Analyze Earnings",
+    desc: "Log fuel refills and review net profit margins and daily operational ledger.",
   },
 ]
 
 const HowItWorksSection = () => {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
+  const inView = useInView(ref, { once: true, margin: "-60px" })
 
   return (
-    <section id="how-it-works" className="py-24 relative" ref={ref}>
-      <div className="absolute inset-0 radial-glow opacity-30" />
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+    <section id="how-it-works" className="py-20 sm:py-24 bg-white relative overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
-          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">How It Works</p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Get Your Fleet Running{" "}
-            <span className="gradient-text">in 3 Simple Steps</span>
+          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">
+            Corporate & Retail Workflow
+          </span>
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4 sm:mb-5">
+            How Our Cab Management Software Works
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            DriveOps is designed for speed. Most rental businesses are fully set up and tracking their fleet within the same day.
+          <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed">
+            From corporate transport management to daily retail dispatch, DriveOps structures your operations into four clean steps.
           </p>
         </motion.div>
 
-        <div className="relative grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Connector line (desktop) */}
-          <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.18, duration: 0.6 }}
-              className="relative"
-            >
-              {/* Step number + icon header */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative">
-                  <div className="w-14 h-14 rounded-2xl gradient-accent flex items-center justify-center shadow-lg">
-                    <step.icon className="w-6 h-6 text-primary-foreground" />
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {timelineSteps.map((ws, i) => (
+              <motion.div
+                key={ws.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-5 sm:p-6 relative hover:bg-white hover:shadow-lg hover:border-blue-300 transition-all duration-300 flex flex-col"
+              >
+                {/* Step number + icon row */}
+                <div className="flex items-center justify-between mb-4 sm:mb-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                    <ws.icon size={20} />
                   </div>
-                  <span className="absolute -top-2 -right-2 bg-background border border-border text-primary text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
-                    {step.number}
+                  <span className="font-heading font-extrabold text-base sm:text-lg text-blue-600 bg-blue-50 border border-blue-100 px-2.5 sm:px-3 py-0.5 rounded-full">
+                    Step {ws.step}
                   </span>
                 </div>
-              </div>
-
-              <h3 className="font-heading text-xl font-bold mb-3">{step.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-5">{step.desc}</p>
-
-              <ul className="space-y-2">
-                {step.highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                <h3 className="font-heading text-base sm:text-lg font-bold text-slate-900 mb-2">
+                  {ws.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {ws.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

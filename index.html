@@ -1,82 +1,223 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
-  <!-- Google Analytics (GA4) -->
+  <!-- ═══════════════════════════════════════════════════════════
+       GOOGLE ANALYTICS (GA4)
+  ════════════════════════════════════════════════════════════════ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-49093788B0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-49093788B0');
   </script>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CORE META
+  ════════════════════════════════════════════════════════════════ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-  <title>DriveOps – Fleet Management Software for Rental Car Businesses</title>
-  <meta name="description"
-    content="DriveOps is an all-in-one fleet management platform for rental car operators to track vehicles, manage drivers, monitor earnings, and streamline operations in real time." />
-  <meta name="keywords"
-    content="fleet management software for car rentals, rental car management system, taxi fleet management software, car rental software India, vehicle tracking software for rental businesses, DriveOps" />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="DriveOps" />
-  <link rel="canonical" href="https://driveops.info.chatserve.in/" />
+  <meta name="theme-color" content="#1A6FD4" />
+  <meta name="color-scheme" content="light" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FAVICONS & PWA MANIFEST
+  ════════════════════════════════════════════════════════════════ -->
+  <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PERFORMANCE — PRECONNECT & PRELOAD
+  ════════════════════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PRIMARY SEO META (Handled dynamically by react-helmet-async via <SEO />)
+       Google Search Console Verification
+  ════════════════════════════════════════════════════════════════ -->
   <meta name="google-site-verification" content="google89fd12ea6e42265c" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://driveops.info.chatserve.in/" />
-  <meta property="og:title" content="DriveOps – Fleet Management Software for Rental Car Businesses" />
-  <meta property="og:description"
-    content="DriveOps simplifies rental fleet management — track vehicles, manage drivers, monitor earnings, and streamline operations in real time." />
-  <meta property="og:image" content="https://driveops.info.chatserve.in/preview.png" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://driveops.info.chatserve.in/" />
-  <meta name="twitter:title" content="DriveOps – Fleet Management Software for Rental Car Businesses" />
-  <meta name="twitter:description"
-    content="Track vehicles, manage drivers, and monitor earnings in real time with DriveOps — the fleet management platform for rental car businesses." />
-  <meta name="twitter:image" content="https://driveops.info.chatserve.in/preview.png" />
-
+  <!-- ═══════════════════════════════════════════════════════════
+       STRUCTURED DATA — JSON-LD GRAPH
+       Includes: WebSite, Organization, SoftwareApplication, FAQPage, BreadcrumbList
+  ════════════════════════════════════════════════════════════════ -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "DriveOps",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "url": "https://driveops.info.chatserve.in",
-      "description": "DriveOps is an all-in-one fleet management platform for rental car operators. Track vehicles, manage drivers, monitor earnings, and streamline operations in real time.",
-      "featureList": "Real-Time GPS Tracking, Vehicle Management, Driver Management, Trip & Booking Management, Maintenance Tracking, Revenue Analytics, Automated Reports",
-      "applicationSubCategory": "Fleet Management",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Starter",
-          "price": "499",
-          "priceCurrency": "INR",
-          "billingIncrement": "month"
-        },
-        {
-          "@type": "Offer",
-          "name": "Professional",
-          "price": "999",
-          "priceCurrency": "INR",
-          "billingIncrement": "month"
-        }
-      ],
-      "provider": {
-        "@type": "Organization",
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://driveops.info.chatserve.in/#website",
+        "url": "https://driveops.info.chatserve.in/",
         "name": "DriveOps",
-        "email": "support@driveops.com"
+        "description": "Fleet Management and Taxi Dispatch Software for India",
+        "inLanguage": "en-IN",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://driveops.info.chatserve.in/?s={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://driveops.info.chatserve.in/#organization",
+        "name": "DriveOps",
+        "url": "https://driveops.info.chatserve.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://driveops.info.chatserve.in/logo/driveops-logo-blue-edited.png",
+          "width": 200,
+          "height": 60
+        },
+        "description": "DriveOps is an all-in-one fleet management and taxi dispatch software platform built for taxi operators, travel companies, and fleet owners in India.",
+        "foundingLocation": {
+          "@type": "Place",
+          "addressCountry": "IN"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+91-98461-99883",
+            "contactType": "sales",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Malayalam", "Hindi"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+91-98478-51049",
+            "contactType": "customer support",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Malayalam", "Hindi"]
+          },
+          {
+            "@type": "ContactPoint",
+            "email": "support@driveops.com",
+            "contactType": "customer support",
+            "areaServed": "IN"
+          }
+        ],
+        "sameAs": []
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://driveops.info.chatserve.in/#software",
+        "name": "DriveOps",
+        "url": "https://driveops.info.chatserve.in/",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Fleet Management Software",
+        "operatingSystem": "Web, iOS, Android",
+        "inLanguage": "en-IN",
+        "description": "DriveOps is India's all-in-one fleet management and taxi dispatch software. It helps taxi operators, travel companies, and fleet owners manage vehicle registries, dispatch trips, track drivers, log fuel, schedule maintenance, and analyze daily earnings — all from a single cloud-based platform.",
+        "featureList": [
+          "Smart Taxi Dispatch Queue",
+          "Fleet Vehicle Management",
+          "Driver Management & Duty Roster",
+          "Trip Lifecycle Management",
+          "Fuel Monitoring & Cost Tracking",
+          "Preventive Maintenance Scheduling",
+          "Package Rate Configuration",
+          "Customer Directory & Corporate Accounts",
+          "Fleet Map & Operational Visibility",
+          "Revenue & Earnings Analytics",
+          "Document Vault & Compliance Tracking",
+          "Multi-Tenant Role-Based Access Control"
+        ],
+        "screenshot": "https://driveops.info.chatserve.in/preview.png",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free Plan",
+            "price": "0",
+            "priceCurrency": "INR",
+            "description": "Basic fleet management for up to 2 vehicles and 2 drivers.",
+            "eligibleQuantity": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitText": "per month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Basic Plan",
+            "price": "999",
+            "priceCurrency": "INR",
+            "description": "Essential operations toolkit for up to 10 vehicles and 10 drivers.",
+            "eligibleQuantity": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitText": "per month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Professional Plan",
+            "price": "2499",
+            "priceCurrency": "INR",
+            "description": "Advanced dispatch, maintenance, analytics for up to 30 vehicles.",
+            "eligibleQuantity": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitText": "per month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise Plan",
+            "price": "5999",
+            "priceCurrency": "INR",
+            "description": "High-capacity platform for unlimited vehicles, drivers, and multi-branch accounts.",
+            "eligibleQuantity": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitText": "per month"
+            }
+          }
+        ],
+        "provider": {
+          "@id": "https://driveops.info.chatserve.in/#organization"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://driveops.info.chatserve.in/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://driveops.info.chatserve.in/"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://driveops.info.chatserve.in/#webpage",
+        "url": "https://driveops.info.chatserve.in/",
+        "name": "DriveOps — Fleet Management & Taxi Dispatch Software | India",
+        "description": "India's all-in-one fleet management platform for taxi operators, travel companies, and fleet owners. Smart dispatch, vehicle tracking, driver management, fuel logs, and earnings analytics.",
+        "inLanguage": "en-IN",
+        "isPartOf": {
+          "@id": "https://driveops.info.chatserve.in/#website"
+        },
+        "about": {
+          "@id": "https://driveops.info.chatserve.in/#software"
+        },
+        "breadcrumb": {
+          "@id": "https://driveops.info.chatserve.in/#breadcrumb"
+        }
       }
-    }
-    </script>
+    ]
+  }
+  </script>
 </head>
 
 <body>
