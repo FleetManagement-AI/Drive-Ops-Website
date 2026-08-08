@@ -1,90 +1,133 @@
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { FileText, UserPlus, Navigation, BarChart3 } from "lucide-react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { 
+  FileText, Navigation, Users, MapPin, 
+  MessageSquare, CreditCard 
+} from "lucide-react"
+import ProductVideo from "./ProductVideo"
 
 const timelineSteps = [
-  {
-    step: "01",
+  { 
+    id: "booking",  
+    label: "BOOKING",  
     icon: FileText,
-    title: "Create Trip Booking",
-    desc: "Enter client booking details and select pricing rate or rental package.",
+    mediaType: "image",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/trip_creation.png"
   },
-  {
-    step: "02",
-    icon: UserPlus,
-    title: "Assign Driver & Car",
-    desc: "Pair an active, service-ready vehicle with an available scheduled driver.",
-  },
-  {
-    step: "03",
+  { 
+    id: "dispatch", 
+    label: "DISPATCH", 
     icon: Navigation,
-    title: "Dispatch & Track",
-    desc: "Queue trip for dispatch, generate trip sheet, and monitor status.",
+    mediaType: "video",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/command_center_gwr_video_mvp.mp4"
   },
-  {
-    step: "04",
-    icon: BarChart3,
-    title: "Analyze Earnings",
-    desc: "Log fuel refills and review net profit margins and daily operational ledger.",
+  { 
+    id: "driver",   
+    label: "DRIVER",   
+    icon: Users,
+    mediaType: "video",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/driver-videowr.mp4"
+  },
+  { 
+    id: "trip",     
+    label: "TRIP",     
+    icon: MapPin,
+    mediaType: "video",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/trip_creation_gwr_video_mvp.mp4"
+  },
+  { 
+    id: "review",   
+    label: "REVIEW",   
+    icon: MessageSquare,
+    mediaType: "video",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/customer_review_gwr_video_mvp.mp4"
+  },
+  { 
+    id: "payout",   
+    label: "PAYOUT",   
+    icon: CreditCard,
+    mediaType: "video",
+    src: "https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/driver_payroll_gwr_video_mvp.mp4"
   },
 ]
 
-const HowItWorksSection = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-60px" })
+export default function HowItWorksSection() {
+  const [activeStep, setActiveStep] = useState(0)
+  const current = timelineSteps[activeStep]
 
   return (
-    <section id="how-it-works" className="py-20 sm:py-24 bg-white relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
-        >
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">
-            Corporate & Retail Workflow
-          </span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4 sm:mb-5">
-            How Our Cab Management Software Works
+    <section id="how-it-works" className="py-20 sm:py-28 bg-[#FBFBFA] border-b border-slate-200/60 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1340px]">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">Complete Lifecycle</p>
+          <h2 className="font-heading font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
+            From booking to payout,<br />everything stays connected.
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed">
-            From corporate transport management to daily retail dispatch, DriveOps structures your operations into four clean steps.
-          </p>
-        </motion.div>
+        </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {timelineSteps.map((ws, i) => (
-              <motion.div
-                key={ws.title}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-5 sm:p-6 relative hover:bg-white hover:shadow-lg hover:border-blue-300 transition-all duration-300 flex flex-col"
-              >
-                {/* Step number + icon row */}
-                <div className="flex items-center justify-between mb-4 sm:mb-5">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                    <ws.icon size={20} />
-                  </div>
-                  <span className="font-heading font-extrabold text-base sm:text-lg text-blue-600 bg-blue-50 border border-blue-100 px-2.5 sm:px-3 py-0.5 rounded-full">
-                    Step {ws.step}
-                  </span>
+        {/* Product Media Demonstration Frame */}
+        <div className="max-w-4xl mx-auto mb-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {current.mediaType === "image" ? (
+                <div className="relative w-full rounded-2xl overflow-hidden shadow-xl border border-slate-200/60 bg-[#090D16] aspect-[16/9]">
+                  <img
+                    src={current.src}
+                    alt={`DriveOps ${current.label} UI Screen`}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
-                <h3 className="font-heading text-base sm:text-lg font-bold text-slate-900 mb-2">
-                  {ws.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {ws.desc}
-                </p>
-              </motion.div>
-            ))}
+              ) : (
+                <ProductVideo 
+                  src={current.src}
+                  alt={`DriveOps ${current.label} Demonstration`}
+                  hideChrome={true}
+                  aspectRatio="16/9"
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Timeline Ribbon below Media (BOOKING → DISPATCH → DRIVER → TRIP → REVIEW → PAYOUT) */}
+        <div className="max-w-4xl mx-auto space-y-4">
+          <div className="flex items-center justify-between gap-2 p-2 bg-slate-900/95 border border-slate-800 rounded-2xl overflow-x-auto shadow-xl">
+            {timelineSteps.map((stg, idx) => {
+              const Icon = stg.icon
+              const isSelected = activeStep === idx
+              return (
+                <button
+                  key={stg.id}
+                  onClick={() => setActiveStep(idx)}
+                  className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+                    isSelected
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : "text-slate-500"}`} />
+                  <span>{stg.label}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="text-center">
+            <span className="text-xs text-slate-500 font-medium">
+              From booking to payout, every part of the operation stays connected.
+            </span>
           </div>
         </div>
+
       </div>
     </section>
   )
 }
-
-export default HowItWorksSection

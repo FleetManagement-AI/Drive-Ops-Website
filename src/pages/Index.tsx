@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar"
 import HeroSection from "@/components/HeroSection"
 import ProblemSection from "@/components/ProblemSection"
-import FeaturesSection from "@/components/FeaturesSection"
 import HowItWorksSection from "@/components/HowItWorksSection"
 import ProductShowcase from "@/components/ProductShowcase"
+import FeaturesSection from "@/components/FeaturesSection"
 import PricingSection from "@/components/PricingSection"
 import FAQSection from "@/components/FAQSection"
 import CTASection from "@/components/CTASection"
@@ -13,35 +13,35 @@ import SEO from "@/components/SEO"
 const Index = () => (
   <div className="min-h-screen bg-background text-foreground antialiased selection:bg-blue-100 selection:text-blue-900">
     <SEO 
-      title="DriveOps | AI-Powered Fleet Operations & Taxi Dispatch Platform"
-      description="DriveOps is the complete operating system for modern taxi businesses. Manage dispatch, driver duty, WhatsApp reviews, fleet tracking, and fuel costs from one platform."
+      title="DriveOps | Complete Fleet Operations OS"
+      description="DriveOps helps taxi owners, transport operators, and growing fleets run their entire operation from one connected platform."
       keywords="fleet operations platform, taxi dispatch software, fleet management software, whatsapp review collection, vehicle tracking software"
       canonicalUrl="/"
     />
     <Navbar />
     <main>
-      {/* 1. HERO */}
+      {/* 1. HERO — WHAT IS DRIVEOPS */}
       <HeroSection />
 
-      {/* 2. WHY DRIVEOPS (VALUE PROPOSITION) */}
+      {/* 2. PROBLEM — WHY FLEET OPERATIONS BECOME MESSY */}
       <ProblemSection />
 
-      {/* 3. CORE CAPABILITIES (FOCUSED BENTO GRID) */}
-      <FeaturesSection />
-
-      {/* 4. WORKFLOW (4-STEP PROCESS) */}
+      {/* 3. CORE PRODUCT WORKFLOW — BOOKING TO PAYOUT */}
       <HowItWorksSection />
 
-      {/* 5. INTERACTIVE PRODUCT SHOWCASE */}
+      {/* 4-7 & 9. DRIVER MGMT, WHATSAPP REVIEWS, PAYROLL, FLEET VISIBILITY, BUSINESS TYPES */}
       <ProductShowcase />
 
-      {/* 6. TRANSPARENT PRICING (API DRIVEN) */}
+      {/* 8. COMPLETE PLATFORM — SHARED 6-PILLAR WORKSPACE */}
+      <FeaturesSection />
+
+      {/* PRICING */}
       <PricingSection />
 
-      {/* 7. FREQUENTLY ASKED QUESTIONS */}
+      {/* FAQ */}
       <FAQSection />
 
-      {/* 8. FINAL CTA BANNER */}
+      {/* 10. FINAL CTA */}
       <CTASection />
     </main>
     <Footer />
