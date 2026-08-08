@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
-import { 
+import {
   ArrowRight, Play, CheckCircle2, Star,
-  MessageCircle, TrendingUp, Navigation, Shield, 
+  MessageCircle, TrendingUp, Navigation, Shield,
   MapPin, Car, Users, Zap
 } from "lucide-react"
 
@@ -14,14 +14,14 @@ export default function HeroSection() {
         <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[100px] opacity-70 mix-blend-multiply" />
         <div className="absolute bottom-[-10%] right-[20%] w-[600px] h-[600px] bg-indigo-100/40 rounded-full blur-[80px] opacity-60 mix-blend-multiply" />
         <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-sky-50/50 rounded-full blur-[100px] opacity-50 mix-blend-multiply" />
-        
+
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_10%,transparent_100%)] opacity-100" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-[1440px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* LEFT SIDE - 40% (span-5) */}
           <div className="lg:col-span-5 flex flex-col items-start text-left pt-10 lg:pt-0">
             {/* Headline */}
@@ -31,13 +31,13 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             >
               <h1 className="text-5xl lg:text-[64px] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-tight mb-6">
-                The Complete <br className="hidden xl:block"/>
+                The Complete <br className="hidden xl:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Fleet Operations Platform.</span>
               </h1>
             </motion.div>
 
             {/* Description */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
@@ -47,7 +47,7 @@ export default function HeroSection() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
@@ -64,7 +64,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Trust Indicators */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
@@ -89,7 +89,7 @@ export default function HeroSection() {
           {/* RIGHT SIDE - 60% (span-7) Product Showcase */}
           <div className="lg:col-span-7 relative mt-16 lg:mt-0 lg:ml-8 perspective-1000">
             {/* Main Browser Window */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -104,7 +104,7 @@ export default function HeroSection() {
                 </div>
                 <div className="mx-auto bg-white border border-slate-100 rounded-md px-16 py-1 text-[11px] text-slate-400 font-medium flex items-center gap-2 shadow-sm">
                   <Shield className="w-3 h-3 text-slate-300" />
-                  app.driveops.com
+                  driveops.chatserve.in
                 </div>
               </div>
 
@@ -156,7 +156,7 @@ export default function HeroSection() {
                       {/* Fake Bar Chart */}
                       {[40, 60, 45, 80, 50, 90, 75].map((h, i) => (
                         <div key={i} className="w-full bg-slate-50 rounded-t-sm flex items-end h-full">
-                          <motion.div 
+                          <motion.div
                             initial={{ height: 0 }}
                             animate={{ height: `${h}%` }}
                             transition={{ duration: 1, delay: 0.5 + (i * 0.1), ease: "easeOut" }}
@@ -200,7 +200,7 @@ export default function HeroSection() {
             {/* FLOATING WIDGETS (Telling the story) */}
 
             {/* Widget 1: Booking / Assigned */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
               className="absolute -left-12 lg:-left-20 top-16 z-20 bg-white/90 backdrop-blur-xl border border-slate-200/60 p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center gap-4 w-64"
@@ -216,7 +216,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Widget 2: The WhatsApp Review Collection (Prominent, High Priority) */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
               className="absolute -right-8 lg:-right-24 top-40 z-30 bg-white/95 backdrop-blur-2xl border border-emerald-100 p-5 rounded-2xl shadow-[0_20px_40px_rgb(16,185,129,0.15)] w-72"
@@ -259,7 +259,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Widget 3: Business Growth / Revenue */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2.5 }}
               className="absolute left-4 lg:-left-12 -bottom-12 z-30 bg-[#0A0A0A]/95 backdrop-blur-2xl border border-slate-800 p-4 rounded-2xl shadow-[0_20px_40px_rgb(0,0,0,0.2)] flex items-center gap-4 w-60"
@@ -276,7 +276,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Widget 4: Fleet Health / Compliance */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 0.5 }}
               className="absolute right-12 lg:right-4 -bottom-6 z-20 bg-white/90 backdrop-blur-xl border border-slate-200/60 p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-2.5 w-48"

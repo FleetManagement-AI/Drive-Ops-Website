@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-import { 
-  LayoutDashboard, Car, Navigation, Shield, 
+import {
+  LayoutDashboard, Car, Navigation, Shield,
   TrendingUp, MessageCircle, Star, ArrowRight,
   Activity, Users, MapPin, Zap, CheckCircle2,
   BarChart3, Fuel, Clock
@@ -21,7 +21,7 @@ const DashboardView = () => (
         <span className="px-3 py-1.5 bg-[#0A0A0A] text-white rounded-lg text-xs font-semibold shadow-sm">Export</span>
       </div>
     </div>
-    
+
     <div className="grid grid-cols-4 gap-3 mb-4 shrink-0">
       {[
         { l: "Active Vehicles", v: "142", t: "+12", ic: Car, c: "text-blue-600", bg: "bg-blue-50" },
@@ -29,7 +29,7 @@ const DashboardView = () => (
         { l: "Live Trips", v: "34", t: "+2", ic: Navigation, c: "text-indigo-600", bg: "bg-indigo-50" },
         { l: "Today's Revenue", v: "$14.2k", t: "+1.2k", ic: TrendingUp, c: "text-violet-600", bg: "bg-violet-50" },
       ].map((s, i) => (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1 }}
@@ -51,7 +51,7 @@ const DashboardView = () => (
 
     <div className="grid grid-cols-3 gap-4 flex-1 min-h-0">
       {/* Live Map */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
         className="bg-white rounded-xl border border-slate-100 shadow-sm p-3 relative overflow-hidden flex flex-col"
       >
@@ -70,13 +70,13 @@ const DashboardView = () => (
       </motion.div>
 
       {/* Dispatches */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}
         className="bg-white rounded-xl border border-slate-100 shadow-sm p-3 flex flex-col overflow-hidden"
       >
         <h4 className="font-bold text-slate-900 text-xs mb-2 shrink-0">Recent Dispatches</h4>
         <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-          {[1,2,3,4].map((i) => (
+          {[1, 2, 3, 4].map((i) => (
             <div key={i} className="flex justify-between items-center p-2 rounded-lg bg-slate-50 border border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
@@ -105,7 +105,7 @@ const DashboardView = () => (
             <div className="bg-emerald-500 h-1 rounded-full w-[98%] shadow-[0_0_4px_rgb(16,185,129,0.5)]"></div>
           </div>
         </motion.div>
-        
+
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="bg-white rounded-xl border border-slate-100 shadow-sm p-3 flex flex-col">
           <h4 className="font-bold text-slate-900 text-xs mb-2">Trip Volume</h4>
           <div className="flex-1 flex items-end gap-1 pb-1">
@@ -124,7 +124,7 @@ const DashboardView = () => (
 const ReviewManagementView = () => (
   <div className="w-full h-full bg-[#FAFAFA] flex flex-col p-4 sm:p-6 overflow-hidden relative">
     <div className="absolute top-[-20%] right-[-10%] w-[300px] h-[300px] bg-emerald-100/40 rounded-full blur-[60px]"></div>
-    
+
     <div className="flex justify-between items-center mb-5 shrink-0 relative z-10">
       <div>
         <h3 className="text-lg font-bold text-slate-900 flex items-center gap-1.5">
@@ -146,7 +146,7 @@ const ReviewManagementView = () => (
         { title: "5★ Received", icon: Star, col: "text-amber-500", bg: "bg-amber-100" },
         { title: "Rating Increases", icon: TrendingUp, col: "text-emerald-600", bg: "bg-emerald-100" }
       ].map((step, i) => (
-        <motion.div 
+        <motion.div
           key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.15 }}
           className="flex flex-col items-center gap-2 bg-white px-2"
         >
@@ -178,7 +178,7 @@ const ReviewManagementView = () => (
           </div>
           <div className="flex justify-between items-center">
             <span className="text-slate-500 text-xs font-medium">Avg Rating</span>
-            <span className="text-amber-500 font-bold text-sm flex items-center gap-1">4.9 <Star className="w-3 h-3 fill-current"/></span>
+            <span className="text-amber-500 font-bold text-sm flex items-center gap-1">4.9 <Star className="w-3 h-3 fill-current" /></span>
           </div>
         </div>
       </motion.div>
@@ -225,7 +225,7 @@ const AnalyticsView = () => (
       </div>
       <span className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 shadow-sm">This Month</span>
     </div>
-    
+
     <div className="grid grid-cols-3 gap-4 flex-1 min-h-0">
       {/* Col 1: Revenue Chart */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="col-span-1 bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col">
@@ -256,7 +256,7 @@ const AnalyticsView = () => (
           <h4 className="font-bold text-slate-900 text-[11px]">Vehicle Utilization</h4>
           <p className="text-[9px] text-slate-500 font-medium leading-tight mt-0.5">Fleet actively generating revenue today.</p>
         </motion.div>
-        
+
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-gradient-to-br from-emerald-500 to-teal-600 p-3 rounded-xl shadow-md text-white flex flex-col justify-center">
           <div className="flex items-center gap-1.5 mb-1">
             <Fuel className="w-3.5 h-3.5 text-emerald-100" />
@@ -319,7 +319,7 @@ export default function ProductShowcase() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <motion.div
@@ -345,11 +345,10 @@ export default function ProductShowcase() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 group ${
-                  isActive 
-                    ? "text-white" 
+                className={`relative px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 group ${isActive
+                    ? "text-white"
                     : "bg-white text-slate-500 hover:text-slate-900 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-sm"
-                }`}
+                  }`}
               >
                 {isActive && (
                   <motion.div
@@ -369,9 +368,9 @@ export default function ProductShowcase() {
 
         {/* Product Showcase Window */}
         <div className="max-w-[1000px] w-full mx-auto relative perspective-1000">
-          
+
           {/* Floating Accents (Smaller and pushed further out) */}
-          <motion.div 
+          <motion.div
             animate={{ y: [-8, 8, -8] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
             className="absolute -left-12 lg:-left-32 top-24 z-20 bg-white p-3 rounded-xl shadow-[0_15px_30px_rgb(0,0,0,0.08)] border border-slate-100 hidden md:flex items-center gap-3 scale-90 origin-right"
@@ -385,7 +384,7 @@ export default function ProductShowcase() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             animate={{ y: [8, -8, 8] }}
             transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
             className="absolute -right-12 lg:-right-32 bottom-16 z-20 bg-slate-900 p-3 rounded-xl shadow-[0_15px_30px_rgb(0,0,0,0.15)] border border-slate-800 hidden md:flex items-center gap-3 scale-90 origin-left"
@@ -409,7 +408,7 @@ export default function ProductShowcase() {
               </div>
               <div className="mx-auto bg-white border border-slate-200 rounded text-[10px] text-slate-400 font-bold flex items-center justify-center gap-1.5 shadow-sm px-16 py-1 w-auto max-w-[200px]">
                 <Shield className="w-2.5 h-2.5 text-slate-300" />
-                <span className="truncate">app.driveops.com</span>
+                <span className="truncate">driveops.chatserve.in</span>
               </div>
             </div>
 
@@ -442,7 +441,7 @@ export default function ProductShowcase() {
               { icon: TrendingUp, title: "Business Analytics", desc: "Monitor revenue, fuel costs, utilization rates, and operational KPIs in real time." },
               { icon: MessageCircle, title: "WhatsApp Review Management", desc: "Collect customer reviews automatically after every completed trip to boost Google ratings." },
             ].map((f, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}

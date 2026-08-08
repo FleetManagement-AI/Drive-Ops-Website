@@ -44,7 +44,7 @@ const CTASection = () => {
             </a>
             <a
               id="cta-book-demo"
-              href="mailto:support@driveops.com?subject=DriveOps Demo Request"
+              href="mailto:driveopsfleet@gmail.com?subject=DriveOps Demo Request"
               className="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold text-sm sm:text-base px-7 sm:px-8 py-4 rounded-xl hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2 min-h-[52px]"
             >
               <Calendar size={17} aria-hidden="true" />

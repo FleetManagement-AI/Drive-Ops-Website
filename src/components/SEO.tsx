@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 export default function SEO({ title, description, keywords, canonicalUrl, ogImage }: SEOProps) {
-  const siteUrl = "https://driveops.com"; // Defaulting to root domain, update if hosted elsewhere
+  const siteUrl = "https://driveops.info.chatserve.in"; // Defaulting to root domain, update if hosted elsewhere
   const url = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl;
   const image = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/images/og-image.jpg`;
 

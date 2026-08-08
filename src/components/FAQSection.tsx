@@ -49,10 +49,10 @@ const FAQItem = ({
   onToggle: () => void
 }) => {
   return (
-    <div 
+    <div
       className="border border-slate-200/90 rounded-xl bg-white overflow-hidden shadow-sm hover:border-blue-300 transition-colors"
-      itemScope 
-      itemProp="mainEntity" 
+      itemScope
+      itemProp="mainEntity"
       itemType="https://schema.org/Question"
     >
       <button
@@ -64,9 +64,8 @@ const FAQItem = ({
           {q}
         </span>
         <div
-          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-300 ${
-            isOpen ? "rotate-180 bg-blue-50 text-blue-600" : ""
-          }`}
+          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 bg-blue-50 text-blue-600" : ""
+            }`}
           aria-hidden="true"
         >
           <ChevronDown size={16} />
@@ -80,8 +79,8 @@ const FAQItem = ({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
-            itemScope 
-            itemProp="acceptedAnswer" 
+            itemScope
+            itemProp="acceptedAnswer"
             itemType="https://schema.org/Answer"
           >
             <div itemProp="text" className="px-4 sm:px-5 lg:px-6 pb-5 sm:pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-3 sm:pt-4">
@@ -158,9 +157,9 @@ const FAQSection = () => {
         <div className="max-w-xl mx-auto text-center p-5 sm:p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm">
           <p className="text-sm text-slate-600 mb-3">Have a specific question about your fleet requirements?</p>
           <a
-            href="mailto:support@driveops.com?subject=DriveOps Fleet Inquiry"
+            href="mailto:driveopsfleet@gmail.com?subject=DriveOps Fleet Inquiry"
             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-            aria-label="Email support at support@driveops.com"
+            aria-label="Email support at driveopsfleet@gmail.com"
           >
             <Mail size={16} aria-hidden="true" />
             <span>Contact Support & Sales →</span>

@@ -6,15 +6,15 @@ import { Phone, Mail, MapPin } from "lucide-react"
 const Contact = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
-      <SEO 
+      <SEO
         title="Contact DriveOps | Sales & Support for Fleet Operations"
         description="Get in touch with DriveOps. Our fleet management experts are ready to help you streamline your taxi operations and business growth."
         keywords="contact DriveOps, DriveOps support, DriveOps sales, fleet management software contact"
         canonicalUrl="/contact"
       />
-      
+
       <Navbar />
-      
+
       <main className="flex-1 pt-32 pb-24">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-16">
@@ -42,7 +42,7 @@ const Contact = () => {
               </div>
               <h2 className="text-xl font-bold text-slate-900 mb-2">Support</h2>
               <p className="text-slate-600 mb-4">Need help with the platform? We're available 24/7.</p>
-              <a href="mailto:support@driveops.com" className="text-emerald-600 font-bold hover:underline">support@driveops.com</a>
+              <a href="mailto:driveopsfleet@[EMAIL_ADDRESS]" className="text-emerald-600 font-bold hover:underline">driveopsfleet@gmail.com</a>
             </div>
 
             <div className="bg-white border border-slate-200/60 p-8 rounded-2xl shadow-sm text-center hover:border-purple-300 transition-colors">
