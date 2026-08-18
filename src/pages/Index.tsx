@@ -1,8 +1,10 @@
 import Navbar from "@/components/Navbar"
 import HeroSection from "@/components/HeroSection"
 import ProblemSection from "@/components/ProblemSection"
-import HowItWorksSection from "@/components/HowItWorksSection"
+import FleetEcosystemSection from "@/components/FleetEcosystemSection"
 import ProductShowcase from "@/components/ProductShowcase"
+import FinancialIntelligenceSection from "@/components/FinancialIntelligenceSection"
+import BusinessTypesSection from "@/components/BusinessTypesSection"
 import FeaturesSection from "@/components/FeaturesSection"
 import PricingSection from "@/components/PricingSection"
 import FAQSection from "@/components/FAQSection"
@@ -23,25 +25,31 @@ const Index = () => (
       {/* 1. HERO — WHAT IS DRIVEOPS */}
       <HeroSection />
 
-      {/* 2. PROBLEM — WHY FLEET OPERATIONS BECOME MESSY */}
+      {/* 2. PROBLEM & UNIFICATION — STOP MANAGING ACROSS SCATTERED TOOLS */}
       <ProblemSection />
 
-      {/* 3. CORE PRODUCT WORKFLOW — BOOKING TO PAYOUT */}
-      <HowItWorksSection />
+      {/* 3. PRODUCT ECOSYSTEM — EVERYTHING YOU NEED TO RUN YOUR FLEET EFFICIENTLY */}
+      <FleetEcosystemSection />
 
-      {/* 4-7 & 9. DRIVER MGMT, WHATSAPP REVIEWS, PAYROLL, FLEET VISIBILITY, BUSINESS TYPES */}
+      {/* 4. DRIVER MGMT, WHATSAPP REVIEWS, PAYROLL, FLEET VISIBILITY */}
       <ProductShowcase />
 
-      {/* 8. COMPLETE PLATFORM — SHARED 6-PILLAR WORKSPACE */}
+      {/* 5. FINANCIAL INTELLIGENCE — PROFITABILITY & EXPENSE CONTROL */}
+      <FinancialIntelligenceSection />
+
+      {/* 6. BUSINESS TYPES SUPPORTED — ONE PLATFORM. THREE WAYS TO RUN YOUR BUSINESS */}
+      <BusinessTypesSection />
+
+      {/* 7. COMPLETE PLATFORM PILLARS */}
       <FeaturesSection />
 
-      {/* PRICING */}
+      {/* 6. PRICING */}
       <PricingSection />
 
-      {/* FAQ */}
+      {/* 7. FAQ */}
       <FAQSection />
 
-      {/* 10. FINAL CTA */}
+      {/* 8. FINAL CTA */}
       <CTASection />
     </main>
     <Footer />

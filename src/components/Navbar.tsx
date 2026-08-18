@@ -78,7 +78,7 @@ const Navbar = () => {
             href="https://driveops.chatserve.in/login"
             className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2"
           >
-            Sign In
+            Log in
           </a>
           <Link
             to="/contact"
@@ -90,7 +90,7 @@ const Navbar = () => {
             href="https://driveops.chatserve.in/signup"
             className="gradient-accent text-white text-sm font-semibold px-4 sm:px-5 py-2 rounded-xl hover:opacity-95 shadow-md shadow-blue-500/20 transition-all flex items-center gap-1.5 min-h-[38px]"
           >
-            <span>Start Free</span>
+            <span>Start Free Trial</span>
             <ArrowRight size={14} aria-hidden="true" />
           </a>
         </div>

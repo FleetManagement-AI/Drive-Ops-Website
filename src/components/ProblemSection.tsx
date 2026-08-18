@@ -1,99 +1,133 @@
-import { motion } from "framer-motion"
-import { 
-  MessageSquare, FileSpreadsheet, PhoneCall, 
-  FileText, ClipboardList, CreditCard, AlertTriangle, ShieldCheck, ArrowDown
-} from "lucide-react"
+import React from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import HeroDashboardVisual from "./hero/HeroDashboardVisual"
+import PlatformConnectionFlow from "./PlatformConnectionFlow"
+import CapabilityFlowSection from "./CapabilityFlowSection"
 
-export default function ProblemSection() {
-  const manualTools = [
-    { label: "WhatsApp Chat Groups", desc: "Driver updates & trip requests", icon: MessageSquare, col: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
-    { label: "Excel Spreadsheets", desc: "Driver rosters & vehicle logs", icon: FileSpreadsheet, col: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
-    { label: "Verbal Phone Calls", desc: "Manual trip assignments", icon: PhoneCall, col: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
-    { label: "Paper Folders", desc: "License & permit documents", icon: FileText, col: "text-rose-500 bg-rose-500/10 border-rose-500/20" },
-    { label: "Trip Sheets", desc: "Manual pickup & drop notes", icon: ClipboardList, col: "text-purple-500 bg-purple-500/10 border-purple-500/20" },
-    { label: "Payroll Sheets", desc: "Salary & advance math", icon: CreditCard, col: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20" },
-  ]
+/* ─── Vertical dotted connector: DriveOps logo → dashboard ─── */
+const LogoToDashConnector: React.FC = () => (
+  <div className="flex flex-col items-center my-1" aria-hidden="true">
+    <svg width="2" height="40" viewBox="0 0 2 40">
+      <line x1="1" y1="0" x2="1" y2="40" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.55" />
+    </svg>
+    <svg width="10" height="6" viewBox="0 0 10 6">
+      <path d="M0 0 L5 6 L10 0" fill="none" stroke="#3B82F6" strokeWidth="1.5" opacity="0.4" />
+    </svg>
+  </div>
+)
 
-  const frictionPoints = [
-    "Missed trip updates",
-    "Unassigned bookings",
-    "Expired document fines",
-    "Payroll math confusion",
-    "Zero real-time visibility"
-  ]
+/* ─── Section ─── */
+export default function FleetOperationsSection() {
+  const shouldReduceMotion = useReducedMotion()
+
+  const fade = (delay: number) => ({
+    initial: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 } as const,
+    transition: { duration: 0.5, delay: shouldReduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] as const },
+  })
 
   return (
-    <section id="why-driveops" className="py-20 sm:py-28 bg-[#090D16] text-white border-b border-slate-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px]">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-500">The Operation Problem</p>
-          <h2 className="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight leading-tight">
-            Running a fleet shouldn't mean<br />
-            <span className="text-slate-400">running five different systems.</span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-400 font-sans max-w-2xl mx-auto leading-relaxed pt-2">
-            Trips in spreadsheets. Driver updates in WhatsApp. Assignments over phone calls. Documents in folders. Payroll in separate sheets.
-          </p>
+    <section
+      id="one-platform"
+      className="relative py-16 sm:py-24 bg-gradient-to-b from-white via-[#F8FAFC] to-white border-b border-slate-200/60 overflow-hidden"
+      aria-labelledby="platform-heading"
+    >
+      {/* Ambient glow */}
+      <div
+        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,0.07) 0%, transparent 70%)" }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 px-4 sm:px-8 lg:px-14 xl:px-20 max-w-[1440px] mx-auto">
+
+        {/* ── 1. SECTION HEADING ── */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <motion.div
+            {...fade(0)}
+            className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-blue-700 mb-4 bg-blue-50/90 border border-blue-200/80 px-3.5 py-1.5 rounded-full shadow-2xs"
+          >
+            <img src="/logo/driveops-logo-blue-edited.png" alt="" className="w-3 h-3 object-contain" aria-hidden="true" />
+            <span>ONE PLATFORM. EVERY FLEET OPERATION.</span>
+          </motion.div>
+
+          <motion.h2
+            {...fade(0.06)}
+            id="platform-heading"
+            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-4"
+          >
+            Stop managing your fleet<br />
+            <span className="gradient-text">across scattered tools.</span>
+          </motion.h2>
+
+          <motion.p
+            {...fade(0.12)}
+            className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-sans"
+          >
+            Vehicles, trips, drivers, maintenance, fuel, expenses and revenue —&nbsp;
+            DriveOps brings everything together so you can run your fleet with clarity.
+          </motion.p>
         </div>
 
-        {/* Story Flow: Disconnected Tools -> Friction -> DriveOps */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          
-          {/* Step 1: Disconnected Tools Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {manualTools.map((t) => {
-              const Icon = t.icon
-              return (
-                <div key={t.label} className={`p-3.5 rounded-xl border ${t.col} flex items-start gap-3`}>
-                  <div className="p-2 rounded-lg bg-slate-900 shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-xs text-white">{t.label}</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5">{t.desc}</div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        {/* ── 2. "THE CHALLENGE TODAY" label ── */}
+        <motion.div {...fade(0.14)} className="flex items-center justify-center gap-3 mb-4">
+          <div className="h-px w-12 bg-slate-300" aria-hidden="true" />
+          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">THE CHALLENGE TODAY</p>
+          <div className="h-px w-12 bg-slate-300" aria-hidden="true" />
+        </motion.div>
 
-          {/* Arrow Down Indicator */}
-          <div className="flex flex-col items-center gap-1 text-slate-500">
-            <ArrowDown className="w-5 h-5 animate-bounce" />
-            <span className="text-[10px] font-mono uppercase tracking-widest">CREATES OPERATIONAL FRICTION</span>
-          </div>
+        {/* ── 3. REACT FLOW: 7 challenge cards fanning into DriveOps logo node ── */}
+        <PlatformConnectionFlow />
 
-          {/* Step 2: Friction Pain Points Bar */}
-          <div className="p-4 bg-slate-900/90 border border-slate-800 rounded-2xl flex flex-wrap justify-between items-center gap-3 text-xs text-rose-300">
-            {frictionPoints.map((fp) => (
-              <div key={fp} className="flex items-center gap-1.5 font-semibold">
-                <AlertTriangle className="w-3.5 h-3.5 text-rose-500 shrink-0" />
-                <span>{fp}</span>
-              </div>
-            ))}
-          </div>
+        {/* ── 4. "THE DRIVEOPS SOLUTION" label ── */}
+        <motion.div {...fade(0.5)} className="flex items-center justify-center gap-3 mt-1 mb-3">
+          <div className="h-px w-16 bg-blue-200" aria-hidden="true" />
+          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-600">THE DRIVEOPS SOLUTION</p>
+          <div className="h-px w-16 bg-blue-200" aria-hidden="true" />
+        </motion.div>
 
-          {/* Arrow Down Indicator */}
-          <div className="flex flex-col items-center gap-1 text-slate-500">
-            <ArrowDown className="w-5 h-5 animate-bounce" />
-            <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400">UNIFIED BY DRIVEOPS</span>
-          </div>
+        {/* ── 5. VERTICAL CONNECTOR: logo → capability section ── */}
+        <LogoToDashConnector />
 
-          {/* Step 3: DriveOps Solution Box */}
-          <div className="p-6 bg-blue-600/10 border border-blue-500/30 rounded-2xl text-center space-y-2 shadow-2xl">
-            <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center mx-auto text-white shadow-lg">
-              <ShieldCheck className="w-6 h-6" />
+        {/* ── 6. REACT FLOW: left capabilities → convergence → dashboard ← convergence ← right capabilities ── */}
+        <CapabilityFlowSection />
+
+        {/* ── 7. BOTTOM CTA STRIP ── */}
+        <motion.div
+          {...fade(0.9)}
+          className="mt-8 sm:mt-10 rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50/70 via-white to-blue-50/70 px-6 sm:px-10 py-7 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="w-9 h-9 rounded-lg bg-white flex items-center justify-center shrink-0 mt-0.5"
+              style={{ border: "1.5px solid rgba(37,99,235,0.2)", boxShadow: "0 2px 8px rgba(37,99,235,0.12)" }}
+            >
+              <img src="/logo/driveops-logo-blue-edited.png" alt="DriveOps" className="w-5 h-5 object-contain" />
             </div>
-            <div className="text-xs font-black uppercase tracking-[0.25em] text-blue-400">DRIVEOPS</div>
-            <h3 className="font-heading text-2xl font-bold text-white">One connected fleet operation.</h3>
-            <p className="text-slate-300 text-xs max-w-md mx-auto">
-              Drivers, vehicles, dispatches, WhatsApp reviews, and payroll reconciled into one live workspace.
-            </p>
+            <div>
+              <p className="font-heading font-bold text-slate-900 text-base sm:text-lg leading-tight">
+                One Platform.{" "}
+                <span className="gradient-text">Complete Control.</span>{" "}
+                Better Decisions.
+              </p>
+              <p className="text-sm text-slate-500 mt-0.5 max-w-md leading-relaxed">
+                DriveOps gives you the visibility and control you need to reduce costs,
+                improve efficiency and maximize profit.
+              </p>
+            </div>
           </div>
 
-        </div>
+          <a
+            href="https://driveops.chatserve.in/signup"
+            id="platform-cta-trial"
+            className="w-full sm:w-auto shrink-0 px-6 py-3.5 gradient-accent hover:opacity-95 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group"
+          >
+            <span>Start 30-Day Free Trial</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
+        </motion.div>
 
       </div>
     </section>
