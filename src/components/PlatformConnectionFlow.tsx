@@ -213,21 +213,81 @@ export default function PlatformConnectionFlow() {
   }, [])
 
   return (
-    <motion.div
-      ref={containerRef}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, delay: 0.15 }}
-      className="w-full"
-      style={{ height: CANVAS_H, overflow: "hidden" }}
-      aria-label="Challenge cards connected to DriveOps solution"
-    >
-      {width > 0 && (
-        <ReactFlowProvider>
-          <FlowInner width={width} />
-        </ReactFlowProvider>
-      )}
-    </motion.div>
+    <div className="w-full">
+      {/* ── MOBILE FALLBACK (< md): CSS-only 2-column grid — no ReactFlow ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="md:hidden w-full"
+        aria-label="Challenge cards showing fleet management problems"
+      >
+        {/* 2-column grid of challenge cards */}
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          {CHALLENGES.map((c) => {
+            const Icon = c.icon
+            const lines = c.label.split("\n")
+            return (
+              <div
+                key={c.id}
+                className="flex flex-col items-center gap-2 bg-white rounded-xl border border-slate-200/80 shadow-sm px-3 py-3 select-none"
+              >
+                <div className={`w-9 h-9 rounded-full ${c.iconBg} flex items-center justify-center`}>
+                  <Icon className={`w-4 h-4 ${c.iconColor}`} aria-hidden="true" />
+                </div>
+                <p className="text-[10.5px] font-semibold text-slate-700 text-center leading-snug">
+                  {lines.map((l, i) => (
+                    <React.Fragment key={i}>{l}{i < lines.length - 1 && <br />}</React.Fragment>
+                  ))}
+                </p>
+                <div className="w-[18px] h-[18px] rounded-full bg-red-50 border border-red-300 flex items-center justify-center">
+                  <span className="text-red-500 text-[9px] font-black leading-none">✕</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Connector to DriveOps logo */}
+        <div className="flex flex-col items-center gap-2">
+          <svg width="2" height="32" viewBox="0 0 2 32" aria-hidden="true">
+            <line x1="1" y1="0" x2="1" y2="32" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.55" />
+          </svg>
+          <div className="relative flex items-center justify-center" style={{ width: 72, height: 72 }}>
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{ background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%)", transform: "scale(1.7)" }}
+              aria-hidden="true"
+            />
+            <div
+              className="relative w-[64px] h-[64px] rounded-full bg-white flex items-center justify-center"
+              style={{ border: "1.5px solid rgba(37,99,235,0.3)", boxShadow: "0 0 0 7px rgba(37,99,235,0.07), 0 8px 28px rgba(37,99,235,0.22)" }}
+            >
+              <img src="/logo/driveops-logo-blue-edited.png" alt="DriveOps" className="w-9 h-9 object-contain" draggable={false} />
+            </div>
+          </div>
+          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-blue-600 mt-1">DriveOps</p>
+        </div>
+      </motion.div>
+
+      {/* ── DESKTOP / TABLET (≥ md): ReactFlow canvas ── */}
+      <motion.div
+        ref={containerRef}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="hidden md:block w-full"
+        style={{ height: CANVAS_H, overflow: "hidden" }}
+        aria-label="Challenge cards connected to DriveOps solution"
+      >
+        {width > 0 && (
+          <ReactFlowProvider>
+            <FlowInner width={width} />
+          </ReactFlowProvider>
+        )}
+      </motion.div>
+    </div>
   )
 }

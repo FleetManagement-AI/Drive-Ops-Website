@@ -234,21 +234,93 @@ export default function CapabilityFlowSection() {
   }, [])
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="w-full"
-      style={{ height: CANVAS_H }}
-      aria-label="DriveOps platform capabilities connected to central dashboard"
-    >
-      {width > 0 && (
-        <ReactFlowProvider>
-          <FlowInner width={width} />
-        </ReactFlowProvider>
-      )}
-    </motion.div>
+    <div className="w-full">
+      {/* ── MOBILE FALLBACK (< md): vertical stacked layout — no ReactFlow ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="md:hidden w-full space-y-4"
+        aria-label="DriveOps platform capabilities"
+      >
+        {/* Left Capabilities (2-col grid) */}
+        <div className="grid grid-cols-2 gap-2.5">
+          {LEFT_CAPS.map((c) => {
+            const Icon = c.icon
+            return (
+              <div key={c.id} className="flex items-start gap-2.5 bg-white rounded-xl border border-slate-200/80 shadow-sm px-3 py-3 select-none">
+                <div className={`w-8 h-8 rounded-lg ${c.iconBg} flex items-center justify-center shrink-0 mt-0.5`}>
+                  <Icon className={`w-[17px] h-[17px] ${c.iconColor}`} aria-hidden="true" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[11px] font-bold text-slate-800 leading-snug mb-0.5">{c.title}</p>
+                  <p className="text-[10px] text-slate-500 leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Connector to dashboard */}
+        <div className="flex flex-col items-center gap-1">
+          <svg width="2" height="24" viewBox="0 0 2 24" aria-hidden="true">
+            <line x1="1" y1="0" x2="1" y2="24" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.55" />
+          </svg>
+          <div
+            className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
+            style={{ border: "1.5px solid rgba(37,99,235,0.3)", boxShadow: "0 0 0 5px rgba(37,99,235,0.07), 0 4px 16px rgba(37,99,235,0.18)" }}
+          >
+            <img src="/logo/driveops-logo-blue-edited.png" alt="DriveOps" className="w-6 h-6 object-contain" draggable={false} />
+          </div>
+          <svg width="2" height="24" viewBox="0 0 2 24" aria-hidden="true">
+            <line x1="1" y1="0" x2="1" y2="24" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.55" />
+          </svg>
+        </div>
+
+        {/* Dashboard — constrained width, horizontally scrollable only within this container */}
+        <div className="w-full overflow-x-auto rounded-2xl border border-slate-200/90 shadow-xl shadow-blue-900/10" style={{ WebkitOverflowScrolling: "touch" }}>
+          <div style={{ minWidth: 520 }}>
+            <HeroDashboardVisual />
+          </div>
+        </div>
+
+        {/* Right Capabilities (2-col grid) */}
+        <div className="grid grid-cols-2 gap-2.5">
+          {RIGHT_CAPS.map((c) => {
+            const Icon = c.icon
+            return (
+              <div key={c.id} className="flex items-start gap-2.5 bg-white rounded-xl border border-slate-200/80 shadow-sm px-3 py-3 select-none">
+                <div className={`w-8 h-8 rounded-lg ${c.iconBg} flex items-center justify-center shrink-0 mt-0.5`}>
+                  <Icon className={`w-[17px] h-[17px] ${c.iconColor}`} aria-hidden="true" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[11px] font-bold text-slate-800 leading-snug mb-0.5">{c.title}</p>
+                  <p className="text-[10px] text-slate-500 leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </motion.div>
+
+      {/* ── DESKTOP / TABLET (≥ md): ReactFlow canvas ── */}
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="hidden md:block w-full"
+        style={{ height: CANVAS_H }}
+        aria-label="DriveOps platform capabilities connected to central dashboard"
+      >
+        {width > 0 && (
+          <ReactFlowProvider>
+            <FlowInner width={width} />
+          </ReactFlowProvider>
+        )}
+      </motion.div>
+    </div>
   )
 }

@@ -1,16 +1,16 @@
-import { 
-  Send, 
-  User, 
-  Users, 
-  Package, 
-  MapPin, 
-  Truck, 
-  UserCheck, 
-  Layers, 
-  FileCheck2, 
-  Calendar, 
-  CalendarCheck, 
-  FileText, 
+import {
+  Send,
+  User,
+  Users,
+  Package,
+  MapPin,
+  Truck,
+  UserCheck,
+  Layers,
+  FileCheck2,
+  Calendar,
+  CalendarCheck,
+  FileText,
   IndianRupee,
   Car,
   Wrench,
@@ -63,12 +63,12 @@ export interface BusinessTypeItem {
 export const businessTypes: BusinessTypeItem[] = [
   {
     id: "passenger",
-    title: "Passenger Transport",
-    description: "Run your passenger fleet efficiently and deliver safe, reliable journeys.",
+    title: "Passenger Transport Fleet Management",
+    description: "Manage taxis, cabs and passenger transport fleets with trip scheduling, driver management, vehicle tracking, maintenance and profitability tools.",
     accentColor: "blue",
     headerIcon: Car,
-    vehicleImage: "/module_images/taxi.png",
-    vehicleAlt: "Passenger Taxi and MPV Fleet",
+    vehicleImage: "/card_image/taxi_image.png",
+    vehicleAlt: "Passenger transport vehicle managed with DriveOps fleet management software",
     capabilities: [
       { label: "Trips & Dispatch", icon: Send },
       { label: "Drivers", icon: User },
@@ -103,17 +103,17 @@ export const businessTypes: BusinessTypeItem[] = [
         sparklinePoints: [70, 82, 78, 96, 92, 114, 125]
       }
     ],
-    ctaText: "Explore Passenger Solution",
-    ctaHref: "#contact"
+    ctaText: "Explore Passenger Fleet Solution",
+    ctaHref: "/solutions/passenger-transport"
   },
   {
     id: "goods",
-    title: "Goods Transport",
-    description: "Streamline your cargo operations and deliver more, on time.",
+    title: "Goods Transport Fleet Management",
+    description: "Manage trucks and delivery vehicles with fleet tracking, driver management, trip operations, maintenance, expenses and delivery visibility.",
     accentColor: "green",
     headerIcon: Truck,
-    vehicleImage: "/module_images/goods_transport.png",
-    vehicleAlt: "Commercial Delivery Truck Fleet",
+    vehicleImage: "/card_image/truck_image.png",
+    vehicleAlt: "Goods transport truck managed with DriveOps fleet management software",
     capabilities: [
       { label: "Cargo & Deliveries", icon: Package },
       { label: "Fleet Management", icon: Truck },
@@ -148,17 +148,17 @@ export const businessTypes: BusinessTypeItem[] = [
         sparklinePoints: [13, 15, 14, 16.5, 16, 17.8, 18.6]
       }
     ],
-    ctaText: "Explore Goods Transport Solution",
-    ctaHref: "#contact"
+    ctaText: "Explore Goods Fleet Solution",
+    ctaHref: "/solutions/goods-transport"
   },
   {
     id: "rental",
-    title: "Self-Drive Rental",
-    description: "Manage rentals, availability and bookings with ease.",
+    title: "Self-Drive Rental Management",
+    description: "Manage rental vehicles, bookings, availability, customers, contracts, payments and vehicle utilization from one platform.",
     accentColor: "purple",
     headerIcon: Wrench,
-    vehicleImage: "/module_images/rental.png",
-    vehicleAlt: "Self-Drive Modern Rental Fleet",
+    vehicleImage: "/card_image/rental_image.png",
+    vehicleAlt: "Self-drive rental vehicles managed with DriveOps",
     capabilities: [
       { label: "Bookings", icon: Calendar },
       { label: "Availability", icon: CalendarCheck },
@@ -193,8 +193,8 @@ export const businessTypes: BusinessTypeItem[] = [
         sparklinePoints: [1.9, 2.2, 2.1, 2.45, 2.4, 2.68, 2.85]
       }
     ],
-    ctaText: "Explore Rental Solution",
-    ctaHref: "#contact"
+    ctaText: "Explore Rental Fleet Solution",
+    ctaHref: "/solutions/self-drive-rental"
   }
 ]
 

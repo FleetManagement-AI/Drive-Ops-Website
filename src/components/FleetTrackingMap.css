@@ -1,0 +1,273 @@
+.fleet-map {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 580 / 400;
+  overflow: hidden;
+  border-radius: clamp(8px, 2cqw, 12px);
+  background: #f4f6f8;
+  box-shadow:
+    0 14px 38px rgba(30, 45, 65, 0.08),
+    0 2px 7px rgba(30, 45, 65, 0.05);
+  container-type: inline-size;
+  container-name: fleetmap;
+}
+
+/* ------------------------------
+   SVG layers hierarchy
+------------------------------ */
+
+.map-background,
+.route-layer,
+.pin-layer,
+.vehicle-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.map-background {
+  z-index: 1;
+}
+
+.route-layer {
+  z-index: 3;
+}
+
+.pin-layer {
+  z-index: 4;
+}
+
+.vehicle-layer {
+  z-index: 5;
+}
+
+/* ------------------------------
+   Route animation
+------------------------------ */
+
+#route-blue,
+#route-green,
+#route-orange,
+#route-purple {
+  stroke-dasharray: 5 2.5;
+  animation: route-flow 2.4s linear infinite;
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+
+/* ------------------------------
+   Vehicle
+------------------------------ */
+
+.fleet-vehicle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ------------------------------
+   Cards Layer
+------------------------------ */
+
+.cards-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.vehicle-card {
+  position: absolute;
+  width: clamp(72px, 20.5cqw, 115px);
+  padding: clamp(4px, 1.4cqw, 8px) clamp(6px, 1.8cqw, 11px);
+  border-radius: clamp(5px, 1.4cqw, 8px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 clamp(2px, 1cqw, 6px) clamp(6px, 2.5cqw, 18px) rgba(25, 40, 60, 0.10),
+    0 1px clamp(2px, 0.8cqw, 5px) rgba(25, 40, 60, 0.05);
+  backdrop-filter: blur(8px);
+  font-family:
+    Inter,
+    Manrope,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ------------------------------
+   Card Positioning (Percentages based on 580x400)
+------------------------------ */
+
+/* Blue card: Upper-left/center */
+.card-blue {
+  left: 23%;
+  top: 17%;
+  animation: card-float-blue 4.8s ease-in-out infinite;
+}
+
+/* Green card: Upper-right/center */
+.card-green {
+  left: 61%;
+  top: 24%;
+  animation: card-float-green 5.2s ease-in-out infinite;
+}
+
+/* Orange card: Lower-left/center */
+.card-orange {
+  left: 17%;
+  top: 57%;
+  animation: card-float-orange 5s ease-in-out infinite;
+}
+
+/* Purple card: Lower-right/center */
+.card-purple {
+  left: 59%;
+  top: 65%;
+  animation: card-float-purple 5.4s ease-in-out infinite;
+}
+
+/* ------------------------------
+   Typography & Info Badges (Proportional & Responsive)
+------------------------------ */
+
+.vehicle-registration {
+  color: #1f2937;
+  font-size: clamp(6.8px, 1.8cqw, 10.5px);
+  line-height: clamp(9px, 2.4cqw, 14px);
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vehicle-model {
+  margin-top: clamp(0.5px, 0.2cqw, 1px);
+  color: #687383;
+  font-size: clamp(5.8px, 1.55cqw, 9px);
+  line-height: clamp(8px, 2.1cqw, 12px);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.speed-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(2px, 0.6cqw, 3.5px);
+  margin-top: clamp(2px, 0.7cqw, 4px);
+  color: #667085;
+  font-size: clamp(5.5px, 1.5cqw, 8.5px);
+  line-height: clamp(7.5px, 2cqw, 11px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.speed-row svg {
+  width: clamp(7px, 1.9cqw, 11px);
+  height: clamp(7px, 1.9cqw, 11px);
+  flex-shrink: 0;
+}
+
+.delay-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5px, 0.7cqw, 4px);
+  margin-top: clamp(2px, 0.7cqw, 4px);
+  color: #ef4444;
+  font-size: clamp(5.5px, 1.5cqw, 8.5px);
+  line-height: clamp(7.5px, 2cqw, 11px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.delay-dot {
+  width: clamp(3.5px, 1cqw, 5.5px);
+  height: clamp(3.5px, 1cqw, 5.5px);
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 0 clamp(1.5px, 0.4cqw, 2.5px) rgba(239, 68, 68, 0.12);
+  animation: delayed-pulse 1.7s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes delayed-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+}
+
+/* ------------------------------
+   Subtle floating animations
+------------------------------ */
+
+@keyframes card-float-blue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes card-float-green {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2.5px);
+  }
+}
+
+@keyframes card-float-orange {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes card-float-purple {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2.5px);
+  }
+}
+
+/* ------------------------------
+   Fallback for Viewports < 480px
+------------------------------ */
+
+@media (max-width: 480px) {
+  .fleet-map {
+    border-radius: 8px;
+  }
+
+  .vehicle-card {
+    border-radius: 5px;
+  }
+}

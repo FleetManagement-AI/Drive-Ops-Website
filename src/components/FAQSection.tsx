@@ -4,36 +4,36 @@ import { ChevronDown, Mail } from "lucide-react"
 
 const faqs = [
   {
-    q: "What is DriveOps and who is it for?",
-    a: "DriveOps is a comprehensive fleet operations and business growth platform. It is specifically built for taxi operators, fleet owners, travel companies, and cab aggregators to manage dispatch, vehicles, drivers, and customer reviews from a single intelligent dashboard.",
+    q: "What is DriveOps?",
+    a: "DriveOps is an all-in-one cloud fleet management software platform built specifically for Indian transport businesses. It unites vehicle registries, trip dispatching, driver rosters, maintenance logs, fuel tracking, expense accounting, and automated WhatsApp customer reviews in a single dashboard.",
   },
   {
-    q: "What is fleet operations software?",
-    a: "Fleet operations software is a digital platform that automates the day-to-day management of commercial vehicles. It handles trip dispatching, driver scheduling, real-time GPS tracking, fuel monitoring, and maintenance logging, replacing manual spreadsheets with automated workflows.",
+    q: "What is fleet management software?",
+    a: "Fleet management software is a digital operating system that automates the day-to-day operations of commercial vehicles. It replaces manual paper logbooks and phone coordination with automated dispatching, driver scheduling, maintenance alerts, expense control, and profitability analytics.",
   },
   {
-    q: "How does taxi dispatch software work in DriveOps?",
-    a: "Our smart taxi dispatch software provides a centralized digital queue. When a new booking arrives, it automatically identifies the closest available vehicle and assigns the trip to the driver based on shift schedules and priority rules, eliminating manual phone calls.",
+    q: "Who can use DriveOps?",
+    a: "DriveOps is built for passenger transport operators (taxi fleets, outstation cabs, tour & travel companies), goods transport businesses (delivery trucks, logistics providers), and self-drive vehicle rental companies across India.",
   },
   {
-    q: "How does automated WhatsApp Review Management work?",
-    a: "After every completed trip, DriveOps automatically sends a personalized WhatsApp message to the customer thanking them for the ride and requesting a review. This seamless automation significantly increases the collection of 5-star Google reviews and builds your online reputation.",
+    q: "Can DriveOps manage taxi fleets?",
+    a: "Yes. DriveOps offers dedicated passenger transport tools including digital dispatch queues, trip sheets, driver shift assignments, custom package pricing (e.g. 8hr/80km rentals), and automated WhatsApp Google review collection after each trip.",
   },
   {
-    q: "What features should a modern fleet operations platform include?",
-    a: "A complete platform should include smart dispatching, live GPS vehicle tracking, driver duty rosters, automated fuel and maintenance tracking, compliance document vaults, and customer relationship management (like automated review collection).",
+    q: "Can DriveOps manage goods transport fleets?",
+    a: "Yes. For goods and cargo transport, DriveOps tracks multi-stop delivery routes, vehicle load assignments, digital proof of delivery (POD), driver duty records, and trip-by-trip fuel and operational profitability.",
   },
   {
-    q: "Why choose DriveOps over other fleet management systems?",
-    a: "Unlike generic logistics software, DriveOps is purpose-built for passenger transport and taxi businesses. It combines core operational tools (dispatch, tracking) with business growth tools (WhatsApp review automation) into one enterprise-grade, easy-to-use platform.",
+    q: "Can DriveOps manage vehicle rentals?",
+    a: "Yes. DriveOps provides complete self-drive and car rental capabilities including vehicle availability calendars, customer ID verification, digital rental contracts, advance payment tracking, and fleet utilization reports.",
   },
   {
-    q: "Does DriveOps require hardware GPS installation?",
-    a: "No. DriveOps provides a comprehensive Fleet Map for operational management and dispatching out-of-the-box using driver mobile tracking, meaning you can start managing your fleet immediately without expensive hardware lock-in.",
+    q: "Does DriveOps provide vehicle tracking?",
+    a: "Yes. DriveOps provides live operational tracking and a fleet map directly through connected driver mobile workflows and GPS telemetry, enabling dispatchers to locate active vehicles and assign bookings without proprietary hardware locks.",
   },
   {
-    q: "Can I manage package pricing and custom rates?",
-    a: "Absolutely. DriveOps allows you to configure reusable package templates (e.g., 8 hrs / 80 km city rental, outstation round-trips), set included kilometers, and automatically calculate trip billing.",
+    q: "Can DriveOps manage vehicle maintenance and expenses?",
+    a: "Yes. DriveOps features proactive maintenance scheduling (alerts for service intervals, insurance renewals, fitness certificates, and permits) alongside detailed fuel logs and expense tracking to calculate the exact cost per kilometer for every vehicle.",
   }
 ]
 
@@ -131,7 +131,7 @@ const FAQSection = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-600">
-            Learn more about how DriveOps powers modern taxi and fleet businesses.
+            Learn more about how DriveOps powers modern taxi, transport, and rental fleet businesses.
           </p>
         </motion.div>
 

@@ -60,16 +60,9 @@ export default function BusinessTypesSection() {
         {/* ========================================================
             2. THREE BUSINESS MODEL PANELS
            ======================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {businessTypes.map((item, index) => (
-            <div
-              key={item.id}
-              className={`flex flex-col ${
-                index === 2 ? "md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none w-full" : ""
-              }`}
-            >
-              <BusinessTypeCard item={item} index={index} />
-            </div>
+            <BusinessTypeCard key={item.id} item={item} index={index} />
           ))}
         </div>
 

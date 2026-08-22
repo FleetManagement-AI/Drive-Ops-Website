@@ -7,7 +7,7 @@ export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-14 lg:pb-16 bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC] to-white border-b border-slate-200/70 overflow-hidden">
+    <section className="relative pt-20 sm:pt-24 lg:pt-32 pb-10 lg:pb-16 bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC] to-white border-b border-slate-200/70 overflow-hidden">
       {/* Background Decorative Soft Radial Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
       <div className="absolute top-24 -right-40 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
@@ -20,7 +20,7 @@ export default function HeroSection() {
           {/* LEFT COLUMN: Marketing content + absolutely-positioned fleet illustration   */}
           {/* min-h-[680px] gives vertical room so the dashboard doesn't shrink the art  */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-5 flex flex-col items-start text-left relative z-10 lg:min-h-[680px] px-6 sm:px-10 lg:pl-14 xl:pl-20 lg:pr-0">
+          <div className="order-1 lg:col-span-5 flex flex-col items-start text-left relative z-10 lg:min-h-[680px] px-4 sm:px-8 lg:pl-14 xl:pl-20 lg:pr-0">
 
             {/* 1. Eyebrow Badge */}
             <motion.div
@@ -49,9 +49,9 @@ export default function HeroSection() {
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.16 }}
-              className="text-base sm:text-lg text-slate-600 leading-relaxed font-sans max-w-[500px] mb-6"
+              className="text-base sm:text-lg text-slate-600 leading-relaxed font-sans max-w-[520px] mb-6"
             >
-              Manage vehicles, track operations, automate maintenance, control costs and boost profitability — all in one powerful platform.
+              DriveOps is an all-in-one fleet management platform for passenger transport, goods transport and vehicle rental businesses. Manage vehicles, track operations, automate maintenance, control costs and improve fleet profitability from one connected platform.
             </motion.p>
 
             {/* 4. Action Buttons */}
@@ -169,7 +169,7 @@ export default function HeroSection() {
           {/* ========================================================================= */}
           {/* RIGHT COLUMN (approx 55%): Realistic SaaS Product Dashboard Visualization */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-7 relative w-full pt-2 lg:pt-0 z-20 pr-6 sm:pr-10 lg:pr-14 xl:pr-20">
+          <div className="order-2 lg:col-span-7 relative w-full pt-2 lg:pt-0 z-20 px-4 sm:px-6 lg:px-0 lg:pr-14 xl:pr-20">
             <HeroDashboardVisual />
           </div>
 
@@ -179,8 +179,8 @@ export default function HeroSection() {
       {/* ========================================================================= */}
       {/* TRUST STRIP AT HERO BOTTOM: Verified Capabilities & Fleet Connectivity   */}
       {/* ========================================================================= */}
-      <div className="mt-10 lg:mt-14 pt-8 border-t border-slate-200/60 bg-white/50 backdrop-blur-2xs">
-        <div className="w-full px-8 sm:px-12 lg:px-16">
+      <div className="mt-8 lg:mt-14 pt-6 border-t border-slate-200/60 bg-white/50 backdrop-blur-2xs">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
               OPERATIONAL CAPABILITIES

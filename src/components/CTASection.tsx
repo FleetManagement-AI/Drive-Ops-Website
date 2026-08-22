@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function CTASection() {
   return (
-    <section id="cta" className="py-28 bg-[#090D16] text-white border-t border-slate-850 relative overflow-hidden">
+    <section id="cta" className="py-16 sm:py-24 lg:py-28 bg-[#090D16] text-white border-t border-slate-850 relative overflow-hidden">
       <div className="px-5 sm:px-8 lg:px-12 xl:px-16 relative z-10 max-w-[1100px] mx-auto text-center space-y-8">
         
         <div className="space-y-4">
@@ -38,11 +38,11 @@ export default function CTASection() {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center gap-6 text-[11px] text-slate-500 pt-4">
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[11px] text-slate-500 pt-4">
           <span>Setup in 30 minutes</span>
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
           <span>No credit card required</span>
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
           <span>Free onboarding support</span>
         </div>
 

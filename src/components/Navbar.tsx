@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Menu, X, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const navLinks = [
   { label: "Features", href: "/#features" },
@@ -15,6 +15,41 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const location = useLocation()
+
+  const scrollToSection = useCallback((targetId: string) => {
+    const el = document.getElementById(targetId)
+    if (el) {
+      const navOffset = 80
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: "smooth"
+      })
+    }
+  }, [])
+
+  // Handle hash scrolling when arriving on homepage with a hash or when hash changes
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const targetId = location.hash.replace("#", "")
+      const timer = setTimeout(() => {
+        scrollToSection(targetId)
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [location.pathname, location.hash, scrollToSection])
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#") || href.startsWith("#")) {
+      const targetId = href.replace(/^\/?#/, "")
+      if (location.pathname === "/") {
+        e.preventDefault()
+        scrollToSection(targetId)
+        window.history.pushState(null, "", href.startsWith("/") ? href : `/${href}`)
+      }
+    }
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -31,6 +66,18 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", onResize)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileOpen])
+
   return (
     <nav
       role="navigation"
@@ -44,6 +91,11 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+          }}
           className="flex items-center gap-2 sm:gap-2.5 font-heading text-lg sm:text-xl font-bold tracking-tight text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
           aria-label="DriveOps – Go to top"
         >
@@ -54,9 +106,13 @@ const Navbar = () => {
             width="80"
             height="32"
           />
-          <span>
-            Drive<span className="gradient-text">Ops</span>
-          </span>
+          <div className="flex flex-col">
+            <span>
+              Drive<span className="gradient-text">Ops</span>
+            </span>
+            <p className="text-xs text-blue-500">Easier Fleet Management</p>
+          </div>
+
         </Link>
 
         {/* Desktop Nav Links */}
@@ -65,6 +121,7 @@ const Navbar = () => {
             <Link
               key={l.href}
               to={l.href}
+              onClick={(e) => handleNavClick(e, l.href)}
               className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
             >
               {l.label}
@@ -97,7 +154,7 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-slate-700 p-2 -mr-1 rounded-lg hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="md:hidden text-slate-700 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1 rounded-lg hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileOpen}
@@ -124,7 +181,10 @@ const Navbar = () => {
                   <Link
                     key={l.href}
                     to={l.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(e, l.href)
+                      setMobileOpen(false)
+                    }}
                     className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors py-2.5 px-2 rounded-lg hover:bg-slate-50"
                   >
                     {l.label}

@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { 
-  Users, MessageSquare, CreditCard, MapPin, Star, 
-  CheckCircle2, Car, Truck, Key, ArrowRight 
+import {
+  Users, MessageSquare, CreditCard, MapPin, Star,
+  CheckCircle2, Car, Truck, Key, ArrowRight
 } from "lucide-react"
 import ProductVideo from "./ProductVideo"
 
 export default function ProductShowcase() {
   return (
-    <div className="space-y-32 py-20 bg-[#FBFBFA]">
+    <div className="space-y-12 sm:space-y-20 lg:space-y-32 py-10 sm:py-16 lg:py-20 bg-[#FBFBFA]">
       <DriverManagementSection />
       <WhatsAppReviewsSection />
       <DriverPayrollSection />
       <FleetVisibilitySection />
-      <BusinessTypesSection />
+      {/* <BusinessTypesSection /> */}
     </div>
   )
 }
@@ -25,7 +25,7 @@ function DriverManagementSection() {
   return (
     <section className="px-5 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1340px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         {/* Left Text */}
         <div className="lg:col-span-5 space-y-4">
           <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">Driver Operations</p>
@@ -44,7 +44,7 @@ function DriverManagementSection() {
 
         {/* Right Product Video */}
         <div className="lg:col-span-7">
-          <ProductVideo 
+          <ProductVideo
             src="https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/driver-videowr.mp4"
             alt="DriveOps Driver Management Live Video"
             hideChrome={true}
@@ -64,10 +64,10 @@ function WhatsAppReviewsSection() {
   return (
     <section className="px-5 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1340px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         {/* Left Product Video */}
         <div className="lg:col-span-7 order-last lg:order-first">
-          <ProductVideo 
+          <ProductVideo
             src="https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/customer_review_gwr_video_mvp.mp4"
             alt="DriveOps WhatsApp Customer Reviews Video Walkthrough"
             hideChrome={true}
@@ -98,7 +98,7 @@ function DriverPayrollSection() {
   return (
     <section className="px-5 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1340px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         {/* Left Text */}
         <div className="lg:col-span-5 space-y-4">
           <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">Driver Payroll</p>
@@ -112,7 +112,7 @@ function DriverPayrollSection() {
 
         {/* Right Product Video */}
         <div className="lg:col-span-7">
-          <ProductVideo 
+          <ProductVideo
             src="https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/driver_payroll_gwr_video_mvp.mp4"
             alt="DriveOps Driver Payroll Live Video Walkthrough"
             hideChrome={true}
@@ -132,10 +132,10 @@ function FleetVisibilitySection() {
   return (
     <section className="px-5 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1340px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         {/* Left Product Video */}
         <div className="lg:col-span-7 order-last lg:order-first">
-          <ProductVideo 
+          <ProductVideo
             src="https://chatserve-732169940926-eu-north-1-an.s3.eu-north-1.amazonaws.com/public/command_center_gwr_video_mvp.mp4"
             alt="DriveOps Command Center Live Video Walkthrough"
             hideChrome={true}
@@ -166,7 +166,7 @@ function BusinessTypesSection() {
   return (
     <section className="px-5 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1340px] mx-auto">
       <div className="bg-[#090D16] text-white p-8 sm:p-12 rounded-3xl border border-slate-800 space-y-10">
-        
+
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-400">Business Workflows</p>
           <h2 className="font-heading font-black text-3xl sm:text-4xl text-white tracking-tight leading-tight">

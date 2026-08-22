@@ -30,7 +30,7 @@ export default function FleetOperationsSection() {
 
   return (
     <section
-      id="one-platform"
+      id="platform"
       className="relative py-16 sm:py-24 bg-gradient-to-b from-white via-[#F8FAFC] to-white border-b border-slate-200/60 overflow-hidden"
       aria-labelledby="platform-heading"
     >

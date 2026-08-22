@@ -16,7 +16,7 @@ export const HeroDashboardVisual: React.FC = () => {
       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
       animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full bg-white rounded-2xl border border-slate-200/90 shadow-2xl shadow-blue-900/10 overflow-hidden flex flex-col select-none relative z-10"
+      className="w-full max-w-full bg-white rounded-2xl border border-slate-200/90 shadow-2xl shadow-blue-900/10 overflow-hidden flex flex-col select-none relative z-10"
     >
       {/* 1. Header Bar */}
       <HeroDashboardHeader />
