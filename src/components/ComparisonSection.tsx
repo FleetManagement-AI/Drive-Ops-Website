@@ -1,134 +1,145 @@
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Check, X } from "lucide-react"
+import React from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import { X, Check, ArrowRight } from "lucide-react"
 
-const rows = [
+const COMPARISONS = [
   {
-    feature: "Trip Dispatch & Allocation",
-    traditional: "Manual phone calls, verbal updates, delayed assignments",
-    driveops: "Automated dispatch queue, instant driver & vehicle allocation",
+    area: "Trip Management",
+    before: "WhatsApp groups & phone calls to relay passenger pickup locations.",
+    after: "Centralized trip queue with instant dispatch to driver mobile app.",
   },
   {
-    feature: "Fleet Visibility & Status",
-    traditional: "Unknown vehicle availability, reliance on driver calls",
-    driveops: "Centralized fleet map with live driver & vehicle operational status",
+    area: "Vehicle & Driver Allocation",
+    before: "Disorganized memory and manual checks to see who is available.",
+    after: "Single dispatch board matching compliant vehicles with active drivers.",
   },
   {
-    feature: "Driver & Shift Management",
-    traditional: "Paper logs, missing license expiration dates, shift confusion",
-    driveops: "Digital driver profiles, availability schedules & license alerts",
+    area: "Driver Field Execution",
+    before: "Paper trip sheets that get crumpled, lost, or submitted days late.",
+    after: "Mobile app workflow with duty toggle, trip milestones, and offline support.",
   },
   {
-    feature: "Fuel & Expense Tracking",
-    traditional: "Unverified receipts, lost slips, hidden fuel loss",
-    driveops: "Digital fuel logs, mileage monitoring & per-vehicle expense tracking",
+    area: "Document Compliance",
+    before: "Sticky notes and spreadsheets; documents lapse until traffic checks.",
+    after: "OCR document vault with proactive 30-day countdown renewal alerts.",
   },
   {
-    feature: "Maintenance & Repairs",
-    traditional: "Reactive repairs after breakdowns disrupt active bookings",
-    driveops: "Preventive maintenance reminders, service logs & health tracking",
-  },
-  {
-    feature: "Commercial Packages & Billing",
-    traditional: "Ad-hoc manual fare calculation & client disputes",
-    driveops: "Configurable package templates with KM limits & extra rate automation",
-  },
-  {
-    feature: "Fleet Scalability",
-    traditional: "Operational overhead increases linearly with every new vehicle",
-    driveops: "Unified operational software designed to grow with your fleet size",
+    area: "Operational Visibility",
+    before: "Scattered information across multiple staff members' private phones.",
+    after: "One Command Center giving everyone the same real-time operational pulse.",
   },
 ]
 
-const ComparisonSection = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
+export default function ComparisonSection() {
+  const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="comparison" className="py-24 bg-white relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-4">
-            Operational Advantage
-          </span>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-5">
-            Traditional Operations vs <span className="gradient-text">DriveOps</span>
-          </h2>
-          <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-            See how replacing pen-and-paper management with DriveOps transforms your daily fleet workflow.
-          </p>
-        </motion.div>
+    <section className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="max-w-5xl mx-auto bg-slate-50/50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm"
-        >
-          {/* Header (Desktop) */}
-          <div className="hidden sm:grid grid-cols-12 bg-slate-100/90 p-4 sm:p-6 border-b border-slate-200 font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
-            <div className="col-span-4">Operational Area</div>
-            <div className="col-span-4 text-slate-500">Traditional Operations</div>
-            <div className="col-span-4 text-blue-700">DriveOps Platform</div>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+          >
+            <span>OPERATIONAL TRANSFORMATION</span>
+          </motion.div>
+
+          <motion.h2
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+          >
+            From scattered tools to <span className="gradient-text">one operating system.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.16 }}
+            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+          >
+            See how replacing ad-hoc WhatsApp coordination with DriveOps transforms your daily operations.
+          </motion.p>
+        </div>
+
+        {/* Comparison Table / Cards */}
+        <div className="max-w-5xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+          {/* Header Row */}
+          <div className="hidden md:grid grid-cols-12 bg-slate-900 text-white px-6 py-4 text-xs font-bold uppercase tracking-wider">
+            <div className="col-span-3 text-slate-400">Operational Area</div>
+            <div className="col-span-4 text-rose-400">Before DriveOps</div>
+            <div className="col-span-5 text-emerald-400">With DriveOps</div>
           </div>
 
-          <div className="divide-y divide-slate-200/80">
-            {rows.map((row, idx) => (
+          {/* Rows */}
+          <div className="divide-y divide-slate-100">
+            {COMPARISONS.map((row, idx) => (
               <div
-                key={row.feature}
-                className={`p-4 sm:p-6 transition-colors ${
-                  idx % 2 === 0 ? "bg-white" : "bg-slate-50/70"
-                } hover:bg-blue-50/30`}
+                key={row.area}
+                className={`p-5 sm:p-6 transition-colors ${
+                  idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+                } hover:bg-blue-50/20`}
               >
-                {/* Desktop Grid View */}
-                <div className="hidden sm:grid grid-cols-12 items-center">
-                  <div className="col-span-4 font-semibold text-slate-900 text-sm pr-2">
-                    {row.feature}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center">
+                  {/* Area */}
+                  <div className="md:col-span-3">
+                    <span className="font-heading font-bold text-sm text-slate-900 block">
+                      {row.area}
+                    </span>
                   </div>
-                  <div className="col-span-4 text-sm text-slate-500 flex items-start gap-2 pr-2">
-                    <X size={16} className="text-red-500 shrink-0 mt-0.5" />
-                    <span>{row.traditional}</span>
-                  </div>
-                  <div className="col-span-4 text-sm text-slate-900 font-medium flex items-start gap-2">
-                    <Check size={16} className="text-blue-600 shrink-0 mt-0.5" />
-                    <span className="text-slate-800">{row.driveops}</span>
-                  </div>
-                </div>
 
-                {/* Mobile Card Layout */}
-                <div className="sm:hidden space-y-3">
-                  <div className="font-heading font-bold text-slate-900 text-sm border-b border-slate-100 pb-1">
-                    {row.feature}
+                  {/* Before */}
+                  <div className="md:col-span-4 flex items-start gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                      {row.before}
+                    </span>
                   </div>
-                  <div className="grid grid-cols-1 gap-2 text-xs">
-                    <div className="flex items-start gap-2 text-slate-500 bg-red-50/50 p-2.5 rounded-lg border border-red-100">
-                      <X size={14} className="text-red-500 shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-red-700 block text-[10px] uppercase">Traditional</span>
-                        {row.traditional}
-                      </div>
+
+                  {/* After */}
+                  <div className="md:col-span-5 flex items-start gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5" />
                     </div>
-                    <div className="flex items-start gap-2 text-slate-800 bg-blue-50/50 p-2.5 rounded-lg border border-blue-100">
-                      <Check size={14} className="text-blue-600 shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-blue-700 block text-[10px] uppercase">DriveOps</span>
-                        {row.driveops}
-                      </div>
-                    </div>
+                    <span className="text-xs sm:text-sm text-slate-900 font-semibold leading-relaxed">
+                      {row.after}
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </motion.div>
+
+          {/* Bottom Conversion Bar */}
+          <div className="bg-slate-50 p-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <h4 className="font-heading font-bold text-sm text-slate-900">
+                Ready to stop running operations through chat groups?
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Setup your passenger fleet in 5 minutes with our guided onboarding.
+              </p>
+            </div>
+            <a
+              href="https://driveops.chatserve.in/signup"
+              className="gradient-accent text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow-xs hover:opacity-95 transition-all flex items-center gap-1.5 shrink-0"
+            >
+              <span>Get Started Free</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   )
 }
-
-export default ComparisonSection

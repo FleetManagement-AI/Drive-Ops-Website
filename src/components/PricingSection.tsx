@@ -62,15 +62,15 @@ const formatPriceDisplay = (priceStr: string) => {
 const getPlanDescription = (name: string) => {
   switch (name.toLowerCase()) {
     case "free":
-      return "Get started with basic fleet management for small operations."
+      return "Essential trip and vehicle management for small passenger fleets."
     case "basic":
-      return "Essential operations toolkit for growing taxi & rental fleets."
+      return "Complete dispatch queue and driver mobile app for growing fleets."
     case "professional":
-      return "Advanced smart dispatch, preventive maintenance & full analytics."
+      return "Advanced dispatch, repeat package templates and OCR document intelligence."
     case "enterprise":
-      return "Complete high-capacity platform for large fleet operators & aggregators."
+      return "High-capacity transport operations for multi-depot fleet operators."
     default:
-      return "Tailored operations plan for fleet management."
+      return "Tailored transport operations plan."
   }
 }
 
@@ -78,20 +78,20 @@ const getPlanFeatures = (plan: ApiPlan) => {
   const { maxVehicles, maxDrivers, maxUsers } = plan.limits
   const vehicleText = maxVehicles >= 1000 ? "Unlimited Vehicles" : `Up to ${maxVehicles} Vehicles`
   const driverText = maxDrivers >= 1000 ? "Unlimited Drivers" : `Up to ${maxDrivers} Drivers`
-  const userText = `Up to ${maxUsers} System Users`
+  const userText = `Up to ${maxUsers} Dispatch Users`
 
-  const commonFeatures = [vehicleText, driverText, userText, "Fleet Directory & Status Hub", "Digital Trip Sheets"]
+  const commonFeatures = [vehicleText, driverText, userText, "Vehicle & Driver Registry", "Trip Lifecycle Management"]
 
   if (plan.name.toLowerCase() === "free") {
-    return [...commonFeatures, "Basic Fuel Logging", "Email Support"]
+    return [...commonFeatures, "Driver Mobile App Access", "Standard Email Support"]
   }
   if (plan.name.toLowerCase() === "basic") {
-    return [...commonFeatures, "Smart Dispatch Queue", "Fuel & Expense Logs", "Priority Support"]
+    return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "Document Expiry Alerts"]
   }
   if (plan.name.toLowerCase() === "professional") {
-    return [...commonFeatures, "Smart Dispatch Queue", "Preventive Maintenance Alerts", "Package Rate Configuration", "Revenue & Earnings Analytics", "24/7 Priority Support"]
+    return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "OCR Document Vault & Alerts", "Repeat Package Templates", "Priority Support"]
   }
-  return [...commonFeatures, "Smart Dispatch Queue", "Preventive Maintenance Reminders", "Dedicated Account Manager", "Custom Integrations & SLA", "Multi-Branch Accounts"]
+  return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "OCR Document Vault & Alerts", "Multi-Depot / Location Management", "Dedicated Onboarding Support"]
 }
 
 const PricingSection = () => {

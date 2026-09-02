@@ -1,12 +1,20 @@
+import React from "react"
 import Navbar from "@/components/Navbar"
 import HeroSection from "@/components/HeroSection"
 import ProblemSection from "@/components/ProblemSection"
-import FleetEcosystemSection from "@/components/FleetEcosystemSection"
-import ProductShowcase from "@/components/ProductShowcase"
-import FinancialIntelligenceSection from "@/components/FinancialIntelligenceSection"
-import BusinessTypesSection from "@/components/BusinessTypesSection"
-import HowDriveOpsWorksSection from "@/components/HowDriveOpsWorksSection"
-import FeaturesSection from "@/components/FeaturesSection"
+import TripProductLoop from "@/components/TripProductLoop"
+import DispatchSection from "@/components/DispatchSection"
+import DriverAppSection from "@/components/DriverAppSection"
+import CommandCenterSection from "@/components/CommandCenterSection"
+import ComplianceSection from "@/components/ComplianceSection"
+import FleetResourcesSection from "@/components/FleetResourcesSection"
+import PackagesSection from "@/components/PackagesSection"
+import MultiLocationSection from "@/components/MultiLocationSection"
+import ComparisonSection from "@/components/ComparisonSection"
+import WhoItsForSection from "@/components/WhoItsForSection"
+import ProductTourSection from "@/components/ProductTourSection"
+import WhyDriveOpsSection from "@/components/WhyDriveOpsSection"
+import TrustSection from "@/components/TrustSection"
 import PricingSection from "@/components/PricingSection"
 import FAQSection from "@/components/FAQSection"
 import CTASection from "@/components/CTASection"
@@ -21,7 +29,7 @@ const homepageStructuredData = {
       "@id": "https://driveops.info.chatserve.in/#website",
       "url": "https://driveops.info.chatserve.in/",
       "name": "DriveOps",
-      "description": "DriveOps is an all-in-one fleet management software for businesses in India. Manage vehicles, trips, drivers, maintenance, tracking, expenses and fleet profitability from one platform.",
+      "description": "DriveOps is a trip-first transport operations platform for passenger fleets. Plan trips, dispatch vehicles and drivers, execute work on mobile, and automate document compliance.",
       "inLanguage": "en-IN"
     },
     {
@@ -35,7 +43,7 @@ const homepageStructuredData = {
         "width": 200,
         "height": 60
       },
-      "description": "DriveOps is an all-in-one fleet management software platform built for taxi operators, logistics companies, and fleet owners in India.",
+      "description": "DriveOps is the trip-first transport operations platform built for taxi operators, airport transfers, corporate transport, and passenger fleet owners.",
       "foundingLocation": {
         "@type": "Place",
         "addressCountry": "IN"
@@ -63,10 +71,10 @@ const homepageStructuredData = {
       "name": "DriveOps",
       "url": "https://driveops.info.chatserve.in/",
       "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Fleet Management Software",
+      "applicationSubCategory": "Transport Operations Software",
       "operatingSystem": "Web, iOS, Android",
       "inLanguage": "en-IN",
-      "description": "DriveOps is India's all-in-one fleet management software. Manage vehicles, trips, drivers, maintenance, live tracking, expenses, and profitability from a single unified platform."
+      "description": "Trip-first transport operations platform for passenger fleets. Plan trips, assign vehicles and drivers, execute work in the field, and stay compliant."
     }
   ]
 }
@@ -74,45 +82,66 @@ const homepageStructuredData = {
 const Index = () => (
   <div className="min-h-screen bg-background text-foreground antialiased selection:bg-blue-100 selection:text-blue-900">
     <SEO 
-      title="DriveOps | Fleet Management Software for Transport Businesses"
-      description="DriveOps is an all-in-one fleet management software for businesses in India. Manage vehicles, trips, drivers, maintenance, tracking, expenses and fleet profitability from one platform."
-      keywords="DriveOps, Drive Ops, fleet management software, fleet management software India, vehicle fleet management software, fleet tracking software India, transport fleet management software, taxi fleet management software, truck fleet management software, vehicle rental management software, fleet maintenance software, fleet expense management software, fleet profitability software"
+      title="DriveOps | Trip-First Transport Operations Platform for Passenger Fleets"
+      description="Plan trips, assign vehicles and drivers, execute work in the field, and stay on top of compliance. DriveOps connects the office and driver for passenger transport fleets."
+      keywords="transport operations software, fleet dispatch software, trip management software, driver mobile app, fleet compliance software, vehicle document management, taxi fleet software, airport transfer software, corporate transport software"
       canonicalUrl="/"
       structuredData={homepageStructuredData}
     />
     <Navbar />
     <main>
-      {/* 1. HERO — WHAT IS DRIVEOPS */}
+      {/* 1. HERO — Run every trip without the WhatsApp chaos */}
       <HeroSection />
 
-      {/* 2. PROBLEM & UNIFICATION — STOP MANAGING ACROSS SCATTERED TOOLS */}
+      {/* 2. THE PAIN — WhatsApp, Excel, and phone tag bottlenecks */}
       <ProblemSection />
 
-      {/* 3. PRODUCT ECOSYSTEM — EVERYTHING YOU NEED TO RUN YOUR FLEET EFFICIENTLY */}
-      <FleetEcosystemSection />
+      {/* 3. CORE PRODUCT LOOP — From trip request to trip completion (Plan -> Dispatch -> Execute -> Control) */}
+      <TripProductLoop />
 
-      {/* 4. DRIVER MGMT, WHATSAPP REVIEWS, PAYROLL, FLEET VISIBILITY */}
-      <ProductShowcase />
+      {/* 4. DISPATCH STORY — Know what needs a driver before the day starts */}
+      <DispatchSection />
 
-      {/* 5. FINANCIAL INTELLIGENCE — PROFITABILITY & EXPENSE CONTROL */}
-      <FinancialIntelligenceSection />
+      {/* 5. DRIVER MOBILE APP — Built for the driver, not just the office */}
+      <DriverAppSection />
 
-      {/* 6. BUSINESS TYPES SUPPORTED — ONE PLATFORM. THREE WAYS TO RUN YOUR BUSINESS */}
-      <BusinessTypesSection />
+      {/* 6. COMMAND CENTER — Your transport operation, at a glance */}
+      <CommandCenterSection />
 
-      {/* 7. HOW DRIVEOPS WORKS — WORKFLOW & CONNECTED PLATFORM */}
-      <HowDriveOpsWorksSection />
+      {/* 7. COMPLIANCE & OCR — Stop chasing expiry dates */}
+      <ComplianceSection />
 
-      {/* 8. COMPLETE PLATFORM PILLARS */}
-      <FeaturesSection />
+      {/* 8. FLEET & DRIVER RESOURCES — Keep every vehicle and driver ready */}
+      <FleetResourcesSection />
 
-      {/* 6. PRICING */}
+      {/* 9. PACKAGES — Turn repeat trips into repeatable workflows */}
+      <PackagesSection />
+
+      {/* 10. MULTI-LOCATION OPERATIONS — One operation. Multiple locations */}
+      <MultiLocationSection />
+
+      {/* 11. BEFORE / AFTER — From scattered tools to one operating system */}
+      <ComparisonSection />
+
+      {/* 12. WHO IT'S FOR — 4 focused passenger fleet operator personas */}
+      <WhoItsForSection />
+
+      {/* 13. PRODUCT TOUR — Genuine product screenshots & operational problem solved */}
+      <ProductTourSection />
+
+      {/* 14. WHY DRIVEOPS — More than a fleet register. Built around the trip */}
+      <WhyDriveOpsSection />
+
+      {/* 15. TRUST — Grounded, verified SaaS architecture & data integrity */}
+      <TrustSection />
+
+      {/* 16. PRICING — Transparent tiers aligned to vehicles and drivers */}
       <PricingSection />
 
-      {/* 7. FAQ */}
+      {/* 17. FAQ — 10 grounded buyer questions */}
       <FAQSection />
 
-      {/* 8. FINAL CTA */}
+      {/* 18. FINAL CTA — Ready to take control of your trip operations? */}
       <CTASection />
     </main>
     <Footer />

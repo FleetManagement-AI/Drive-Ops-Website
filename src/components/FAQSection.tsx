@@ -1,173 +1,147 @@
+import React, { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
-import { ChevronDown, Mail } from "lucide-react"
+import { ChevronDown, HelpCircle, Mail } from "lucide-react"
 
-const faqs = [
+const FAQS = [
   {
-    q: "What is DriveOps?",
-    a: "DriveOps is an all-in-one cloud fleet management software platform built specifically for Indian transport businesses. It unites vehicle registries, trip dispatching, driver rosters, maintenance logs, fuel tracking, expense accounting, and automated WhatsApp customer reviews in a single dashboard.",
+    q: "What type of transport companies is DriveOps for?",
+    a: "DriveOps is designed for passenger transport operators managing fleets of roughly 15 to 100 vehicles. This includes taxi & travel operators, airport transfer providers, corporate employee commute operators, and multi-depot passenger fleets with an office dispatch team and on-road drivers.",
   },
   {
-    q: "What is fleet management software?",
-    a: "Fleet management software is a digital operating system that automates the day-to-day operations of commercial vehicles. It replaces manual paper logbooks and phone coordination with automated dispatching, driver scheduling, maintenance alerts, expense control, and profitability analytics.",
+    q: "Does DriveOps include a driver mobile app?",
+    a: "Yes. DriveOps includes a dedicated mobile application for Android and iOS. Drivers use it to view today's assigned trips, toggle their duty on or off, start and complete trips, and receive direct push alerts from dispatch.",
   },
   {
-    q: "Who can use DriveOps?",
-    a: "DriveOps is built for passenger transport operators (taxi fleets, outstation cabs, tour & travel companies), goods transport businesses (delivery trucks, logistics providers), and self-drive vehicle rental companies across India.",
+    q: "Can drivers work offline?",
+    a: "Yes. The driver mobile app supports local offline execution. Drivers can start trips, navigate, and log milestones even in basement parking garages, airport terminals, or rural dead zones. Data automatically syncs with the office once cellular reception is restored.",
   },
   {
-    q: "Can DriveOps manage taxi fleets?",
-    a: "Yes. DriveOps offers dedicated passenger transport tools including digital dispatch queues, trip sheets, driver shift assignments, custom package pricing (e.g. 8hr/80km rentals), and automated WhatsApp Google review collection after each trip.",
+    q: "Can we manage multiple locations?",
+    a: "Yes. DriveOps supports multi-depot and branch hierarchies. Dispatchers can manage their localized depot queue while business owners maintain unified operational visibility across all branches.",
   },
   {
-    q: "Can DriveOps manage goods transport fleets?",
-    a: "Yes. For goods and cargo transport, DriveOps tracks multi-stop delivery routes, vehicle load assignments, digital proof of delivery (POD), driver duty records, and trip-by-trip fuel and operational profitability.",
+    q: "Can DriveOps track document expiry?",
+    a: "Yes. DriveOps tracks expiration dates for vehicle documents (RC, Commercial Insurance, Fitness Certificate, PUC) and driver credentials (Commercial Driving License). The system displays countdown timers and sends advance renewal alerts 30, 15, and 7 days prior to expiry.",
   },
   {
-    q: "Can DriveOps manage vehicle rentals?",
-    a: "Yes. DriveOps provides complete self-drive and car rental capabilities including vehicle availability calendars, customer ID verification, digital rental contracts, advance payment tracking, and fleet utilization reports.",
+    q: "Does DriveOps support OCR?",
+    a: "Yes. You can upload digital photos or scans of vehicle and driver documents. DriveOps' document OCR reads key metadata such as registration numbers, expiration dates, and policy numbers to auto-populate records and reduce manual data entry.",
   },
   {
-    q: "Does DriveOps provide vehicle tracking?",
-    a: "Yes. DriveOps provides live operational tracking and a fleet map directly through connected driver mobile workflows and GPS telemetry, enabling dispatchers to locate active vehicles and assign bookings without proprietary hardware locks.",
+    q: "Can we manage trips and dispatch from one place?",
+    a: "Yes. The Dispatch Queue brings unassigned bookings, available compliant vehicles, and active duty drivers into a single operational board, allowing your team to allocate trips rapidly without phone tag or spreadsheet cross-referencing.",
   },
   {
-    q: "Can DriveOps manage vehicle maintenance and expenses?",
-    a: "Yes. DriveOps features proactive maintenance scheduling (alerts for service intervals, insurance renewals, fitness certificates, and permits) alongside detailed fuel logs and expense tracking to calculate the exact cost per kilometer for every vehicle.",
-  }
+    q: "How does onboarding work?",
+    a: "Onboarding is quick and guided. You can bulk import your vehicle and driver rosters via Excel or CSV in minutes. Invite your dispatchers, distribute driver app login credentials, and start scheduling trips immediately.",
+  },
+  {
+    q: "Is there a free trial?",
+    a: "Yes. We offer a Free Plan for up to 2 vehicles and 2 drivers with full access to trip creation, dispatch, and the driver mobile app so you can test the entire workflow with your team before upgrading.",
+  },
+  {
+    q: "What happens to our data?",
+    a: "Your data is stored in isolated multi-tenant cloud storage with encrypted in-transit transmission. You retain full ownership of all trip records, driver profiles, and compliance documents, and can export your records at any time.",
+  },
 ]
 
-const FAQItem = ({
-  q,
-  a,
-  isOpen,
-  onToggle,
-}: {
-  q: string
-  a: string
-  isOpen: boolean
-  onToggle: () => void
-}) => {
-  return (
-    <div
-      className="border border-slate-200/90 rounded-xl bg-white overflow-hidden shadow-sm hover:border-blue-300 transition-colors"
-      itemScope
-      itemProp="mainEntity"
-      itemType="https://schema.org/Question"
-    >
-      <button
-        onClick={onToggle}
-        className="w-full p-4 sm:p-5 lg:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset min-h-[56px]"
-        aria-expanded={isOpen}
-      >
-        <span itemProp="name" className="font-heading font-semibold text-sm sm:text-base lg:text-lg text-slate-900 leading-snug">
-          {q}
-        </span>
-        <div
-          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 bg-blue-50 text-blue-600" : ""
-            }`}
-          aria-hidden="true"
-        >
-          <ChevronDown size={16} />
-        </div>
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden"
-            itemScope
-            itemProp="acceptedAnswer"
-            itemType="https://schema.org/Answer"
-          >
-            <div itemProp="text" className="px-4 sm:px-5 lg:px-6 pb-5 sm:pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-3 sm:pt-4">
-              {a}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
-
-const FAQSection = () => {
+export default function FAQSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-  // Generate JSON-LD Schema for AEO/SEO
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
-      }
-    }))
-  };
-
   return (
-    <section id="faq" className="py-20 sm:py-24 bg-slate-50/60 border-t border-slate-200/80 relative" ref={ref}>
-      {/* Injecting Structured Data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+    <section id="faq" className="py-20 sm:py-28 bg-white border-b border-slate-200/70 relative overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10" itemScope itemType="https://schema.org/FAQPage">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-10 sm:mb-14"
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">
-            Got Questions?
-          </span>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-            Frequently Asked Questions
+          <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4">
+            <HelpCircle className="w-3.5 h-3.5 text-blue-600" />
+            <span>FREQUENTLY ASKED QUESTIONS</span>
+          </div>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+            Everything you need to know about <span className="gradient-text">DriveOps.</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-slate-600">
-            Learn more about how DriveOps powers modern taxi, transport, and rental fleet businesses.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            Straightforward answers about our trip operations platform, driver app, compliance, and setup.
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-12">
-          {faqs.map((faq, idx) => (
-            <motion.div
-              key={faq.q}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.05, duration: 0.4 }}
-            >
-              <FAQItem
-                q={faq.q}
-                a={faq.a}
-                isOpen={openIndex === idx}
-                onToggle={() => setOpenIndex(openIndex === idx ? null : idx)}
-              />
-            </motion.div>
-          ))}
+        {/* Accordion List */}
+        <div className="space-y-3.5">
+          {FAQS.map((faq, idx) => {
+            const isOpen = openIndex === idx
+            return (
+              <motion.div
+                key={faq.q}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.35, delay: idx * 0.04 }}
+                className="border border-slate-200/90 rounded-2xl bg-white overflow-hidden shadow-2xs hover:border-blue-200 transition-colors"
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-heading font-bold text-sm sm:text-base text-slate-900 leading-snug">
+                    {faq.q}
+                  </span>
+                  <div
+                    className={`w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 bg-blue-50 text-blue-600" : ""
+                    }`}
+                  >
+                    <ChevronDown size={15} />
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 sm:px-6 pb-6 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
         </div>
 
-        {/* Inline Contact Prompt */}
-        <div className="max-w-xl mx-auto text-center p-5 sm:p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm">
-          <p className="text-sm text-slate-600 mb-3">Have a specific question about your fleet requirements?</p>
+        {/* Help Banner */}
+        <div className="mt-12 text-center p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h4 className="font-heading font-bold text-sm text-slate-900">
+              Have a specific question about your passenger fleet?
+            </h4>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Our operations team is available to help evaluate your current workflow.
+            </p>
+          </div>
           <a
-            href="mailto:driveopsfleet@gmail.com?subject=DriveOps Fleet Inquiry"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-            aria-label="Email support at driveopsfleet@gmail.com"
+            href="/contact"
+            className="px-4 py-2 bg-white border border-slate-200 hover:border-slate-300 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:text-blue-600 transition-all shrink-0 flex items-center gap-1.5"
           >
-            <Mail size={16} aria-hidden="true" />
-            <span>Contact Support & Sales →</span>
+            <Mail className="w-3.5 h-3.5" />
+            <span>Contact Operations</span>
           </a>
         </div>
+
       </div>
     </section>
   )
 }
-
-export default FAQSection

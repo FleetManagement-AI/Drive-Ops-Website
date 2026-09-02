@@ -1,132 +1,129 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import HeroDashboardVisual from "./hero/HeroDashboardVisual"
-import PlatformConnectionFlow from "./PlatformConnectionFlow"
-import CapabilityFlowSection from "./CapabilityFlowSection"
+import { MessageSquare, PhoneCall, Users, FileText, AlertTriangle, EyeOff, ArrowDown } from "lucide-react"
 
-/* ─── Vertical dotted connector: DriveOps logo → dashboard ─── */
-const LogoToDashConnector: React.FC = () => (
-  <div className="flex flex-col items-center my-1" aria-hidden="true">
-    <svg width="2" height="40" viewBox="0 0 2 40">
-      <line x1="1" y1="0" x2="1" y2="40" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.55" />
-    </svg>
-    <svg width="10" height="6" viewBox="0 0 10 6">
-      <path d="M0 0 L5 6 L10 0" fill="none" stroke="#3B82F6" strokeWidth="1.5" opacity="0.4" />
-    </svg>
-  </div>
-)
+const PAIN_POINTS = [
+  {
+    icon: MessageSquare,
+    title: "Trip details lost in chat threads",
+    desc: "Customer bookings, pickup times, and route changes buried in disorganized WhatsApp groups.",
+  },
+  {
+    icon: PhoneCall,
+    title: "Endless phone tag with drivers",
+    desc: "Calling back and forth just to verify if a driver is available, on duty, or en route.",
+  },
+  {
+    icon: Users,
+    title: "Unclear vehicle & driver assignment",
+    desc: "No real-time certainty on which car or driver is already allocated or waiting idle.",
+  },
+  {
+    icon: FileText,
+    title: "Fragile paper & Excel records",
+    desc: "Manual trip sheets and spreadsheets that get misplaced, delayed, or double-entered.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Surprise document expiry",
+    desc: "Vehicle insurance, fitness, or driver licenses lapse unnoticed until a checkpoint stop.",
+  },
+  {
+    icon: EyeOff,
+    title: "No single operational view",
+    desc: "The office has no central pulse of today's workload, leading to missed pickups and customer friction.",
+  },
+]
 
-/* ─── Section ─── */
-export default function FleetOperationsSection() {
+export default function ProblemSection() {
   const shouldReduceMotion = useReducedMotion()
 
-  const fade = (delay: number) => ({
-    initial: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 } as const,
-    transition: { duration: 0.5, delay: shouldReduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] as const },
-  })
-
   return (
-    <section
-      id="platform"
-      className="relative py-16 sm:py-24 bg-gradient-to-b from-white via-[#F8FAFC] to-white border-b border-slate-200/60 overflow-hidden"
-      aria-labelledby="platform-heading"
-    >
-      {/* Ambient glow */}
-      <div
-        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,0.07) 0%, transparent 70%)" }}
-        aria-hidden="true"
-      />
+    <section className="py-20 sm:py-24 bg-white border-b border-slate-200/60 relative overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-      <div className="relative z-10 px-4 sm:px-8 lg:px-14 xl:px-20 max-w-[1440px] mx-auto">
-
-        {/* ── 1. SECTION HEADING ── */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
           <motion.div
-            {...fade(0)}
-            className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-blue-700 mb-4 bg-blue-50/90 border border-blue-200/80 px-3.5 py-1.5 rounded-full shadow-2xs"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-rose-600 bg-rose-50 border border-rose-200/70 px-3.5 py-1.5 rounded-full mb-4"
           >
-            <img src="/logo/driveops-logo-blue-edited.png" alt="" className="w-3 h-3 object-contain" aria-hidden="true" />
-            <span>ONE PLATFORM. EVERY FLEET OPERATION.</span>
+            <span>THE OPERATIONAL BOTTLENECK</span>
           </motion.div>
 
           <motion.h2
-            {...fade(0.06)}
-            id="platform-heading"
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-4"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
           >
-            Stop managing your fleet<br />
-            <span className="gradient-text">across scattered tools.</span>
+            Still running transport operations through{" "}
+            <span className="text-rose-600">WhatsApp, Excel and phone calls?</span>
           </motion.h2>
 
           <motion.p
-            {...fade(0.12)}
-            className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-sans"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.16 }}
+            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
           >
-            Vehicles, trips, drivers, maintenance, fuel, expenses and revenue —&nbsp;
-            DriveOps brings everything together so you can run your fleet with clarity.
+            When passenger fleets grow past 10 vehicles, coordination by memory breaks down. Daily operations become a stressful scramble.
           </motion.p>
         </div>
 
-        {/* ── 2. "THE CHALLENGE TODAY" label ── */}
-        <motion.div {...fade(0.14)} className="flex items-center justify-center gap-3 mb-4">
-          <div className="h-px w-12 bg-slate-300" aria-hidden="true" />
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">THE CHALLENGE TODAY</p>
-          <div className="h-px w-12 bg-slate-300" aria-hidden="true" />
-        </motion.div>
+        {/* 6 Real Pain Point Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
+          {PAIN_POINTS.map((item, idx) => {
+            const Icon = item.icon
+            return (
+              <motion.div
+                key={item.title}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-slate-300 hover:bg-white transition-all shadow-2xs group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-heading text-base font-bold text-slate-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            )
+          })}
+        </div>
 
-        {/* ── 3. REACT FLOW: 7 challenge cards fanning into DriveOps logo node ── */}
-        <PlatformConnectionFlow />
-
-        {/* ── 4. "THE DRIVEOPS SOLUTION" label ── */}
-        <motion.div {...fade(0.5)} className="flex items-center justify-center gap-3 mt-1 mb-3">
-          <div className="h-px w-16 bg-blue-200" aria-hidden="true" />
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-600">THE DRIVEOPS SOLUTION</p>
-          <div className="h-px w-16 bg-blue-200" aria-hidden="true" />
-        </motion.div>
-
-        {/* ── 5. VERTICAL CONNECTOR: logo → capability section ── */}
-        <LogoToDashConnector />
-
-        {/* ── 6. REACT FLOW: left capabilities → convergence → dashboard ← convergence ← right capabilities ── */}
-        <CapabilityFlowSection />
-
-        {/* ── 7. BOTTOM CTA STRIP ── */}
+        {/* Transition Banner into DriveOps */}
         <motion.div
-          {...fade(0.9)}
-          className="mt-8 sm:mt-10 rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50/70 via-white to-blue-50/70 px-6 sm:px-10 py-7 flex flex-col sm:flex-row items-center justify-between gap-6"
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-blue-50/90 p-6 sm:p-8 text-center max-w-3xl mx-auto flex flex-col items-center shadow-xs"
         >
-          <div className="flex items-start gap-3">
-            <div
-              className="w-9 h-9 rounded-lg bg-white flex items-center justify-center shrink-0 mt-0.5"
-              style={{ border: "1.5px solid rgba(37,99,235,0.2)", boxShadow: "0 2px 8px rgba(37,99,235,0.12)" }}
-            >
-              <img src="/logo/driveops-logo-blue-edited.png" alt="DriveOps" className="w-5 h-5 object-contain" />
-            </div>
-            <div>
-              <p className="font-heading font-bold text-slate-900 text-base sm:text-lg leading-tight">
-                One Platform.{" "}
-                <span className="gradient-text">Complete Control.</span>{" "}
-                Better Decisions.
-              </p>
-              <p className="text-sm text-slate-500 mt-0.5 max-w-md leading-relaxed">
-                DriveOps gives you the visibility and control you need to reduce costs,
-                improve efficiency and maximize profit.
-              </p>
-            </div>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700 mb-2">
+            THERE IS A BETTER WAY
+          </p>
+          <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">
+            Turn scattered chaos into one connected operating system.
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xl mb-4">
+            DriveOps unites trip booking, dispatch allocation, driver mobile execution, and document compliance in one streamlined loop.
+          </p>
+          <div className="flex items-center gap-1 text-xs font-bold text-blue-600">
+            <span>Explore the core workflow below</span>
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
           </div>
-
-          <a
-            href="https://driveops.chatserve.in/signup"
-            id="platform-cta-trial"
-            className="w-full sm:w-auto shrink-0 px-6 py-3.5 gradient-accent hover:opacity-95 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group"
-          >
-            <span>Start 30-Day Free Trial</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-          </a>
         </motion.div>
 
       </div>
