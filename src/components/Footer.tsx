@@ -135,7 +135,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-850 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} DriveOps Platform. All rights reserved. Built for passenger transport operators.</p>
+          <p>© {new Date().getFullYear()} DriveOps by Chatserve.AI. All rights reserved. Built for passenger transport operators.</p>
           <div className="flex flex-wrap items-center gap-5">
             <Link to="/contact" className="hover:text-slate-300 transition-colors">Support</Link>
             <Link to="/pricing" className="hover:text-slate-300 transition-colors">Pricing</Link>
