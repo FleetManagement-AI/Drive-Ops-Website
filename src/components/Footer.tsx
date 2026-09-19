@@ -57,17 +57,6 @@ export default function Footer() {
               Trip-first transport operations for growing fleets. Plan trips, dispatch vehicles and drivers, execute work on mobile, and stay compliant.
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-slate-400">
-              <img
-                src="/ChatServeLogoIocnOnly-removebg-preview.png"
-                alt="ChatServe"
-                className="h-5 w-auto"
-                width="20"
-                height="20"
-              />
-              <span>WhatsApp powered by ChatServe Solutions</span>
-            </div>
-
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href="https://driveops.chatserve.in/signup"
@@ -145,9 +134,21 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-850 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} DriveOps. All rights reserved. Built for passenger transport operators.</p>
-          <div className="flex flex-wrap items-center gap-5">
+        <div className="border-t border-slate-850 pt-8 flex flex-col sm:grid sm:grid-cols-3 items-center gap-4 text-xs text-slate-500">
+          <p className="sm:justify-self-start text-center sm:text-left">
+            © {new Date().getFullYear()} DriveOps. All rights reserved. Built for passenger transport operators.
+          </p>
+          <div className="flex items-center justify-center gap-2 text-slate-400">
+            <img
+              src="/ChatServeLogoIocnOnly-removebg-preview.png"
+              alt="ChatServe"
+              className="h-5 w-auto"
+              width="20"
+              height="20"
+            />
+            <span>WhatsApp powered by ChatServe Solutions</span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-5">
             <Link to="/contact" className="hover:text-slate-300 transition-colors">Support</Link>
             <Link to="/pricing" className="hover:text-slate-300 transition-colors">Pricing</Link>
             <a
