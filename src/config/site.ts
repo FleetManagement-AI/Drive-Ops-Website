@@ -6,8 +6,8 @@ export const siteConfig = {
   description: "DriveOps is an all-in-one fleet management software for businesses in India. Manage vehicles, trips, drivers, maintenance, tracking, expenses and fleet profitability from one platform.",
   ogImage: "/images/og-image.jpg",
   contact: {
-    telephone: "+91-98461-99883",
-    supportTelephone: "+91-98478-51049",
+    telephone: "+91 98461 99883",
+    supportTelephone: "+91 98478 51049",
     email: "driveopsfleet@gmail.com",
     address: {
       streetAddress: "Kochi",
@@ -19,5 +19,8 @@ export const siteConfig = {
   },
   social: {
     twitter: "@DriveOpsHQ",
+    instagram: "https://www.instagram.com/driveopsfleet",
+    facebook: "https://www.facebook.com/profile.php?id=61593885576574",
+    linkedin: "#",
   },
 };

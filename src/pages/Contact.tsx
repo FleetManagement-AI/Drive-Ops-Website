@@ -33,7 +33,10 @@ const Contact = () => {
               </div>
               <h2 className="text-xl font-bold text-slate-900 mb-2">Sales</h2>
               <p className="text-slate-600 mb-4">Talk to an expert about upgrading your operations.</p>
-              <a href="tel:+919846199883" className="text-blue-600 font-bold hover:underline">+91 98461 99883</a>
+              <div className="flex flex-col items-center gap-1">
+                <a href="tel:+919846199883" className="text-blue-600 font-bold hover:underline">+91 98461 99883</a>
+                <a href="tel:+919847851049" className="text-blue-600 font-bold hover:underline">+91 98478 51049</a>
+              </div>
             </div>
 
             <div className="bg-white border border-slate-200/60 p-8 rounded-2xl shadow-sm text-center hover:border-emerald-300 transition-colors">

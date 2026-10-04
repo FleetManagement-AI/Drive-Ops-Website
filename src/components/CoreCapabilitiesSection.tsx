@@ -203,7 +203,10 @@ function CapabilityBlock({
   const textFirstOnDesktop = capability.align === "text-left"
 
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+    <div
+      id={capability.id}
+      className="grid scroll-mt-24 items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16"
+    >
       <motion.div
         initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -356,7 +359,7 @@ export default function CoreCapabilitiesSection() {
             Built around the way fleet operations actually work.
           </p>
           <a
-            href="#workflow"
+            href="#connected-workflow"
             className="mt-3 inline-flex items-center gap-1.5 text-sm text-slate-500 transition-colors hover:text-blue-600"
           >
             See how it works

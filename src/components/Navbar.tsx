@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 
 const productLinks = [
-  { label: "Trips & Dispatch", href: "/#workflow" },
+  { label: "Trips & Dispatch", href: "/#plan-dispatch" },
   { label: "Driver App", href: "/#driver-app" },
-  { label: "Live Fleet", href: "/#live-fleet" },
-  { label: "WhatsApp Ops", href: "/#whatsapp" },
+  { label: "Live Fleet", href: "/#track-connect" },
+  { label: "WhatsApp Ops", href: "/#communication" },
   { label: "Fleet Care", href: "/#fleet-care" },
   { label: "Rentals", href: "/#rentals" },
 ]
@@ -169,7 +169,7 @@ const Navbar = () => {
                     ? "text-slate-200 hover:text-white hover:bg-white/10"
                     : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
                 }`}
-                onClick={() => scrollToSection("product-tour")}
+                onClick={() => scrollToSection("product-snapshot")}
               >
                 <span>Product</span>
                 <svg
@@ -227,7 +227,7 @@ const Navbar = () => {
                     ? "text-slate-200 hover:text-white hover:bg-white/10"
                     : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
                 }`}
-                onClick={() => scrollToSection("who-its-for")}
+                onClick={() => scrollToSection("built-for-fleet")}
               >
                 <span>Solutions</span>
                 <svg
@@ -275,8 +275,8 @@ const Navbar = () => {
             </div>
 
             <Link
-              to="/#workflow"
-              onClick={(e) => handleNavClick(e, "/#workflow")}
+              to="/#connected-workflow"
+              onClick={(e) => handleNavClick(e, "/#connected-workflow")}
               className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                 isDarkNav
                   ? "text-slate-200 hover:text-white hover:bg-white/10"
@@ -320,7 +320,7 @@ const Navbar = () => {
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              Sign in
+              Login In
             </a>
             <Link
               to="/contact"
@@ -333,7 +333,7 @@ const Navbar = () => {
               Book Demo
             </Link>
             <a
-              href="https://driveops.chatserve.in/signup"
+              href="https://driveops.chatserve.in/signup/account"
               className="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-xl hover:opacity-95 shadow-sm shadow-blue-500/25 transition-all flex items-center gap-1.5 min-h-[38px]"
             >
               <span>Start Free</span>
@@ -407,8 +407,8 @@ const Navbar = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-1 mb-5">
                   {[
-                    { label: "How It Works", href: "/#workflow" },
-                    { label: "Who It's For", href: "/#who-its-for" },
+                    { label: "How It Works", href: "/#connected-workflow" },
+                    { label: "Who It's For", href: "/#built-for-fleet" },
                     { label: "Pricing", href: "/pricing" },
                     { label: "FAQ", href: "/#faq" },
                   ].map((l) => (

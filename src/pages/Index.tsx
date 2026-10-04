@@ -24,6 +24,7 @@ import WhoItsForSection from "@/components/WhoItsForSection"
 import ProductTourSection from "@/components/ProductTourSection"
 import WhyDriveOpsSection from "@/components/WhyDriveOpsSection"
 import BuiltForFleetSection from "@/components/BuiltForFleetSection"
+import FleetFinancialsSection from "@/components/FleetFinancialsSection"
 import TrustSection from "@/components/TrustSection"
 import PricingSection from "@/components/PricingSection"
 import FAQSection from "@/components/FAQSection"
@@ -112,9 +113,10 @@ const Index = () => (
       <DriverAppSection />
       <RecurringTripsSection />
       <RentalsSection />
+      <FleetFinancialsSection />
       <WhyDriveOpsSection />
       <BuiltForFleetSection />
-      <LiveFleetSection />
+      {/* <LiveFleetSection />
       <WhatsAppOpsSection />
       <FleetResourcesSection />
       <ComplianceSection />
@@ -124,7 +126,7 @@ const Index = () => (
       <ComparisonSection />
       <WhoItsForSection />
       <ProductTourSection />
-      <TrustSection />
+      <TrustSection /> */}
       <PricingSection />
       <FAQSection />
       <CTASection />

@@ -1,13 +1,15 @@
 import React from "react"
-import { ExternalLink, Mail, Phone } from "lucide-react"
+import { ExternalLink, Mail, MessageSquare } from "lucide-react"
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { siteConfig } from "@/config/site"
 
 const productLinks = [
-  { label: "How It Works", href: "/#workflow" },
+  { label: "How It Works", href: "/#connected-workflow" },
+  { label: "Trips & Dispatch", href: "/#plan-dispatch" },
   { label: "Driver App", href: "/#driver-app" },
-  { label: "Live Fleet", href: "/#live-fleet" },
-  { label: "WhatsApp Ops", href: "/#whatsapp" },
+  { label: "Live Fleet", href: "/#track-connect" },
+  { label: "WhatsApp Ops", href: "/#communication" },
   { label: "Fleet Care", href: "/#fleet-care" },
   { label: "Self-Drive Rentals", href: "/#rentals" },
 ]
@@ -22,13 +24,24 @@ const solutionLinks = [
 
 const companyLinks = [
   { label: "Product Snapshot", href: "/#product-snapshot" },
-  { label: "Product Walkthrough", href: "/#product-tour" },
   { label: "Pricing Plans", href: "/pricing" },
   { label: "Frequently Asked Questions", href: "/#faq" },
   { label: "Contact", href: "/contact" },
 ]
 
+function toWhatsAppUrl(telephone: string) {
+  const digits = telephone.replace(/\D/g, "")
+  return `https://wa.me/${digits}`
+}
+
+const iconButtonClass =
+  "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 transition-colors hover:border-slate-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+
 export default function Footer() {
+  const { contact, social } = siteConfig
+  const salesWhatsApp = toWhatsAppUrl(contact.telephone)
+  const supportWhatsApp = toWhatsAppUrl(contact.supportTelephone)
+
   return (
     <footer className="bg-slate-950 text-slate-400 border-t border-slate-800" role="contentinfo">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 max-w-7xl">
@@ -57,20 +70,76 @@ export default function Footer() {
               Manage and operate your fleet from one platform—trips, dispatch, Driver App, live tracking, WhatsApp, fleet care, and self-drive rentals.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DriveOps on Instagram"
+                className={iconButtonClass}
+              >
+                <FaInstagram size={16} aria-hidden="true" />
+              </a>
+              <a
+                href={social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DriveOps on Facebook"
+                className={iconButtonClass}
+              >
+                <FaFacebook size={16} aria-hidden="true" />
+              </a>
+              {/* <a
+                href={social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DriveOps on LinkedIn"
+                className={iconButtonClass}
+              >
+                <FaLinkedin size={16} aria-hidden="true" />
+              </a> */}
+              {/* <Link
+                to="/contact"
+                aria-label="Contact DriveOps"
+                className={iconButtonClass}
+              >
+                <MessageSquare size={16} aria-hidden="true" />
+              </Link> */}
+              <a
+                href={salesWhatsApp}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp sales ${contact.telephone}`}
+                className={`${iconButtonClass} hover:border-emerald-700 hover:text-emerald-400`}
+              >
+                <FaWhatsapp size={16} aria-hidden="true" />
+              </a>
+              <a
+                href={supportWhatsApp}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp support ${contact.supportTelephone}`}
+                className={`${iconButtonClass} hover:border-emerald-700 hover:text-emerald-400`}
+              >
+                <FaWhatsapp size={16} aria-hidden="true" />
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                aria-label={`Email ${contact.email}`}
+                className={iconButtonClass}
+              >
+                <Mail size={16} aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="pt-1">
               <a
                 href="https://driveops.chatserve.in/signup"
-                className="text-xs font-semibold text-blue-400 hover:text-blue-300 border border-blue-900 bg-blue-950/40 hover:border-blue-700 px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5"
+                className="text-xs font-semibold text-blue-400 hover:text-blue-300 border border-blue-900 bg-blue-950/40 hover:border-blue-700 px-3.5 py-1.5 rounded-lg transition-all inline-flex items-center gap-1.5"
               >
                 <ExternalLink size={12} />
                 <span>Operator Portal</span>
               </a>
-              <Link
-                to="/fleet-management-software-india"
-                className="text-xs font-semibold text-slate-300 hover:text-white border border-slate-800 bg-slate-900 hover:border-slate-700 px-3.5 py-1.5 rounded-lg transition-all"
-              >
-                Passenger Fleets India 🇮🇳
-              </Link>
             </div>
           </div>
 

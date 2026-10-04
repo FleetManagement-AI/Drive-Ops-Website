@@ -6,18 +6,19 @@ import {
   Smartphone,
   MapPinned,
   Wrench,
-  MessageCircle,
   Car,
   MoveRight,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
+import type { IconType } from "react-icons"
 
 type JourneyStep = {
   step: string
   label: string
   title: string
   description: string
-  icon: LucideIcon
+  icon: LucideIcon | IconType
   iconBg: string
   iconColor: string
   accent?: boolean
@@ -77,9 +78,9 @@ const STEPS: JourneyStep[] = [
     title: "Keep customers informed",
     description:
       "Share trip updates and collect customer feedback after every trip.",
-    icon: MessageCircle,
-    iconBg: "bg-rose-50",
-    iconColor: "text-rose-500",
+    icon: FaWhatsapp,
+    iconBg: "bg-green-50",
+    iconColor: "text-green-500",
   },
   {
     step: "07",

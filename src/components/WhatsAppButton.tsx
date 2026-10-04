@@ -2,10 +2,9 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 
 const WHATSAPP_NUMBER = "919846199883"
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi DriveOps, I'd like to know more about your fleet management platform."
-)
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
+const WHATSAPP_TEXT = `Hi, I'd like to know more ${String.fromCodePoint(0x1f44b)}`
+// Use api.whatsapp.com/send — wa.me redirects corrupt 4-byte emoji to �
+const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(WHATSAPP_TEXT)}`
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false)

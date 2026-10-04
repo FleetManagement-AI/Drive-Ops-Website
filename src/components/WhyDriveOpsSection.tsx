@@ -333,8 +333,8 @@ function ConversionCTA({
       transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : 0.1 }}
       className="relative mt-10 overflow-hidden rounded-2xl border border-slate-200/80 bg-white sm:mt-12"
     >
-      <div className="grid lg:grid-cols-2">
-        <div className="relative hidden min-h-[240px] lg:block">
+      <div className="grid lg:grid-cols-[1.2fr_1fr]">
+        <div className="relative hidden min-h-[280px] lg:block">
           <img
             src={encodeURI(FLEET_SUNSET_IMAGE)}
             alt="Fleet operator overlooking a row of SUVs against a city skyline at sunset"
@@ -342,20 +342,21 @@ function ConversionCTA({
             height={1024}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-[72%_center]"
             draggable={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white" />
+          {/* Narrow seam fade only — keep the operator fully visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent from-[85%] to-white" />
         </div>
 
-        <div className="relative space-y-4 px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+        <div className="relative flex flex-col justify-center space-y-4 px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.08] lg:hidden"
             aria-hidden="true"
             style={{
               backgroundImage: `url("${encodeURI(FLEET_SUNSET_IMAGE)}")`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "72% center",
             }}
           />
           <div className="relative z-10 space-y-4">

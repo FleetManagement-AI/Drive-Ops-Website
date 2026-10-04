@@ -4,6 +4,7 @@ import { Suspense, lazy, useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 // Lazy Loading for Performance Optimization (Code Splitting)
 const Index = lazy(() => import("./pages/Index.tsx"));
@@ -77,6 +78,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <WhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

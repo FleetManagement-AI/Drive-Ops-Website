@@ -297,19 +297,21 @@ export default function HeroSection() {
                   aria-controls={`hero-slide-${s.id}`}
                   onClick={() => scrollTo(index)}
                   className={`relative flex shrink-0 flex-col items-center px-1.5 py-1.5 text-[10px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:px-2.5 sm:text-xs md:text-sm ${
-                    active ? "text-blue-600" : "text-slate-500 hover:text-slate-800"
+                    active
+                      ? "text-slate-900"
+                      : "text-slate-900 hover:text-black"
                   }`}
                 >
                   <span
                     className={`mb-1 h-1.5 w-1.5 rounded-full transition-colors ${
-                      active ? "bg-blue-600" : "bg-transparent"
+                      active ? "bg-slate-900" : "bg-transparent"
                     }`}
                     aria-hidden="true"
                   />
                   {s.navLabel}
                   <span
                     className={`absolute inset-x-1.5 bottom-0 h-0.5 rounded-full transition-colors sm:inset-x-2 ${
-                      active ? "bg-blue-600" : "bg-transparent"
+                      active ? "bg-slate-900" : "bg-transparent"
                     }`}
                     aria-hidden="true"
                   />

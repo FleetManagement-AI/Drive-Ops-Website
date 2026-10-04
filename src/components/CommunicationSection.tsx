@@ -1,7 +1,6 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import {
-  MessageCircle,
   Smartphone,
   MapPinned,
   Users,
@@ -9,6 +8,8 @@ import {
   Star,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
+import type { IconType } from "react-icons"
 
 const COMMUNICATION_IMAGE =
   "/images/features/Connected Taxi Tracking Journey.png"
@@ -16,7 +17,7 @@ const COMMUNICATION_IMAGE =
 type CapabilityItem = {
   title: string
   description: string
-  icon: LucideIcon
+  icon: LucideIcon | IconType
   iconClass: string
   iconWrapClass: string
 }
@@ -25,7 +26,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     title: "WhatsApp Assignments",
     description: "Send trip assignments and updates via WhatsApp.",
-    icon: MessageCircle,
+    icon: FaWhatsapp,
     iconClass: "text-emerald-600",
     iconWrapClass: "border-emerald-100 bg-emerald-50",
   },
