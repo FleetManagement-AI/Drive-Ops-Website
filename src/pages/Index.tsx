@@ -10,11 +10,12 @@ import ProblemSection from "@/components/ProblemSection"
 import TripProductLoop from "@/components/TripProductLoop"
 import DispatchSection from "@/components/DispatchSection"
 import DriverAppSection from "@/components/DriverAppSection"
+import RecurringTripsSection from "@/components/RecurringTripsSection"
+import RentalsSection from "@/components/RentalsSection"
 import LiveFleetSection from "@/components/LiveFleetSection"
 import WhatsAppOpsSection from "@/components/WhatsAppOpsSection"
 import FleetResourcesSection from "@/components/FleetResourcesSection"
 import ComplianceSection from "@/components/ComplianceSection"
-import RentalsSection from "@/components/RentalsSection"
 import CustomerExperienceSection from "@/components/CustomerExperienceSection"
 import PackagesSection from "@/components/PackagesSection"
 import MultiLocationSection from "@/components/MultiLocationSection"
@@ -22,6 +23,7 @@ import ComparisonSection from "@/components/ComparisonSection"
 import WhoItsForSection from "@/components/WhoItsForSection"
 import ProductTourSection from "@/components/ProductTourSection"
 import WhyDriveOpsSection from "@/components/WhyDriveOpsSection"
+import BuiltForFleetSection from "@/components/BuiltForFleetSection"
 import TrustSection from "@/components/TrustSection"
 import PricingSection from "@/components/PricingSection"
 import FAQSection from "@/components/FAQSection"
@@ -105,10 +107,13 @@ const Index = () => (
       <FleetCareSection />
       <CommunicationSection />
       <ProblemSection />
-      <TripProductLoop />
-      <DispatchSection />
+      {/* <TripProductLoop /> */}
+      {/* <DispatchSection /> */}
       <DriverAppSection />
+      <RecurringTripsSection />
       <RentalsSection />
+      <WhyDriveOpsSection />
+      <BuiltForFleetSection />
       <LiveFleetSection />
       <WhatsAppOpsSection />
       <FleetResourcesSection />
@@ -119,7 +124,6 @@ const Index = () => (
       <ComparisonSection />
       <WhoItsForSection />
       <ProductTourSection />
-      <WhyDriveOpsSection />
       <TrustSection />
       <PricingSection />
       <FAQSection />
