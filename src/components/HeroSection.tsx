@@ -1,326 +1,332 @@
-import React from "react"
-import { motion, useReducedMotion } from "framer-motion"
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  FileText, 
-  Send, 
-  Smartphone, 
-  ChevronRight 
-} from "lucide-react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import { ArrowLeft, ArrowRight, CheckCircle2, Play } from "lucide-react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel"
+import { HERO_SLIDES, type HeroSlideCta } from "@/data/hero-slides"
+import MovingBackground from "@/components/MovingBackground"
 
-const workflowStages = [
-  {
-    step: "01",
-    title: "Plan",
-    microLabel: "Trips & Packages",
-    description: "Create a trip or use a package template.",
-    icon: FileText,
-    colors: {
-      badge: "text-blue-700 bg-blue-50 border-blue-200/80",
-      iconBg: "bg-blue-50 text-blue-600 border-blue-200/70 group-hover:bg-blue-600 group-hover:text-white",
-      pill: "bg-blue-50/80 text-blue-700 border-blue-200/60",
-      line: "from-blue-300 via-blue-200 to-emerald-300",
-      dot: "bg-blue-600",
-    }
-  },
-  {
-    step: "02",
-    title: "Dispatch",
-    microLabel: "Vehicles & Drivers",
-    description: "Assign the right vehicle and driver.",
-    icon: Send,
-    colors: {
-      badge: "text-emerald-700 bg-emerald-50 border-emerald-200/80",
-      iconBg: "bg-emerald-50 text-emerald-600 border-emerald-200/70 group-hover:bg-emerald-600 group-hover:text-white",
-      pill: "bg-emerald-50/80 text-emerald-700 border-emerald-200/60",
-      line: "from-emerald-300 via-emerald-200 to-purple-300",
-      dot: "bg-emerald-600",
-    }
-  },
-  {
-    step: "03",
-    title: "Execute",
-    microLabel: "Driver App",
-    description: "Drivers manage trips from the mobile app.",
-    icon: Smartphone,
-    colors: {
-      badge: "text-purple-700 bg-purple-50 border-purple-200/80",
-      iconBg: "bg-purple-50 text-purple-600 border-purple-200/70 group-hover:bg-purple-600 group-hover:text-white",
-      pill: "bg-purple-50/80 text-purple-700 border-purple-200/60",
-      line: "from-purple-300 via-purple-200 to-amber-300",
-      dot: "bg-purple-600",
-    }
-  },
-  {
-    step: "04",
-    title: "Stay in Control",
-    microLabel: "Operations & Compliance",
-    description: "Keep operations visible and documents compliant.",
-    icon: ShieldCheck,
-    colors: {
-      badge: "text-amber-700 bg-amber-50 border-amber-200/80",
-      iconBg: "bg-amber-50 text-amber-600 border-amber-200/70 group-hover:bg-amber-600 group-hover:text-white",
-      pill: "bg-amber-50/80 text-amber-700 border-amber-200/60",
-      line: "",
-      dot: "bg-amber-600",
-    }
-  },
-]
+const AUTOPLAY_MS = 6000
+const RESUME_DELAY_MS = 8000
+
+const PROOF_ITEMS = ["No credit card", "Quick setup", "Built for fleet operators"] as const
+
+function CtaLink({
+  cta,
+  variant,
+}: {
+  cta: HeroSlideCta
+  variant: "primary" | "secondary"
+}) {
+  const base =
+    variant === "primary"
+      ? "text-showcase-cta inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-white shadow-sm shadow-blue-600/25 transition-colors hover:bg-blue-500 sm:w-auto"
+      : "text-showcase-cta inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-600 sm:w-auto"
+
+  const content = (
+    <>
+      {variant === "secondary" && (
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-slate-300 text-slate-500">
+          <Play className="h-2.5 w-2.5 fill-current" aria-hidden="true" />
+        </span>
+      )}
+      {cta.label}
+      {variant === "primary" && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+    </>
+  )
+
+  if (cta.external) {
+    return (
+      <a href={cta.href} className={base}>
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={cta.href} className={base}>
+      {content}
+    </Link>
+  )
+}
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
+  const [api, setApi] = useState<CarouselApi>()
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const userInteracted = useRef(false)
+
+  const slide = HERO_SLIDES[selectedIndex] ?? HERO_SLIDES[0]
+
+  const onSelect = useCallback((emblaApi: CarouselApi) => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [])
+
+  useEffect(() => {
+    if (!api) return
+    onSelect(api)
+    api.on("select", onSelect)
+    api.on("reInit", onSelect)
+    return () => {
+      api.off("select", onSelect)
+      api.off("reInit", onSelect)
+    }
+  }, [api, onSelect])
+
+  const pauseAutoplay = useCallback(() => {
+    setPaused(true)
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+  }, [])
+
+  const scheduleResume = useCallback(() => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => {
+      userInteracted.current = false
+      setPaused(false)
+    }, RESUME_DELAY_MS)
+  }, [])
+
+  const markInteraction = useCallback(() => {
+    userInteracted.current = true
+    pauseAutoplay()
+    scheduleResume()
+  }, [pauseAutoplay, scheduleResume])
+
+  useEffect(() => {
+    if (!api || shouldReduceMotion || paused) return
+
+    const id = setInterval(() => {
+      if (userInteracted.current) return
+      if (api.canScrollNext()) {
+        api.scrollNext()
+      } else {
+        api.scrollTo(0)
+      }
+    }, AUTOPLAY_MS)
+
+    return () => clearInterval(id)
+  }, [api, paused, shouldReduceMotion])
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    }
+  }, [])
+
+  const scrollTo = (index: number) => {
+    markInteraction()
+    api?.scrollTo(index)
+  }
+
+  const scrollPrev = () => {
+    markInteraction()
+    api?.scrollPrev()
+  }
+
+  const scrollNext = () => {
+    markInteraction()
+    api?.scrollNext()
+  }
+
+  const transition = shouldReduceMotion
+    ? { duration: 0 }
+    : { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }
 
   return (
-    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-14 lg:pb-16 bg-gradient-to-b from-white via-[#F8FAFC] to-white border-b border-slate-200/60 overflow-hidden">
-      {/* Background Subtle Radial Depth Glows */}
-      <div 
-        className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[700px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)] pointer-events-none" 
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute top-12 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.04)_0%,transparent_70%)] pointer-events-none" 
-        aria-hidden="true"
-      />
+    <section
+      className="relative w-full overflow-hidden bg-[#F8FAFC]"
+      aria-label="DriveOps product overview"
+      onMouseEnter={pauseAutoplay}
+      onMouseLeave={() => {
+        if (!userInteracted.current) setPaused(false)
+      }}
+      onFocusCapture={pauseAutoplay}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          if (!userInteracted.current) setPaused(false)
+        }
+      }}
+    >
+      <MovingBackground />
 
-      <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* ========================================================= */}
-        {/* MAIN HERO GRID: Left Text + Right Product Composite       */}
-        {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center mb-10 sm:mb-12 lg:mb-14">
-
-          {/* LEFT COLUMN: Strategic Headline, Value Copy & Actions */}
-          <div className="order-1 lg:col-span-5 flex flex-col items-start text-left">
-            {/* 1. Eyebrow Badge */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700 mb-4 bg-blue-50/90 border border-blue-200/80 px-3.5 py-1.5 rounded-full shadow-2xs"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-              <span>TRIP-FIRST TRANSPORT OPERATIONS</span>
-            </motion.div>
-
-            {/* 2. Primary Editorial Headline */}
-            <motion.h1
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.08 }}
-              className="font-heading text-4xl sm:text-5xl lg:text-[46px] xl:text-[52px] font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-4 sm:mb-5"
-            >
-              Run every trip<br className="hidden sm:inline" />
-              {" "}without the{" "}
-              <span className="gradient-text">WhatsApp chaos.</span>
-            </motion.h1>
-
-            {/* 3. Supporting Copy */}
-            <motion.p
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.16 }}
-              className="text-base sm:text-lg text-slate-600 leading-relaxed font-sans max-w-[500px] mb-6 sm:mb-8"
-            >
-              Plan trips, assign vehicles and drivers, execute work in the field, and stay on top of compliance — from one transport operations platform.
-            </motion.p>
-
-            {/* 4. Action CTA Buttons */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.24 }}
-              className="flex flex-wrap items-center gap-3.5 mb-6 w-full sm:w-auto"
-            >
-              <a
-                href="https://driveops.chatserve.in/signup"
-                className="w-full sm:w-auto px-6 py-3.5 gradient-accent hover:opacity-95 text-white rounded-xl font-bold text-sm transition-all shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 group cursor-pointer"
+      <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col px-0 pb-5 pt-20 sm:pb-5 sm:pt-[5.25rem] lg:pt-[5.5rem]">
+        <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[minmax(0,45%)_minmax(0,55%)] lg:items-center lg:gap-10 xl:gap-12">
+          {/* Left copy */}
+          <div className="relative z-10 max-w-[540px] px-4 sm:px-5 lg:px-6 lg:pt-1 lg:pr-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.id}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={shouldReduceMotion ? undefined : { opacity: 0, y: -6 }}
+                transition={transition}
               >
-                <span>Start Free</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-              <Link
-                to="/contact"
-                className="w-full sm:w-auto px-5 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-700 rounded-xl font-semibold text-sm transition-all shadow-2xs flex items-center justify-center gap-2 group cursor-pointer"
-              >
-                <span>Book a Demo</span>
-              </Link>
-            </motion.div>
+                <div className="mb-4 flex flex-wrap items-center gap-2.5">
+                  {/* <span className="text-showcase-eyebrow text-slate-400">
+                    {slide.indexLabel}
+                  </span> */}
+                  <span className="text-showcase-eyebrow inline-flex items-center rounded-full border border-blue-200 bg-blue-50/70 px-2.5 py-1 text-blue-600">
+                    {slide.category}
+                  </span>
+                </div>
 
-            {/* 5. Trust Microcopy (Desktop View) */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="hidden lg:flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-medium text-slate-500"
-            >
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                <span>Setup in minutes</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                <span>Built for growing passenger fleets</span>
-              </div>
-            </motion.div>
+                <h1 className="text-showcase-h1 text-slate-900">
+                  {slide.headline.map((part, i) =>
+                    part.highlight ? (
+                      <span
+                        key={i}
+                        className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"
+                      >
+                        {part.text.split("\n").map((line, li, arr) => (
+                          <span key={li}>
+                            {line}
+                            {li < arr.length - 1 && <br className="hidden sm:inline" />}
+                            {li < arr.length - 1 && <span className="sm:hidden"> </span>}
+                          </span>
+                        ))}
+                      </span>
+                    ) : (
+                      <span key={i}>
+                        {part.text.split("\n").map((line, li, arr) => (
+                          <span key={li}>
+                            {line}
+                            {li < arr.length - 1 && <br className="hidden sm:inline" />}
+                            {li < arr.length - 1 && <span className="sm:hidden"> </span>}
+                          </span>
+                        ))}
+                      </span>
+                    ),
+                  )}
+                </h1>
+
+                <p className="text-showcase-desc mt-5 text-slate-600">
+                  {slide.description}
+                </p>
+
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                  <CtaLink cta={slide.primaryCta} variant="primary" />
+                  <CtaLink cta={slide.secondaryCta} variant="secondary" />
+                </div>
+
+                {slide.showProofRow && (
+                  <ul className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                    {PROOF_ITEMS.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-1.5 text-xs font-medium text-slate-500 sm:text-sm"
+                      >
+                        <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* RIGHT COLUMN: Transparent Product Composite UI (Dashboard + Phone) */}
-          {/* Note: Constrained max-height ensures the phone sits cleanly above the workflow section */}
-          <div className="order-2 lg:col-span-7 relative w-full flex items-center justify-center lg:justify-end pt-2 lg:pt-0 pb-2">
-            {/* Subtle Centered Radial Glow Behind Dashboard */}
-            <div 
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] max-w-[580px] max-h-[400px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none" 
-              aria-hidden="true" 
-            />
-
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[640px] lg:max-w-none flex items-center justify-center select-none"
+          {/* Right visuals — bare transparent PNGs, no card chrome */}
+          <div className="relative min-w-0 bg-transparent px-2 sm:px-3 lg:px-0">
+            <Carousel
+              setApi={setApi}
+              opts={{
+                loop: true,
+                duration: shouldReduceMotion ? 0 : 22,
+                watchDrag: true,
+              }}
+              className="w-full bg-transparent"
+              onPointerDown={markInteraction}
             >
-              <img
-                src="/images/dashboard_image.png"
-                alt="DriveOps transport operations dashboard and driver mobile app"
-                className="w-full h-auto object-contain max-h-[440px] xl:max-h-[480px] drop-shadow-[0_20px_40px_rgba(15,23,42,0.08)] pointer-events-none"
-                loading="eager"
-                width={1536}
-                height={1024}
-              />
-            </motion.div>
+              <CarouselContent className="-ml-0">
+                {HERO_SLIDES.map((s, index) => (
+                  <CarouselItem
+                    key={s.id}
+                    className="basis-full bg-transparent pl-0"
+                    id={`hero-slide-${s.id}`}
+                  >
+                    <img
+                      src={encodeURI(s.image)}
+                      alt={s.imageAlt}
+                      width={1400}
+                      height={900}
+                      fetchPriority={index === 0 ? "high" : undefined}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="mx-auto h-auto max-h-[280px] w-full object-contain object-center sm:max-h-[380px] lg:max-h-none"
+                      draggable={false}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
-
-          {/* Trust Microcopy (Mobile / Tablet View — positioned below product composite) */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="order-3 lg:hidden flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-500 pt-1 text-center"
-          >
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-              <span>No credit card required</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-              <span>Setup in minutes</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-              <span>Built for growing passenger fleets</span>
-            </div>
-          </motion.div>
-
         </div>
 
-        {/* ========================================================= */}
-        {/* THE DRIVEOPS OPERATIONAL LOOP                             */}
-        {/* HOW DRIVEOPS RUNS THE DAY                                 */}
-        {/* 01 Plan → 02 Dispatch → 03 Execute → 04 Stay in Control   */}
-        {/* ========================================================= */}
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative z-10 bg-slate-50/75 hover:bg-slate-50/95 transition-colors border border-slate-200/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-7 shadow-[0_2px_12px_rgba(15,23,42,0.03)]"
-        >
-          {/* Header Bar */}
-          <div className="flex items-center justify-between mb-5 sm:mb-6 border-b border-slate-200/60 pb-3.5">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              <h2 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-600">
-                HOW DRIVEOPS RUNS THE DAY
-              </h2>
-            </div>
-            <span className="text-xs font-semibold text-slate-500 hidden sm:inline">
-              The End-to-End Operational Loop
-            </span>
+        {/* Bottom slide nav — Prev | tabs | Next */}
+        <div className="relative z-10 mt-5 flex items-center gap-2 border-t border-slate-200/60 px-4 pt-3.5 sm:mt-6 sm:gap-3 sm:px-5 lg:px-6">
+          <button
+            type="button"
+            onClick={scrollPrev}
+            aria-label="Previous slide"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </button>
+
+          <div
+            className="flex min-w-0 flex-1 justify-start gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [-webkit-overflow-scrolling:touch] sm:justify-center sm:gap-1 [&::-webkit-scrollbar]:hidden"
+            role="tablist"
+            aria-label="Product slides"
+          >
+            {HERO_SLIDES.map((s, index) => {
+              const active = index === selectedIndex
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-controls={`hero-slide-${s.id}`}
+                  onClick={() => scrollTo(index)}
+                  className={`relative flex shrink-0 flex-col items-center px-1.5 py-1.5 text-[10px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:px-2.5 sm:text-xs md:text-sm ${
+                    active ? "text-blue-600" : "text-slate-500 hover:text-slate-800"
+                  }`}
+                >
+                  <span
+                    className={`mb-1 h-1.5 w-1.5 rounded-full transition-colors ${
+                      active ? "bg-blue-600" : "bg-transparent"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  {s.navLabel}
+                  <span
+                    className={`absolute inset-x-1.5 bottom-0 h-0.5 rounded-full transition-colors sm:inset-x-2 ${
+                      active ? "bg-blue-600" : "bg-transparent"
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+              )
+            })}
           </div>
 
-          {/* DESKTOP VIEW: 4 Connected Sequential Stages with Continuous Track */}
-          <ol className="hidden lg:grid grid-cols-12 gap-3 xl:gap-4 relative" aria-label="DriveOps Operational Sequence">
-            {workflowStages.map((stage, idx) => {
-              const Icon = stage.icon
-              const isLast = idx === workflowStages.length - 1
-              return (
-                <React.Fragment key={stage.step}>
-                  {/* Step Card Column */}
-                  <li className={`${isLast ? 'col-span-3' : 'col-span-3'} group relative`}>
-                    <div className="p-3.5 xl:p-4 rounded-xl bg-white border border-slate-200/70 group-hover:border-slate-300 group-hover:shadow-sm transition-all h-full flex flex-col justify-between">
-                      {/* Top Row: Number Badge & Icon Container */}
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className={`text-[11px] font-mono font-bold px-2 py-0.5 rounded-md border ${stage.colors.badge}`}>
-                            {stage.step}
-                          </span>
-                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${stage.colors.pill}`}>
-                            {stage.microLabel}
-                          </span>
-                        </div>
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-colors ${stage.colors.iconBg}`}>
-                          <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div>
-                        <h3 className="font-heading font-bold text-base text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
-                          {stage.title}
-                        </h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                          {stage.description}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </React.Fragment>
-              )
-            })}
-          </ol>
-
-          {/* TABLET / MOBILE VIEW: Responsive Connected Vertical Timeline (< 1024px) */}
-          <ol className="lg:hidden flex flex-col sm:grid sm:grid-cols-2 gap-3.5 relative" aria-label="DriveOps Operational Sequence">
-            {workflowStages.map((stage) => {
-              const Icon = stage.icon
-              return (
-                <li key={stage.step} className="group">
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3.5 h-full">
-                    {/* Icon Container */}
-                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center border shrink-0 mt-0.5 ${stage.colors.iconBg}`}>
-                      <Icon className="w-4 h-4" />
-                    </div>
-
-                    {/* Step Details */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${stage.colors.badge}`}>
-                          {stage.step}
-                        </span>
-                        <h3 className="font-heading font-bold text-sm text-slate-900">
-                          {stage.title}
-                        </h3>
-                        <span className={`text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.2 rounded border ml-auto ${stage.colors.pill}`}>
-                          {stage.microLabel}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">
-                        {stage.description}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              )
-            })}
-          </ol>
-        </motion.div>
-
+          <button
+            type="button"
+            onClick={scrollNext}
+            aria-label="Next slide"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
+          >
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </section>
   )

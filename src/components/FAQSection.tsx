@@ -4,44 +4,52 @@ import { ChevronDown, HelpCircle, Mail } from "lucide-react"
 
 const FAQS = [
   {
-    q: "What type of transport companies is DriveOps for?",
-    a: "DriveOps is designed for passenger transport operators managing fleets of roughly 15 to 100 vehicles. This includes taxi & travel operators, airport transfer providers, corporate employee commute operators, and multi-depot passenger fleets with an office dispatch team and on-road drivers.",
+    q: "What is DriveOps?",
+    a: "DriveOps is a fleet operations platform that helps operators plan trips, assign drivers and vehicles, run a Driver App, track live fleet location from driver GPS, manage fuel, maintenance, and compliance documents, communicate on WhatsApp, collect reviews, and run self-drive rentals.",
   },
   {
-    q: "Does DriveOps include a driver mobile app?",
-    a: "Yes. DriveOps includes a dedicated mobile application for Android and iOS. Drivers use it to view today's assigned trips, toggle their duty on or off, start and complete trips, and receive direct push alerts from dispatch.",
+    q: "Who is DriveOps for?",
+    a: "Fleet owners, fleet managers, dispatchers, operations teams, drivers, and rental desks—especially passenger transport and mixed fleets that also offer self-drive rentals.",
   },
   {
-    q: "Can drivers work offline?",
-    a: "Yes. The driver mobile app supports local offline execution. Drivers can start trips, navigate, and log milestones even in basement parking garages, airport terminals, or rural dead zones. Data automatically syncs with the office once cellular reception is restored.",
+    q: "Can DriveOps manage recurring trips?",
+    a: "Yes. You can create recurring schedules with daily, weekly, or monthly recurrence. DriveOps materializes upcoming trip instances automatically so dispatch can assign them.",
   },
   {
-    q: "Can we manage multiple locations?",
-    a: "Yes. DriveOps supports multi-depot and branch hierarchies. Dispatchers can manage their localized depot queue while business owners maintain unified operational visibility across all branches.",
+    q: "Can I assign drivers and vehicles?",
+    a: "Yes. Dispatch supports candidate review, conflict-aware allocation, reassignment workflows, and driver accept/reject—via the Driver App and WhatsApp assignment actions.",
   },
   {
-    q: "Can DriveOps track document expiry?",
-    a: "Yes. DriveOps tracks expiration dates for vehicle documents (RC, Commercial Insurance, Fitness Certificate, PUC) and driver credentials (Commercial Driving License). The system displays countdown timers and sends advance renewal alerts 30, 15, and 7 days prior to expiry.",
+    q: "Does DriveOps have a Driver App?",
+    a: "Yes. Drivers can log in (password or WhatsApp OTP), go on/off duty, see assigned trips, accept or reject, navigate, start and complete trips, submit trip sheets, log fuel, report vehicle issues, and receive push notifications. The app supports English, Malayalam, and Hindi.",
   },
   {
-    q: "Does DriveOps support OCR?",
-    a: "Yes. You can upload digital photos or scans of vehicle and driver documents. DriveOps' document OCR reads key metadata such as registration numbers, expiration dates, and policy numbers to auto-populate records and reduce manual data entry.",
+    q: "Can drivers receive WhatsApp assignments?",
+    a: "Yes. After allocation, drivers can receive WhatsApp assignment messages with Accept / Reject actions, in addition to Driver App notifications.",
   },
   {
-    q: "Can we manage trips and dispatch from one place?",
-    a: "Yes. The Dispatch Queue brings unassigned bookings, available compliant vehicles, and active duty drivers into a single operational board, allowing your team to allocate trips rapidly without phone tag or spreadsheet cross-referencing.",
+    q: "Can I track active vehicles?",
+    a: "Yes. The ops live fleet map shows vehicle locations from Driver App GPS while drivers are on duty. Location updates combine periodic snapshots with live WebSocket events—not a hardware telematics box.",
   },
   {
-    q: "How does onboarding work?",
-    a: "Onboarding is quick and guided. You can bulk import your vehicle and driver rosters via Excel or CSV in minutes. Invite your dispatchers, distribute driver app login credentials, and start scheduling trips immediately.",
+    q: "Can customers track their trips?",
+    a: "Yes. Customers can open a secure public tracking link for a trip. They do not need a DriveOps account.",
+  },
+  {
+    q: "Does DriveOps support rentals?",
+    a: "Yes. Self-drive rental vehicles support availability, calendar, hold/confirm, handover, return, settlement, and manual payment recording (cash, UPI, card, bank transfer, or other). Online payment gateways and automated invoicing are not included today.",
+  },
+  {
+    q: "Can I manage fuel, maintenance, and compliance?",
+    a: "Yes. Fuel logs capture quantity, price, odometer, receipts, and associations. Maintenance jobs support start/complete/cancel with due scans. Compliance provides a document vault, expiry tracking, and alerts. OCR field extraction is optional and depends on configuration.",
+  },
+  {
+    q: "Does DriveOps support customer reviews?",
+    a: "Yes. After trips, you can send WhatsApp review requests and collect inbound feedback into the ops inbox. DriveOps is not a Google Business review automation product.",
   },
   {
     q: "Is there a free trial?",
-    a: "Yes. We offer a Free Plan for up to 2 vehicles and 2 drivers with full access to trip creation, dispatch, and the driver mobile app so you can test the entire workflow with your team before upgrading.",
-  },
-  {
-    q: "What happens to our data?",
-    a: "Your data is stored in isolated multi-tenant cloud storage with encrypted in-transit transmission. You retain full ownership of all trip records, driver profiles, and compliance documents, and can export your records at any time.",
+    a: "Yes. You can start from the free trial signup link. Plans also include a Free tier for small fleets so you can test the core trip and dispatch workflow.",
   },
 ]
 
@@ -51,29 +59,26 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-white border-b border-slate-200/70 relative overflow-hidden" ref={ref}>
+    <section id="faq" className="section-showcase bg-white border-b border-slate-200/70 relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 lg:mb-14"
         >
-          <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4">
+          <div className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5">
             <HelpCircle className="w-3.5 h-3.5 text-blue-600" />
-            <span>FREQUENTLY ASKED QUESTIONS</span>
+            <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
-            Everything you need to know about <span className="gradient-text">DriveOps.</span>
+          <h2 className="text-showcase-h1 text-slate-900 mb-5">
+            Straight answers about <span className="gradient-text">what DriveOps does today.</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Straightforward answers about our trip operations platform, driver app, compliance, and setup.
+          <p className="text-showcase-desc mx-auto text-slate-600">
+            Grounded in the product as implemented—trips, dispatch, Driver App, live fleet, WhatsApp, rentals, and fleet care.
           </p>
         </motion.div>
 
-        {/* Accordion List */}
         <div className="space-y-3.5">
           {FAQS.map((faq, idx) => {
             const isOpen = openIndex === idx
@@ -82,7 +87,7 @@ export default function FAQSection() {
                 key={faq.q}
                 initial={{ opacity: 0, y: 12 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.35, delay: idx * 0.04 }}
+                transition={{ duration: 0.35, delay: idx * 0.03 }}
                 className="border border-slate-200/90 rounded-2xl bg-white overflow-hidden shadow-2xs hover:border-blue-200 transition-colors"
               >
                 <button
@@ -122,14 +127,13 @@ export default function FAQSection() {
           })}
         </div>
 
-        {/* Help Banner */}
         <div className="mt-12 text-center p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h4 className="font-heading font-bold text-sm text-slate-900">
-              Have a specific question about your passenger fleet?
+              Have a specific question about your fleet?
             </h4>
             <p className="text-xs text-slate-500 mt-0.5">
-              Our operations team is available to help evaluate your current workflow.
+              Tell us how you run trips today and we will map it to DriveOps.
             </p>
           </div>
           <a
@@ -137,10 +141,9 @@ export default function FAQSection() {
             className="px-4 py-2 bg-white border border-slate-200 hover:border-slate-300 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:text-blue-600 transition-all shrink-0 flex items-center gap-1.5"
           >
             <Mail className="w-3.5 h-3.5" />
-            <span>Contact Operations</span>
+            <span>Contact us</span>
           </a>
         </div>
-
       </div>
     </section>
   )

@@ -6,24 +6,24 @@ export default function MultiLocationSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-16 sm:py-20 bg-white border-b border-slate-200/70 relative overflow-hidden">
+    <section className="section-showcase bg-white border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
             {/* Left Narrative Column */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-[10px] font-bold uppercase tracking-wider">
+            <div className="lg:col-span-7 space-y-5">
+              <div className="text-showcase-eyebrow inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full">
                 <Building2 className="w-3.5 h-3.5" />
-                <span>MULTI-DEPOT ARCHITECTURE</span>
+                <span>Multi-Depot Architecture</span>
               </div>
 
-              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+              <h3 className="font-heading text-[28px] sm:text-[36px] lg:text-[40px] font-bold text-white leading-[1.08] tracking-[-0.035em]">
                 One operation. <span className="text-blue-400">Multiple locations.</span>
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="text-[17px] sm:text-[18px] text-slate-400 leading-[1.58] max-w-[520px]">
                 Manage vehicles, drivers and daily operations across multiple branches and depots from one central workspace. Dispatch locally, oversee globally.
               </p>
 

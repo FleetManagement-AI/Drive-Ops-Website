@@ -1,50 +1,50 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { Car, Plane, Building, MapPin, CheckCircle2, ArrowRight } from "lucide-react"
+import { Building2, Headset, Smartphone, KeyRound, CheckCircle2 } from "lucide-react"
 
 const PERSONAS = [
   {
-    title: "Taxi & Travel Operators",
-    subtitle: "Chauffeur, Outstation & Sightseeing",
-    icon: Car,
-    summary: "Manage daily allocations and driver duty without the chaos of spreadsheet tracking and WhatsApp groups.",
+    title: "Fleet owners & managers",
+    subtitle: "One operational system of record",
+    icon: Building2,
+    summary: "See trips, vehicles, drivers, compliance, fuel, and rentals in one place instead of chasing status across chats and spreadsheets.",
     highlights: [
-      "Quick trip creation for ad-hoc customer requests",
-      "Real-time driver availability and assignment",
-      "Driver mobile app for on-road trip execution",
+      "Trip, vehicle, and driver registries",
+      "Live fleet visibility from Driver App GPS",
+      "Document vault and expiry alerts",
     ],
   },
   {
-    title: "Airport Transfer Operators",
-    subtitle: "Punctual Terminal & Hotel Shuttles",
-    icon: Plane,
-    summary: "Handle recurring flight arrivals and hotel pickups with fixed package templates and verified vehicle readiness.",
+    title: "Dispatchers & ops teams",
+    subtitle: "Assign and monitor the day",
+    icon: Headset,
+    summary: "Create trips, allocate drivers and vehicles with conflict-aware dispatch, and keep the day moving with WhatsApp and app notifications.",
     highlights: [
-      "Standard airport-to-city package templates",
-      "Clean queue of incoming and ongoing transfers",
-      "Automated document compliance to prevent RTO stops",
+      "Dispatch allocation workspace",
+      "Unassigned trip attention",
+      "Customer tracking links after assignment",
     ],
   },
   {
-    title: "Corporate Transport Providers",
-    subtitle: "Employee Commute & Enterprise Rosters",
-    icon: Building,
-    summary: "Coordinate scheduled passenger transport across dedicated company vehicles, rostered drivers, and repeat routes.",
+    title: "Drivers",
+    subtitle: "Execute work from the road",
+    icon: Smartphone,
+    summary: "Use the Driver App for duty, assigned trips, navigation, trip sheets, fuel logs, and vehicle issue reports—with WhatsApp assignment support.",
     highlights: [
-      "Repeat commute schedules and vehicle allocations",
-      "Driver duty and shift attendance logs",
-      "Central command center for office operations teams",
+      "Accept / reject assignments",
+      "Start and complete trips",
+      "English, Malayalam, and Hindi",
     ],
   },
   {
-    title: "Multi-location Fleets",
-    subtitle: "Regional Branches & Multiple Depots",
-    icon: MapPin,
-    summary: "Run multiple depots or city branches from one shared workspace with localized dispatch control.",
+    title: "Rental desks",
+    subtitle: "Self-drive alongside chauffeur ops",
+    icon: KeyRound,
+    summary: "Run self-drive rental availability, bookings, handover/return, and manual payment recording in the same platform.",
     highlights: [
-      "Branch-scoped vehicle and driver allocation",
-      "Centralized document repository and renewal oversight",
-      "Consolidated operational visibility across all sites",
+      "Rental calendar and availability",
+      "Hold → confirm → handover → settle",
+      "Recorded payments (cash, UPI, card, and more)",
     ],
   },
 ]
@@ -53,18 +53,16 @@ export default function WhoItsForSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="who-its-for" className="py-20 sm:py-28 bg-white border-b border-slate-200/70 relative overflow-hidden">
+    <section id="who-its-for" className="section-showcase bg-white border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>TARGET PASSENGER FLEETS</span>
+            <span>Who DriveOps Serves</span>
           </motion.div>
 
           <motion.h2
@@ -72,9 +70,10 @@ export default function WhoItsForSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
-            Built specifically for <span className="gradient-text">passenger transport operators.</span>
+            Built for the people who{" "}
+            <span className="gradient-text">run the fleet every day.</span>
           </motion.h2>
 
           <motion.p
@@ -82,13 +81,12 @@ export default function WhoItsForSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
-            DriveOps is focused on fleet businesses operating roughly 15–100 passenger vehicles with an office dispatch team and on-road drivers.
+            From the office desk to the driver on the road—and the rental counter when you need it.
           </motion.p>
         </div>
 
-        {/* 4 Focused Personas Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {PERSONAS.map((persona, idx) => {
             const Icon = persona.icon
@@ -133,7 +131,6 @@ export default function WhoItsForSection() {
             )
           })}
         </div>
-
       </div>
     </section>
   )

@@ -1,131 +1,77 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { MessageSquare, PhoneCall, Users, FileText, AlertTriangle, EyeOff, ArrowDown } from "lucide-react"
-
-const PAIN_POINTS = [
-  {
-    icon: MessageSquare,
-    title: "Trip details lost in chat threads",
-    desc: "Customer bookings, pickup times, and route changes buried in disorganized WhatsApp groups.",
-  },
-  {
-    icon: PhoneCall,
-    title: "Endless phone tag with drivers",
-    desc: "Calling back and forth just to verify if a driver is available, on duty, or en route.",
-  },
-  {
-    icon: Users,
-    title: "Unclear vehicle & driver assignment",
-    desc: "No real-time certainty on which car or driver is already allocated or waiting idle.",
-  },
-  {
-    icon: FileText,
-    title: "Fragile paper & Excel records",
-    desc: "Manual trip sheets and spreadsheets that get misplaced, delayed, or double-entered.",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Surprise document expiry",
-    desc: "Vehicle insurance, fitness, or driver licenses lapse unnoticed until a checkpoint stop.",
-  },
-  {
-    icon: EyeOff,
-    title: "No single operational view",
-    desc: "The office has no central pulse of today's workload, leading to missed pickups and customer friction.",
-  },
-]
 
 export default function ProblemSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-20 sm:py-24 bg-white border-b border-slate-200/60 relative overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="operational-problem"
+      className="relative bg-white border-b border-slate-200/70 overflow-hidden"
+      aria-label="The operational problem DriveOps solves"
+    >
+      <div
+        className="absolute left-1/2 top-0 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+      <div className="section-showcase relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-rose-600 bg-rose-50 border border-rose-200/70 px-3.5 py-1.5 rounded-full mb-4"
+            transition={{ duration: 0.4 }}
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/70 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>THE OPERATIONAL BOTTLENECK</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+            The Operational Problem
           </motion.div>
 
           <motion.h2
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            transition={{ duration: 0.45, delay: 0.07 }}
+            className="text-showcase-h1 text-slate-900 mb-5"
           >
-            Still running transport operations through{" "}
-            <span className="text-rose-600">WhatsApp, Excel and phone calls?</span>
+            Your fleet is moving.{" "}
+            <span className="text-blue-600">Your operations shouldn&apos;t be scattered.</span>
           </motion.h2>
 
           <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.45, delay: 0.14 }}
+            className="text-showcase-desc mx-auto text-slate-600"
           >
-            When passenger fleets grow past 10 vehicles, coordination by memory breaks down. Daily operations become a stressful scramble.
+            DriveOps brings trips, dispatch, drivers, tracking, fleet care, and customer updates
+            into one connected operating system.
           </motion.p>
         </div>
 
-        {/* 6 Real Pain Point Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
-          {PAIN_POINTS.map((item, idx) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={item.title}
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-slate-300 hover:bg-white transition-all shadow-2xs group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-heading text-base font-bold text-slate-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Transition Banner into DriveOps */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-blue-50/90 p-6 sm:p-8 text-center max-w-3xl mx-auto flex flex-col items-center shadow-xs"
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+          className="relative w-full rounded-2xl sm:rounded-3xl border border-slate-200/80 bg-white overflow-hidden shadow-[0_8px_40px_rgba(15,23,42,0.06)]"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700 mb-2">
-            THERE IS A BETTER WAY
-          </p>
-          <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">
-            Turn scattered chaos into one connected operating system.
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-xl mb-4">
-            DriveOps unites trip booking, dispatch allocation, driver mobile execution, and document compliance in one streamlined loop.
-          </p>
-          <div className="flex items-center gap-1 text-xs font-bold text-blue-600">
-            <span>Explore the core workflow below</span>
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-          </div>
+          <img
+            src="/images/From Scattered Chats to One Fleet System.png"
+            alt="From scattered chats to one fleet system — the old way versus DriveOps with dashboard and Driver App"
+            className="w-full h-auto block"
+            loading="lazy"
+            decoding="async"
+            width={1920}
+            height={800}
+          />
         </motion.div>
-
       </div>
     </section>
   )

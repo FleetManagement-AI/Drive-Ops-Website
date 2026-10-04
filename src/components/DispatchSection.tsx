@@ -25,7 +25,7 @@ const DISPATCH_FLOW = [
   {
     step: "4",
     label: "Assigned Trip",
-    desc: "Directly pushed to the driver app; office calendar updated in real time.",
+    desc: "Allocated to the Driver App and WhatsApp with Accept / Reject support.",
     icon: Check,
   },
 ]
@@ -34,18 +34,18 @@ export default function DispatchSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="dispatch" className="py-20 sm:py-28 bg-white border-b border-slate-200/70 relative overflow-hidden">
+    <section id="dispatch" className="section-showcase bg-white border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>INTELLIGENT DISPATCH WORKSPACE</span>
+            <span>Dispatch Workspace</span>
           </motion.div>
 
           <motion.h2
@@ -53,7 +53,7 @@ export default function DispatchSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
             Know what needs a driver <span className="gradient-text">before the day starts.</span>
           </motion.h2>
@@ -63,7 +63,7 @@ export default function DispatchSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
             Turn scattered calls, spreadsheets and WhatsApp messages into one clear dispatch workflow.
           </motion.p>

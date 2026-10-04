@@ -13,241 +13,261 @@ export const featureContent: Record<string, FeatureContent> = {
   "fleet-tracking": {
     keyword: "Fleet Tracking Software",
     title: "Live Fleet Tracking Software in India | DriveOps",
-    description: "Monitor commercial vehicles in real-time with DriveOps Fleet Tracking Software. Optimize dispatch routes, reduce dead kilometers, and improve passenger safety.",
-    h1: "Real-Time Fleet Tracking Software",
-    h2: "Live operational map and route tracking for modern transport fleets.",
-    heroCopy: "Gain total operational visibility over every vehicle in your fleet. DriveOps Fleet Tracking Software enables dispatchers to monitor active routes, track trip milestones, and make rapid dispatching decisions without expensive hardware lock-ins.",
+    description: "Monitor commercial vehicles on a live ops map fed by Driver App GPS. Share secure customer tracking links. Poll + WebSocket updates—no hardware trackers required.",
+    h1: "Live Fleet Tracking for Operators",
+    h2: "See active vehicles on a Mapbox ops map, with secure links for customers to follow their trip.",
+    heroCopy: "DriveOps shows where your fleet is during active trips using GPS from the Driver App. Operators get a live Mapbox map with poll and WebSocket updates. Customers get a secure tracking link—without buying proprietary GPS boxes.",
     benefits: [
-      { title: "Live Operations Map", desc: "View all active, en-route, idle, and off-duty vehicles in real-time on an interactive map." },
-      { title: "Route Optimization", desc: "Guide drivers through optimal routes to reduce fuel consumption and travel delays." },
-      { title: "No Hardware Barrier", desc: "Connect driver mobile devices seamlessly to get immediate visibility without purchasing proprietary GPS boxes." },
-      { title: "Trip Milestone Alerts", desc: "Receive automated alerts when vehicles arrive at pickup locations, reach destinations, or deviate from assigned routes." }
+      { title: "Live Operations Map", desc: "View active trip vehicles on an interactive Mapbox map in the ops console." },
+      { title: "Driver App GPS", desc: "Locations come from the driver mobile app while on duty—no hardware telematics devices required." },
+      { title: "Customer Tracking Links", desc: "Share a secure link so passengers can follow trip progress with live updates." },
+      { title: "Poll + WebSocket Updates", desc: "Ops and customer views refresh via REST polling and WebSocket—not a separate hardware stream." }
     ],
     faqs: [
-      { q: "How does fleet tracking software work in DriveOps?", a: "DriveOps tracks active trip locations directly through driver mobile workflows and telemetry updates, sending real-time coordinates to the central operations dashboard." },
-      { q: "Does DriveOps require external GPS hardware?", a: "No. You can start tracking your fleet immediately through driver mobile connections, eliminating heavy upfront capital expenses." },
-      { q: "How does tracking reduce fleet operational costs?", a: "By identifying unauthorized detours, reducing idle times, and dispatching the nearest vehicle to bookings, operators cut fuel waste and dead mileage." }
+      { q: "How does fleet tracking work in DriveOps?", a: "While drivers are on duty, the Driver App sends GPS updates. The ops live fleet map (Mapbox) shows those positions. Customers can follow a trip via a secure tracking link." },
+      { q: "Does DriveOps require external GPS hardware?", a: "No. Tracking is designed around the Driver App. DriveOps does not sell or require hardware GPS trackers." },
+      { q: "Can customers see the vehicle live?", a: "Yes. After a trip is confirmed, customers can receive a tracking URL (typically via WhatsApp) to follow the trip." }
     ]
   },
   "gps-vehicle-tracking": {
     keyword: "GPS Vehicle Tracking",
-    title: "Live GPS Vehicle Tracking Software | DriveOps",
-    description: "Monitor your fleet in real-time with DriveOps GPS Vehicle Tracking. Optimize routes, improve safety, and dispatch faster without hardware lock-in.",
-    h1: "Live GPS Vehicle Tracking Software",
-    h2: "Total operational visibility over your entire commercial fleet.",
-    heroCopy: "Know exactly where your vehicles are at any given moment. DriveOps provides robust GPS Vehicle Tracking and a live fleet map that empowers dispatchers to make rapid, informed decisions.",
+    title: "GPS Vehicle Tracking via Driver App | DriveOps",
+    description: "Live GPS visibility for commercial fleets using the Driver App—ops Mapbox map, customer tracking links, no hardware lock-in.",
+    h1: "GPS Vehicle Tracking for Fleet Ops",
+    h2: "Operational visibility from driver smartphones—map for dispatchers, link for customers.",
+    heroCopy: "Know where assigned vehicles are during active work. DriveOps GPS visibility is powered by the Driver App, shown on the ops live fleet map, with optional customer tracking links.",
     benefits: [
-      { title: "Live Fleet Map", desc: "Visualize all active, idle, and off-duty vehicles on an interactive dashboard map." },
-      { title: "No Hardware Required", desc: "Leverage mobile tracking technology to gain visibility immediately without buying expensive proprietary GPS boxes." },
-      { title: "Route Optimization", desc: "Ensure drivers are taking the most efficient routes to reduce fuel consumption and wear." }
+      { title: "Live Fleet Map", desc: "Dispatchers see active vehicles on a Mapbox operations map." },
+      { title: "No Hardware Required", desc: "Start with driver mobile GPS. Hardware telematics devices are not part of the product." },
+      { title: "Trip Context", desc: "Tracking is tied to duty, trips, and assignments—not a standalone consumer tracker app." }
     ],
     faqs: [
-      { q: "Do I need to install a physical GPS tracker?", a: "No, DriveOps is designed to provide immediate operational visibility without forcing you into expensive hardware installations." },
-      { q: "How accurate is the tracking?", a: "Our GPS fleet tracking relies on high-accuracy mobile location services, providing real-time updates directly to the dispatch dashboard." },
-      { q: "Why is GPS tracking important for a taxi fleet?", a: "It enables smart dispatch algorithms to assign the closest vehicle to a booking, significantly reducing customer wait times and dead mileage." }
+      { q: "Do I need to install a physical GPS tracker?", a: "No. DriveOps uses Driver App GPS for live fleet visibility. It does not require hardware GPS trackers." },
+      { q: "How do updates reach the dashboard?", a: "Location updates are delivered to ops via polling and WebSocket connections from the platform." },
+      { q: "Is this nearest-vehicle auto-dispatch?", a: "No. DriveOps supports allocate-and-assign with candidate and conflict checks. Drivers accept or reject. It does not claim nearest-vehicle auto-dispatch algorithms." }
     ]
   },
   "vehicle-management": {
     keyword: "Vehicle Fleet Management",
     title: "Vehicle Fleet Management Software | DriveOps",
-    description: "Digitize vehicle registries, manage compliance certificates, and monitor maintenance with DriveOps Vehicle Fleet Management Software.",
-    h1: "Complete Vehicle Fleet Management Software",
-    h2: "Organize vehicle records, permits, and utilization from one central ledger.",
-    heroCopy: "Managing dozens or hundreds of commercial vehicles with paper files is inefficient and error-prone. DriveOps Vehicle Fleet Management centralizes registration certificates, road tax, fitness certificates, and insurance documents in a secure cloud registry.",
+    description: "Centralize vehicle records, compliance documents, and fleet status. Import vehicles, track documents with expiry alerts, and manage day-to-day fleet ops.",
+    h1: "Vehicle Fleet Management Software",
+    h2: "Organize vehicle records, compliance documents, and utilization status in one registry.",
+    heroCopy: "DriveOps Vehicle Fleet Management keeps commercial vehicle records, status, and compliance documents in one place—so ops teams are not chasing paper files across branches.",
     benefits: [
-      { title: "Digital Vehicle Ledger", desc: "Maintain complete specs, ownership records, odometer readings, and current status for every asset." },
-      { title: "Compliance Document Vault", desc: "Upload and organize RC books, state permits, insurance policies, and pollution certificates." },
-      { title: "Automated Renewal Alerts", desc: "Get proactive dashboard notifications weeks before key compliance documents expire." },
-      { title: "Utilization Tracking", desc: "Measure vehicle uptime, active duty days, and revenue output across your entire fleet." }
+      { title: "Digital Vehicle Registry", desc: "Maintain specs, registration details, odometer context, and current status for every vehicle." },
+      { title: "Compliance Document Vault", desc: "Store RC, insurance, permits, fitness, and related certificates with expiry tracking." },
+      { title: "Expiry Alerts", desc: "Get alerts (including WhatsApp where configured) before key compliance documents expire." },
+      { title: "Vehicle Imports", desc: "Import vehicle lists to onboard fleets faster—drivers and vehicles import paths are supported." }
     ],
     faqs: [
-      { q: "What documents can I track in DriveOps?", a: "You can track vehicle RCs, insurance policies, national/state permits, fitness certificates, and emission certificates with automated expiry warnings." },
-      { q: "Can I manage different types of vehicles?", a: "Yes. DriveOps supports sedans, hatchbacks, SUVs, luxury coaches, tempo travelers, mini trucks, and heavy commercial vehicles." },
-      { q: "How does vehicle management improve resale value?", a: "Detailed service histories and verified maintenance records help operators prove vehicle health and secure higher resale valuations." }
+      { q: "What documents can I track in DriveOps?", a: "You can vault vehicle compliance documents such as RC, insurance, permits, fitness, and emission certificates, with expiry scanning and alerts." },
+      { q: "Can I manage different vehicle types?", a: "Yes. DriveOps supports fleet catalogs and segments so passenger, rental, and goods fleets can organize vehicles by type and use." },
+      { q: "Does DriveOps do OCR on every document?", a: "OCR field extraction is optional and configurable. By default it is off; teams can enter and store documents without OCR." }
     ]
   },
   "fleet-management": {
     keyword: "Fleet Management Software",
     title: "Fleet Management Software in India | DriveOps",
-    description: "DriveOps is the all-in-one Fleet Management Software for taxi operators, logistics companies, and transport businesses in India.",
-    h1: "Comprehensive Fleet Management Software",
-    h2: "Scale your transport business with the all-in-one Fleet Operations Platform.",
-    heroCopy: "Managing a modern transport business requires more than just spreadsheets. DriveOps provides end-to-end fleet management software that automates everything from vehicle registration and dispatch to daily revenue tracking.",
+    description: "Multi-tenant fleet operations for chauffeur trips and self-drive rentals: trips, dispatch, live tracking, Driver App, WhatsApp ops, fuel, maintenance, and compliance.",
+    h1: "Fleet Operations Platform for Indian Operators",
+    h2: "Run trips, dispatch, live tracking, rentals, and fleet care from one connected system.",
+    heroCopy: "DriveOps is a multi-tenant fleet operations platform for taxi, corporate transport, goods, and self-drive rental operators. It connects trip lifecycle, dispatch with accept/reject, Driver App GPS, WhatsApp messaging, fuel and maintenance logs, and compliance vaulting—not a finance BI suite.",
     benefits: [
-      { title: "Centralized Vehicle Registry", desc: "Maintain a digital ledger of your entire fleet, including RC details, insurance, and active status." },
-      { title: "Automated Workflows", desc: "Replace manual phone calls with smart dispatching and digital duty rosters." },
-      { title: "Revenue Tracking", desc: "Monitor exactly how much each vehicle earns and spends on fuel and maintenance daily." }
+      { title: "Trips & Dispatch", desc: "Create one-way, round-trip, and full-day trips with stops; allocate with conflict checks; drivers accept or reject via app or WhatsApp." },
+      { title: "Live Fleet & Driver App", desc: "Ops Mapbox map from Driver App GPS; duty, navigation, trip sheets, fuel, and issues on mobile (en/ml/hi)." },
+      { title: "Fuel, Maintenance & Compliance", desc: "Log fuel, track maintenance jobs with due scans, and vault documents with expiry alerts." },
+      { title: "Roles & Locations", desc: "Tenant isolation, RBAC, and multi-location scope for real operator teams." }
     ],
     faqs: [
-      { q: "What is fleet management software?", a: "Fleet management software is a digital platform that helps businesses organize commercial vehicles, track their locations, manage driver schedules, and analyze profitability." },
-      { q: "Who can use DriveOps fleet management?", a: "DriveOps is built specifically for taxi operators, travel companies, corporate transport providers, and goods logistics fleets." },
-      { q: "Does it help reduce fleet costs?", a: "Yes, by tracking fuel consumption and enforcing preventive maintenance, our platform significantly reduces unexpected repair costs and fuel leakage." }
+      { q: "What is DriveOps fleet management?", a: "It is software to create and run trips, assign drivers and vehicles, see the fleet live, capture trip sheets and fuel, manage maintenance and compliance documents, and run self-drive rentals with manual payment recording." },
+      { q: "Who is DriveOps for?", a: "Taxi operators, travel companies, corporate transport providers, goods fleets, and self-drive rental businesses—not consumer ride-hail." },
+      { q: "Does it include vehicle P&L or a finance suite?", a: "No. DriveOps focuses on operations. Advanced BI, vehicle P&L engines, and a full finance suite are not productized today." }
     ]
   },
   "driver-management": {
     keyword: "Driver Management Software",
     title: "Driver Management Software & Duty Rosters | DriveOps",
-    description: "Manage driver shifts, duty rosters, performance scorecards, and license compliance effortlessly with DriveOps Driver Management Software.",
-    h1: "Complete Driver Management Software",
-    h2: "Optimize driver performance, track duty hours, and manage compliance.",
-    heroCopy: "Your drivers are the face of your business. DriveOps Driver Management Software ensures drivers are rostered efficiently, paid accurately, and compliant with all commercial licensing and background verification requirements.",
+    description: "Manage drivers, shifts, duty, license documents, and WhatsApp/app assignment. Pair with the multilingual Driver App for trips, GPS, sheets, and fuel.",
+    h1: "Driver Management for Fleet Operators",
+    h2: "Roster drivers, keep licenses current, and connect them to trips through app and WhatsApp.",
+    heroCopy: "DriveOps Driver Management helps ops teams maintain driver records, shifts and attendance, and license compliance—then assign work through the Driver App and WhatsApp, with accept/reject.",
     benefits: [
-      { title: "Digital Duty Rosters", desc: "Schedule daily and weekly driver shifts clearly so dispatchers know who is available in real-time." },
-      { title: "Driver Scorecards & Ratings", desc: "Track on-time performance, customer feedback ratings, and completed trips for every driver." },
-      { title: "License & Badge Vault", desc: "Store driver licenses and police verification records with automated expiry alerts." },
-      { title: "Payroll & Settlement Calculation", desc: "Automatically compute driver earnings, daily allowances, trip commissions, and deductions." }
+      { title: "Driver Records & Imports", desc: "Create and maintain driver profiles; import drivers to onboard fleets faster." },
+      { title: "Duty & Shifts", desc: "Track duty and shift context so dispatchers know who is available to assign." },
+      { title: "License Compliance Vault", desc: "Store driving licenses and related documents with expiry alerts." },
+      { title: "Driver App (en / ml / hi)", desc: "Drivers use the app for duty, GPS, trips, navigation, trip sheets, fuel logs, issues, and push notifications." }
     ],
     faqs: [
-      { q: "What is driver management software?", a: "It is a digital tool that helps fleet owners track driver attendance, schedule shifts, monitor driving performance, and maintain required compliance documents." },
-      { q: "How does it improve driver retention?", a: "By providing transparent duty rosters and accurate automated payroll calculations, drivers experience less friction and disputes, leading to higher satisfaction." },
-      { q: "Does the software track driver compliance?", a: "Yes, DriveOps proactively alerts fleet managers when a driver's license or background verification is nearing expiry." }
+      { q: "What is driver management in DriveOps?", a: "It covers driver CRUD, shifts/attendance and duty, document vaulting for licenses, assignment workflows, and the Driver App used on the road." },
+      { q: "Does DriveOps include driver earnings scorecards?", a: "No. DriveOps does not market a driver earnings product, performance score product, or handover product UI." },
+      { q: "How do drivers get trip assignments?", a: "Ops allocate trips with candidate and conflict checks. Drivers can accept or reject via the Driver App or WhatsApp assignment messages." }
     ]
   },
   "vehicle-maintenance": {
     keyword: "Fleet Maintenance Software",
-    title: "Fleet Maintenance Software & Service Logs | DriveOps",
-    description: "Reduce vehicle downtime with DriveOps Fleet Maintenance Software. Schedule preventive service, track repair costs, and maximize fleet health.",
-    h1: "Proactive Fleet Maintenance Software",
-    h2: "Keep your vehicles on the road and minimize unexpected garage repairs.",
-    heroCopy: "Unexpected breakdowns kill profitability. DriveOps Fleet Maintenance Software allows you to transition from reactive repairs to proactive preventive maintenance, ensuring your vehicles remain safe, compliant, and road-ready.",
+    title: "Fleet Maintenance Tracking Software | DriveOps",
+    description: "Log maintenance jobs, track costs and history, and run due scans. Practical upkeep tracking—not predictive maintenance AI.",
+    h1: "Fleet Maintenance Tracking",
+    h2: "Record jobs, complete work, and get due-scan reminders so vehicles stay road-ready.",
+    heroCopy: "DriveOps Maintenance helps fleets log service and repair jobs, attach costs and history, and use scheduled due scans. It is everyday upkeep tracking—not a predictive maintenance engine.",
     benefits: [
-      { title: "Preventive Service Scheduling", desc: "Trigger maintenance reminders automatically based on odometer readings or time intervals." },
-      { title: "Digital Repair Logs", desc: "Keep a complete history of all garage visits, parts replaced, and mechanic invoices." },
-      { title: "Downtime Reduction", desc: "Proactively servicing vehicles drastically cuts roadside breakdowns and lost booking revenue." },
-      { title: "Cost-Per-Kilometer Insight", desc: "Understand the true lifecycle maintenance expense of every make and model in your fleet." }
+      { title: "Maintenance Jobs", desc: "Start, complete, or cancel maintenance work with a clear history per vehicle." },
+      { title: "Due Scans", desc: "Scheduled scans help surface vehicles that are due for attention based on your logged data." },
+      { title: "Cost Visibility", desc: "Capture maintenance spend so ops can see garage costs alongside fuel logs." },
+      { title: "Tied to Fleet Records", desc: "Jobs sit on the same vehicle registry used for trips, compliance, and issues." }
     ],
     faqs: [
-      { q: "What is preventive fleet maintenance?", a: "It is the practice of scheduling regular vehicle servicing (like engine oil changes and brake checks) based on mileage or time thresholds before components fail." },
-      { q: "How does the software track when service is due?", a: "DriveOps calculates vehicle usage from trip sheets and fuel logs to alert you when odometer milestones are reached." },
-      { q: "Can I record maintenance invoices and bills?", a: "Yes, every maintenance event logged in DriveOps supports digital invoice attachments and itemized cost tracking." }
+      { q: "Is this predictive maintenance?", a: "No. DriveOps supports maintenance logging and due scans. It does not claim predictive failure forecasting." },
+      { q: "Can I record repair costs?", a: "Yes. Maintenance events support cost tracking and history for each vehicle." },
+      { q: "How does this connect to the Driver App?", a: "Drivers can report vehicle issues from the app; ops handle maintenance jobs and due work in the console." }
     ]
   },
   "fleet-maintenance": {
     keyword: "Fleet Maintenance Software",
     title: "Fleet Maintenance Software & Service Logs | DriveOps",
-    description: "Reduce vehicle downtime with DriveOps Fleet Maintenance Software. Schedule preventive service, track repair costs, and maximize fleet health.",
-    h1: "Proactive Fleet Maintenance Software",
-    h2: "Keep your vehicles on the road and out of the garage.",
-    heroCopy: "Unexpected breakdowns kill profitability. DriveOps Fleet Maintenance Software allows you to transition from reactive repairs to proactive maintenance, ensuring your vehicles remain safe and reliable.",
+    description: "Keep a service history, log garage work, and use due scans. Maintenance tracking for commercial fleets—without predictive AI claims.",
+    h1: "Fleet Maintenance Software",
+    h2: "Service history and due scans that support day-to-day fleet care.",
+    heroCopy: "Unexpected downtime is expensive. DriveOps lets you log maintenance, keep history, and run due scans so teams act before paperwork and schedules slip—not a predictive AI product.",
     benefits: [
-      { title: "Preventive Scheduling", desc: "Trigger maintenance reminders automatically based on odometer readings or time intervals." },
-      { title: "Service History Ledger", desc: "Keep a detailed record of all repairs, parts replaced, and associated costs for every vehicle." },
-      { title: "Downtime Reduction", desc: "By servicing vehicles proactively, you drastically reduce the chance of mid-trip breakdowns." }
+      { title: "Service History", desc: "Keep a detailed record of repairs and associated costs for every vehicle." },
+      { title: "Due Reminders", desc: "Use maintenance due scans to surface vehicles that need attention." },
+      { title: "Ops + Issues", desc: "Combine maintenance jobs with vehicle issues reported from the Driver App." }
     ],
     faqs: [
-      { q: "What is preventive fleet maintenance?", a: "It is the practice of scheduling regular vehicle servicing based on mileage or time, rather than waiting for a breakdown." },
-      { q: "How does the software track when service is due?", a: "DriveOps uses trip logs and fuel entries to estimate current odometer readings and alerts you when a service threshold is hit." },
-      { q: "Can I track repair costs?", a: "Yes, every maintenance event logged includes cost tracking for full lifecycle accounting." }
+      { q: "What maintenance features does DriveOps include?", a: "Job lifecycle (start/complete/cancel), cost and history tracking, and scheduled due scans." },
+      { q: "Does DriveOps predict breakdowns?", a: "No. Marketing claims of predictive maintenance are not supported." },
+      { q: "Can I track repair costs?", a: "Yes. Logged maintenance events include cost visibility for lifecycle awareness." }
     ]
   },
   "fleet-expenses": {
-    keyword: "Fleet Expense Management Software",
-    title: "Fleet Expense & Fuel Management Software | DriveOps",
-    description: "Control operational costs with DriveOps Fleet Expense Management Software. Log fuel refills, track toll charges, and eliminate expense leaks.",
-    h1: "Fleet Expense & Fuel Management Software",
-    h2: "Total visibility into every rupee spent across fuel, tolls, and maintenance.",
-    heroCopy: "Fuel and daily trip expenses represent the largest variable cost in fleet operations. DriveOps Fleet Expense Management Software digitizes fuel slips, toll receipts, driver allowances, and misc expenses to eliminate fraud and improve cost efficiency.",
+    keyword: "Fleet Fuel & Expense Visibility",
+    title: "Fleet Fuel Log Software | DriveOps",
+    description: "Capture fuel logs from drivers and ops—quantity, price, odometer, receipts. Pair with maintenance costs for everyday spend visibility. No FASTag product.",
+    h1: "Fuel Logs & Everyday Cost Visibility",
+    h2: "Digitize fuel entries and see maintenance spend—without claiming a full expense or finance suite.",
+    heroCopy: "Fuel is a major variable cost. DriveOps captures fuel logs (ops and Driver App) with quantity, price, odometer, and receipts, and pairs them with maintenance job costs. It does not include FASTag integration or a full finance suite.",
     benefits: [
-      { title: "Fuel Consumption Logging", desc: "Record fuel volume, rates, and odometer readings to calculate exact km/litre fuel economy." },
-      { title: "Toll & Fastag Tracking", desc: "Audit highway toll expenditures against assigned trip routes." },
-      { title: "Expense Leak Detection", desc: "Spot anomalies in fuel bills and vehicle running costs instantly." },
-      { title: "Exportable Financial Reports", desc: "Download categorized expense reports for accounting and tax compliance." }
+      { title: "Fuel Log Capture", desc: "Record volume, rate, odometer, and receipt associations from drivers or ops." },
+      { title: "Driver App Submissions", desc: "Drivers can submit fuel logs from the mobile app while on the road." },
+      { title: "Maintenance Cost Context", desc: "See garage spend alongside fuel so ops has practical cost visibility." },
+      { title: "Honest Scope", desc: "No FASTag/toll auditing product, no automated invoicing, and no vehicle P&L engine." }
     ],
     faqs: [
-      { q: "How does DriveOps track fuel efficiency?", a: "By capturing fuel refill volumes, amounts, and odometer entries, DriveOps automatically computes kilometers per liter for each vehicle and trip." },
-      { q: "Can drivers submit receipts digitally?", a: "Yes, drivers can submit fuel receipts and toll charges directly, making reconciliation fast and transparent." },
-      { q: "How does expense tracking improve fleet profit margins?", a: "Accurate expense tracking highlights fuel-guzzling vehicles and wasteful routes, enabling management to fix inefficiencies immediately." }
+      { q: "How does DriveOps track fuel?", a: "Fuel logs capture quantity, price, odometer, and receipts, submitted by drivers or ops staff." },
+      { q: "Does DriveOps integrate FASTag?", a: "No. FASTag and toll auditing are not product capabilities today." },
+      { q: "Is this a finance or expense suite?", a: "No. DriveOps provides operational fuel and maintenance visibility. A full finance suite and advanced expense BI are not productized." }
     ]
   },
   "fleet-profitability": {
-    keyword: "Fleet Profitability Software",
-    title: "Fleet Profitability & Analytics Software | DriveOps",
-    description: "Analyze revenue per kilometer, trip margins, and vehicle ROI with DriveOps Fleet Profitability Software. Make data-driven decisions to grow your fleet.",
-    h1: "Fleet Profitability & Analytics Software",
-    h2: "Transform raw operations data into clear profit and loss insights.",
-    heroCopy: "Stop guessing your net monthly profit. DriveOps Fleet Profitability Software consolidates trip earnings, fuel costs, driver payouts, and maintenance expenses into real-time profitability scorecards for every vehicle and customer account.",
+    keyword: "Fleet Operational Summaries",
+    title: "Fleet Operational Visibility | DriveOps",
+    description: "Day-to-day operational visibility from trips, fuel logs, and maintenance—not a vehicle P&L or advanced BI suite.",
+    h1: "Operational Summaries That Matter Day-to-Day",
+    h2: "See trip activity, fuel, and maintenance in context. Not a profitability engine or finance BI product.",
+    heroCopy: "Operators need clear day-to-day visibility—not a mock analytics suite. DriveOps surfaces operational context from trips, fuel logs, and maintenance work so teams can act. It does not provide vehicle P&L, RPK engines, or advanced BI reports.",
     benefits: [
-      { title: "Vehicle-by-Vehicle P&L", desc: "Track exact revenue, operational costs, and net margin generated by each vehicle." },
-      { title: "Revenue Per Kilometer (RPK)", desc: "Benchmark earnings efficiency against running expenses to price trips profitably." },
-      { title: "Client & Route Margins", desc: "Identify your most profitable corporate contracts and retail tour packages." },
-      { title: "Executive Dashboards", desc: "Visual trend charts show daily, weekly, and monthly growth trends at a glance." }
+      { title: "Trip & Assignment Context", desc: "Understand what was dispatched, accepted, and completed across your fleet." },
+      { title: "Fuel & Maintenance Visibility", desc: "Use logged fuel and maintenance costs for practical operational awareness." },
+      { title: "Live Ops Map", desc: "Combine summaries with ongoing live fleet visibility from the Driver App." },
+      { title: "Clear Boundaries", desc: "Not a finance suite, automated invoicing product, or vehicle profitability scorecard." }
     ],
     faqs: [
-      { q: "What metrics does fleet profitability software calculate?", a: "DriveOps computes revenue per kilometer, cost per kilometer, gross trip margin, driver settlement efficiency, and net vehicle ROI." },
-      { q: "Can I compare profitability across different vehicle types?", a: "Yes. You can filter reports by vehicle category (e.g. sedans vs SUVs vs trucks) to decide where to invest in fleet expansion." },
-      { q: "Are profitability reports available in real-time?", a: "Yes, once trip revenue and associated costs are logged, margins update instantly on your dashboard." }
+      { q: "Does DriveOps calculate vehicle P&L?", a: "No. Vehicle P&L / profitability engines and advanced BI are not productized. Reports and finance modules are not marketed as ready features." },
+      { q: "What can I see today?", a: "Operational data from trips, dispatch, live tracking, fuel logs, maintenance jobs, compliance expiry, and rental payments you record manually." },
+      { q: "Why keep this page?", a: "Searchers looking for 'profitability' often need cost and ops visibility. This page explains what DriveOps actually delivers—honestly." }
     ]
   },
   "fleet-analytics": {
-    keyword: "Fleet Analytics Software",
-    title: "Advanced Fleet Analytics Software | DriveOps",
-    description: "Turn data into profit. DriveOps Fleet Analytics Software provides deep insights into revenue, utilization, fuel costs, and driver performance.",
-    h1: "Actionable Fleet Analytics Software",
-    h2: "Make data-driven decisions to grow your transport business.",
-    heroCopy: "Stop guessing about your profit margins. DriveOps Fleet Analytics Software aggregates data from every trip, fuel refill, and maintenance event to give you a crystal clear picture of your business health.",
+    keyword: "Fleet Operational Insights",
+    title: "Fleet Operational Insights | DriveOps",
+    description: "Practical operational insights from trips, fuel, and maintenance. Not an advanced analytics or BI suite.",
+    h1: "Insights That Matter Day-to-Day",
+    h2: "Operational summaries from real work—not a branded analytics suite or mock BI dashboards.",
+    heroCopy: "DriveOps helps operators see what is happening across trips, fuel, and maintenance. It is not an advanced fleet analytics suite, and productized reports/BI are not claimed here.",
     benefits: [
-      { title: "Revenue Dashboards", desc: "Track daily, weekly, and monthly earnings split by vehicle, driver, or corporate account." },
-      { title: "Utilization Tracking", desc: "Identify which vehicles are generating the most revenue and which are sitting idle." },
-      { title: "Cost Profiling", desc: "Analyze the total cost of ownership (TCO) including fuel and maintenance per kilometer." }
+      { title: "Utilization Awareness", desc: "See which vehicles and drivers are active on trips versus idle from operational status." },
+      { title: "Cost Inputs You Log", desc: "Fuel and maintenance entries give you grounded cost context without a P&L engine." },
+      { title: "Dispatch Throughput", desc: "Follow assignment, accept/reject, and completion flow across the day." }
     ],
     faqs: [
-      { q: "What metrics does fleet analytics software track?", a: "DriveOps tracks key performance indicators (KPIs) like vehicle utilization rates, revenue per kilometer, fuel efficiency, and dispatch times." },
-      { q: "How can analytics improve profitability?", a: "By identifying underutilized vehicles or drivers with poor fuel efficiency, fleet owners can make immediate operational adjustments to protect their margins." },
-      { q: "Are the reports exportable?", a: "Yes, all data can be easily exported for accounting purposes or detailed offline analysis." }
+      { q: "Is DriveOps an analytics suite?", a: "No. Do not expect advanced BI or a productized reports module. Those areas are not marketed as ready." },
+      { q: "What insights are available?", a: "Day-to-day operational visibility: trips, live fleet, fuel logs, maintenance, compliance expiry, and WhatsApp-driven reviews in the ops inbox." },
+      { q: "Can I export full financial reports?", a: "DriveOps is not positioned as a finance or accounting export suite. Focus is operations." }
     ]
   },
   "taxi-dispatch": {
     keyword: "Taxi Dispatch Software",
-    title: "Smart Taxi Dispatch Software | DriveOps",
-    description: "Automate ride assignments with DriveOps Taxi Dispatch Software. Queue trips instantly based on driver availability, shift schedules, and proximity.",
-    h1: "Intelligent Taxi Dispatch Software",
-    h2: "Eliminate manual booking errors and dispatch rides instantly.",
-    heroCopy: "DriveOps offers enterprise-grade Taxi Dispatch Software that completely removes the friction of manual phone coordination. Automatically route incoming bookings to the most suitable available driver in seconds.",
+    title: "Taxi Dispatch Software with Accept/Reject | DriveOps",
+    description: "Allocate trips with candidate and conflict checks. Assign via WhatsApp or Driver App. Drivers accept or reject. No nearest-vehicle auto-dispatch claim.",
+    h1: "Taxi & Passenger Dispatch Software",
+    h2: "Allocate work with availability checks, then confirm via Driver App or WhatsApp accept/reject.",
+    heroCopy: "DriveOps dispatch removes the chaos of verbal assignments. Create trips (one-way, round-trip, full-day, with stops), allocate with candidate and conflict checks, and let drivers accept or reject on the Driver App or WhatsApp.",
     benefits: [
-      { title: "Smart Queueing Algorithm", desc: "Assigns trips based on proximity, driver shift compliance, and vehicle class requirements." },
-      { title: "Digital Trip Sheets", desc: "Send comprehensive trip instructions directly to the driver's device." },
-      { title: "Real-time Status Tracking", desc: "Monitor exactly when a driver is en route, arrived, or has completed a booking." }
+      { title: "Allocate with Checks", desc: "Candidate and conflict checks help avoid double-booking drivers or vehicles." },
+      { title: "WhatsApp Assignment", desc: "Send assignment messages with accept/reject actions through ChatServe WhatsApp flows." },
+      { title: "Driver App Workflow", desc: "Drivers handle duty, trips, navigation, and trip sheets on mobile (English, Malayalam, Hindi)." },
+      { title: "Recurring Schedules", desc: "Support daily, weekly, and monthly recurring trips with automatic materialization." }
     ],
     faqs: [
-      { q: "How does taxi dispatch software work?", a: "When a booking is created, the software automatically analyzes the fleet's live location and driver duty rosters to assign the trip without manual delays." },
-      { q: "Can I manage corporate bookings?", a: "Yes, our software handles both retail B2C trips and corporate B2B contracts seamlessly." },
-      { q: "Is it better than manual dispatching?", a: "Automated dispatch reduces response times by up to 40% and eliminates double-booking errors." }
+      { q: "How does taxi dispatch work in DriveOps?", a: "Ops create trips, run allocation with availability/conflict checks, and assign. Drivers accept or reject via the Driver App or WhatsApp. There is no nearest-vehicle auto-dispatch algorithm claim." },
+      { q: "Can I manage corporate and retail trips?", a: "Yes. Trip types include one-way, round-trip, and full-day, with stops and customer tracking links after confirmation." },
+      { q: "Does dispatch use route optimization?", a: "No. Drivers get navigation support in the app. DriveOps does not claim route optimization or intelligent routing products." }
     ]
   },
   "whatsapp-review-management": {
-    keyword: "WhatsApp Review Management",
-    title: "WhatsApp Review Management Software for Taxi Companies | DriveOps",
-    description: "Automate your online reputation. DriveOps WhatsApp Review Management automatically requests Google reviews from customers after every trip.",
-    h1: "Automated WhatsApp Review Management",
-    h2: "Build a 5-star Google reputation on autopilot.",
-    heroCopy: "In the modern taxi industry, your Google rating dictates your growth. DriveOps offers a powerful WhatsApp Review Management system that automatically messages customers post-trip, capturing positive feedback directly to your Google Business Profile.",
+    keyword: "WhatsApp Review Collection",
+    title: "WhatsApp Review Collection for Fleets | DriveOps",
+    description: "Request reviews over WhatsApp after trips and collect inbound feedback into the ops inbox. Not a Google Business review autopilot.",
+    h1: "WhatsApp Review Collection for Operators",
+    h2: "Ask for feedback on WhatsApp and review responses in your ops inbox.",
+    heroCopy: "After trips, DriveOps can send WhatsApp review requests and ingest inbound replies into the ops inbox. It is WhatsApp-centric feedback—not Google Business review automation or a public review marketplace.",
     benefits: [
-      { title: "90% Open Rates", desc: "WhatsApp has significantly higher open and engagement rates compared to traditional email or SMS review requests." },
-      { title: "Zero Manual Effort", desc: "The system triggers automatically the moment a driver marks a trip as completed in the dispatch system." },
-      { title: "Google Integration", desc: "Seamlessly direct happy customers straight to your Google review page with a single click." }
+      { title: "WhatsApp Review Requests", desc: "Send post-trip review requests through ChatServe WhatsApp templates." },
+      { title: "Ops Inbox", desc: "Inbound review messages land where your team already works—inside DriveOps ops." },
+      { title: "Honest Scope", desc: "Not SMS review blasts, not Google Business autopilot, and not a public web review form." }
     ],
     faqs: [
-      { q: "What is WhatsApp Review Management?", a: "It is an automated marketing tool that sends personalized WhatsApp messages to customers after a service, politely requesting a review of their experience." },
-      { q: "Why is WhatsApp better than SMS?", a: "WhatsApp offers richer media, clickable links, and massive open rates compared to SMS." },
-      { q: "How does this help my taxi business grow?", a: "A higher volume of 5-star reviews improves your local SEO ranking on Google Maps, driving more organic, commission-free retail bookings." }
+      { q: "Does DriveOps post reviews to Google automatically?", a: "No. DriveOps is not a Google Business review autopilot. It collects feedback via WhatsApp into your ops inbox." },
+      { q: "Is SMS used for review requests?", a: "No. Review messaging is WhatsApp-based. SMS delivery is not a product capability." },
+      { q: "Where do reviews go?", a: "Inbound WhatsApp review responses are available in the DriveOps ops inbox for your team to act on." }
     ]
   },
   "customer-review-collection": {
-    keyword: "Customer Review Automation",
-    title: "Customer Review Automation & Reputation Management | DriveOps",
-    description: "Streamline your customer feedback loop. DriveOps Customer Review Automation helps transport companies collect and manage passenger reviews effortlessly.",
-    h1: "Seamless Customer Review Automation",
-    h2: "Turn happy passengers into your best marketing asset.",
-    heroCopy: "Don't leave your reputation to chance. DriveOps Customer Review Automation ensures that every satisfied passenger is given an immediate, frictionless opportunity to rate your service publicly.",
+    keyword: "Customer Review Collection",
+    title: "Customer Review Collection via WhatsApp | DriveOps",
+    description: "Collect passenger feedback through WhatsApp into the DriveOps ops inbox. Practical reputation workflow—not Google or SMS automation.",
+    h1: "Customer Review Collection via WhatsApp",
+    h2: "Close the loop after trips with WhatsApp requests and an ops inbox—not a public review portal.",
+    heroCopy: "DriveOps helps operators request feedback after service via WhatsApp and manage inbound responses in ops. It does not provide a public web review form or Google Business automation.",
     benefits: [
-      { title: "Automated Feedback Loop", desc: "Trigger review requests instantly when the passenger's experience is still fresh in their mind." },
-      { title: "Reputation Protection", desc: "Quickly identify operational issues if negative feedback is received, allowing you to rectify it immediately." },
-      { title: "Increased Conversions", desc: "Showcasing a high volume of positive reviews builds immense trust with corporate clients and new retail customers." }
+      { title: "Post-Trip WhatsApp Requests", desc: "Prompt customers for feedback while the trip is still fresh." },
+      { title: "Ops Inbox Handling", desc: "Review inbound messages in DriveOps so issues can be addressed quickly." },
+      { title: "WhatsApp-Native Ops", desc: "Fits the same ChatServe WhatsApp channel used for assignments, confirmations, and tracking URLs." }
     ],
     faqs: [
-      { q: "How does customer review automation work?", a: "When a ride ends, the software automatically dispatches a review request via WhatsApp or SMS." },
-      { q: "Why is reputation management software important?", a: "Because modern consumers check reviews before booking any service. A poor rating can devastate retail booking volume." },
-      { q: "Does the system handle negative feedback?", a: "Yes, it allows management to catch negative feedback privately and resolve customer issues rapidly." }
+      { q: "How does review collection work?", a: "Operators send WhatsApp review requests; customer replies are ingested into the ops inbox." },
+      { q: "Does it use SMS or Google Business APIs?", a: "No. SMS is not implemented, and DriveOps does not claim Google Business review autopilot." },
+      { q: "Is there a public review form?", a: "No. Collection is WhatsApp-centric rather than a public web form." }
+    ]
+  },
+  "fleet-compliance": {
+    keyword: "Fleet Compliance Document Vault",
+    title: "Fleet Compliance Document Vault | DriveOps",
+    description: "Vault vehicle and driver compliance documents with expiry scanning and WhatsApp alerts. OCR optional (default off). Not a compliance inspections product.",
+    h1: "Compliance Document Vault",
+    h2: "Store certificates, track expiries, and alert ops—without claiming inspection workflows or always-on OCR.",
+    heroCopy: "DriveOps provides a compliance document vault with expiry scanning and WhatsApp alerts. OCR field extraction is optional and configurable (default off). Compliance inspections are not a marketed product.",
+    benefits: [
+      { title: "Document Vault", desc: "Store RCs, insurance, permits, fitness, licenses, and related files against vehicles and drivers." },
+      { title: "Expiry Alerts", desc: "Scheduled expiry scans notify teams—including WhatsApp alerts when configured." },
+      { title: "Optional OCR", desc: "Field extraction can be enabled when configured; it is not always-on AI document autopilot." }
+    ],
+    faqs: [
+      { q: "Does DriveOps include compliance inspections?", a: "No. Document vaulting and expiry alerts are supported; a compliance inspections product is not marketed." },
+      { q: "Is OCR always on?", a: "No. OCR is optional/configurable and defaults off." },
+      { q: "How are teams notified?", a: "Expiry scanning can trigger alerts, including WhatsApp compliance messages via ChatServe." }
     ]
   }
 }

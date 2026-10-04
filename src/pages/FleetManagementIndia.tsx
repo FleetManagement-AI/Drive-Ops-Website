@@ -23,20 +23,20 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const faqs = [
   {
-    q: "Why is DriveOps the ideal fleet management software for Indian businesses?",
-    a: "DriveOps is designed specifically for the operational realities of Indian transport. It supports regional compliance documents (State/National permits, Pollution Under Control / PUC certificates, Fitness certificates, RC books), local currency formats, hourly package billing (e.g., 8hr/80km), and direct WhatsApp customer communication."
+    q: "Why is DriveOps suited to Indian fleet operators?",
+    a: "DriveOps is a multi-tenant fleet operations platform for chauffeur trips and self-drive rentals. It supports trip types used by Indian operators, compliance document vaulting with expiry alerts, WhatsApp ops messaging, and a multilingual Driver App (English, Malayalam, Hindi)."
   },
   {
-    q: "Can DriveOps handle both intra-city taxi operations and inter-state logistics in India?",
-    a: "Yes. DriveOps powers both passenger transport operations (local city cabs, airport transfers, outstation round-trips) and commercial goods carriers (intra-city deliveries, multi-state freight routes) from one centralized platform."
+    q: "Can DriveOps handle passenger trips and goods-style multi-stop work?",
+    a: "Yes. You can run one-way, round-trip, and full-day trips with stops, plus recurring daily/weekly/monthly schedules. Dispatch uses allocation with candidate and conflict checks, and drivers accept or reject via the Driver App or WhatsApp."
   },
   {
-    q: "Does DriveOps require upfront GPS hardware investment?",
-    a: "No. DriveOps eliminates capital expenditures by leveraging driver smartphone GPS connectivity and flexible telemetry integrations, allowing fleet operators across India to go live within minutes."
+    q: "Does DriveOps require GPS hardware trackers?",
+    a: "No. Live fleet visibility uses Driver App GPS on a Mapbox ops map (poll + WebSocket). DriveOps does not require hardware telematics devices."
   },
   {
-    q: "How does DriveOps help reduce fuel theft and operational leakage in India?",
-    a: "DriveOps captures fuel volume, rates, and odometer readings at each refill, comparing actual consumption against planned trip mileage to instantly detect fuel leakage and route deviations."
+    q: "How does DriveOps help with fuel and maintenance costs?",
+    a: "Drivers and ops can capture fuel logs (quantity, price, odometer, receipts). Maintenance jobs support start/complete/cancel with due scans. DriveOps does not include FASTag integration or a vehicle P&L engine."
   }
 ]
 
@@ -44,37 +44,37 @@ const indiaModules = [
   {
     icon: Car,
     title: "Vehicle Fleet Management",
-    desc: "Maintain a cloud registry for all commercial vehicles. Store RC details, National/All-India permits, PUC emission certificates, insurance policies, and fitness certificates with automated expiry reminders.",
+    desc: "Maintain a cloud registry for commercial vehicles. Vault RC, permits, PUC, insurance, and fitness documents with expiry alerts. Import vehicles to onboard fleets faster.",
     link: "/features/vehicle-management"
   },
   {
     icon: MapPin,
-    title: "Real-Time GPS Vehicle Tracking",
-    desc: "Monitor active trip routes and vehicle locations on an interactive live map without buying proprietary GPS boxes. Guide drivers through efficient roads to reduce dead mileage.",
+    title: "Live Fleet Tracking",
+    desc: "Monitor active vehicles on a Mapbox ops map fed by Driver App GPS. Share secure customer tracking links. No hardware GPS trackers required.",
     link: "/features/fleet-tracking"
   },
   {
     icon: Users,
-    title: "Driver Management & Rosters",
-    desc: "Digitize driver shift scheduling, daily duty rosters, and driving license compliance vaults. Track individual driver performance, trip scorecards, and automated payouts.",
+    title: "Driver Management & Duty",
+    desc: "Manage driver records, shifts/duty, and license documents. Assign work via Driver App or WhatsApp with accept/reject. App languages: English, Malayalam, Hindi.",
     link: "/features/driver-management"
   },
   {
     icon: Wrench,
-    title: "Proactive Vehicle Maintenance",
-    desc: "Prevent costly highway breakdowns. Set automated servicing alerts based on odometer thresholds, track garage repair invoices, and monitor total vehicle cost of ownership.",
+    title: "Vehicle Maintenance Tracking",
+    desc: "Log maintenance jobs, capture costs and history, and use due scans. Everyday upkeep tracking—not predictive maintenance.",
     link: "/features/vehicle-maintenance"
   },
   {
     icon: Fuel,
-    title: "Fuel & Trip Expense Tracking",
-    desc: "Audit diesel and petrol expenses, FASTag highway toll receipts, and driver trip allowances to protect operating margins and eliminate fraudulent claims.",
+    title: "Fuel Logs & Cost Visibility",
+    desc: "Capture diesel and petrol fuel logs from drivers and ops. Pair with maintenance spend for day-to-day visibility. No FASTag product.",
     link: "/features/fleet-expenses"
   },
   {
     icon: TrendingUp,
-    title: "Fleet Profitability & Reporting",
-    desc: "Calculate revenue per kilometer (RPK) and cost per kilometer (CPK) for every vehicle. Download comprehensive monthly profit & loss reports for business accounting.",
+    title: "Operational Summaries",
+    desc: "See trip activity, fuel, and maintenance in context for day-to-day decisions. Not a vehicle P&L or advanced BI suite.",
     link: "/features/fleet-profitability"
   }
 ]
@@ -107,7 +107,7 @@ export default function FleetManagementIndia() {
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
         title="Fleet Management Software India | DriveOps"
-        description="DriveOps is India's all-in-one fleet management software. Manage vehicles, trips, drivers, maintenance, live tracking, fuel expenses, and profitability from one platform."
+        description="DriveOps is fleet operations software for Indian operators. Manage vehicles, trips, dispatch, drivers, live tracking, fuel logs, maintenance, compliance, and self-drive rentals."
         keywords="fleet management software India, fleet management system India, vehicle fleet management software, taxi fleet management software India, truck fleet tracking India"
         canonicalUrl="/fleet-management-software-india"
         structuredData={structuredData}
@@ -130,7 +130,7 @@ export default function FleetManagementIndia() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps is a modern cloud fleet management platform built specifically for Indian commercial operators. Whether you operate a taxi company, a goods logistics fleet, or a self-drive rental agency, DriveOps gives you total operational control over vehicles, drivers, maintenance, fuel expenses, and profitability.
+              DriveOps is a cloud fleet operations platform for Indian commercial operators. Whether you run taxis, goods trips, or self-drive rentals, you get trips and dispatch, live tracking from the Driver App, WhatsApp ops messaging, fuel and maintenance logs, and a compliance document vault—without claiming a finance or P&L suite.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -218,7 +218,7 @@ export default function FleetManagementIndia() {
                 </div>
                 <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">Passenger & Taxi Fleets</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Smart dispatching, digital trip sheets, driver shift rosters, and automated Google review requests via WhatsApp.
+                  Trip dispatch with accept/reject, digital trip sheets, driver duty, live tracking links, and WhatsApp review requests into the ops inbox.
                 </p>
                 <Link to="/solutions/passenger-transport" className="text-blue-600 text-sm font-semibold hover:underline">
                   See passenger transport features →
@@ -231,7 +231,7 @@ export default function FleetManagementIndia() {
                 </div>
                 <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">Goods & Cargo Logistics</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Multi-drop route tracking, digital proof of delivery (POD), load management, and trip profitability analytics.
+                  Multi-stop trips, live Driver App tracking, trip sheets, fuel logs, and maintenance due scans for commercial vehicles.
                 </p>
                 <Link to="/solutions/goods-transport" className="text-emerald-600 text-sm font-semibold hover:underline">
                   See goods transport features →
@@ -244,7 +244,7 @@ export default function FleetManagementIndia() {
                 </div>
                 <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">Self-Drive Car Rentals</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Real-time availability calendars, customer ID verification vaults, digital rental contracts, and deposit management.
+                  Self-drive rental lifecycle from hold to settle, with manual payment recording (cash, UPI, card, bank transfer, or other).
                 </p>
                 <Link to="/solutions/self-drive-rental" className="text-purple-600 text-sm font-semibold hover:underline">
                   See rental management features →
@@ -261,7 +261,7 @@ export default function FleetManagementIndia() {
               Ready to modernize your fleet operations in India?
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto mb-8 text-base sm:text-lg">
-              Join leading Indian transport operators using DriveOps to eliminate manual paperwork, control fuel costs, and scale profitably.
+              Use DriveOps to replace scattered phone and spreadsheet coordination with trips, dispatch, live tracking, and WhatsApp-native ops.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a

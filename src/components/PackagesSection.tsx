@@ -30,19 +30,19 @@ export default function PackagesSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+    <section className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
             <Route className="w-3.5 h-3.5 text-blue-600" />
-            <span>REPEAT TRANSPORT EFFICIENCY</span>
+            <span>Repeat Transport Efficiency</span>
           </motion.div>
 
           <motion.h2
@@ -50,7 +50,7 @@ export default function PackagesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
             Turn repeat trips into <span className="gradient-text">repeatable workflows.</span>
           </motion.h2>
@@ -60,7 +60,7 @@ export default function PackagesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
             Stop typing the same trip details every day. Save recurring routes as package templates to create and dispatch bookings in seconds.
           </motion.p>

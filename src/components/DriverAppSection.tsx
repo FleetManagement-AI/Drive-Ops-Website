@@ -1,286 +1,272 @@
-import React, { useState } from "react"
-import { motion, useReducedMotion, AnimatePresence } from "framer-motion"
-import { Smartphone, WifiOff, Bell, Globe, CheckCircle2, Shield, ArrowRight, ToggleLeft, ToggleRight, Play, Check } from "lucide-react"
+import React from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import {
+  CalendarDays,
+  Navigation,
+  Play,
+  FileText,
+  Fuel,
+  AlertTriangle,
+  CheckCircle2,
+  Clock3,
+  Bell,
+  MessagesSquare,
+} from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
-const DRIVER_FEATURES = [
+const DRIVER_APP_IMAGE =
+  "/images/features/Modern Driver Fleet App Interface.png"
+
+type FeatureItem = {
+  title: string
+  description: string
+  icon: LucideIcon
+  iconClass: string
+  iconWrapClass: string
+}
+
+const CALLOUTS: FeatureItem[] = [
   {
-    id: "duty",
-    title: "Duty On / Off Toggle",
-    desc: "Drivers signal their availability with a single tap. The office sees who is on duty instantly without calling.",
-    badge: "Availability Control",
+    title: "Trip Assignments",
+    description: "See assigned and upcoming trips in one place.",
+    icon: CalendarDays,
+    iconClass: "text-blue-600",
+    iconWrapClass: "border-blue-100 bg-blue-50",
   },
   {
-    id: "trips",
-    title: "Today's Trips Queue",
-    desc: "Clean chronological list of assigned bookings, passenger pickup points, and special route instructions.",
-    badge: "Trip Execution",
+    title: "Navigation",
+    description: "Navigate to pickup and trip locations from the app.",
+    icon: Navigation,
+    iconClass: "text-sky-600",
+    iconWrapClass: "border-sky-100 bg-sky-50",
   },
   {
-    id: "offline",
-    title: "Offline Trip Execution",
-    desc: "Start and complete trips in basements, airports, or rural dead zones. Data automatically syncs when signal returns.",
-    badge: "Network Resilient",
+    title: "Start & Complete Trips",
+    description: "Manage the trip lifecycle from start to completion.",
+    icon: Play,
+    iconClass: "text-emerald-600",
+    iconWrapClass: "border-emerald-100 bg-emerald-50",
   },
   {
-    id: "languages",
-    title: "Regional Language Support",
-    desc: "Designed for real drivers on Indian roads. Accessible interface with multi-language comfort.",
-    badge: "Driver Accessibility",
+    title: "Trip Sheets",
+    description:
+      "Complete trip sheets after the trip with the required details.",
+    icon: FileText,
+    iconClass: "text-violet-600",
+    iconWrapClass: "border-violet-100 bg-violet-50",
   },
   {
-    id: "notifications",
-    title: "Instant Push Notifications",
-    desc: "Drivers get immediate alerts when trips are dispatched or updated, ending WhatsApp group ping noise.",
-    badge: "Real-time Alerts",
+    title: "Fuel Logs",
+    description: "Record fuel activity from the road.",
+    icon: Fuel,
+    iconClass: "text-amber-600",
+    iconWrapClass: "border-amber-100 bg-amber-50",
+  },
+  {
+    title: "Report Vehicle Issues",
+    description:
+      "Report vehicle problems and share details with operations.",
+    icon: AlertTriangle,
+    iconClass: "text-red-600",
+    iconWrapClass: "border-red-100 bg-red-50",
+  },
+]
+
+const STRIP_ITEMS: FeatureItem[] = [
+  {
+    title: "Accept & Reject",
+    description: "Respond to trip assignments directly from the app.",
+    icon: CheckCircle2,
+    iconClass: "text-emerald-600",
+    iconWrapClass: "border-emerald-100 bg-emerald-50",
+  },
+  {
+    title: "Duty & Availability",
+    description: "Manage duty status and stay available for assignments.",
+    icon: Clock3,
+    iconClass: "text-violet-600",
+    iconWrapClass: "border-violet-100 bg-violet-50",
+  },
+  {
+    title: "Notifications",
+    description: "Receive important operational updates through the app.",
+    icon: Bell,
+    iconClass: "text-orange-600",
+    iconWrapClass: "border-orange-100 bg-orange-50",
+  },
+  {
+    title: "Stay Connected",
+    description: "Get messages and updates from your operations team.",
+    icon: MessagesSquare,
+    iconClass: "text-blue-600",
+    iconWrapClass: "border-blue-100 bg-blue-50",
   },
 ]
 
 export default function DriverAppSection() {
-  const [activeTab, setActiveTab] = useState("duty")
-  const [isDutyOn, setIsDutyOn] = useState(true)
-  const [tripState, setTripState] = useState<"assigned" | "started" | "completed">("started")
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="driver-app" className="py-20 sm:py-28 bg-[#090D16] text-white border-b border-slate-800 relative overflow-hidden">
-      {/* Glow Effects */}
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <section
+      id="driver-app"
+      className="section-showcase relative overflow-hidden border-b border-slate-200/70 bg-[#F8FAFC]"
+      aria-label="DriveOps Driver App for trip execution on the road"
+    >
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 40%, rgba(37,99,235,0.07) 0%, transparent 60%)",
+        }}
+      />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-12">
+          {/* Copy */}
+          <div className="order-1 lg:col-span-5">
+            <motion.p
+              initial={
+                shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-showcase-eyebrow mb-5 inline-flex items-center rounded-full border border-blue-100 bg-blue-50/70 px-3 py-1 text-blue-600"
+            >
+              DRIVER APP
+            </motion.p>
 
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <motion.h2
+              initial={
+                shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="text-showcase-h1 font-semibold tracking-[-0.035em] text-slate-900"
+            >
+              Your drivers have everything they need{" "}
+              <span className="text-blue-600">on the road.</span>
+            </motion.h2>
+
+            <motion.p
+              initial={
+                shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.16 }}
+              className="mt-5 max-w-md text-[17px] leading-relaxed text-slate-600 sm:text-lg"
+            >
+              Give drivers a simple mobile workspace to manage assigned trips,
+              stay connected with operations, navigate to pickups, record trip
+              details and report issues.
+            </motion.p>
+          </div>
+
+          {/* Product visual */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            initial={
+              shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-full mb-4"
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="relative order-2 lg:col-span-7"
           >
-            <span>FIELD EXECUTION WORKFLOW</span>
+            <div
+              className="pointer-events-none absolute inset-0 -z-10"
+              aria-hidden="true"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 55%, rgba(37,99,235,0.08) 0%, transparent 65%)",
+              }}
+            />
+            <img
+              src={encodeURI(DRIVER_APP_IMAGE)}
+              alt="DriveOps Driver App showing My Trips with assigned trip details, start trip actions, navigation, trip sheets, fuel logs, and vehicle issue reporting"
+              width={1400}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              className="relative z-10 mx-auto h-auto w-full object-contain object-center"
+              draggable={false}
+            />
           </motion.div>
 
-          <motion.h2
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+          {/* Mobile / tablet callouts — after visual */}
+          <motion.ul
+            initial={
+              shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight"
+            transition={{ delay: 0.12 }}
+            className="order-3 grid grid-cols-2 gap-x-5 gap-y-5 lg:hidden"
           >
-            Built for the driver, <span className="text-emerald-400">not just the office.</span>
-          </motion.h2>
-
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
-          >
-            Your operations team plans the work. Drivers execute it from a simple mobile workflow built for the road.
-          </motion.p>
-        </div>
-
-        {/* Office-to-Driver Continuous Feedback Loop Bar */}
-        <div className="mb-14 bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4 sm:p-5 max-w-4xl mx-auto">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 text-center mb-3">
-            THE OFFICE ↔ DRIVER CONNECTION
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
-            <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-              <span className="text-blue-400 font-bold block mb-1">01. Dispatcher</span>
-              <span className="text-slate-300 text-[11px]">Assigns trip in office</span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-              <span className="text-amber-400 font-bold block mb-1">02. Driver</span>
-              <span className="text-slate-300 text-[11px]">Receives push alert</span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-              <span className="text-emerald-400 font-bold block mb-1">03. Mobile App</span>
-              <span className="text-slate-300 text-[11px]">Executes pickup & drop</span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-              <span className="text-purple-400 font-bold block mb-1">04. Command Center</span>
-              <span className="text-slate-300 text-[11px]">Sees trip completed</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Showcase & Interactive Phone Screen */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-
-          {/* Left Column: Interactive Mobile Phone UI */}
-          <div className="lg:col-span-5 flex justify-center">
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="w-full max-w-[310px] bg-slate-950 rounded-[38px] border-[6px] border-slate-800 p-4 shadow-2xl shadow-blue-900/20 text-white relative"
-            >
-              {/* Speaker / Camera Notch */}
-              <div className="w-24 h-4 bg-slate-800 rounded-full mx-auto mb-3 flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-900" />
-              </div>
-
-              {/* Status Bar */}
-              <div className="flex items-center justify-between text-[10px] text-slate-400 mb-3 px-1">
-                <span>09:41 AM</span>
-                <div className="flex items-center gap-1.5 text-emerald-400 text-[9px] font-bold">
-                  <WifiOff className="w-3 h-3 text-amber-400" />
-                  <span>Offline Ready</span>
-                </div>
-              </div>
-
-              {/* App Header & Duty Toggle */}
-              <div className="bg-slate-900 rounded-2xl p-3 border border-slate-800 mb-3 flex items-center justify-between">
-                <div>
-                  <h4 className="text-xs font-bold text-white">Suresh Nair</h4>
-                  <p className="text-[10px] text-slate-400">Driver #DR-108</p>
-                </div>
-                <button
-                  onClick={() => setIsDutyOn(!isDutyOn)}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
-                    isDutyOn
-                      ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                      : "bg-slate-800 text-slate-400 border border-slate-700"
-                  }`}
-                >
-                  <span className={`w-1.5 h-1.5 rounded-full ${isDutyOn ? "bg-emerald-400 animate-ping" : "bg-slate-500"}`} />
-                  {isDutyOn ? "ON DUTY" : "OFF DUTY"}
-                </button>
-              </div>
-
-              {/* Today's Trips Card */}
-              <div className="space-y-2 mb-3">
-                <div className="flex items-center justify-between text-[10px] text-slate-400 px-1">
-                  <span className="font-bold">ASSIGNED TRIP</span>
-                  <span className="font-mono text-emerald-400">TR-5082</span>
-                </div>
-
-                <div className="bg-slate-900/90 rounded-2xl p-3 border border-slate-800 space-y-2.5 text-xs">
-                  <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-                    <span className="font-bold text-white">Airport Guest Pickup</span>
-                    <span className="text-[10px] text-slate-400">09:30 AM</span>
-                  </div>
-
-                  <div className="space-y-1.5 text-[11px]">
-                    <div className="flex items-start gap-2">
-                      <div className="w-2 h-2 rounded-full bg-blue-500 mt-1 shrink-0" />
-                      <div>
-                        <p className="text-[9px] text-slate-400">PICKUP</p>
-                        <p className="font-semibold text-slate-200">Terminal 3, Arrival Gate 4</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1 shrink-0" />
-                      <div>
-                        <p className="text-[9px] text-slate-400">DROP</p>
-                        <p className="font-semibold text-slate-200">Grand Hyatt, City Center</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-2 bg-slate-950 rounded-xl text-[10px] text-slate-400 flex justify-between items-center">
-                    <span>Passenger: Mr. Sharma (2 Bags)</span>
-                    <span className="text-slate-300 font-mono">Innova KA-03</span>
-                  </div>
-
-                  {/* Trip State Controls */}
-                  <div className="pt-1">
-                    {tripState === "assigned" && (
-                      <button
-                        onClick={() => setTripState("started")}
-                        className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1 transition-all"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Start Trip</span>
-                      </button>
-                    )}
-                    {tripState === "started" && (
-                      <button
-                        onClick={() => setTripState("completed")}
-                        className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1 transition-all"
-                      >
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Complete Trip</span>
-                      </button>
-                    )}
-                    {tripState === "completed" && (
-                      <div className="w-full py-2 bg-slate-800 text-emerald-400 rounded-xl font-bold text-xs text-center">
-                        Trip Completed & Logged
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Nav Simulation */}
-              <div className="pt-2 border-t border-slate-800 text-[9px] flex justify-around text-slate-500">
-                <span className="text-blue-400 font-bold">Trips</span>
-                <span>Duty Log</span>
-                <span>Support</span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column: Driver App Features & Capabilities */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                MOBILE CAPABILITIES
-              </span>
-              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mt-2 mb-3">
-                Everything field drivers need, zero unnecessary complexity.
-              </h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                The driver app is intentionally simple. Drivers do not need to navigate complex dashboards — they see their day's schedule, start their trips, and stay connected with dispatch.
-              </p>
-            </div>
-
-            {/* Feature Cards List */}
-            <div className="space-y-3">
-              {DRIVER_FEATURES.map((feat) => {
-                const isSelected = activeTab === feat.id
-                return (
-                  <div
-                    key={feat.id}
-                    onClick={() => setActiveTab(feat.id)}
-                    className={`p-4 rounded-2xl border transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-slate-850/90 border-emerald-500/50 shadow-md shadow-emerald-500/5"
-                        : "bg-slate-900/50 border-slate-800 hover:bg-slate-850/50 hover:border-slate-700"
-                    }`}
+            {CALLOUTS.map((item) => {
+              const Icon = item.icon
+              return (
+                <li key={item.title} className="flex items-start gap-3">
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-heading text-sm font-bold text-white">
-                        {feat.title}
-                      </h4>
-                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                        {feat.badge}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      {feat.desc}
+                    <Icon
+                      className={`h-4 w-4 ${item.iconClass}`}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <div className="min-w-0 space-y-0.5">
+                    <h3 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="text-[12px] leading-snug text-slate-500">
+                      {item.description}
                     </p>
                   </div>
-                )
-              })}
-            </div>
-
-            <div className="pt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Available on Android & iOS
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                No driver training required
-              </span>
-            </div>
-          </div>
-
+                </li>
+              )
+            })}
+          </motion.ul>
         </div>
 
+        {/* Bottom feature strip */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.12 }}
+          className="mx-auto mt-10 w-full rounded-[20px] border border-[#E2E8F0] bg-white/65 p-5 sm:mt-12 sm:p-6"
+        >
+          <div className="grid grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-slate-200/80">
+            {STRIP_ITEMS.map((item) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.title}
+                  className="flex items-start gap-3 lg:px-5 first:lg:pl-0 last:lg:pr-0"
+                >
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
+                  >
+                    <Icon
+                      className={`h-4 w-4 ${item.iconClass}`}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <div className="min-w-0 space-y-0.5">
+                    <h4 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
+                      {item.title}
+                    </h4>
+                    <p className="text-[12px] leading-snug text-slate-500">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

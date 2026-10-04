@@ -7,8 +7,8 @@ const STAGES = [
     id: "plan",
     step: "01",
     name: "PLAN",
-    title: "Create a trip or trigger a package",
-    description: "Capture passenger details, pickup/drop locations, scheduled timing, and flight or route notes. Or instantly load standard airport and corporate package templates.",
+    title: "Create the trip",
+    description: "Capture one-way, round-trip, or full-day trips with pickup, drop, and waypoint stops. Use recurring daily, weekly, or monthly schedules when the work repeats.",
     icon: CalendarPlus,
     badge: "Office / Dispatch",
     color: "blue",
@@ -16,7 +16,7 @@ const STAGES = [
       tag: "NEW TRIP CREATED",
       title: "Trip #TR-5219 — Airport Transfer",
       meta: "Pickup: 09:30 AM • Cochin Int'l Airport → Infopark Phase 2",
-      passenger: "Client: Ernst & Young (3 Passengers)",
+      passenger: "Customer linked • Stops configured",
       actionLabel: "Move to Dispatch Queue",
       status: "Unassigned",
     },
@@ -24,55 +24,55 @@ const STAGES = [
   {
     id: "dispatch",
     step: "02",
-    name: "DISPATCH",
-    title: "Assign the vehicle and driver",
-    description: "Match pending trips against real-time driver duty rosters and vehicle readiness. Allocate with confidence knowing license and vehicle compliance are verified.",
+    name: "ASSIGN",
+    title: "Assign driver and vehicle",
+    description: "Review candidates, check conflicts, allocate the trip, and notify the driver on WhatsApp and the Driver App. Drivers can accept or reject the assignment.",
     icon: Send,
     badge: "Dispatcher Workspace",
     color: "emerald",
     previewData: {
       tag: "DISPATCH ALLOCATION",
       title: "Matched Vehicle & Driver",
-      meta: "Vehicle: Toyota Innova (KL-07-CD-9012) • Compliant",
+      meta: "Vehicle: Toyota Innova (KL-07-CD-9012)",
       passenger: "Assigned Driver: Rajesh Kumar (Duty: Active)",
-      actionLabel: "Send to Driver Mobile App",
-      status: "Dispatched",
+      actionLabel: "Notify driver",
+      status: "Assigned",
     },
   },
   {
     id: "execute",
     step: "03",
-    name: "EXECUTE",
-    title: "Driver manages the trip on mobile",
-    description: "Drivers receive push notifications on their Android/iOS app, view pickup directions, start duty, and complete trips — even in low connectivity with offline execution.",
+    name: "OPERATE",
+    title: "Driver executes on mobile",
+    description: "Drivers go on duty, accept trips, navigate, start and complete work, submit trip sheets, and log fuel or vehicle issues from the Driver App.",
     icon: Smartphone,
     badge: "Driver Mobile App",
     color: "amber",
     previewData: {
       tag: "MOBILE EXECUTION",
       title: "Trip In Progress (Driver View)",
-      meta: "Status: Passenger Picked Up • En Route to Destination",
-      passenger: "Offline sync active • Odometer logged: 42 km",
+      meta: "Status: En route • Navigation active",
+      passenger: "Trip sheet ready after completion",
       actionLabel: "Complete Trip",
-      status: "En Route",
+      status: "In Progress",
     },
   },
   {
     id: "control",
     step: "04",
-    name: "CONTROL",
-    title: "Office monitors operations & compliance",
-    description: "Track trip completion, active driver duty shifts, and upcoming attention items from one Command Center. No guesswork, no missing paperwork.",
+    name: "TRACK & CLOSE",
+    title: "Track, complete, and follow up",
+    description: "Ops watch live fleet location from Driver App GPS. Customers can use a tracking link. After completion, close with trip sheets and optional WhatsApp review requests.",
     icon: LayoutDashboard,
-    badge: "Command Center",
+    badge: "Live Ops",
     color: "purple",
     previewData: {
       tag: "OPERATIONAL CLOSURE",
       title: "Trip Completed & Logged",
-      meta: "Completion time: 10:45 AM • Driver marked Off Duty",
-      passenger: "Trip record archived • Next trip ready in queue",
-      actionLabel: "Operational Audit Logged",
-      status: "Closed & Compliant",
+      meta: "Trip sheet submitted • Customer review requested",
+      passenger: "Live tracking session closed",
+      actionLabel: "Ready for next trip",
+      status: "Completed",
     },
   },
 ]
@@ -84,21 +84,21 @@ export default function TripProductLoop() {
   const currentStage = STAGES.find((s) => s.id === activeStageId) || STAGES[0]
 
   return (
-    <section id="workflow" className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+    <section id="workflow" className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
       {/* Background Subtle Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-[600px] bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(37,99,235,0.05),transparent_70%)] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>THE OPERATIONAL LOOP</span>
+            <span>The Operational Loop</span>
           </motion.div>
 
           <motion.h2
@@ -106,7 +106,7 @@ export default function TripProductLoop() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
             From trip request to <span className="gradient-text">trip completion.</span>
           </motion.h2>
@@ -116,7 +116,7 @@ export default function TripProductLoop() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
             DriveOps connects the entire lifecycle of a passenger transport job. Plan in the office, dispatch to drivers, and stay in control of execution.
           </motion.p>
@@ -188,7 +188,7 @@ export default function TripProductLoop() {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>Real-time handoff between office and field drivers</span>
+                  <span>Connected handoff between office and field drivers</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />

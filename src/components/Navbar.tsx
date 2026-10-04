@@ -4,19 +4,22 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 
 const productLinks = [
-  { label: "Trip Operations", href: "/#trips" },
-  { label: "Dispatch", href: "/#dispatch" },
+  { label: "Trips & Dispatch", href: "/#workflow" },
   { label: "Driver App", href: "/#driver-app" },
-  { label: "Command Center", href: "/#command-center" },
-  { label: "Compliance & OCR", href: "/#compliance" },
+  { label: "Live Fleet", href: "/#live-fleet" },
+  { label: "WhatsApp Ops", href: "/#whatsapp" },
+  { label: "Fleet Care", href: "/#fleet-care" },
+  { label: "Rentals", href: "/#rentals" },
 ]
 
 const solutionLinks = [
-  { label: "Taxi & Travel", href: "/#who-its-for" },
-  { label: "Airport Transfers", href: "/#who-its-for" },
-  { label: "Corporate Transport", href: "/#who-its-for" },
-  { label: "Multi-location Fleets", href: "/#who-its-for" },
+  { label: "Passenger Transport", href: "/solutions/passenger-transport" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rental" },
+  { label: "Goods Transport", href: "/solutions/goods-transport" },
+  { label: "Fleet Management", href: "/solutions/fleet-management" },
 ]
+
+const SCROLL_THRESHOLD = 48
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -25,19 +28,23 @@ const Navbar = () => {
   const [solutionDropdown, setSolutionDropdown] = useState(false)
   const location = useLocation()
 
+  const isHomepage = location.pathname === "/"
+  const isFloating = scrolled || !isHomepage
+  // Light hero — always use dark nav text (never white/cyan over #F8FAFC)
+  const isDarkNav = false
+
   const scrollToSection = useCallback((targetId: string) => {
     const el = document.getElementById(targetId)
     if (el) {
-      const navOffset = 80
+      const navOffset = 96
       const elementPosition = el.getBoundingClientRect().top + window.scrollY
       window.scrollTo({
         top: elementPosition - navOffset,
-        behavior: "smooth"
+        behavior: "smooth",
       })
     }
   }, [])
 
-  // Handle hash scrolling when arriving on homepage with a hash or when hash changes
   useEffect(() => {
     if (location.pathname === "/" && location.hash) {
       const targetId = location.hash.replace("#", "")
@@ -60,12 +67,12 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD)
+    onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false)
@@ -74,7 +81,6 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", onResize)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden"
@@ -86,272 +92,384 @@ const Navbar = () => {
     }
   }, [mobileOpen])
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
+
   return (
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3"
-        : "bg-transparent py-4 sm:py-5"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isFloating ? "px-3 sm:px-4 pt-3" : "px-0 pt-0"
+      }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 max-w-7xl">
-        {/* Logo */}
-        <Link
-          to="/"
-          onClick={() => {
-            if (location.pathname === "/") {
-              window.scrollTo({ top: 0, behavior: "smooth" })
-            }
-          }}
-          className="flex items-center gap-2.5 font-heading text-lg sm:text-xl font-bold tracking-tight text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-          aria-label="DriveOps – Go to top"
+      <div
+        className={`mx-auto max-w-7xl transition-all duration-300 ${
+          isFloating
+            ? "rounded-2xl border border-slate-200/70 bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-md"
+            : "rounded-none border-0 bg-transparent shadow-none backdrop-blur-none"
+        }`}
+      >
+        <div
+          className={`flex items-center justify-between px-4 sm:px-6 md:px-8 transition-all duration-300 ${
+            isFloating ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4"
+          }`}
         >
-          <img
-            src="/logo/driveops-logo-blue-edited.png"
-            alt="DriveOps Logo"
-            className="h-7 sm:h-8 w-auto"
-            width="80"
-            height="32"
-          />
-          <div className="flex flex-col">
-            <span className="leading-none text-base sm:text-lg font-extrabold text-slate-900">
-              Drive<span className="text-blue-600">Ops</span>
-            </span>
-            <p className="text-[10px] font-semibold text-slate-500 tracking-tight leading-tight">Manage & Operate</p>
-          </div>
-        </Link>
-
-        {/* Desktop Nav Links */}
-        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {/* Product Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setProductDropdown(true)}
-            onMouseLeave={() => setProductDropdown(false)}
-          >
-            <button
-              className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
-              onClick={() => scrollToSection("product-tour")}
-            >
-              <span>Product</span>
-              <svg className={`w-3.5 h-3.5 transition-transform ${productDropdown ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <AnimatePresence>
-              {productDropdown && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-xl border border-slate-200/80 p-2 z-50"
-                >
-                  {productLinks.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.href}
-                      onClick={(e) => {
-                        handleNavClick(e, item.href)
-                        setProductDropdown(false)
-                      }}
-                      className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Solutions Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setSolutionDropdown(true)}
-            onMouseLeave={() => setSolutionDropdown(false)}
-          >
-            <button
-              className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
-              onClick={() => scrollToSection("who-its-for")}
-            >
-              <span>Solutions</span>
-              <svg className={`w-3.5 h-3.5 transition-transform ${solutionDropdown ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <AnimatePresence>
-              {solutionDropdown && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-xl border border-slate-200/80 p-2 z-50"
-                >
-                  {solutionLinks.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.href}
-                      onClick={(e) => {
-                        handleNavClick(e, item.href)
-                        setSolutionDropdown(false)
-                      }}
-                      className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* How It Works Link */}
+          {/* Logo + name — larger; slightly compact when floating/scrolled */}
           <Link
-            to="/#workflow"
-            onClick={(e) => handleNavClick(e, "/#workflow")}
-            className="text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
+            to="/"
+            onClick={() => {
+              if (location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
+            }}
+            className="flex items-center gap-3 font-heading font-bold tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+            aria-label="DriveOps – Go to top"
           >
-            How It Works
-          </Link>
-
-          {/* Pricing Link */}
-          <Link
-            to="/pricing"
-            className="text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
-          >
-            Pricing
-          </Link>
-
-          {/* FAQ Link */}
-          <Link
-            to="/#faq"
-            onClick={(e) => handleNavClick(e, "/#faq")}
-            className="text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
-          >
-            FAQ
-          </Link>
-        </div>
-
-        {/* Desktop CTA Buttons */}
-        <div className="hidden sm:flex items-center gap-2 sm:gap-3">
-          <a
-            href="https://driveops.chatserve.in/login"
-            className="text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2"
-          >
-            Sign in
-          </a>
-          <Link
-            to="/contact"
-            className="border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl hover:border-blue-300 hover:text-blue-600 hover:shadow-2xs transition-all flex items-center"
-          >
-            Book Demo
-          </Link>
-          <a
-            href="https://driveops.chatserve.in/signup"
-            className="gradient-accent text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-xl hover:opacity-95 shadow-sm shadow-blue-500/20 transition-all flex items-center gap-1.5 min-h-[38px]"
-          >
-            <span>Start Free</span>
-            <ArrowRight size={13} aria-hidden="true" />
-          </a>
-        </div>
-
-        {/* Mobile Hamburger */}
-        <button
-          className="lg:hidden text-slate-700 min-w-[40px] min-h-[40px] flex items-center justify-center -mr-1 rounded-lg hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            id="mobile-nav"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden bg-white border-b border-slate-200 overflow-hidden shadow-lg"
-          >
-            <div className="flex flex-col p-5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-2">
-                Product & Operations
-              </div>
-              <div className="grid grid-cols-2 gap-1 mb-4">
-                {productLinks.map((l) => (
-                  <Link
-                    key={l.href}
-                    to={l.href}
-                    onClick={(e) => {
-                      handleNavClick(e, l.href)
-                      setMobileOpen(false)
-                    }}
-                    className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors py-2 px-2.5 rounded-lg hover:bg-slate-50"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-2">
-                Platform
-              </div>
-              <div className="grid grid-cols-2 gap-1 mb-5">
-                {[
-                  { label: "How It Works", href: "/#workflow" },
-                  { label: "Who It's For", href: "/#who-its-for" },
-                  { label: "Pricing", href: "/pricing" },
-                  { label: "FAQ", href: "/#faq" },
-                ].map((l) => (
-                  <Link
-                    key={l.href}
-                    to={l.href}
-                    onClick={(e) => {
-                      handleNavClick(e, l.href)
-                      setMobileOpen(false)
-                    }}
-                    className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors py-2 px-2.5 rounded-lg hover:bg-slate-50"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-100">
-                <a
-                  href="https://driveops.chatserve.in/login"
-                  className="text-center py-2.5 text-slate-700 font-semibold text-xs border border-slate-200 rounded-xl hover:bg-slate-50"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Sign in
-                </a>
-                <Link
-                  to="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="border border-slate-200 text-slate-700 text-center font-semibold text-xs py-2.5 rounded-xl hover:bg-slate-50"
-                >
-                  Book Demo
-                </Link>
-                <a
-                  href="https://driveops.chatserve.in/signup"
-                  onClick={() => setMobileOpen(false)}
-                  className="gradient-accent text-white font-semibold text-center text-xs py-3 rounded-xl shadow-xs shadow-blue-500/20"
-                >
-                  Start Free
-                </a>
-              </div>
+            <img
+              src="/logo/driveops-logo-blue-edited.png"
+              alt="DriveOps Logo"
+              className={`w-auto transition-all duration-300 ${
+                isFloating ? "h-9 sm:h-10" : "h-10 sm:h-12"
+              }`}
+              width="96"
+              height="48"
+            />
+            <div className="flex flex-col">
+              <span
+                className={`leading-none font-extrabold whitespace-nowrap transition-all duration-300 ${
+                  isFloating ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
+                } ${isDarkNav ? "text-white" : "text-slate-900"}`}
+              >
+                Drive
+                <span className={isDarkNav ? "text-cyan-400" : "text-blue-600"}>Ops</span>
+              </span>
+              <p
+                className={`font-semibold tracking-tight leading-tight whitespace-nowrap transition-all duration-300 ${
+                  isFloating ? "text-[10px] sm:text-[11px]" : "text-[11px] sm:text-xs"
+                } ${isDarkNav ? "text-slate-300" : "text-slate-500"}`}
+              >
+                Manage & Operate
+              </p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+            <div
+              className="relative"
+              onMouseEnter={() => setProductDropdown(true)}
+              onMouseLeave={() => setProductDropdown(false)}
+            >
+              <button
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                  isDarkNav
+                    ? "text-slate-200 hover:text-white hover:bg-white/10"
+                    : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+                }`}
+                onClick={() => scrollToSection("product-tour")}
+              >
+                <span>Product</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform ${productDropdown ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {productDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className={`absolute left-0 top-full mt-1 w-56 rounded-xl shadow-xl p-2 z-50 ${
+                      isDarkNav
+                        ? "bg-[#0A1628]/95 backdrop-blur-md border border-slate-700/80"
+                        : "bg-white border border-slate-200/80"
+                    }`}
+                  >
+                    {productLinks.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        onClick={(e) => {
+                          handleNavClick(e, item.href)
+                          setProductDropdown(false)
+                        }}
+                        className={`block px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
+                          isDarkNav
+                            ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
+                            : "text-slate-700 hover:text-blue-600 hover:bg-blue-50/50"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setSolutionDropdown(true)}
+              onMouseLeave={() => setSolutionDropdown(false)}
+            >
+              <button
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                  isDarkNav
+                    ? "text-slate-200 hover:text-white hover:bg-white/10"
+                    : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+                }`}
+                onClick={() => scrollToSection("who-its-for")}
+              >
+                <span>Solutions</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform ${solutionDropdown ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {solutionDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className={`absolute left-0 top-full mt-1 w-56 rounded-xl shadow-xl p-2 z-50 ${
+                      isDarkNav
+                        ? "bg-[#0A1628]/95 backdrop-blur-md border border-slate-700/80"
+                        : "bg-white border border-slate-200/80"
+                    }`}
+                  >
+                    {solutionLinks.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        onClick={(e) => {
+                          handleNavClick(e, item.href)
+                          setSolutionDropdown(false)
+                        }}
+                        className={`block px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
+                          isDarkNav
+                            ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
+                            : "text-slate-700 hover:text-blue-600 hover:bg-blue-50/50"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              to="/#workflow"
+              onClick={(e) => handleNavClick(e, "/#workflow")}
+              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                isDarkNav
+                  ? "text-slate-200 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+              }`}
+            >
+              How It Works
+            </Link>
+
+            <Link
+              to="/pricing"
+              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                isDarkNav
+                  ? "text-slate-200 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+              }`}
+            >
+              Pricing
+            </Link>
+
+            <Link
+              to="/#faq"
+              onClick={(e) => handleNavClick(e, "/#faq")}
+              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                isDarkNav
+                  ? "text-slate-200 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+              }`}
+            >
+              FAQ
+            </Link>
+          </div>
+
+          {/* Desktop CTA Buttons */}
+          <div className="hidden sm:flex items-center gap-2 sm:gap-3">
+            <a
+              href="https://driveops.chatserve.in/login"
+              className={`text-xs sm:text-sm font-medium transition-colors px-3 py-2 rounded-lg ${
+                isDarkNav
+                  ? "text-slate-200 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              Sign in
+            </a>
+            <Link
+              to="/contact"
+              className={`text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl transition-all flex items-center ${
+                isDarkNav
+                  ? "border border-white/20 bg-white/10 text-white hover:bg-white/20 hover:border-white/40"
+                  : "border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:text-blue-600 hover:shadow-2xs"
+              }`}
+            >
+              Book Demo
+            </Link>
+            <a
+              href="https://driveops.chatserve.in/signup"
+              className="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-xl hover:opacity-95 shadow-sm shadow-blue-500/25 transition-all flex items-center gap-1.5 min-h-[38px]"
+            >
+              <span>Start Free</span>
+              <ArrowRight size={13} aria-hidden="true" />
+            </a>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            className={`lg:hidden min-w-[40px] min-h-[40px] flex items-center justify-center -mr-1 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              isDarkNav
+                ? "text-white hover:bg-white/10"
+                : "text-slate-700 hover:bg-slate-100"
+            }`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu — inside floating shell so it stays attached to the bar */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              id="mobile-nav"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className={`lg:hidden overflow-hidden border-t border-slate-200/80 bg-white text-slate-900 ${
+                isFloating ? "rounded-b-2xl" : ""
+              }`}
+            >
+              <div className="flex flex-col p-5">
+                <div
+                  className={`text-[10px] font-bold uppercase tracking-wider mb-2 px-2 ${
+                    isDarkNav ? "text-slate-400" : "text-slate-400"
+                  }`}
+                >
+                  Product & Operations
+                </div>
+                <div className="grid grid-cols-2 gap-1 mb-4">
+                  {productLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      to={l.href}
+                      onClick={(e) => {
+                        handleNavClick(e, l.href)
+                        setMobileOpen(false)
+                      }}
+                      className={`text-xs font-semibold transition-colors py-2 px-2.5 rounded-lg ${
+                        isDarkNav
+                          ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
+                          : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div
+                  className={`text-[10px] font-bold uppercase tracking-wider mb-2 px-2 ${
+                    isDarkNav ? "text-slate-400" : "text-slate-400"
+                  }`}
+                >
+                  Platform
+                </div>
+                <div className="grid grid-cols-2 gap-1 mb-5">
+                  {[
+                    { label: "How It Works", href: "/#workflow" },
+                    { label: "Who It's For", href: "/#who-its-for" },
+                    { label: "Pricing", href: "/pricing" },
+                    { label: "FAQ", href: "/#faq" },
+                  ].map((l) => (
+                    <Link
+                      key={l.href}
+                      to={l.href}
+                      onClick={(e) => {
+                        handleNavClick(e, l.href)
+                        setMobileOpen(false)
+                      }}
+                      className={`text-xs font-semibold transition-colors py-2 px-2.5 rounded-lg ${
+                        isDarkNav
+                          ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
+                          : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div
+                  className={`flex flex-col gap-2.5 pt-4 border-t ${
+                    isDarkNav ? "border-white/10" : "border-slate-100"
+                  }`}
+                >
+                  <a
+                    href="https://driveops.chatserve.in/login"
+                    className={`text-center py-2.5 font-semibold text-xs border rounded-xl transition-colors ${
+                      isDarkNav
+                        ? "border-white/20 text-slate-200 hover:bg-white/10"
+                        : "border-slate-200 text-slate-700 hover:bg-slate-50"
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Sign in
+                  </a>
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileOpen(false)}
+                    className={`text-center font-semibold text-xs py-2.5 rounded-xl border transition-colors ${
+                      isDarkNav
+                        ? "border-white/20 bg-white/10 text-white hover:bg-white/20"
+                        : "border-slate-200 text-slate-700 hover:bg-slate-50"
+                    }`}
+                  >
+                    Book Demo
+                  </Link>
+                  <a
+                    href="https://driveops.chatserve.in/signup"
+                    onClick={() => setMobileOpen(false)}
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-center text-xs py-3 rounded-xl shadow-xs shadow-blue-500/25"
+                  >
+                    Start Free
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   )
 }

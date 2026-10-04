@@ -21,19 +21,19 @@ import { motion, AnimatePresence } from "framer-motion"
 const faqs = [
   {
     q: "How does DriveOps help passenger transport and taxi companies?",
-    a: "DriveOps automates trip dispatching, driver shift scheduling, customer booking management, and Google review collection via WhatsApp, helping taxi businesses run smoother and acquire more organic customers."
+    a: "DriveOps supports trip create → allocate → driver accept/reject → execute → trip sheet. Ops can assign via WhatsApp or the Driver App, share customer tracking links, and collect WhatsApp review replies into the ops inbox."
   },
   {
-    q: "Can I manage outstation and local hourly package rates?",
-    a: "Yes. DriveOps allows you to configure custom rate cards including local hourly packages (e.g. 4hr/40km, 8hr/80km) and outstation round-trip pricing with extra km and driver allowances."
+    q: "What trip types are supported?",
+    a: "One-way, round-trip, and full-day trips with pickup/drop/waypoint stops. Recurring schedules can run daily, weekly, or monthly with automatic materialization."
   },
   {
-    q: "How does the automated WhatsApp review collection work?",
-    a: "When a driver marks a trip completed, DriveOps automatically sends a polite WhatsApp message with a direct link to your Google Business profile, maximizing positive online reviews."
+    q: "How does WhatsApp review collection work?",
+    a: "DriveOps can send WhatsApp review requests after trips and ingest inbound feedback into the ops inbox. It is not a Google Business review autopilot."
   },
   {
     q: "Can multiple dispatchers operate from different locations?",
-    a: "Yes. DriveOps is a multi-tenant cloud platform with role-based access control, enabling dispatchers, accountants, and managers to coordinate from anywhere."
+    a: "Yes. DriveOps is multi-tenant with role-based access and multi-location scope so dispatchers and managers can work with the right branch context."
   }
 ]
 
@@ -65,7 +65,7 @@ export default function PassengerTransport() {
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
         title="Passenger Transport Fleet Management Software | DriveOps"
-        description="Manage taxis, cabs, and passenger fleets with DriveOps. Real-time dispatch, driver duty rosters, live GPS tracking, and automated customer reviews."
+        description="Manage taxis, cabs, and passenger fleets with DriveOps. Trip dispatch with accept/reject, driver duty, live GPS from the Driver App, and WhatsApp review collection."
         keywords="passenger transport fleet management software, taxi fleet management software, cab dispatch software India, taxi operations platform"
         canonicalUrl="/solutions/passenger-transport"
         structuredData={structuredData}
@@ -83,12 +83,12 @@ export default function PassengerTransport() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
-              Scale your passenger fleet.<br />
-              <span className="gradient-text">Automate taxi operations.</span>
+              Run every passenger trip.<br />
+              <span className="gradient-text">Dispatch with clarity.</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps provides dedicated passenger transport fleet management software for taxi operators, corporate cab providers, and tour operators across India. Eliminate manual dispatch delays, track driver duty rosters, and grow 5-star Google reviews on autopilot.
+              DriveOps helps taxi operators, corporate cab providers, and tour operators create trips, allocate with conflict checks, confirm via Driver App or WhatsApp accept/reject, share tracking links, and collect reviews into the ops inbox—not Google Business automation.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -128,9 +128,9 @@ export default function PassengerTransport() {
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
                 <Send className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Smart Taxi Dispatch</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Trip Dispatch</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Automated trip queueing assigns rides based on driver proximity, duty shift compliance, and vehicle category.
+                Allocate trips with candidate and conflict checks. Drivers accept or reject on the Driver App or WhatsApp. No nearest-vehicle auto-dispatch claim.
               </p>
               <Link to="/features/taxi-dispatch" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore taxi dispatch <ArrowRight className="w-3.5 h-3.5" />
@@ -141,9 +141,9 @@ export default function PassengerTransport() {
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Driver Rosters & Payroll</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Drivers, Duty & App</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Manage driver shifts, attendance, automated trip settlements, allowances, and license renewal compliance.
+                Manage driver records, shifts/duty, and license documents. Drivers use the app for GPS, navigation, trip sheets, fuel, and issues (en/ml/hi).
               </p>
               <Link to="/features/driver-management" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore driver management <ArrowRight className="w-3.5 h-3.5" />
@@ -154,12 +154,12 @@ export default function PassengerTransport() {
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
                 <Star className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">WhatsApp Review Growth</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">WhatsApp Review Collection</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Automatically request 5-star Google reviews via WhatsApp post-trip to boost your local SEO ranking.
+                Request feedback via WhatsApp after trips and review inbound replies in the ops inbox—not Google Business autopilot.
               </p>
               <Link to="/features/whatsapp-review-management" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
-                Explore review automation <ArrowRight className="w-3.5 h-3.5" />
+                Explore review collection <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
@@ -172,17 +172,17 @@ export default function PassengerTransport() {
               Connected with core fleet operations
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto mb-10 text-sm sm:text-base">
-              Passenger transport integrates seamlessly with vehicle registries, live telemetry, and financial analytics.
+              Passenger transport connects to vehicle registries, live Driver App tracking, maintenance, and day-to-day operational summaries.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link to="/features/fleet-tracking" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Explore vehicle tracking →
               </Link>
               <Link to="/features/vehicle-maintenance" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
-                Preventive maintenance →
+                Maintenance tracking →
               </Link>
               <Link to="/features/fleet-profitability" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
-                Profitability analytics →
+                Operational summaries →
               </Link>
               <Link to="/fleet-management-software-india" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                 Fleet management India →

@@ -20,15 +20,15 @@ import { motion, AnimatePresence } from "framer-motion"
 const faqs = [
   {
     q: "What makes DriveOps different from generic GPS tracking software?",
-    a: "DriveOps is a complete fleet operating system. While basic GPS apps only show vehicle dots on a map, DriveOps links tracking directly to trip dispatching, driver payroll, preventive maintenance, fuel accounting, and customer reputation management."
+    a: "DriveOps connects live Driver App GPS to trip dispatch, accept/reject, trip sheets, WhatsApp confirmations with tracking URLs, fuel logs, maintenance, compliance vaulting, and self-drive rentals—not a standalone tracker or finance BI suite."
   },
   {
     q: "Can I manage multi-branch fleet operations in DriveOps?",
-    a: "Yes. DriveOps features enterprise-grade role-based access control (RBAC), allowing fleet managers, regional supervisors, dispatchers, and accountants to collaborate with dedicated permission levels."
+    a: "Yes. DriveOps is multi-tenant with role-based access control and multi-location scope so managers and dispatchers work with the right branch context."
   },
   {
     q: "Is there a free trial available?",
-    a: "Yes, DriveOps offers a 30-day free trial with full feature access and dedicated onboarding support. No credit card is required to get started."
+    a: "Yes. You can start a free trial from the signup link and explore the operational modules that ship today."
   }
 ]
 
@@ -60,7 +60,7 @@ export default function FleetManagementSolution() {
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
         title="Fleet Management Software in India | DriveOps"
-        description="Comprehensive cloud fleet management software for Indian fleet operators. Track vehicles, manage drivers, automate maintenance, and increase profitability."
+        description="Cloud fleet operations software for Indian operators. Track vehicles, manage drivers, run trips and dispatch, log fuel and maintenance, and vault compliance documents."
         keywords="fleet management software India, fleet management system, commercial fleet operations, fleet software platform"
         canonicalUrl="/solutions/fleet-management"
         structuredData={structuredData}
@@ -83,7 +83,7 @@ export default function FleetManagementSolution() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps brings every operational workflow into one intuitive cloud platform. From vehicle registration and dispatching to fuel monitoring, compliance tracking, and net profit analytics — everything is connected.
+              DriveOps brings operational workflows into one cloud platform: vehicle and driver records, trip dispatch with accept/reject, live tracking, WhatsApp messaging, fuel and maintenance logs, compliance vaulting, and self-drive rentals with manual payments—not a net-profit analytics suite.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -125,7 +125,7 @@ export default function FleetManagementSolution() {
               </div>
               <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Passenger Transport</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Automate taxi dispatching, driver rosters, outstation rate packages, and post-trip WhatsApp review collections.
+                Trip dispatch with accept/reject, driver duty, live tracking links, and WhatsApp review collection into the ops inbox.
               </p>
               <Link to="/solutions/passenger-transport" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore passenger solution <ArrowRight className="w-3.5 h-3.5" />
@@ -138,7 +138,7 @@ export default function FleetManagementSolution() {
               </div>
               <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Goods Transport</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Manage commercial trucks, multi-drop delivery schedules, digital proof of delivery, and cargo trip profitability.
+                Multi-stop trips, Driver App tracking, trip sheets, fuel logs, and maintenance due scans for commercial vehicles.
               </p>
               <Link to="/solutions/goods-transport" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore goods solution <ArrowRight className="w-3.5 h-3.5" />
@@ -151,7 +151,7 @@ export default function FleetManagementSolution() {
               </div>
               <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Self-Drive Rental</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Availability calendars, customer ID verification vaults, digital contracts, and advance deposit tracking.
+                Self-drive lifecycle from hold to settle with manual payment recording—no payment gateway required.
               </p>
               <Link to="/solutions/self-drive-rental" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore rental solution <ArrowRight className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export default function FleetManagementSolution() {
                 Expense & Fuel Logs →
               </Link>
               <Link to="/features/fleet-profitability" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
-                Profitability Analytics →
+                Operational Summaries →
               </Link>
               <Link to="/fleet-management-software-india" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                 Fleet Management India →

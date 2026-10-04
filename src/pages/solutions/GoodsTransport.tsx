@@ -19,15 +19,15 @@ import { motion, AnimatePresence } from "framer-motion"
 const faqs = [
   {
     q: "How does DriveOps help commercial goods and cargo fleets?",
-    a: "DriveOps enables logistics operators to manage delivery routes, assign drivers to vehicles, track proof of delivery (POD), monitor fuel consumption, and calculate gross margin per trip."
+    a: "Operators can create multi-stop trips, allocate drivers and vehicles with conflict checks, track vehicles live via the Driver App, capture trip sheets and fuel logs, and manage maintenance due scans."
   },
   {
-    q: "Can I manage multi-drop delivery routes?",
-    a: "Yes. Dispatchers can plan multi-stop delivery schedules and track when drivers complete loading, reach transit waypoints, and finish final deliveries."
+    q: "Can I manage multi-stop delivery trips?",
+    a: "Yes. Trips support pickup, drop, and waypoint stops. Drivers can accept or reject assignments and use the app for navigation and trip sheets. DriveOps does not claim route optimization."
   },
   {
     q: "How does DriveOps track truck maintenance and fuel costs?",
-    a: "DriveOps captures itemized fuel refill entries and odometer milestones, triggering proactive service alerts before engine failures or tyre blowouts occur."
+    a: "Fuel logs capture quantity, price, odometer, and receipts. Maintenance jobs support start/complete/cancel with due scans. This is not predictive maintenance or a FASTag/toll product."
   }
 ]
 
@@ -77,12 +77,12 @@ export default function GoodsTransport() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
-              Streamline cargo delivery.<br />
-              <span className="text-emerald-600">Maximize truck profitability.</span>
+              Streamline cargo trips.<br />
+              <span className="text-emerald-600">Keep trucks visible and on schedule.</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps Goods Transport Fleet Management Software empowers commercial truck operators, courier fleets, and freight movers to manage trips, drivers, proof of delivery, and vehicle maintenance from one central hub.
+              DriveOps helps commercial truck operators and courier fleets run multi-stop trips, assign drivers with accept/reject, track vehicles from the Driver App, and log fuel and maintenance—without claiming route optimization or trip P&L engines.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -113,7 +113,7 @@ export default function GoodsTransport() {
               Complete operational control for commercial trucks
             </h2>
             <p className="text-slate-600">
-              Cut dead kilometers, eliminate billing discrepancies, and keep your commercial vehicles on schedule.
+              Multi-stop trips, live tracking, trip sheets, and everyday fuel and maintenance visibility.
             </p>
           </div>
 
@@ -122,12 +122,12 @@ export default function GoodsTransport() {
               <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5">
                 <Package className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Cargo & Trip Operations</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Multi-Stop Trip Operations</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Assign consignment orders, record cargo weights, and track delivery progress in real time.
+                Create trips with waypoints, allocate drivers and vehicles, and track progress live from the Driver App.
               </p>
               <Link to="/features/fleet-tracking" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
-                Explore route tracking <ArrowRight className="w-3.5 h-3.5" />
+                Explore live tracking <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
@@ -135,9 +135,9 @@ export default function GoodsTransport() {
               <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5">
                 <FileCheck2 className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Proof of Delivery (POD)</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Trip Sheets & Completion</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Collect digital signatures and delivery photos to speed up corporate invoice clearances.
+                Capture post-trip details through driver and ops trip sheet workflows—not automated invoicing or POD marketplaces.
               </p>
               <Link to="/features/vehicle-management" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore vehicle ledger <ArrowRight className="w-3.5 h-3.5" />
@@ -148,12 +148,12 @@ export default function GoodsTransport() {
               <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Fuel & Maintenance Control</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Fuel & Maintenance Logs</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Monitor diesel consumption per kilometer, audit toll bills, and enforce preventive garage servicing.
+                Log diesel refills and maintenance jobs with due scans. No FASTag auditing or predictive maintenance claims.
               </p>
               <Link to="/features/fleet-expenses" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
-                Explore expense control <ArrowRight className="w-3.5 h-3.5" />
+                Explore fuel logs <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>

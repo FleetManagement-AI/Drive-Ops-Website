@@ -14,8 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        heading: ["Space Grotesk", "sans-serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      fontWeight: {
+        // Keep Tailwind scale; marketing headings normalize 800/900 → 700 in base CSS
+        medium: "500",
+        semibold: "600",
+        bold: "700",
       },
       colors: {
         border: "hsl(var(--border))",

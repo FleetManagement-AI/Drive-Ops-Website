@@ -4,29 +4,34 @@ import { X, Check, ArrowRight } from "lucide-react"
 
 const COMPARISONS = [
   {
-    area: "Trip Management",
-    before: "WhatsApp groups & phone calls to relay passenger pickup locations.",
-    after: "Centralized trip queue with instant dispatch to driver mobile app.",
+    area: "Trip planning",
+    before: "Bookings scattered across calls, chats, and notebooks.",
+    after: "Centralized one-way, round-trip, full-day, and recurring trips.",
   },
   {
-    area: "Vehicle & Driver Allocation",
-    before: "Disorganized memory and manual checks to see who is available.",
-    after: "Single dispatch board matching compliant vehicles with active drivers.",
+    area: "Dispatch",
+    before: "Manual guesswork to find who is free and which vehicle is ready.",
+    after: "Candidate filtering, conflict checks, allocation, and WhatsApp notify.",
   },
   {
-    area: "Driver Field Execution",
-    before: "Paper trip sheets that get crumpled, lost, or submitted days late.",
-    after: "Mobile app workflow with duty toggle, trip milestones, and offline support.",
+    area: "Driver execution",
+    before: "Paper sheets and constant phone updates from the road.",
+    after: "Driver App for duty, accept/reject, navigation, trip sheets, and fuel.",
   },
   {
-    area: "Document Compliance",
-    before: "Sticky notes and spreadsheets; documents lapse until traffic checks.",
-    after: "OCR document vault with proactive 30-day countdown renewal alerts.",
+    area: "Fleet visibility",
+    before: "A GPS tracker only answers “where is the vehicle?”",
+    after: "Live ops map from Driver App GPS plus customer tracking links.",
   },
   {
-    area: "Operational Visibility",
-    before: "Scattered information across multiple staff members' private phones.",
-    after: "One Command Center giving everyone the same real-time operational pulse.",
+    area: "Customer updates",
+    before: "Status calls every few minutes.",
+    after: "WhatsApp confirmation, tracking URL, and optional review request.",
+  },
+  {
+    area: "Fleet care",
+    before: "Fuel receipts and renewals living outside the operation.",
+    after: "Fuel logs, maintenance jobs, document vault, and expiry alerts.",
   },
 ]
 
@@ -34,18 +39,16 @@ export default function ComparisonSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+    <section className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>OPERATIONAL TRANSFORMATION</span>
+            <span>More Than a GPS Tracker</span>
           </motion.div>
 
           <motion.h2
@@ -53,9 +56,10 @@ export default function ComparisonSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
-            From scattered tools to <span className="gradient-text">one operating system.</span>
+            Tracking shows location.{" "}
+            <span className="gradient-text">DriveOps runs the operation.</span>
           </motion.h2>
 
           <motion.p
@@ -63,22 +67,19 @@ export default function ComparisonSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
-            See how replacing ad-hoc WhatsApp coordination with DriveOps transforms your daily operations.
+            A tracker answers where a vehicle is. DriveOps helps you plan, assign, operate, track, maintain, and connect—from trip request to trip sheet.
           </motion.p>
         </div>
 
-        {/* Comparison Table / Cards */}
         <div className="max-w-5xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
-          {/* Header Row */}
           <div className="hidden md:grid grid-cols-12 bg-slate-900 text-white px-6 py-4 text-xs font-bold uppercase tracking-wider">
-            <div className="col-span-3 text-slate-400">Operational Area</div>
-            <div className="col-span-4 text-rose-400">Before DriveOps</div>
+            <div className="col-span-3 text-slate-400">Capability</div>
+            <div className="col-span-4 text-rose-400">Typical GPS / chat ops</div>
             <div className="col-span-5 text-emerald-400">With DriveOps</div>
           </div>
 
-          {/* Rows */}
           <div className="divide-y divide-slate-100">
             {COMPARISONS.map((row, idx) => (
               <div
@@ -88,14 +89,11 @@ export default function ComparisonSection() {
                 } hover:bg-blue-50/20`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center">
-                  {/* Area */}
                   <div className="md:col-span-3">
                     <span className="font-heading font-bold text-sm text-slate-900 block">
                       {row.area}
                     </span>
                   </div>
-
-                  {/* Before */}
                   <div className="md:col-span-4 flex items-start gap-2.5">
                     <div className="w-5 h-5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
                       <X className="w-3.5 h-3.5" />
@@ -104,8 +102,6 @@ export default function ComparisonSection() {
                       {row.before}
                     </span>
                   </div>
-
-                  {/* After */}
                   <div className="md:col-span-5 flex items-start gap-2.5">
                     <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3.5 h-3.5" />
@@ -119,14 +115,13 @@ export default function ComparisonSection() {
             ))}
           </div>
 
-          {/* Bottom Conversion Bar */}
           <div className="bg-slate-50 p-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <h4 className="font-heading font-bold text-sm text-slate-900">
-                Ready to stop running operations through chat groups?
+                Ready to run operations from one platform?
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                Setup your passenger fleet in 5 minutes with our guided onboarding.
+                Start with trips, dispatch, and the Driver App—then add fleet care and rentals.
               </p>
             </div>
             <a
@@ -138,7 +133,6 @@ export default function ComparisonSection() {
             </a>
           </div>
         </div>
-
       </div>
     </section>
   )

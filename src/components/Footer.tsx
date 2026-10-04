@@ -4,28 +4,28 @@ import { Link } from "react-router-dom"
 import { siteConfig } from "@/config/site"
 
 const productLinks = [
-  { label: "Trip Operations", href: "/#trips" },
-  { label: "Dispatch Queue", href: "/#dispatch" },
-  { label: "Driver Mobile App", href: "/#driver-app" },
-  { label: "Command Center", href: "/#command-center" },
-  { label: "Compliance & OCR", href: "/#compliance" },
-  { label: "Repeat Packages", href: "/#workflow" },
+  { label: "How It Works", href: "/#workflow" },
+  { label: "Driver App", href: "/#driver-app" },
+  { label: "Live Fleet", href: "/#live-fleet" },
+  { label: "WhatsApp Ops", href: "/#whatsapp" },
+  { label: "Fleet Care", href: "/#fleet-care" },
+  { label: "Self-Drive Rentals", href: "/#rentals" },
 ]
 
 const solutionLinks = [
-  { label: "Taxi & Travel Operators", href: "/#who-its-for" },
-  { label: "Airport Transfers", href: "/#who-its-for" },
-  { label: "Corporate Transport", href: "/#who-its-for" },
-  { label: "Multi-depot Fleets", href: "/#who-its-for" },
+  { label: "Passenger Transport", href: "/solutions/passenger-transport" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rental" },
+  { label: "Goods Transport", href: "/solutions/goods-transport" },
+  { label: "Fleet Management", href: "/solutions/fleet-management" },
   { label: "Fleet Software India", href: "/fleet-management-software-india" },
 ]
 
 const companyLinks = [
-  { label: "How It Works", href: "/#workflow" },
+  { label: "Product Snapshot", href: "/#product-snapshot" },
   { label: "Product Walkthrough", href: "/#product-tour" },
   { label: "Pricing Plans", href: "/pricing" },
   { label: "Frequently Asked Questions", href: "/#faq" },
-  { label: "Book a Demo", href: "/contact" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export default function Footer() {
@@ -54,7 +54,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-              Trip-first transport operations for growing fleets. Plan trips, dispatch vehicles and drivers, execute work on mobile, and stay compliant.
+              Manage and operate your fleet from one platform—trips, dispatch, Driver App, live tracking, WhatsApp, fleet care, and self-drive rentals.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-3">

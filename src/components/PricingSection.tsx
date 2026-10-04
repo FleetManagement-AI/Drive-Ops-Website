@@ -62,15 +62,15 @@ const formatPriceDisplay = (priceStr: string) => {
 const getPlanDescription = (name: string) => {
   switch (name.toLowerCase()) {
     case "free":
-      return "Essential trip and vehicle management for small passenger fleets."
+      return "Essential trip and vehicle management for small fleets getting started."
     case "basic":
-      return "Complete dispatch queue and driver mobile app for growing fleets."
+      return "Dispatch, Driver App, and document alerts for growing fleet operations."
     case "professional":
-      return "Advanced dispatch, repeat package templates and OCR document intelligence."
+      return "Fuller ops scale with packages, document vault, and priority support."
     case "enterprise":
-      return "High-capacity transport operations for multi-depot fleet operators."
+      return "High-capacity operations for multi-location fleet operators."
     default:
-      return "Tailored transport operations plan."
+      return "Tailored fleet operations plan."
   }
 }
 
@@ -78,7 +78,7 @@ const getPlanFeatures = (plan: ApiPlan) => {
   const { maxVehicles, maxDrivers, maxUsers } = plan.limits
   const vehicleText = maxVehicles >= 1000 ? "Unlimited Vehicles" : `Up to ${maxVehicles} Vehicles`
   const driverText = maxDrivers >= 1000 ? "Unlimited Drivers" : `Up to ${maxDrivers} Drivers`
-  const userText = `Up to ${maxUsers} Dispatch Users`
+  const userText = `Up to ${maxUsers} Ops Users`
 
   const commonFeatures = [vehicleText, driverText, userText, "Vehicle & Driver Registry", "Trip Lifecycle Management"]
 
@@ -86,12 +86,12 @@ const getPlanFeatures = (plan: ApiPlan) => {
     return [...commonFeatures, "Driver Mobile App Access", "Standard Email Support"]
   }
   if (plan.name.toLowerCase() === "basic") {
-    return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "Document Expiry Alerts"]
+    return [...commonFeatures, "Dispatch Workspace", "Driver Mobile App", "Document Expiry Alerts"]
   }
   if (plan.name.toLowerCase() === "professional") {
-    return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "OCR Document Vault & Alerts", "Repeat Package Templates", "Priority Support"]
+    return [...commonFeatures, "Dispatch Workspace", "Driver Mobile App", "Document Vault & Expiry Alerts", "Repeat Package Templates", "Priority Support"]
   }
-  return [...commonFeatures, "Dispatch Queue Workspace", "Driver Mobile App & Offline Mode", "OCR Document Vault & Alerts", "Multi-Depot / Location Management", "Dedicated Onboarding Support"]
+  return [...commonFeatures, "Dispatch Workspace", "Driver Mobile App", "Document Vault & Expiry Alerts", "Multi-Location Management", "Dedicated Onboarding Support"]
 }
 
 const PricingSection = () => {
@@ -123,21 +123,21 @@ const PricingSection = () => {
   }, [])
 
   return (
-    <section id="pricing" className="py-20 sm:py-24 bg-slate-50/70 relative overflow-hidden" ref={ref}>
+    <section id="pricing" className="section-showcase bg-slate-50/70 relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 lg:mb-14"
         >
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">
+          <span className="text-showcase-eyebrow text-blue-600 block mb-5">
             Transparent Pricing
           </span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4 sm:mb-5">
+          <h2 className="text-showcase-h1 text-slate-900 mb-5">
             Simple Plans Built for Fleet Growth
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed">
+          <p className="text-showcase-desc mx-auto text-slate-600">
             Start with a 14-day free trial. No credit card required. Upgrade or downgrade anytime as your fleet evolves.
           </p>
         </motion.div>

@@ -596,7 +596,7 @@ const ReportsView = () => (
       <div className="space-y-2 text-[11px] text-slate-600">
         <div className="p-2 bg-emerald-50/60 border border-emerald-200/60 rounded-lg flex items-start gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-          <span><strong>Route Optimization:</strong> Grouping Cochin airport dispatches saved ₹12,400 in fuel this month.</span>
+          <span><strong>Dispatch clarity:</strong> Unassigned airport trips are queued before the morning rush.</span>
         </div>
         <div className="p-2 bg-blue-50/60 border border-blue-200/60 rounded-lg flex items-start gap-2">
           <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />

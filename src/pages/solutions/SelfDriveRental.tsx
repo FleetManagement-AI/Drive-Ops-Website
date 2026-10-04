@@ -19,15 +19,15 @@ import { motion, AnimatePresence } from "framer-motion"
 const faqs = [
   {
     q: "How does DriveOps support self-drive car rental businesses?",
-    a: "DriveOps provides an availability calendar, booking management, customer ID & driving license verification, automated security deposit tracking, and vehicle return inspection checklists."
+    a: "DriveOps supports the self-drive rental lifecycle—from hold/confirm through handover, return, and settlement—with manual payment recording for cash, UPI, card, bank transfer, or other methods."
   },
   {
-    q: "Can I manage security deposits and damage penalties?",
-    a: "Yes. You can log security deposits, track advance payments, calculate extra hour/km charges automatically, and refund balances upon seamless check-in."
+    q: "Does DriveOps include a payment gateway or automated invoicing?",
+    a: "No. Payments are recorded manually in ops. Online payment gateways and automated invoicing are not included today."
   },
   {
-    q: "How does DriveOps track vehicle availability?",
-    a: "Our visual availability grid shows booked, available, and undergoing-maintenance vehicles in real-time, preventing double-bookings."
+    q: "How does DriveOps track rental vehicle availability?",
+    a: "Rental booking workflows track vehicle availability through the hold-to-settle lifecycle so ops can see what is booked versus available for self-drive use."
   }
 ]
 
@@ -59,7 +59,7 @@ export default function SelfDriveRental() {
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
         title="Vehicle Rental Management Software | DriveOps"
-        description="Manage rental vehicles, bookings, availability, customers, contracts, payments and vehicle utilization from one platform with DriveOps."
+        description="Manage self-drive rentals with DriveOps: hold to settle lifecycle, availability, and manual payment recording. No payment gateway or automated invoicing."
         keywords="vehicle rental management software, self drive car rental software, car rental software India, fleet leasing system"
         canonicalUrl="/solutions/self-drive-rental"
         structuredData={structuredData}
@@ -82,7 +82,7 @@ export default function SelfDriveRental() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps Vehicle Rental Management Software provides self-drive operators and car leasing businesses with end-to-end booking calendars, customer verification vaults, digital rental contracts, and automated payment tracking.
+              DriveOps supports self-drive rental operators with a hold-to-settle lifecycle, availability awareness, and manual payment recording—cash, UPI, card, bank transfer, or other. Not a payment gateway or contract automation suite.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -113,7 +113,7 @@ export default function SelfDriveRental() {
               Streamlined rental workflows from check-out to check-in
             </h2>
             <p className="text-slate-600">
-              Eliminate double-booking headaches, collect advance deposits, and protect your vehicle fleet.
+              Run self-drive bookings through a clear ops lifecycle and record payments without needing a gateway.
             </p>
           </div>
 
@@ -122,9 +122,9 @@ export default function SelfDriveRental() {
               <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-5">
                 <CalendarCheck className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Availability Calendar</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Rental Lifecycle</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Interactive daily and monthly timeline shows vehicle bookings, upcoming returns, and scheduled service slots.
+                Hold, confirm, handover, return, and settle self-drive bookings with availability awareness across your fleet.
               </p>
               <Link to="/features/vehicle-management" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore vehicle registry <ArrowRight className="w-3.5 h-3.5" />
@@ -135,9 +135,9 @@ export default function SelfDriveRental() {
               <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-5">
                 <FileText className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Contracts & ID Vault</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Fleet Document Vault</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Securely store driving licenses, Aadhaar/passport copies, digital signatures, and rental terms in one place.
+                Keep vehicle compliance documents vaulted with expiry alerts. OCR is optional and off by default. Not a contracts or inspections product.
               </p>
               <Link to="/features/fleet-compliance" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore compliance vault <ArrowRight className="w-3.5 h-3.5" />
@@ -148,12 +148,12 @@ export default function SelfDriveRental() {
               <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-5">
                 <IndianRupee className="w-6 h-6" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Payments & Deposits</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Manual Payment Recording</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Track rental booking advances, refundable security deposits, excess mileage billing, and fuel reconciliation.
+                Record rental payments as cash, UPI, card, bank transfer, or other. No online checkout gateway or automated invoicing.
               </p>
-              <Link to="/features/fleet-profitability" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
-                Explore profitability <ArrowRight className="w-3.5 h-3.5" />
+              <Link to="/features/fleet-expenses" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+                Explore fuel & cost visibility <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>

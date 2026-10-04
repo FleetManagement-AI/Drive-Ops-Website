@@ -115,11 +115,14 @@ const FeatureDetail = () => {
               </p>
               
               <div className="bg-slate-900 p-8 rounded-2xl text-white shadow-xl">
-                <h3 className="text-xl font-bold mb-3">Ready to optimize your fleet?</h3>
-                <p className="text-slate-400 mb-6 text-sm">Join hundreds of modern taxi operators using DriveOps.</p>
-                <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                  Start Your 14-Day Free Trial
-                </button>
+                <h3 className="text-xl font-bold mb-3">Ready to run clearer fleet ops?</h3>
+                <p className="text-slate-400 mb-6 text-sm">Trips, dispatch, live tracking, Driver App, and WhatsApp—in one platform.</p>
+                <a
+                  href="https://driveops.chatserve.in/signup"
+                  className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                >
+                  Start Your Free Trial
+                </a>
               </div>
             </div>
 

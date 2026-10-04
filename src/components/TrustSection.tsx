@@ -5,32 +5,32 @@ import { Shield, Lock, Users, WifiOff, Bell, Server } from "lucide-react"
 const TRUST_PILLARS = [
   {
     title: "Multi-Tenant Architecture",
-    desc: "Strict tenant isolation guarantees your fleet data, passenger records, and driver logs remain private and secure.",
+    desc: "Schema-per-tenant isolation keeps each operator’s fleet data separated from other tenants.",
     icon: Server,
   },
   {
     title: "Role-Based Access Control",
-    desc: "Granular permissions for business owners, dispatchers, and field drivers ensure team members see only what they need.",
+    desc: "Permissions for owners, dispatchers, and ops users so people see what their role needs.",
     icon: Users,
   },
   {
     title: "Secure Authentication",
-    desc: "Token-based session authentication with encrypted transmission protects credentials across web and mobile devices.",
+    desc: "Token-based sessions for web ops and Driver App login, including WhatsApp OTP where configured.",
     icon: Lock,
   },
   {
-    title: "Offline Driver Workflow",
-    desc: "Local data persistence allows drivers to operate through dead zones without losing trip progression or notes.",
+    title: "Resilient driver sync",
+    desc: "Key Driver App actions—such as trip start/end, location batches, and fuel logs—can sync when connectivity returns.",
     icon: WifiOff,
   },
   {
-    title: "Document Vault Integrity",
-    desc: "Centralized digital storage for vehicle RC, commercial insurance, and licenses with verified metadata extraction.",
+    title: "Document Vault",
+    desc: "Central storage for vehicle and driver documents with expiry tracking and alerts.",
     icon: Shield,
   },
   {
-    title: "Real-Time Notifications",
-    desc: "Direct push delivery ensures dispatch orders and schedule updates reach drivers reliably on the road.",
+    title: "Operational notifications",
+    desc: "In-app, push, email, and WhatsApp channels for the events DriveOps actually sends today.",
     icon: Bell,
   },
 ]
@@ -39,19 +39,19 @@ export default function TrustSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+    <section className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
             <Shield className="w-3.5 h-3.5 text-blue-600" />
-            <span>PLATFORM INTEGRITY & ARCHITECTURE</span>
+            <span>Platform Integrity & Architecture</span>
           </motion.div>
 
           <motion.h2
@@ -59,7 +59,7 @@ export default function TrustSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
             Built on dependable <span className="gradient-text">software foundations.</span>
           </motion.h2>
@@ -69,7 +69,7 @@ export default function TrustSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
             Grounded operational engineering designed for the daily realities of transport operators and drivers.
           </motion.p>

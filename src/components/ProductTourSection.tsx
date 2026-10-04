@@ -15,12 +15,12 @@ const TOUR_ITEMS = [
     label: "Command Center",
     icon: LayoutDashboard,
     image: dashboardImg,
-    headline: "Real-time pulse of your active fleet operations.",
-    problemSolved: "Eliminates morning blind spots by centralizing today's trips, vehicle status, and driver duty in one clean view.",
+    headline: "Operational overview of today's fleet work.",
+    problemSolved: "Reduces morning blind spots by centralizing today's trips, vehicle status, and attention items in one view.",
     highlights: [
       "Active and upcoming trip timeline",
-      "Driver duty counts at a glance",
-      "Immediate attention items & expiry alerts",
+      "Driver and vehicle readiness signals",
+      "Attention items & expiry alerts",
     ],
   },
   {
@@ -29,26 +29,26 @@ const TOUR_ITEMS = [
     label: "Dispatch Queue",
     icon: Send,
     image: dispatchImg,
-    headline: "Fast, clear assignment of drivers and vehicles.",
-    problemSolved: "Replaces chaotic WhatsApp calls with a structured queue matching available compliant vehicles to available drivers.",
+    headline: "Clear assignment of drivers and vehicles.",
+    problemSolved: "Replaces chaotic phone and chat coordination with a structured allocation workspace.",
     highlights: [
       "Unassigned trips clearly prioritized",
-      "Instant vehicle & driver pairing",
-      "Direct push notification to driver app",
+      "Candidate driver and vehicle review",
+      "Notify via Driver App and WhatsApp",
     ],
   },
   {
     id: "compliance",
     step: "03",
-    label: "Document Vault & OCR",
+    label: "Document Vault",
     icon: ShieldCheck,
     image: documentVaultImg,
-    headline: "Automated OCR extraction and expiry alerts.",
-    problemSolved: "Prevents surprise RTO challans or impoundment by tracking vehicle RC, Insurance, DL, and PUC renewals automatically.",
+    headline: "Document vault with expiry alerts.",
+    problemSolved: "Helps teams track RC, insurance, DL, and other renewals before vehicles get grounded.",
     highlights: [
-      "Intelligent OCR data extraction from scans",
-      "Proactive 30, 15, and 7-day renewal warnings",
-      "Central repository accessible from anywhere",
+      "Central vehicle and driver document storage",
+      "Expiry scans and WhatsApp alerts",
+      "Optional OCR field extraction when configured",
     ],
   },
   {
@@ -58,11 +58,11 @@ const TOUR_ITEMS = [
     icon: Car,
     image: vehicleImg,
     headline: "Complete ledger of your vehicle assets.",
-    problemSolved: "Maintains clear ownership of registration numbers, seating capacities, depot locations, and assigned default drivers.",
+    problemSolved: "Keeps registration numbers, status, operating mode, and readiness visible for dispatch and rentals.",
     highlights: [
-      "Categorized by vehicle type (Sedan, SUV, Tempo)",
-      "Linked to real-time dispatch availability",
-      "Bulk CSV / Excel fleet import supported",
+      "Vehicle master with status and operating mode",
+      "Linked into dispatch and rental workflows",
+      "Bulk import for drivers and vehicles",
     ],
   },
   {
@@ -71,12 +71,12 @@ const TOUR_ITEMS = [
     label: "Driver Directory",
     icon: Users,
     image: driverImg,
-    headline: "Organized driver profiles and duty availability.",
-    problemSolved: "Removes confusion over who is licensed, on shift, or off duty, keeping operations fully compliant and staffed.",
+    headline: "Organized driver profiles and duty readiness.",
+    problemSolved: "Makes it clearer who is available, licensed, and connected to the Driver App.",
     highlights: [
-      "Driver contact and license verification",
-      "Shift and duty status tracking",
-      "Linked directly to the driver mobile app",
+      "Driver contact and license records",
+      "Duty status via Driver App",
+      "Linked to assignment and WhatsApp flows",
     ],
   },
 ]
@@ -89,21 +89,21 @@ export default function ProductTourSection() {
   const Icon = currentItem.icon
 
   return (
-    <section id="product-tour" className="py-20 sm:py-28 bg-[#090D16] text-white border-b border-slate-800 relative overflow-hidden">
+    <section id="product-tour" className="section-showcase bg-[#090D16] text-white border-b border-slate-800 relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>GENUINE PRODUCT WALKTHROUGH</span>
+            <span>Genuine Product Walkthrough</span>
           </motion.div>
 
           <motion.h2
@@ -111,7 +111,7 @@ export default function ProductTourSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight"
+            className="text-showcase-h1 text-white"
           >
             See the software that <span className="text-blue-400">runs the day.</span>
           </motion.h2>
@@ -121,7 +121,7 @@ export default function ProductTourSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-400"
           >
             Explore actual DriveOps interfaces. Designed for operational clarity, speed, and real transport businesses.
           </motion.p>

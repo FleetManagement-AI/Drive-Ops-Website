@@ -7,31 +7,31 @@ const OCR_STEPS = [
   {
     step: "01",
     label: "Upload Document",
-    desc: "Drag and drop or photograph vehicle & driver paperwork.",
+    desc: "Upload vehicle and driver paperwork into the document vault.",
     icon: Upload,
   },
   {
     step: "02",
-    label: "OCR Extraction",
-    desc: "Automated OCR reads registration number, dates, and names.",
+    label: "Optional extraction",
+    desc: "When OCR is configured, extract key fields to reduce manual entry.",
     icon: ScanLine,
   },
   {
     step: "03",
     label: "Document Stored",
-    desc: "Securely attached to the respective vehicle or driver profile.",
+    desc: "Attach documents to the right vehicle or driver with versioning.",
     icon: FileCheck,
   },
   {
     step: "04",
     label: "Expiry Tracked",
-    desc: "Countdown timer keeps compliance status continuously visible.",
+    desc: "Track compliance status and upcoming renewals in one place.",
     icon: Calendar,
   },
   {
     step: "05",
     label: "Renewal Alert",
-    desc: "Proactive warnings 30, 15, and 7 days prior to expiration.",
+    desc: "Scheduled expiry scans can notify teams, including via WhatsApp.",
     icon: Bell,
   },
 ]
@@ -71,19 +71,19 @@ export default function ComplianceSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="compliance" className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
+    <section id="compliance" className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-4"
+            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-            <span>DOCUMENT INTELLIGENCE & COMPLIANCE</span>
+            <span>Document Vault & Compliance</span>
           </motion.div>
 
           <motion.h2
@@ -91,7 +91,7 @@ export default function ComplianceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+            className="text-showcase-h1 text-slate-900"
           >
             Stop chasing <span className="gradient-text">expiry dates.</span>
           </motion.h2>
@@ -101,9 +101,10 @@ export default function ComplianceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
-            Keep vehicle and driver documents organized, extract information faster with OCR, and stay ahead of renewals before vehicles get grounded.
+            Keep vehicle and driver documents organized, track renewals, and get expiry alerts before vehicles get grounded.
+            Document field extraction is available when OCR is configured for your deployment.
           </motion.p>
         </div>
 
@@ -164,7 +165,7 @@ export default function ComplianceSection() {
                   <span className="ml-2 font-mono text-[10px] text-slate-400">ops.driveops.in / documents-vault</span>
                 </div>
                 <span className="text-[10px] font-semibold text-blue-400">
-                  OCR Engine Active
+                  Document vault
                 </span>
               </div>
 
