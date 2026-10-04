@@ -320,7 +320,7 @@ const Navbar = () => {
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              Login In
+              LogIn
             </a>
             <Link
               to="/contact"
