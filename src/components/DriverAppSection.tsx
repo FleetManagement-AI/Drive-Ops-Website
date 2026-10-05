@@ -209,18 +209,18 @@ export default function DriverAppSection() {
               return (
                 <li key={item.title} className="flex items-start gap-3">
                   <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
                   >
                     <Icon
-                      className={`h-4 w-4 ${item.iconClass}`}
+                      className={`h-[18px] w-[18px] ${item.iconClass}`}
                       aria-hidden="true"
                     />
                   </span>
                   <div className="min-w-0 space-y-0.5">
-                    <h3 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
+                    <h3 className="font-heading text-[15px] font-bold leading-snug tracking-tight text-slate-900">
                       {item.title}
                     </h3>
-                    <p className="text-[12px] leading-snug text-slate-500">
+                    <p className="text-[13px] font-medium leading-snug text-slate-600">
                       {item.description}
                     </p>
                   </div>
@@ -247,18 +247,18 @@ export default function DriverAppSection() {
                   className="flex items-start gap-3 lg:px-5 first:lg:pl-0 last:lg:pr-0"
                 >
                   <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
                   >
                     <Icon
-                      className={`h-4 w-4 ${item.iconClass}`}
+                      className={`h-[18px] w-[18px] ${item.iconClass}`}
                       aria-hidden="true"
                     />
                   </span>
                   <div className="min-w-0 space-y-0.5">
-                    <h4 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
+                    <h4 className="font-heading text-[15px] font-bold leading-snug tracking-tight text-slate-900">
                       {item.title}
                     </h4>
-                    <p className="text-[12px] leading-snug text-slate-500">
+                    <p className="text-[13px] font-medium leading-snug text-slate-600">
                       {item.description}
                     </p>
                   </div>

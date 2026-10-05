@@ -1,6 +1,5 @@
 import React from "react"
 import Navbar from "@/components/Navbar"
-import HeroSection from "@/components/HeroSection"
 import ProductSnapshotSection from "@/components/ProductSnapshotSection"
 import CoreCapabilitiesSection from "@/components/CoreCapabilitiesSection"
 import ConnectedWorkflowSection from "@/components/ConnectedWorkflowSection"
@@ -27,9 +26,10 @@ import BuiltForFleetSection from "@/components/BuiltForFleetSection"
 import FleetFinancialsSection from "@/components/FleetFinancialsSection"
 import TrustSection from "@/components/TrustSection"
 import PricingSection from "@/components/PricingSection"
-import FAQSection from "@/components/FAQSection"
+import FAQSection, { HOMEPAGE_FAQS } from "@/components/FAQSection"
 import CTASection from "@/components/CTASection"
 import Footer from "@/components/Footer"
+import HeroSection from "@/components/HeroSection"
 import SEO from "@/components/SEO"
 
 const homepageStructuredData = {
@@ -40,8 +40,9 @@ const homepageStructuredData = {
       "@id": "https://driveops.info.chatserve.in/#website",
       "url": "https://driveops.info.chatserve.in/",
       "name": "DriveOps",
-      "description": "DriveOps is a fleet operations platform to plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance, WhatsApp communication, and self-drive rentals.",
-      "inLanguage": "en-IN"
+      "description":
+        "DriveOps is a fleet operations platform to plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance, WhatsApp communication, and self-drive rentals.",
+      "inLanguage": "en-IN",
     },
     {
       "@type": "Organization",
@@ -52,12 +53,13 @@ const homepageStructuredData = {
         "@type": "ImageObject",
         "url": "https://driveops.info.chatserve.in/logo/driveops-logo-blue-edited.png",
         "width": 200,
-        "height": 60
+        "height": 60,
       },
-      "description": "DriveOps helps fleet operators manage and operate trips, drivers, vehicles, dispatch, live fleet tracking, rentals, and fleet care from one platform.",
+      "description":
+        "DriveOps helps fleet operators manage and operate trips, drivers, vehicles, dispatch, live fleet tracking, rentals, and fleet care from one platform.",
       "foundingLocation": {
         "@type": "Place",
-        "addressCountry": "IN"
+        "addressCountry": "IN",
       },
       "contactPoint": [
         {
@@ -65,16 +67,16 @@ const homepageStructuredData = {
           "telephone": "+91-98461-99883",
           "contactType": "sales",
           "areaServed": "IN",
-          "availableLanguage": ["English", "Malayalam", "Hindi"]
+          "availableLanguage": ["English", "Malayalam", "Hindi"],
         },
         {
           "@type": "ContactPoint",
           "telephone": "+91-98478-51049",
           "contactType": "customer support",
           "areaServed": "IN",
-          "availableLanguage": ["English", "Malayalam", "Hindi"]
-        }
-      ]
+          "availableLanguage": ["English", "Malayalam", "Hindi"],
+        },
+      ],
     },
     {
       "@type": "SoftwareApplication",
@@ -85,9 +87,32 @@ const homepageStructuredData = {
       "applicationSubCategory": "Fleet Operations Software",
       "operatingSystem": "Web, Android",
       "inLanguage": "en-IN",
-      "description": "Fleet operations platform for trips, dispatch, Driver App execution, live fleet visibility, WhatsApp communication, fuel, maintenance, compliance, and self-drive rentals."
-    }
-  ]
+      "description":
+        "Fleet operations platform for trips, dispatch, Driver App execution, live fleet visibility, WhatsApp communication, fuel, maintenance, compliance, recurring trips, and self-drive rentals.",
+      "featureList": [
+        "Connected trip workflow",
+        "Fleet care — fuel, maintenance, and compliance documents",
+        "WhatsApp and Driver App communication",
+        "Driver App for trip execution",
+        "Recurring trip schedules",
+        "Self-drive rental operations",
+        "Fleet financial visibility",
+        "Multi-segment fleet operations",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://driveops.info.chatserve.in/#faq",
+      "mainEntity": HOMEPAGE_FAQS.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a,
+        },
+      })),
+    },
+  ],
 }
 
 const Index = () => (
@@ -102,7 +127,7 @@ const Index = () => (
     <Navbar />
     <main>
       <HeroSection />
-      <ProductSnapshotSection />
+      {/* <ProductSnapshotSection /> */}
       <CoreCapabilitiesSection />
       <ConnectedWorkflowSection />
       <FleetCareSection />
@@ -114,7 +139,7 @@ const Index = () => (
       <RecurringTripsSection />
       <RentalsSection />
       <FleetFinancialsSection />
-      <WhyDriveOpsSection />
+      {/* <WhyDriveOpsSection /> */}
       <BuiltForFleetSection />
       {/* <LiveFleetSection />
       <WhatsAppOpsSection />

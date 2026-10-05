@@ -1,32 +1,31 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowRight, CheckCircle2, Clock, Users, Car, Check } from "lucide-react"
-import dispatchScreenshot from "@/assets/trip-dispatch.jpg"
+import { ArrowRight, CheckCircle2, Car, ClipboardList, Send, Users } from "lucide-react"
 
 const DISPATCH_FLOW = [
   {
     step: "1",
-    label: "Unassigned Trips",
-    desc: "Incoming requests queued with pickup time and route requirements.",
-    icon: Clock,
+    label: "Trips",
+    desc: "See what needs dispatch — unassigned trips queued by pickup time and route.",
+    icon: ClipboardList,
   },
   {
     step: "2",
-    label: "Available Vehicles",
-    desc: "Filtered by vehicle type, seat capacity, depot location, and compliance.",
-    icon: Car,
-  },
-  {
-    step: "3",
-    label: "Available Drivers",
-    desc: "Filtered by duty shift, license validity, and assignment readiness.",
+    label: "Drivers",
+    desc: "Who can drive it — filtered by availability, duty readiness, and license fit.",
     icon: Users,
   },
   {
+    step: "3",
+    label: "Vehicles",
+    desc: "Which vehicle — match capacity, compliance, and fleet availability in one list.",
+    icon: Car,
+  },
+  {
     step: "4",
-    label: "Assigned Trip",
-    desc: "Allocated to the Driver App and WhatsApp with Accept / Reject support.",
-    icon: Check,
+    label: "Assign",
+    desc: "Review the selected trip, route map, and confirm driver + vehicle assignment.",
+    icon: Send,
   },
 ]
 
@@ -45,7 +44,7 @@ export default function DispatchSection() {
             viewport={{ once: true }}
             className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
           >
-            <span>Dispatch Workspace</span>
+            <span>Dispatch Command Center</span>
           </motion.div>
 
           <motion.h2
@@ -55,7 +54,8 @@ export default function DispatchSection() {
             transition={{ delay: 0.08 }}
             className="text-showcase-h1 text-slate-900"
           >
-            Know what needs a driver <span className="gradient-text">before the day starts.</span>
+            One board for trips, drivers, vehicles,{" "}
+            <span className="gradient-text">and the assignment.</span>
           </motion.h2>
 
           <motion.p
@@ -65,11 +65,12 @@ export default function DispatchSection() {
             transition={{ delay: 0.16 }}
             className="text-showcase-desc mx-auto mt-5 text-slate-600"
           >
-            Turn scattered calls, spreadsheets and WhatsApp messages into one clear dispatch workflow.
+            A command-center layout so dispatchers always know what needs attention,
+            who is available, which vehicle fits, and where the trip is going.
           </motion.p>
         </div>
 
-        {/* Visual Flow Strip: Unassigned Trips → Available Vehicles → Available Drivers → Assigned Trip */}
+        {/* Visual Flow Strip: Trips → Drivers → Vehicles → Assign */}
         <div className="mb-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {DISPATCH_FLOW.map((item, idx) => {
@@ -101,10 +102,9 @@ export default function DispatchSection() {
           </div>
         </div>
 
-        {/* Real Product Showcase: Dispatch UI Screenshot & Outcomes */}
+        {/* Product Showcase: Command Center Mockup & Outcomes */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-          {/* Left Column: Real Dispatch Screenshot Frame */}
           <div className="lg:col-span-7">
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
@@ -113,7 +113,6 @@ export default function DispatchSection() {
               transition={{ duration: 0.5 }}
               className="bg-slate-900 p-2 sm:p-3 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden"
             >
-              {/* Browser Header Bar */}
               <div className="flex items-center justify-between px-3 py-2 border-b border-slate-800 text-xs text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-slate-700" />
@@ -123,15 +122,14 @@ export default function DispatchSection() {
                 </div>
                 <span className="text-[10px] font-semibold text-emerald-400 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  Live Dispatch Board
+                  Dispatch Command Center
                 </span>
               </div>
 
-              {/* Real Screenshot */}
               <div className="relative rounded-xl overflow-hidden bg-slate-950">
                 <img
-                  src={dispatchScreenshot}
-                  alt="DriveOps Trip Dispatch Workspace"
+                  src="/images/features/Dispatch%20Command%20Center%20Mockup.png"
+                  alt="DriveOps Dispatch Command Center — trips, drivers, vehicles, and assignment"
                   className="w-full h-auto object-cover"
                   loading="lazy"
                 />
@@ -139,43 +137,42 @@ export default function DispatchSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Key Operational Outcomes */}
           <div className="lg:col-span-5 space-y-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
                 DISPATCH EFFICIENCY
               </span>
               <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2 mb-4 leading-tight">
-                Clear operational ownership for every scheduled trip.
+                Clear ownership from queue to assigned trip.
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Dispatchers get an uncluttered board of upcoming rides. Match drivers based on proximity, duty hours, and assigned vehicles without leaving the screen.
+                Dispatchers work a four-panel board: trips that need attention, available drivers,
+                available vehicles, and a selected-trip panel with route context and assign.
               </p>
             </div>
 
-            {/* Business Outcomes List */}
             <div className="space-y-3.5 text-xs sm:text-sm">
               <div className="flex items-start gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-800">Faster allocation</h4>
-                  <p className="text-slate-500 text-xs mt-0.5">Assign drivers in seconds without opening WhatsApp or cross-checking paper files.</p>
+                  <h4 className="font-bold text-slate-800">Know what needs dispatch</h4>
+                  <p className="text-slate-500 text-xs mt-0.5">Unassigned trips stay visible with pickup time, route, and customer at a glance.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-800">Less phone coordination</h4>
-                  <p className="text-slate-500 text-xs mt-0.5">Drivers receive full passenger and pickup details directly on their smartphone.</p>
+                  <h4 className="font-bold text-slate-800">See who and what is free</h4>
+                  <p className="text-slate-500 text-xs mt-0.5">Available drivers and vehicles sit beside the queue — no tab-hopping or spreadsheets.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-800">Clear operational ownership</h4>
-                  <p className="text-slate-500 text-xs mt-0.5">Everyone in the office knows who is handling which passenger and which vehicle.</p>
+                  <h4 className="font-bold text-slate-800">Review before you assign</h4>
+                  <p className="text-slate-500 text-xs mt-0.5">Selected trip details, notes, and route context stay on screen while you confirm.</p>
                 </div>
               </div>
 
@@ -183,7 +180,7 @@ export default function DispatchSection() {
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-slate-800">Fewer missed assignments</h4>
-                  <p className="text-slate-500 text-xs mt-0.5">Unassigned trips remain visibly flagged so nothing falls through the cracks.</p>
+                  <p className="text-slate-500 text-xs mt-0.5">Needs-assignment counts stay front and center so nothing slips through.</p>
                 </div>
               </div>
             </div>

@@ -11,8 +11,8 @@ import {
 import { HERO_SLIDES, type HeroSlideCta } from "@/data/hero-slides"
 import MovingBackground from "@/components/MovingBackground"
 
-const AUTOPLAY_MS = 6000
-const RESUME_DELAY_MS = 8000
+const AUTOPLAY_MS = 4000
+const RESUME_DELAY_MS = 4000
 
 const PROOF_ITEMS = ["No credit card", "Quick setup", "Built for fleet operators"] as const
 
@@ -60,10 +60,12 @@ export default function HeroSection() {
   const [api, setApi] = useState<CarouselApi>()
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const userInteracted = useRef(false)
 
   const slide = HERO_SLIDES[selectedIndex] ?? HERO_SLIDES[0]
+  const autoplayActive = Boolean(api) && !shouldReduceMotion && !paused
 
   const onSelect = useCallback((emblaApi: CarouselApi) => {
     if (!emblaApi) return
@@ -114,6 +116,24 @@ export default function HeroSection() {
 
     return () => clearInterval(id)
   }, [api, paused, shouldReduceMotion])
+
+  useEffect(() => {
+    if (!autoplayActive) {
+      setProgress(0)
+      return
+    }
+
+    setProgress(0)
+    const start = performance.now()
+    let frame = 0
+    const tick = (now: number) => {
+      const next = Math.min(1, (now - start) / AUTOPLAY_MS)
+      setProgress(next)
+      if (next < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [autoplayActive, selectedIndex])
 
   useEffect(() => {
     return () => {
@@ -173,9 +193,9 @@ export default function HeroSection() {
                   {/* <span className="text-showcase-eyebrow text-slate-400">
                     {slide.indexLabel}
                   </span> */}
-                  <span className="text-showcase-eyebrow inline-flex items-center rounded-full border border-blue-200 bg-blue-50/70 px-2.5 py-1 text-blue-600">
+                  {/* <span className="text-showcase-eyebrow inline-flex items-center rounded-full border border-blue-200 bg-blue-50/70 px-2.5 py-1 text-blue-600">
                     {slide.category}
-                  </span>
+                  </span> */}
                 </div>
 
                 <h1 className="text-showcase-h1 text-slate-900">
@@ -231,6 +251,60 @@ export default function HeroSection() {
                 )}
               </motion.div>
             </AnimatePresence>
+
+            {/* Slide nav — under CTAs: Prev | dash indicators | Next */}
+            <div className="relative z-10 mt-5 flex items-center gap-2.5 sm:mt-6 sm:gap-3">
+              <button
+                type="button"
+                onClick={scrollPrev}
+                aria-label="Previous slide"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              </button>
+
+              <div
+                className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-2"
+                role="tablist"
+                aria-label="Product slides"
+              >
+                {HERO_SLIDES.map((s, index) => {
+                  const active = index === selectedIndex
+                  const fillPercent = active
+                    ? autoplayActive
+                      ? progress * 100
+                      : 100
+                    : 0
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      role="tab"
+                      aria-label={s.navLabel}
+                      aria-selected={active}
+                      aria-controls={`hero-slide-${s.id}`}
+                      onClick={() => scrollTo(index)}
+                      className="relative h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-white/90 shadow-sm ring-1 ring-slate-200/70 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    >
+                      <span
+                        className="absolute inset-y-0 left-0 rounded-full bg-slate-800"
+                        style={{ width: `${fillPercent}%` }}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  )
+                })}
+              </div>
+
+              <button
+                type="button"
+                onClick={scrollNext}
+                aria-label="Next slide"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
+              >
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           {/* Right visuals — bare transparent PNGs, no card chrome */}
@@ -268,66 +342,6 @@ export default function HeroSection() {
               </CarouselContent>
             </Carousel>
           </div>
-        </div>
-
-        {/* Bottom slide nav — Prev | tabs | Next */}
-        <div className="relative z-10 mt-5 flex items-center gap-2 border-t border-slate-200/60 px-4 pt-3.5 sm:mt-6 sm:gap-3 sm:px-5 lg:px-6">
-          <button
-            type="button"
-            onClick={scrollPrev}
-            aria-label="Previous slide"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          </button>
-
-          <div
-            className="flex min-w-0 flex-1 justify-start gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [-webkit-overflow-scrolling:touch] sm:justify-center sm:gap-1 [&::-webkit-scrollbar]:hidden"
-            role="tablist"
-            aria-label="Product slides"
-          >
-            {HERO_SLIDES.map((s, index) => {
-              const active = index === selectedIndex
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={active}
-                  aria-controls={`hero-slide-${s.id}`}
-                  onClick={() => scrollTo(index)}
-                  className={`relative flex shrink-0 flex-col items-center px-1.5 py-1.5 text-[10px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:px-2.5 sm:text-xs md:text-sm ${
-                    active
-                      ? "text-slate-900"
-                      : "text-slate-900 hover:text-black"
-                  }`}
-                >
-                  <span
-                    className={`mb-1 h-1.5 w-1.5 rounded-full transition-colors ${
-                      active ? "bg-slate-900" : "bg-transparent"
-                    }`}
-                    aria-hidden="true"
-                  />
-                  {s.navLabel}
-                  <span
-                    className={`absolute inset-x-1.5 bottom-0 h-0.5 rounded-full transition-colors sm:inset-x-2 ${
-                      active ? "bg-slate-900" : "bg-transparent"
-                    }`}
-                    aria-hidden="true"
-                  />
-                </button>
-              )
-            })}
-          </div>
-
-          <button
-            type="button"
-            onClick={scrollNext}
-            aria-label="Next slide"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:h-9 sm:w-9"
-          >
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </button>
         </div>
       </div>
     </section>

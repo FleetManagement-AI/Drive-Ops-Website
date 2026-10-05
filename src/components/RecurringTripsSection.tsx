@@ -3,19 +3,16 @@ import { motion, useReducedMotion } from "framer-motion"
 import {
   ArrowRight,
   CalendarDays,
-  CheckCircle2,
   Clock3,
-  MapPinned,
   Repeat,
   Send,
-  Settings2,
-  Sparkles,
-  Users,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 const RECURRING_TRIPS_IMAGE =
   "/images/features/Airport Trip Scheduling Dashboard.png"
+const WORKFLOW_IMAGE =
+  "/images/features/Five-Step Recurring Trip Workflow.png"
 
 const SIGNUP_URL = "https://driveops.chatserve.in/signup"
 
@@ -25,16 +22,6 @@ type BenefitItem = {
   icon: LucideIcon
   iconClass: string
   iconWrapClass: string
-}
-
-type WorkflowStep = {
-  step: string
-  title: string
-  description: string
-  icon: LucideIcon
-  iconClass: string
-  iconWrapClass: string
-  preview: string[]
 }
 
 const BENEFITS: BenefitItem[] = [
@@ -69,55 +56,6 @@ const BENEFITS: BenefitItem[] = [
   },
 ]
 
-const WORKFLOW_STEPS: WorkflowStep[] = [
-  {
-    step: "01",
-    title: "Create Schedule",
-    description: "Set the recurring trip route, timing and frequency.",
-    icon: CalendarDays,
-    iconClass: "text-blue-600",
-    iconWrapClass: "border-blue-100 bg-blue-50",
-    preview: ["Weekly", "Mon–Fri", "07:30 AM"],
-  },
-  {
-    step: "02",
-    title: "Schedule Active",
-    description: "The recurring schedule is saved and activated.",
-    icon: Settings2,
-    iconClass: "text-violet-600",
-    iconWrapClass: "border-violet-100 bg-violet-50",
-    preview: ["Active"],
-  },
-  {
-    step: "03",
-    title: "Trips Automatically Created",
-    description: "DriveOps creates trips based on the schedule.",
-    icon: Sparkles,
-    iconClass: "text-orange-600",
-    iconWrapClass: "border-orange-100 bg-orange-50",
-    preview: ["TRP-10482", "Created"],
-  },
-  {
-    step: "04",
-    title: "Assign & Operate",
-    description:
-      "Review and assign drivers and vehicles to the created trips.",
-    icon: Users,
-    iconClass: "text-emerald-600",
-    iconWrapClass: "border-emerald-100 bg-emerald-50",
-    preview: ["Assigned"],
-  },
-  {
-    step: "05",
-    title: "Trips Run as Usual",
-    description: "Drivers operate the generated trips normally.",
-    icon: MapPinned,
-    iconClass: "text-sky-600",
-    iconWrapClass: "border-sky-100 bg-sky-50",
-    preview: ["Completed"],
-  },
-]
-
 function BenefitList({
   items,
   className,
@@ -132,18 +70,18 @@ function BenefitList({
         return (
           <li key={item.title} className="flex items-start gap-3">
             <span
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
             >
               <Icon
-                className={`h-4 w-4 ${item.iconClass}`}
+                className={`h-[18px] w-[18px] ${item.iconClass}`}
                 aria-hidden="true"
               />
             </span>
             <div className="min-w-0 space-y-0.5">
-              <h3 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
+              <h3 className="font-heading text-[15px] font-bold leading-snug tracking-tight text-slate-900">
                 {item.title}
               </h3>
-              <p className="text-[12px] leading-snug text-slate-500">
+              <p className="text-[13px] font-medium leading-snug text-slate-600">
                 {item.description}
               </p>
             </div>
@@ -198,7 +136,7 @@ export default function RecurringTripsSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-12">
           <div className="order-1 lg:col-span-5">
             <motion.p
@@ -313,147 +251,51 @@ export default function RecurringTripsSection() {
           </motion.div>
         </div>
 
+        {/* How recurring trips work */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.45, delay: 0.1 }}
-          className="mt-10 sm:mt-12"
+          className="mt-10 w-full min-w-0 sm:mt-12"
         >
-          <p className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <p className="mb-4 px-1 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 sm:mb-5">
             How recurring trips work
           </p>
 
-          <div className="hidden lg:grid lg:grid-cols-5 lg:gap-0">
-            {WORKFLOW_STEPS.map((item, idx) => {
-              const Icon = item.icon
-              const isLast = idx === WORKFLOW_STEPS.length - 1
-              return (
-                <motion.div
-                  key={item.step}
-                  initial={
-                    shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }
-                  }
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.07 }}
-                  className="relative px-3 first:pl-0 last:pr-0"
-                >
-                  {!isLast && (
-                    <div
-                      className="pointer-events-none absolute right-0 top-5 hidden h-px w-full translate-x-1/2 border-t border-dashed border-blue-200 lg:block"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <div className="relative z-10 flex flex-col items-start gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-blue-200 bg-white text-[11px] font-bold text-blue-700 shadow-sm">
-                        {item.step}
-                      </span>
-                      <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
-                      >
-                        <Icon
-                          className={`h-3.5 w-3.5 ${item.iconClass}`}
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-[12px] leading-snug text-slate-500">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="w-full rounded-xl border border-slate-200/80 bg-white/80 px-3 py-2.5">
-                      <ul className="space-y-1">
-                        {item.preview.map((line) => (
-                          <li
-                            key={line}
-                            className="flex items-center gap-1.5 truncate text-[11px] leading-snug text-slate-600"
-                          >
-                            {line === "Active" ||
-                            line === "Created" ||
-                            line === "Assigned" ||
-                            line === "Completed" ? (
-                              <CheckCircle2
-                                className="h-3 w-3 shrink-0 text-emerald-500"
-                                aria-hidden="true"
-                              />
-                            ) : null}
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
+          <div className="relative mx-auto w-full min-w-0 max-w-[1400px]">
+            {/* Edge fades — hint horizontal scroll below xl */}
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-5 bg-gradient-to-r from-[#F8FAFC] to-transparent sm:w-8 xl:hidden"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-5 bg-gradient-to-l from-[#F8FAFC] to-transparent sm:w-8 xl:hidden"
+              aria-hidden="true"
+            />
 
-          <ol className="relative space-y-0 lg:hidden">
-            {WORKFLOW_STEPS.map((item, idx) => {
-              const Icon = item.icon
-              const isLast = idx === WORKFLOW_STEPS.length - 1
-              return (
-                <motion.li
-                  key={item.step}
-                  initial={
-                    shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }
-                  }
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.06 }}
-                  className="relative flex gap-4 pb-6 last:pb-0"
-                >
-                  <div className="relative flex flex-col items-center">
-                    <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-blue-200 bg-white text-[11px] font-bold text-blue-700 shadow-sm">
-                      {item.step}
-                    </span>
-                    {!isLast && (
-                      <span
-                        className="mt-1 w-px flex-1 border-l border-dashed border-blue-200"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1 pt-0.5">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-xl border ${item.iconWrapClass}`}
-                      >
-                        <Icon
-                          className={`h-3.5 w-3.5 ${item.iconClass}`}
-                          aria-hidden="true"
-                        />
-                      </span>
-                      <h3 className="font-heading text-[13px] font-semibold tracking-tight text-slate-900">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <p className="mt-1.5 text-[12px] leading-snug text-slate-500">
-                      {item.description}
-                    </p>
-                    <div className="mt-2.5 rounded-xl border border-slate-200/80 bg-white/80 px-3 py-2.5">
-                      <ul className="flex flex-wrap gap-x-3 gap-y-1">
-                        {item.preview.map((line) => (
-                          <li
-                            key={line}
-                            className="text-[11px] leading-snug text-slate-600"
-                          >
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.li>
-              )
-            })}
-          </ol>
+            <div
+              className="touch-pan-x w-full overflow-x-auto overflow-y-hidden overscroll-x-contain [-webkit-overflow-scrolling:touch] [scrollbar-width:thin] [scrollbar-color:rgba(148,163,184,0.55)_transparent] xl:overflow-visible"
+              role="region"
+              aria-label="How recurring trips work — scroll horizontally on smaller screens"
+              tabIndex={0}
+            >
+              <img
+                src={encodeURI(WORKFLOW_IMAGE)}
+                alt="Five-step recurring trip workflow: create schedule, schedule active, trips automatically created, assign and operate, and trips run as usual"
+                width={1920}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                className="mx-auto block h-auto w-full min-w-[900px] max-w-none object-contain object-center sm:min-w-[980px] md:min-w-[1080px] xl:min-w-0 xl:max-w-full"
+                draggable={false}
+              />
+            </div>
+
+            <p className="mt-3 text-center text-[11px] leading-snug text-slate-400 xl:hidden">
+              Swipe to see all five steps
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

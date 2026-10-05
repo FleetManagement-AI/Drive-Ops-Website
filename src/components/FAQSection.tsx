@@ -2,7 +2,12 @@ import React, { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ChevronDown, HelpCircle, Mail } from "lucide-react"
 
-const FAQS = [
+export type HomepageFaq = {
+  q: string
+  a: string
+}
+
+export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     q: "What is DriveOps?",
     a: "DriveOps is a fleet operations platform that helps operators plan trips, assign drivers and vehicles, run a Driver App, track live fleet location from driver GPS, manage fuel, maintenance, and compliance documents, communicate on WhatsApp, collect reviews, and run self-drive rentals.",
@@ -80,7 +85,7 @@ export default function FAQSection() {
         </motion.div>
 
         <div className="space-y-3.5">
-          {FAQS.map((faq, idx) => {
+          {HOMEPAGE_FAQS.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
               <motion.div

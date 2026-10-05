@@ -57,7 +57,7 @@ export default function MovingBackground({ className = "" }) {
       states: {
         "default-state": {
           gradients: COMPLEX_GRADIENTS,
-          transitionSpeed: 8000,
+          transitionSpeed: 4000,
           loop: true,
         },
       },
