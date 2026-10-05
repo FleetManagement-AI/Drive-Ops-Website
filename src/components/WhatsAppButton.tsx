@@ -2,7 +2,9 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 
 const WHATSAPP_NUMBER = "919778136286"
-const WHATSAPP_TEXT = `Hi, I'd like to know more ${String.fromCodePoint(0x1f44b)}`
+const WHATSAPP_TEXT = `Hello DriveOps Team 👋
+
+I’m interested in learning more about DriveOps. Could you please share more details?`;
 // Use api.whatsapp.com/send — wa.me redirects corrupt 4-byte emoji to �
 const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(WHATSAPP_TEXT)}`
 
