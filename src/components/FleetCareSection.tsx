@@ -10,7 +10,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const FLEET_CARE_IMAGE =
-  "/images/features/Vehicle Maintenance Dashboard.png"
+  "/images/features/Vehicle Maintenance Dashboard.webp"
 
 type CapabilityItem = {
   title: string

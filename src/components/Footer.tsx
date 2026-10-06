@@ -5,27 +5,27 @@ import { Link } from "react-router-dom"
 import { siteConfig } from "@/config/site"
 
 const productLinks = [
-  { label: "How It Works", href: "/#connected-workflow" },
-  { label: "Trips & Dispatch", href: "/#plan-dispatch" },
-  { label: "Driver App", href: "/#driver-app" },
-  { label: "Live Fleet", href: "/#track-connect" },
-  { label: "WhatsApp Ops", href: "/#communication" },
-  { label: "Fleet Care", href: "/#fleet-care" },
-  { label: "Self-Drive Rentals", href: "/#rentals" },
+  { label: "Platform overview", href: "/product" },
+  { label: "Trips & Dispatch", href: "/product/trips-dispatch" },
+  { label: "Driver App", href: "/product/driver-app" },
+  { label: "Live Fleet", href: "/product/live-fleet" },
+  { label: "Compliance", href: "/product/compliance" },
+  { label: "Fleet Care", href: "/product/maintenance" },
+  { label: "Self-Drive Rentals", href: "/product/rentals" },
 ]
 
 const solutionLinks = [
-  { label: "Passenger Transport", href: "/solutions/passenger-transport" },
-  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rental" },
-  { label: "Goods Transport", href: "/solutions/goods-transport" },
-  { label: "Fleet Management", href: "/solutions/fleet-management" },
+  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets" },
+  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators" },
+  { label: "Corporate Transport", href: "/solutions/corporate-transport" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals" },
   { label: "Fleet Software India", href: "/fleet-management-software-india" },
 ]
 
 const companyLinks = [
-  { label: "Product Snapshot", href: "/#product-snapshot" },
+  { label: "How It Works", href: "/#how-it-works" },
   { label: "Pricing Plans", href: "/pricing" },
-  { label: "Frequently Asked Questions", href: "/#faq" },
+  { label: "Frequently Asked Questions", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ]
 

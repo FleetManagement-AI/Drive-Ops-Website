@@ -127,7 +127,7 @@ export default function FleetManagementSolution() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Trip dispatch with accept/reject, driver duty, live tracking links, and WhatsApp review collection into the ops inbox.
               </p>
-              <Link to="/solutions/passenger-transport" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/solutions/taxi-cab-fleets" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore passenger solution <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -153,7 +153,7 @@ export default function FleetManagementSolution() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Self-drive lifecycle from hold to settle with manual payment recording—no payment gateway required.
               </p>
-              <Link to="/solutions/self-drive-rental" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/solutions/self-drive-rentals" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore rental solution <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

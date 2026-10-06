@@ -1,23 +1,89 @@
 import { useState, useEffect, useCallback } from "react"
-import { Menu, X, ArrowRight } from "lucide-react"
+import {
+  Menu,
+  X,
+  ArrowRight,
+  Car,
+  UserRound,
+  Route,
+  MapPin,
+  Wrench,
+  ShieldCheck,
+  Fuel,
+  Users,
+  BarChart3,
+  RefreshCw,
+  ClipboardList,
+  Bell,
+  AlertTriangle,
+  Smartphone,
+  KeyRound,
+  CalendarCheck,
+  Calendar,
+  Hand,
+  ClipboardCheck,
+  Wallet,
+  Compass,
+  Building2,
+  LayoutGrid,
+  type LucideIcon,
+} from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 
-const productLinks = [
-  { label: "Trips & Dispatch", href: "/#plan-dispatch" },
-  { label: "Driver App", href: "/#driver-app" },
-  { label: "Live Fleet", href: "/#track-connect" },
-  { label: "WhatsApp Ops", href: "/#communication" },
-  { label: "Fleet Care", href: "/#fleet-care" },
-  { label: "Rentals", href: "/#rentals" },
+type NavLinkItem = {
+  label: string
+  href: string
+  icon: LucideIcon
+  iconColor: string
+}
+
+const productColumns: { title: string; links: NavLinkItem[] }[] = [
+  {
+    title: "Fleet Management",
+    links: [
+      { label: "Vehicles", href: "/product/vehicles", icon: Car, iconColor: "text-emerald-600" },
+      { label: "Drivers", href: "/product/drivers", icon: UserRound, iconColor: "text-violet-600" },
+      { label: "Trips & Dispatch", href: "/product/trips-dispatch", icon: Route, iconColor: "text-blue-600" },
+      { label: "Live Fleet", href: "/product/live-fleet", icon: MapPin, iconColor: "text-cyan-600" },
+      { label: "Maintenance", href: "/product/maintenance", icon: Wrench, iconColor: "text-amber-600" },
+      { label: "Compliance", href: "/product/compliance", icon: ShieldCheck, iconColor: "text-indigo-600" },
+      { label: "Fuel Management", href: "/product/fuel", icon: Fuel, iconColor: "text-orange-600" },
+      { label: "Customers", href: "/product/customers", icon: Users, iconColor: "text-pink-600" },
+      { label: "Operational Visibility", href: "/product/analytics", icon: BarChart3, iconColor: "text-teal-600" },
+    ],
+  },
+  {
+    title: "Operations",
+    links: [
+      { label: "Recurring Trips", href: "/product/recurring-trips", icon: RefreshCw, iconColor: "text-sky-600" },
+      { label: "Trip Sheets", href: "/product/trip-sheets", icon: ClipboardList, iconColor: "text-lime-600" },
+      { label: "Notifications", href: "/product/notifications", icon: Bell, iconColor: "text-purple-600" },
+      { label: "Alerts", href: "/product/alerts", icon: AlertTriangle, iconColor: "text-rose-600" },
+      { label: "Driver App", href: "/product/driver-app", icon: Smartphone, iconColor: "text-cyan-700" },
+    ],
+  },
+  {
+    title: "Rentals",
+    links: [
+      { label: "Overview", href: "/product/rentals", icon: KeyRound, iconColor: "text-rose-500" },
+      { label: "Availability", href: "/product/rentals#availability", icon: CalendarCheck, iconColor: "text-emerald-500" },
+      { label: "Reservations", href: "/product/rentals#reservations", icon: Calendar, iconColor: "text-blue-500" },
+      { label: "Handover", href: "/product/rentals#handover", icon: Hand, iconColor: "text-amber-500" },
+      { label: "Return & Inspection", href: "/product/rentals#return", icon: ClipboardCheck, iconColor: "text-teal-500" },
+      { label: "Payment Recording", href: "/product/rentals#payments", icon: Wallet, iconColor: "text-violet-500" },
+    ],
+  },
 ]
 
-const solutionLinks = [
-  { label: "Passenger Transport", href: "/solutions/passenger-transport" },
-  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rental" },
-  { label: "Goods Transport", href: "/solutions/goods-transport" },
-  { label: "Fleet Management", href: "/solutions/fleet-management" },
+const solutionLinks: NavLinkItem[] = [
+  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets", icon: Car, iconColor: "text-blue-600" },
+  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators", icon: Compass, iconColor: "text-emerald-600" },
+  { label: "Corporate Transport", href: "/solutions/corporate-transport", icon: Building2, iconColor: "text-violet-600" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals", icon: KeyRound, iconColor: "text-rose-600" },
 ]
+
+const flatProductLinks = productColumns.flatMap((col) => col.links)
 
 const SCROLL_THRESHOLD = 48
 
@@ -30,7 +96,6 @@ const Navbar = () => {
 
   const isHomepage = location.pathname === "/"
   const isFloating = scrolled || !isHomepage
-  // Light hero — always use dark nav text (never white/cyan over #F8FAFC)
   const isDarkNav = false
 
   const scrollToSection = useCallback((targetId: string) => {
@@ -92,7 +157,6 @@ const Navbar = () => {
     }
   }, [mobileOpen])
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setMobileOpen(false)
   }, [location.pathname])
@@ -117,7 +181,6 @@ const Navbar = () => {
             isFloating ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4"
           }`}
         >
-          {/* Logo + name — larger; slightly compact when floating/scrolled */}
           <Link
             to="/"
             onClick={() => {
@@ -156,20 +219,19 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             <div
               className="relative"
               onMouseEnter={() => setProductDropdown(true)}
               onMouseLeave={() => setProductDropdown(false)}
             >
-              <button
+              <Link
+                to="/product"
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                   isDarkNav
                     ? "text-slate-200 hover:text-white hover:bg-white/10"
                     : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
                 }`}
-                onClick={() => scrollToSection("product-snapshot")}
               >
                 <span>Product</span>
                 <svg
@@ -180,7 +242,7 @@ const Navbar = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               <AnimatePresence>
                 {productDropdown && (
                   <motion.div
@@ -188,29 +250,43 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.15 }}
-                    className={`absolute left-0 top-full mt-1 w-56 rounded-xl shadow-xl p-2 z-50 ${
-                      isDarkNav
-                        ? "bg-[#0A1628]/95 backdrop-blur-md border border-slate-700/80"
-                        : "bg-white border border-slate-200/80"
-                    }`}
+                    className="absolute left-0 top-full z-50 mt-1 w-[min(720px,calc(100vw-2rem))] rounded-xl border border-slate-200/80 bg-white p-4 shadow-xl sm:p-5"
                   >
-                    {productLinks.map((item) => (
+                    <div className="grid grid-cols-3 gap-4 sm:gap-5">
+                      {productColumns.map((col) => (
+                        <div key={col.title}>
+                          <p className="mb-2.5 px-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs">
+                            {col.title}
+                          </p>
+                          <div className="space-y-0.5">
+                            {col.links.map((item) => {
+                              const Icon = item.icon
+                              return (
+                                <Link
+                                  key={item.href}
+                                  to={item.href}
+                                  onClick={() => setProductDropdown(false)}
+                                  className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-blue-50/50 hover:text-blue-600"
+                                >
+                                  <Icon className={`h-4 w-4 shrink-0 ${item.iconColor}`} aria-hidden="true" />
+                                  <span className="leading-snug">{item.label}</span>
+                                </Link>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4 border-t border-slate-100 pt-3">
                       <Link
-                        key={item.label}
-                        to={item.href}
-                        onClick={(e) => {
-                          handleNavClick(e, item.href)
-                          setProductDropdown(false)
-                        }}
-                        className={`block px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
-                          isDarkNav
-                            ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
-                            : "text-slate-700 hover:text-blue-600 hover:bg-blue-50/50"
-                        }`}
+                        to="/product"
+                        onClick={() => setProductDropdown(false)}
+                        className="inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
                       >
-                        {item.label}
+                        Explore the platform
+                        <ArrowRight className="h-4 w-4" />
                       </Link>
-                    ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -221,13 +297,14 @@ const Navbar = () => {
               onMouseEnter={() => setSolutionDropdown(true)}
               onMouseLeave={() => setSolutionDropdown(false)}
             >
-              <button
+              <Link
+                to="/#solutions"
+                onClick={(e) => handleNavClick(e, "/#solutions")}
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                   isDarkNav
                     ? "text-slate-200 hover:text-white hover:bg-white/10"
                     : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
                 }`}
-                onClick={() => scrollToSection("built-for-fleet")}
               >
                 <span>Solutions</span>
                 <svg
@@ -238,7 +315,7 @@ const Navbar = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               <AnimatePresence>
                 {solutionDropdown && (
                   <motion.div
@@ -246,108 +323,74 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.15 }}
-                    className={`absolute left-0 top-full mt-1 w-56 rounded-xl shadow-xl p-2 z-50 ${
-                      isDarkNav
-                        ? "bg-[#0A1628]/95 backdrop-blur-md border border-slate-700/80"
-                        : "bg-white border border-slate-200/80"
-                    }`}
+                    className="absolute left-0 top-full z-50 mt-1 w-72 rounded-xl border border-slate-200/80 bg-white p-2.5 shadow-xl"
                   >
-                    {solutionLinks.map((item) => (
-                      <Link
-                        key={item.label}
-                        to={item.href}
-                        onClick={(e) => {
-                          handleNavClick(e, item.href)
-                          setSolutionDropdown(false)
-                        }}
-                        className={`block px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
-                          isDarkNav
-                            ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
-                            : "text-slate-700 hover:text-blue-600 hover:bg-blue-50/50"
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {solutionLinks.map((item) => {
+                      const Icon = item.icon
+                      return (
+                        <Link
+                          key={item.label}
+                          to={item.href}
+                          onClick={() => setSolutionDropdown(false)}
+                          className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-blue-50/50 hover:text-blue-600"
+                        >
+                          <Icon className={`h-4 w-4 shrink-0 ${item.iconColor}`} aria-hidden="true" />
+                          <span className="leading-snug">{item.label}</span>
+                        </Link>
+                      )
+                    })}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
             <Link
-              to="/#connected-workflow"
-              onClick={(e) => handleNavClick(e, "/#connected-workflow")}
-              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
-                isDarkNav
-                  ? "text-slate-200 hover:text-white hover:bg-white/10"
-                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
-              }`}
+              to="/#how-it-works"
+              onClick={(e) => handleNavClick(e, "/#how-it-works")}
+              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
             >
               How It Works
             </Link>
 
             <Link
               to="/pricing"
-              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
-                isDarkNav
-                  ? "text-slate-200 hover:text-white hover:bg-white/10"
-                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
-              }`}
+              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
             >
               Pricing
             </Link>
 
             <Link
-              to="/#faq"
-              onClick={(e) => handleNavClick(e, "/#faq")}
-              className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
-                isDarkNav
-                  ? "text-slate-200 hover:text-white hover:bg-white/10"
-                  : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
-              }`}
+              to="/faq"
+              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
             >
               FAQ
             </Link>
           </div>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-2 sm:gap-3">
+          <div className="hidden items-center gap-2 sm:flex sm:gap-3">
             <a
               href="https://driveops.chatserve.in/login"
-              className={`text-xs sm:text-sm font-medium transition-colors px-3 py-2 rounded-lg ${
-                isDarkNav
-                  ? "text-slate-200 hover:text-white hover:bg-white/10"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+              className="rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:text-slate-900 sm:text-sm"
             >
-              Login
+              Sign in
             </a>
             <Link
               to="/contact"
-              className={`text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl transition-all flex items-center ${
-                isDarkNav
-                  ? "border border-white/20 bg-white/10 text-white hover:bg-white/20 hover:border-white/40"
-                  : "border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:text-blue-600 hover:shadow-2xs"
-              }`}
+              className="flex items-center rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-blue-600 sm:text-sm"
             >
               Book Demo
             </Link>
             <a
               href="https://driveops.chatserve.in/signup/account"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-xl hover:opacity-95 shadow-sm shadow-blue-500/25 transition-all flex items-center gap-1.5 min-h-[38px]"
+              className="flex min-h-[38px] items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm shadow-blue-500/25 transition-all hover:bg-blue-500 sm:px-5 sm:text-sm"
             >
               <span>Start Free</span>
               <ArrowRight size={13} aria-hidden="true" />
             </a>
           </div>
 
-          {/* Mobile Hamburger */}
           <button
-            className={`lg:hidden min-w-[40px] min-h-[40px] flex items-center justify-center -mr-1 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              isDarkNav
-                ? "text-white hover:bg-white/10"
-                : "text-slate-700 hover:bg-slate-100"
-            }`}
+            className="-mr-1 flex min-h-[40px] min-w-[40px] items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileOpen}
@@ -357,7 +400,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu — inside floating shell so it stays attached to the bar */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -366,51 +408,67 @@ const Navbar = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className={`lg:hidden overflow-hidden border-t border-slate-200/80 bg-white text-slate-900 ${
+              className={`overflow-hidden border-t border-slate-200/80 bg-white text-slate-900 lg:hidden ${
                 isFloating ? "rounded-b-2xl" : ""
               }`}
             >
-              <div className="flex flex-col p-5">
-                <div
-                  className={`text-[10px] font-bold uppercase tracking-wider mb-2 px-2 ${
-                    isDarkNav ? "text-slate-400" : "text-slate-400"
-                  }`}
-                >
-                  Product & Operations
+              <div className="flex max-h-[min(70vh,calc(100dvh-5.5rem))] flex-col overflow-y-auto p-4 sm:p-5">
+                <div className="mb-2.5 px-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs">
+                  Product
                 </div>
-                <div className="grid grid-cols-2 gap-1 mb-4">
-                  {productLinks.map((l) => (
-                    <Link
-                      key={l.href}
-                      to={l.href}
-                      onClick={(e) => {
-                        handleNavClick(e, l.href)
-                        setMobileOpen(false)
-                      }}
-                      className={`text-xs font-semibold transition-colors py-2 px-2.5 rounded-lg ${
-                        isDarkNav
-                          ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
-                          : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
-                      }`}
-                    >
-                      {l.label}
-                    </Link>
-                  ))}
+                <div className="mb-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  <Link
+                    to="/product"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                  >
+                    <LayoutGrid className="h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" />
+                    <span className="leading-snug">Platform overview</span>
+                  </Link>
+                  {flatProductLinks.slice(0, 9).map((l) => {
+                    const Icon = l.icon
+                    return (
+                      <Link
+                        key={l.href}
+                        to={l.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                      >
+                        <Icon className={`h-4 w-4 shrink-0 ${l.iconColor}`} aria-hidden="true" />
+                        <span className="leading-snug">{l.label}</span>
+                      </Link>
+                    )
+                  })}
                 </div>
 
-                <div
-                  className={`text-[10px] font-bold uppercase tracking-wider mb-2 px-2 ${
-                    isDarkNav ? "text-slate-400" : "text-slate-400"
-                  }`}
-                >
+                <div className="mb-2.5 px-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs">
+                  Solutions
+                </div>
+                <div className="mb-5 grid grid-cols-1 gap-1.5">
+                  {solutionLinks.map((l) => {
+                    const Icon = l.icon
+                    return (
+                      <Link
+                        key={l.href}
+                        to={l.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                      >
+                        <Icon className={`h-4 w-4 shrink-0 ${l.iconColor}`} aria-hidden="true" />
+                        <span className="leading-snug">{l.label}</span>
+                      </Link>
+                    )
+                  })}
+                </div>
+
+                <div className="mb-2.5 px-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs">
                   Platform
                 </div>
-                <div className="grid grid-cols-2 gap-1 mb-5">
+                <div className="mb-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                   {[
-                    { label: "How It Works", href: "/#connected-workflow" },
-                    { label: "Who It's For", href: "/#built-for-fleet" },
+                    { label: "How It Works", href: "/#how-it-works" },
                     { label: "Pricing", href: "/pricing" },
-                    { label: "FAQ", href: "/#faq" },
+                    { label: "FAQ", href: "/faq" },
                   ].map((l) => (
                     <Link
                       key={l.href}
@@ -419,29 +477,17 @@ const Navbar = () => {
                         handleNavClick(e, l.href)
                         setMobileOpen(false)
                       }}
-                      className={`text-xs font-semibold transition-colors py-2 px-2.5 rounded-lg ${
-                        isDarkNav
-                          ? "text-slate-200 hover:text-cyan-400 hover:bg-white/5"
-                          : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
-                      }`}
+                      className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
                     >
                       {l.label}
                     </Link>
                   ))}
                 </div>
 
-                <div
-                  className={`flex flex-col gap-2.5 pt-4 border-t ${
-                    isDarkNav ? "border-white/10" : "border-slate-100"
-                  }`}
-                >
+                <div className="flex flex-col gap-2.5 border-t border-slate-100 pt-4">
                   <a
                     href="https://driveops.chatserve.in/login"
-                    className={`text-center py-2.5 font-semibold text-xs border rounded-xl transition-colors ${
-                      isDarkNav
-                        ? "border-white/20 text-slate-200 hover:bg-white/10"
-                        : "border-slate-200 text-slate-700 hover:bg-slate-50"
-                    }`}
+                    className="rounded-xl border border-slate-200 py-3 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50"
                     onClick={() => setMobileOpen(false)}
                   >
                     Sign in
@@ -449,18 +495,14 @@ const Navbar = () => {
                   <Link
                     to="/contact"
                     onClick={() => setMobileOpen(false)}
-                    className={`text-center font-semibold text-xs py-2.5 rounded-xl border transition-colors ${
-                      isDarkNav
-                        ? "border-white/20 bg-white/10 text-white hover:bg-white/20"
-                        : "border-slate-200 text-slate-700 hover:bg-slate-50"
-                    }`}
+                    className="rounded-xl border border-slate-200 py-3 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50"
                   >
                     Book Demo
                   </Link>
                   <a
                     href="https://driveops.chatserve.in/signup"
                     onClick={() => setMobileOpen(false)}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-center text-xs py-3 rounded-xl shadow-xs shadow-blue-500/25"
+                    className="rounded-xl bg-blue-600 py-3.5 text-center text-sm font-semibold text-white shadow-xs shadow-blue-500/25"
                   >
                     Start Free
                   </a>

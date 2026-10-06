@@ -14,7 +14,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const PLATFORM_VISUAL =
-  "/images/features/DriveOps Fleet Management Showcase.png"
+  "/images/features/DriveOps Fleet Management Showcase.webp"
 
 type AccentTheme = "blue" | "teal" | "purple" | "orange"
 

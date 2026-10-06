@@ -15,9 +15,9 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const PROBLEM_IMAGE =
-  "/images/features/Overloaded Office Workflow Chaos.png"
+  "/images/features/Overloaded Office Workflow Chaos.webp"
 const SOLUTION_IMAGE =
-  "/images/features/DriveOps Fleet Management Showcase.png"
+  "/images/features/DriveOps Fleet Management Showcase.webp"
 const LOGO_SRC = "/logo/driveops-logo-blue-edited.png"
 
 type ComparisonItem = {

@@ -15,7 +15,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const DRIVER_APP_IMAGE =
-  "/images/features/Modern Driver Fleet App Interface.png"
+  "/images/features/Modern Driver Fleet App Interface.webp"
 
 type FeatureItem = {
   title: string

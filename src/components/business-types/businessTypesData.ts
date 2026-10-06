@@ -104,7 +104,7 @@ export const businessTypes: BusinessTypeItem[] = [
       }
     ],
     ctaText: "Explore Passenger Fleet Solution",
-    ctaHref: "/solutions/passenger-transport"
+    ctaHref: "/solutions/taxi-cab-fleets"
   },
   {
     id: "goods",
@@ -194,7 +194,7 @@ export const businessTypes: BusinessTypeItem[] = [
       }
     ],
     ctaText: "Explore Rental Fleet Solution",
-    ctaHref: "/solutions/self-drive-rental"
+    ctaHref: "/solutions/self-drive-rentals"
   }
 ]
 

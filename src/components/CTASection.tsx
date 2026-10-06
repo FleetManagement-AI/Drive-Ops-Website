@@ -16,11 +16,11 @@ export default function CTASection() {
           </p>
 
           <h2 className="text-showcase-h1 text-white">
-            Ready to manage and operate your <span className="text-blue-400">fleet from one place?</span>
+            Ready to run your fleet from <span className="text-blue-400">one place?</span>
           </h2>
 
           <p className="text-showcase-desc mx-auto text-slate-400">
-            Plan trips. Assign drivers. Track the fleet. Keep customers informed. Care for the vehicles.
+            Bring trips, drivers, vehicles, rentals and fleet operations into one connected platform.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function CTASection() {
             className="text-showcase-cta w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Mail className="w-4 h-4 text-slate-400" />
-            <span>Contact us</span>
+            <span>Book a Demo</span>
           </Link>
         </div>
 

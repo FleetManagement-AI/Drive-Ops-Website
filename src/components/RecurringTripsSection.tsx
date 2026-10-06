@@ -10,9 +10,9 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const RECURRING_TRIPS_IMAGE =
-  "/images/features/Airport Trip Scheduling Dashboard.png"
+  "/images/features/Airport Trip Scheduling Dashboard.webp"
 const WORKFLOW_IMAGE =
-  "/images/features/Five-Step Recurring Trip Workflow.png"
+  "/images/features/Five-Step Recurring Trip Workflow.webp"
 
 const SIGNUP_URL = "https://driveops.chatserve.in/signup"
 

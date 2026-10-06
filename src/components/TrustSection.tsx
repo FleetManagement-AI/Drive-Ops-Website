@@ -39,19 +39,22 @@ export default function TrustSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="section-showcase bg-[#F8FAFC] border-b border-slate-200/70 relative overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="trust"
+      className="relative overflow-hidden border-b border-slate-200/70 bg-white py-14 sm:py-16 lg:py-20"
+    >
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
+        <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-showcase-eyebrow inline-flex items-center gap-2 text-blue-700 bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full mb-5"
+            className="mb-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-600"
           >
-            <Shield className="w-3.5 h-3.5 text-blue-600" />
-            <span>Platform Integrity & Architecture</span>
+            <Shield className="h-3.5 w-3.5 text-blue-600" />
+            <span>Built for real fleet operators</span>
           </motion.div>
 
           <motion.h2
@@ -59,9 +62,9 @@ export default function TrustSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="text-showcase-h1 text-slate-900"
+            className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-[2rem] lg:leading-tight"
           >
-            Built on dependable <span className="gradient-text">software foundations.</span>
+            Built for real fleet operators.
           </motion.h2>
 
           <motion.p
@@ -69,9 +72,9 @@ export default function TrustSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
-            className="text-showcase-desc mx-auto mt-5 text-slate-600"
+            className="mx-auto mt-3 text-sm leading-relaxed text-slate-600 sm:text-base"
           >
-            Grounded operational engineering designed for the daily realities of transport operators and drivers.
+            Multi-tenant ops, role-based access, Driver App sync, and document vaulting—grounded in what ships today.
           </motion.p>
         </div>
 

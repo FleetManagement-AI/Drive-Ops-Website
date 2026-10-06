@@ -104,7 +104,7 @@ const CAPABILITIES: Capability[] = [
       { label: "Vehicle Assignment", icon: Car, tone: "cyan" },
       { label: "Packages", icon: Package, tone: "emerald" },
     ],
-    image: "/images/features/Create Trip Dashboard Mockup.png",
+    image: "/images/features/Create Trip Dashboard Mockup.webp",
     imageAlt:
       "DriveOps Create Trip interface with recommended driver and vehicle assignment",
     align: "text-left",
@@ -125,7 +125,7 @@ const CAPABILITIES: Capability[] = [
       { label: "Fuel Logs", icon: Fuel, tone: "amber" },
       { label: "Vehicle Issues", icon: AlertTriangle, tone: "orange" },
     ],
-    image: "/images/features/Trip Assignment App Flow.png",
+    image: "/images/features/Trip Assignment App Flow.webp",
     imageAlt:
       "DriveOps trip assignment flow from WhatsApp to Driver App and trip sheet",
     align: "text-right",
@@ -145,7 +145,7 @@ const CAPABILITIES: Capability[] = [
       { label: "Notifications", icon: Bell, tone: "amber" },
       { label: "Customer Reviews", icon: Star, tone: "orange" },
     ],
-    image: "/images/features/Live Fleet Tracking Dashboard.png",
+    image: "/images/features/Live Fleet Tracking Dashboard.webp",
     imageAlt:
       "DriveOps Live Fleet map with vehicle status, customer updates, and reviews",
     align: "text-left",
@@ -165,7 +165,7 @@ const CAPABILITIES: Capability[] = [
       { label: "Renewals", icon: RefreshCw, tone: "teal" },
       { label: "Expiry Alerts", icon: Bell, tone: "orange" },
     ],
-    image: "/images/features/fleet-care-fuel-transparent.png",
+    image: "/images/features/fleet-care-fuel-transparent.webp",
     imageAlt:
       "DriveOps Fleet Care showing fuel management, maintenance, and compliance",
     align: "text-right",
@@ -184,7 +184,7 @@ const CAPABILITIES: Capability[] = [
       { label: "Returns", icon: ArrowLeftRight, tone: "teal" },
       { label: "Recorded Payments", icon: CreditCard, tone: "emerald" },
     ],
-    image: "/images/features/Vehicle Availability and New Reservation.png",
+    image: "/images/features/Vehicle Availability and New Reservation.webp",
     imageAlt:
       "DriveOps rental vehicle availability list and new reservation form",
     align: "text-left",

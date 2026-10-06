@@ -9,7 +9,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const WORKFLOW_IMAGE =
-  "/images/features/Fleet Trip Management Workflow Infographic.png"
+  "/images/features/Fleet Trip Management Workflow Infographic.webp"
 
 type BenefitItem = {
   title: string

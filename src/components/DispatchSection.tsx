@@ -128,7 +128,7 @@ export default function DispatchSection() {
 
               <div className="relative rounded-xl overflow-hidden bg-slate-950">
                 <img
-                  src="/images/features/Dispatch%20Command%20Center%20Mockup.png"
+                  src="/images/features/Dispatch%20Command%20Center%20Mockup.webp"
                   alt="DriveOps Dispatch Command Center — trips, drivers, vehicles, and assignment"
                   className="w-full h-auto object-cover"
                   loading="lazy"

@@ -169,10 +169,10 @@ export default function GoodsTransport() {
               Learn how DriveOps powers diverse transportation workflows across India.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/solutions/passenger-transport" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/solutions/taxi-cab-fleets" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Passenger Transport →
               </Link>
-              <Link to="/solutions/self-drive-rental" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/solutions/self-drive-rentals" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Self-Drive Rental →
               </Link>
               <Link to="/solutions/fleet-management" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">

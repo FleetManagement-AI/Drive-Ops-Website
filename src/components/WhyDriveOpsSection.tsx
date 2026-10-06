@@ -30,11 +30,11 @@ import type { IconType } from "react-icons"
 const SIGNUP_URL = "https://driveops.chatserve.in/signup"
 
 const OLD_WAY_IMAGE =
-  "/images/features/Stressed Office Worker’s Task Overload.png"
+  "/images/features/Stressed Office Worker’s Task Overload.webp"
 const DRIVEOPS_IMAGE =
-  "/images/features/DriveOps Fleet Dashboard Workspace.png"
+  "/images/features/DriveOps Fleet Dashboard Workspace.webp"
 const FLEET_SUNSET_IMAGE =
-  "/images/features/SUV Fleet Overlooking the Skyline at Sunset.png"
+  "/images/features/SUV Fleet Overlooking the Skyline at Sunset.webp"
 
 type ListIcon = LucideIcon | IconType
 

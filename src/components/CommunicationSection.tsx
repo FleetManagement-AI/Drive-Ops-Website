@@ -12,7 +12,7 @@ import { FaWhatsapp } from "react-icons/fa"
 import type { IconType } from "react-icons"
 
 const COMMUNICATION_IMAGE =
-  "/images/features/Connected Taxi Tracking Journey.png"
+  "/images/features/Connected Taxi Tracking Journey.webp"
 
 type CapabilityItem = {
   title: string

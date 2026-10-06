@@ -14,7 +14,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 
 const FINANCIAL_DASHBOARD_IMAGE =
-  "/images/features/DriveOps Fleet Financial Dashboard.png"
+  "/images/features/DriveOps Fleet Financial Dashboard.webp"
 
 type BenefitItem = {
   number: string

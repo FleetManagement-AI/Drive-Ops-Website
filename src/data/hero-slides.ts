@@ -28,14 +28,13 @@ export const HERO_SLIDES: HeroSlide[] = [
     indexLabel: "01 / 07",
     category: "FLEET OPERATIONS PLATFORM",
     headline: [
-      { text: "One platform to manage" },
-      { text: "\nand " },
-      { text: "operate", highlight: true },
-      { text: " your fleet." },
+      { text: "Run your entire fleet" },
+      { text: "\nfrom " },
+      { text: "one place.", highlight: true },
     ],
     description:
-      "Plan trips, assign drivers and vehicles, keep drivers connected, track active vehicles, and manage everyday fleet operations from one place.",
-    image: "/images/hero/DriveOps Live Fleet Management Dashboard.png",
+      "Connect vehicles, drivers, trips, rentals, maintenance, compliance, and live fleet operations in one platform.",
+    image: "/images/hero/DriveOps Live Fleet Management Dashboard.webp",
     imageAlt:
       "DriveOps fleet operations dashboard showing today's trips, active vehicles, drivers on duty, and live fleet map",
     primaryCta: {
@@ -43,7 +42,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       href: "https://driveops.chatserve.in/signup",
       external: true,
     },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "Book a Demo", href: "/contact" },
     showProofRow: true,
   },
   {
@@ -57,7 +56,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "Create trips, manage schedules, find the right driver and vehicle, and dispatch without jumping between calls and spreadsheets.",
-    image: "/images/hero/Trip Planner Dashboard Mockup.png",
+    image: "/images/hero/Trip Planner Dashboard Mockup.webp",
     imageAlt:
       "DriveOps trip planner showing create trip form with recommended driver and vehicle assignment",
     primaryCta: {
@@ -65,7 +64,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       href: "https://driveops.chatserve.in/signup",
       external: true,
     },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
   {
     id: "driver-app",
@@ -78,7 +77,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "Send trip assignments through WhatsApp and let drivers manage their trips from the Driver App.",
-    image: "/images/hero/WhatsApp Trip Assignment to Mobile App.png",
+    image: "/images/hero/WhatsApp Trip Assignment to Mobile App.webp",
     imageAlt:
       "WhatsApp trip assignment with Accept and Reject alongside the DriveOps Driver App My Trips screen",
     primaryCta: {
@@ -86,7 +85,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       href: "https://driveops.chatserve.in/signup",
       external: true,
     },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
   {
     id: "live-fleet",
@@ -100,11 +99,11 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "See active vehicles on the map and stay updated while drivers are on the road.",
-    image: "/images/hero/DriveOps Live Fleet Dashboard and app.png",
+    image: "/images/hero/DriveOps Live Fleet Dashboard and app.webp",
     imageAlt:
       "DriveOps live fleet map with vehicle markers and Driver App live location view",
     primaryCta: { label: "Preview Fleet Map", href: "/fleet-map" },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
   {
     id: "fleet-care",
@@ -117,7 +116,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "Manage fuel records, maintenance jobs, vehicle documents and driver compliance from one place.",
-    image: "/images/hero/fleet-care-fuel-transparent.png",
+    image: "/images/hero/fleet-care-fuel-transparent.webp",
     imageAlt:
       "DriveOps fleet care cards for fuel management, maintenance, compliance, and maintenance schedule",
     primaryCta: {
@@ -125,7 +124,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       href: "https://driveops.chatserve.in/signup",
       external: true,
     },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
   {
     id: "reviews-alerts",
@@ -138,7 +137,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "Automate trip sheets, collect customer feedback and stay informed when trips need attention.",
-    image: "/images/hero/Fleet Management Dashboard Cards review alerts.png",
+    image: "/images/hero/Fleet Management Dashboard Cards review alerts.webp",
     imageAlt:
       "DriveOps cards for trip sheet management, customer reviews, and unassigned trip alerts",
     primaryCta: {
@@ -146,7 +145,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       href: "https://driveops.chatserve.in/signup",
       external: true,
     },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
   {
     id: "rentals",
@@ -159,10 +158,10 @@ export const HERO_SLIDES: HeroSlide[] = [
     ],
     description:
       "Manage vehicle availability, bookings, handover, return and rental operations from the same platform.",
-    image: "/images/hero/Vehicle Availability Dashboard.png",
+    image: "/images/hero/Vehicle Availability Dashboard.webp",
     imageAlt:
       "DriveOps self-drive rental availability calendar and reservation workspace",
-    primaryCta: { label: "Explore Rentals", href: "/#rentals" },
-    secondaryCta: { label: "See How It Works", href: "/#workflow" },
+    primaryCta: { label: "Explore Rentals", href: "/product/rentals" },
+    secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
   },
 ]

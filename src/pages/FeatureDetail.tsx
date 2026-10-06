@@ -7,11 +7,71 @@ import { featureContent } from "@/data/seo-content"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
+/** Maps SEO feature landings to primary product pages + OG imagery */
+const FEATURE_PRODUCT_LINKS: Record<string, { productSlug: string; ogImage: string }> = {
+  "fleet-tracking": {
+    productSlug: "live-fleet",
+    ogImage: "/images/features/Live Fleet Tracking Dashboard.webp",
+  },
+  "gps-vehicle-tracking": {
+    productSlug: "live-fleet",
+    ogImage: "/images/features/Live Fleet Tracking Dashboard.webp",
+  },
+  "vehicle-management": {
+    productSlug: "vehicles",
+    ogImage: "/images/features/Vehicle Availability and New Reservation.webp",
+  },
+  "fleet-management": {
+    productSlug: "trips-dispatch",
+    ogImage: "/images/hero/DriveOps Live Fleet Management Dashboard.webp",
+  },
+  "driver-management": {
+    productSlug: "drivers",
+    ogImage: "/images/features/Modern Driver Fleet App Interface.webp",
+  },
+  "vehicle-maintenance": {
+    productSlug: "maintenance",
+    ogImage: "/images/features/Vehicle Maintenance Dashboard.webp",
+  },
+  "fleet-maintenance": {
+    productSlug: "maintenance",
+    ogImage: "/images/features/Vehicle Maintenance Dashboard.webp",
+  },
+  "fleet-expenses": {
+    productSlug: "fuel",
+    ogImage: "/images/hero/fleet-care-fuel-transparent.webp",
+  },
+  "fleet-profitability": {
+    productSlug: "analytics",
+    ogImage: "/images/hero/DriveOps Live Fleet Dashboard and app.webp",
+  },
+  "fleet-analytics": {
+    productSlug: "analytics",
+    ogImage: "/images/hero/DriveOps Live Fleet Dashboard and app.webp",
+  },
+  "taxi-dispatch": {
+    productSlug: "trips-dispatch",
+    ogImage: "/images/features/Create Trip Dashboard Mockup.webp",
+  },
+  "whatsapp-review-management": {
+    productSlug: "alerts",
+    ogImage: "/images/hero/Fleet Management Dashboard Cards review alerts.webp",
+  },
+  "customer-review-collection": {
+    productSlug: "customers",
+    ogImage: "/images/features/Connected Taxi Tracking Journey.webp",
+  },
+  "fleet-compliance": {
+    productSlug: "compliance",
+    ogImage: "/images/features/Vehicle Maintenance Dashboard.webp",
+  },
+}
+
 const FAQItem = ({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) => (
-  <div 
+  <div
     className="border border-slate-200/90 rounded-xl bg-white overflow-hidden shadow-sm hover:border-blue-300 transition-colors"
-    itemScope 
-    itemProp="mainEntity" 
+    itemScope
+    itemProp="mainEntity"
     itemType="https://schema.org/Question"
   >
     <button
@@ -33,8 +93,8 @@ const FAQItem = ({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           className="overflow-hidden"
-          itemScope 
-          itemProp="acceptedAnswer" 
+          itemScope
+          itemProp="acceptedAnswer"
           itemType="https://schema.org/Answer"
         >
           <div itemProp="text" className="px-4 sm:px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
@@ -48,51 +108,62 @@ const FAQItem = ({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
 
 const FeatureDetail = () => {
   const { featureId } = useParams()
-  const content = featureId && featureContent[featureId] 
-    ? featureContent[featureId] 
+  const content = featureId && featureContent[featureId]
+    ? featureContent[featureId]
     : null
 
   const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const productLink = featureId ? FEATURE_PRODUCT_LINKS[featureId] : undefined
 
   if (!content) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">Feature not found</h1>
-        <Link to="/" className="text-blue-600 mt-4">Return Home</Link>
+        <Link to="/product" className="text-blue-600 mt-4">Return to Product</Link>
       </div>
     )
   }
 
-  // Injecting FAQ Schema for AEO
-  const faqSchema = {
+  // AEO: FAQPage JSON-LD via Helmet
+  const structuredData = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": content.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
-    }))
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: content.title,
+        description: content.description,
+        url: `https://driveops.info.chatserve.in/features/${featureId}`,
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: content.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      },
+    ],
   }
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-foreground flex flex-col antialiased">
-      <SEO 
+      <SEO
         title={content.title}
         description={content.description}
         keywords={content.keyword}
         canonicalUrl={`/features/${featureId}`}
+        ogImage={productLink?.ogImage}
+        structuredData={structuredData}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <Navbar />
-      
+
       <main className="flex-1 pb-24">
-        {/* HERO SECTION */}
         <section className="pt-32 pb-16 px-4 bg-white border-b border-slate-200/60 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.015] mix-blend-overlay pointer-events-none"></div>
           <div className="container mx-auto max-w-4xl relative z-10 text-center">
-            <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mb-8 bg-blue-50 px-3 py-1.5 rounded-full">
-              <ArrowLeft size={14} /> Back to Platform Overview
+            <Link to="/product" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mb-8 bg-blue-50 px-3 py-1.5 rounded-full">
+              <ArrowLeft size={14} /> Back to Product
             </Link>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
               {content.h1}
@@ -103,17 +174,14 @@ const FeatureDetail = () => {
           </div>
         </section>
 
-        {/* CORE CONTENT */}
         <section className="py-16 px-4 container mx-auto max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            
-            {/* Left Col: Copy & CTA */}
             <div>
               <h2 className="text-2xl font-bold text-slate-900 mb-6">Why {content.keyword}?</h2>
               <p className="text-slate-600 leading-relaxed mb-8 text-lg">
                 {content.heroCopy}
               </p>
-              
+
               <div className="bg-slate-900 p-8 rounded-2xl text-white shadow-xl">
                 <h3 className="text-xl font-bold mb-3">Ready to run clearer fleet ops?</h3>
                 <p className="text-slate-400 mb-6 text-sm">Trips, dispatch, live tracking, Driver App, and WhatsApp—in one platform.</p>
@@ -126,7 +194,6 @@ const FeatureDetail = () => {
               </div>
             </div>
 
-            {/* Right Col: Benefits */}
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Core Capabilities</h3>
               {content.benefits.map((b, i) => (
@@ -141,11 +208,9 @@ const FeatureDetail = () => {
                 </div>
               ))}
             </div>
-            
           </div>
         </section>
 
-        {/* FAQ SECTION (AEO OPTIMIZED) */}
         <section className="py-16 px-4 bg-white border-t border-slate-200/60">
           <div className="container mx-auto max-w-3xl" itemScope itemType="https://schema.org/FAQPage">
             <div className="text-center mb-10">
@@ -165,7 +230,6 @@ const FeatureDetail = () => {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />

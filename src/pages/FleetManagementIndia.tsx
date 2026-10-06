@@ -220,7 +220,7 @@ export default function FleetManagementIndia() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Trip dispatch with accept/reject, digital trip sheets, driver duty, live tracking links, and WhatsApp review requests into the ops inbox.
                 </p>
-                <Link to="/solutions/passenger-transport" className="text-blue-600 text-sm font-semibold hover:underline">
+                <Link to="/solutions/taxi-cab-fleets" className="text-blue-600 text-sm font-semibold hover:underline">
                   See passenger transport features →
                 </Link>
               </div>
@@ -246,7 +246,7 @@ export default function FleetManagementIndia() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Self-drive rental lifecycle from hold to settle, with manual payment recording (cash, UPI, card, bank transfer, or other).
                 </p>
-                <Link to="/solutions/self-drive-rental" className="text-purple-600 text-sm font-semibold hover:underline">
+                <Link to="/solutions/self-drive-rentals" className="text-purple-600 text-sm font-semibold hover:underline">
                   See rental management features →
                 </Link>
               </div>
