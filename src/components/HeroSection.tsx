@@ -110,7 +110,7 @@ export default function HeroSection() {
             </div>
             <p className="landing-hero-trial" data-hero-enter>No credit card required <span aria-hidden="true">·</span> Quick setup</p>
             <div className="landing-hero-modules" data-hero-enter>
-              <div className="landing-hero-modules-heading"><p>Everything your team needs to move</p><a href="#features">All features <ArrowRight size={13} aria-hidden="true" /></a></div>
+              <div className="landing-hero-modules-heading"><p>Everything your team needs to move</p><Link className="landing-all-features-link" to="/product">Explore all features <ArrowRight size={14} aria-hidden="true" /></Link></div>
               <div>
                 {MODULES.map(({ label, href, icon: Icon }) => (
                   <Link to={href} key={label}><Icon size={16} aria-hidden="true" />{label}</Link>

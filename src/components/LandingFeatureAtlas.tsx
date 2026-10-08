@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { ArrowRight, CarFront, ClipboardCheck, HeartPulse, MapPinned, Route, type LucideIcon } from "lucide-react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { PRODUCT_PAGES } from "@/data/product-pages"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -167,6 +168,7 @@ export default function LandingFeatureAtlas() {
                 <span>{group.number}</span><Icon size={17} aria-hidden="true" />{group.label}
               </button>
             })}
+            <Link className="landing-atlas-nav-all" to="/product">Explore all {PRODUCT_PAGES.length} features <ArrowRight size={15} aria-hidden="true" /></Link>
             <span className="landing-atlas-nav-progress" aria-hidden="true"><span className={`landing-atlas-nav-progress-fill step-${activeGroup + 1}`} /></span>
           </nav>
 
@@ -193,6 +195,10 @@ export default function LandingFeatureAtlas() {
               </article>
             })}
           </div>
+        </div>
+        <div className="landing-atlas-outro" data-reveal>
+          <div><p className="landing-eyebrow landing-eyebrow-dark"><span className="landing-eyebrow-line" /> KEEP EXPLORING</p><h3>The complete DriveOps toolkit is one click away.</h3><p>See every capability, its product view, and the workflow it supports.</p></div>
+          <Link to="/product">Explore all {PRODUCT_PAGES.length} features <ArrowRight size={18} aria-hidden="true" /></Link>
         </div>
       </div>
     </section>

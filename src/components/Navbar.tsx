@@ -92,14 +92,16 @@ const SCROLL_THRESHOLD = 48
 const Navbar = () => {
   const location = useLocation()
   const isHomepage = location.pathname === "/"
+  const isProductPage = location.pathname.startsWith("/product")
+  const hasAdaptiveNav = isHomepage || isProductPage
   const [scrolled, setScrolled] = useState(false)
-  const [overDarkSection, setOverDarkSection] = useState(isHomepage)
+  const [overDarkSection, setOverDarkSection] = useState(isHomepage || location.pathname === "/product")
   const [mobileOpen, setMobileOpen] = useState(false)
   const [productDropdown, setProductDropdown] = useState(false)
   const [solutionDropdown, setSolutionDropdown] = useState(false)
 
   const isFloating = scrolled || !isHomepage
-  const isDarkNav = isHomepage && overDarkSection && !mobileOpen
+  const isDarkNav = hasAdaptiveNav && overDarkSection && !mobileOpen
 
   const scrollToSection = useCallback((targetId: string) => {
     const el = document.getElementById(targetId)
@@ -142,10 +144,10 @@ const Navbar = () => {
   }, [])
 
   useLayoutEffect(() => {
-    if (!isHomepage) return
+    if (!hasAdaptiveNav) return
 
     const darkSections = document.querySelectorAll<HTMLElement>(
-      ".landing-hero, .landing-workflow, #cta",
+      ".landing-hero, .landing-workflow, #cta, .product-hero-dark, .product-detail-workflow, .product-cta-dark",
     )
     let frame = 0
     const updateTheme = () => {
@@ -169,7 +171,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", scheduleUpdate)
       window.removeEventListener("resize", scheduleUpdate)
     }
-  }, [isHomepage])
+  }, [hasAdaptiveNav])
 
   useEffect(() => {
     const onResize = () => {
@@ -316,7 +318,7 @@ const Navbar = () => {
                         onClick={() => setProductDropdown(false)}
                         className="inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
                       >
-                        Explore the platform
+                        Explore all features
                         <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
@@ -470,7 +472,7 @@ const Navbar = () => {
                     className="flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
                   >
                     <LayoutGrid className="h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" />
-                    <span className="leading-snug">Platform overview</span>
+                    <span className="leading-snug">Explore all features</span>
                   </Link>
                   {flatProductLinks.slice(0, 9).map((l) => {
                     const Icon = l.icon

@@ -161,6 +161,8 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
 .premium-home .landing-hero-modules-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .premium-home .landing-hero-modules-heading p { margin: 0; color: #6f93ba; font-size: 10px; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; }
 .premium-home .landing-hero-modules-heading a { display: inline-flex; align-items: center; gap: 5px; flex: none; color: #9bc4ff; font-size: 10px; font-weight: 700; }
+.premium-home .landing-hero-modules-heading .landing-all-features-link { gap: 8px; padding: 9px 12px; border: 1px solid rgba(131, 184, 251, .38); border-radius: 7px; color: #e8f3ff; background: rgba(54, 120, 229, .21); box-shadow: 0 8px 22px rgba(17, 74, 169, .12); font-size: 11px; transition: border-color .25s, background .25s, transform .25s; }
+.premium-home .landing-hero-modules-heading .landing-all-features-link:hover { border-color: rgba(164, 211, 255, .74); background: rgba(54, 120, 229, .37); transform: translateY(-2px); }
 .premium-home .landing-hero-modules > div:last-child { display: grid; grid-template-columns: repeat(2, max-content); gap: 11px 31px; }
 .premium-home .landing-hero-modules a { display: inline-flex; align-items: center; gap: 9px; color: #d4e5f9; font-size: 12px; font-weight: 650; transition: color .2s, transform .2s; }
 .premium-home .landing-hero-modules a:hover { color: #8bbdff; transform: translateX(3px); }
@@ -284,6 +286,8 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
 .premium-home .landing-atlas-nav-progress-fill.step-3 { transform: scaleY(.6); }
 .premium-home .landing-atlas-nav-progress-fill.step-4 { transform: scaleY(.8); }
 .premium-home .landing-atlas-nav-progress-fill.step-5 { transform: scaleY(1); }
+.premium-home .landing-atlas-nav .landing-atlas-nav-all { display: inline-flex; align-items: center; justify-content: space-between; gap: 7px; margin: 20px 0 0 9px; padding: 12px 10px; border: 1px solid #bad2f2; border-radius: 8px; color: #1f5dbb; background: #e9f2ff; font-size: 11px; font-weight: 750; }
+.premium-home .landing-atlas-nav .landing-atlas-nav-all:hover { color: #0d458f; background: #dbeaff; transform: translateX(3px); }
 .premium-home .landing-atlas-cards { display: grid; gap: 24px; min-width: 0; }
 .premium-home .landing-atlas-card { --atlas-accent: #3978e8; scroll-margin-top: 145px; overflow: hidden; border: 1px solid #dbe6f3; border-radius: 20px; background: #fff; box-shadow: 0 20px 65px rgba(27, 67, 122, .07); }
 .premium-home .landing-atlas-card.tone-indigo { --atlas-accent: #675fe0; }
@@ -309,6 +313,11 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
 .premium-home .landing-atlas-feature small { max-width: 330px; color: #6b7d91; font-size: 11px; font-weight: 400; line-height: 1.5; }
 .premium-home .landing-atlas-feature svg { flex: none; margin-top: 2px; color: var(--atlas-accent); transition: transform .25s; }
 .premium-home .landing-atlas-feature:hover svg { transform: translateX(4px); }
+.premium-home .landing-atlas-outro { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 42px; padding: 32px 38px; border: 1px solid #cbdff7; border-radius: 17px; background: linear-gradient(110deg, #dcecff, #f4f9ff); box-shadow: 0 22px 55px rgba(28, 77, 145, .08); }
+.premium-home .landing-atlas-outro h3 { margin: 13px 0 0; color: #0d2748; font-size: clamp(25px, 2.9vw, 38px); font-weight: 700; letter-spacing: -.055em; line-height: 1.1; }
+.premium-home .landing-atlas-outro p:last-child { margin: 9px 0 0; color: #6b819b; font-size: 13px; line-height: 1.6; }
+.premium-home .landing-atlas-outro > a { display: inline-flex; min-height: 48px; flex: none; align-items: center; justify-content: center; gap: 10px; padding: 0 18px; border-radius: 9px; color: white; background: #3478f6; box-shadow: 0 13px 27px rgba(50, 111, 226, .22); font-size: 12px; font-weight: 740; transition: transform .25s, background .25s; }
+.premium-home .landing-atlas-outro > a:hover { color: white; background: #5590ff; transform: translateY(-3px); }
 
 .premium-home .landing-workflow { position: relative; isolation: isolate; overflow: clip; padding: 110px 0 125px; color: white; background: #08192c; }
 .premium-home .landing-workflow::after { content: ""; position: absolute; z-index: -1; right: -20%; top: 0; width: 70%; height: 100%; background: radial-gradient(ellipse, rgba(30, 94, 187, .17), transparent 65%); pointer-events: none; }
@@ -457,6 +466,8 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
   .premium-home .landing-atlas-feature { min-height: 0; padding: 15px 19px; border: 0 !important; border-bottom: 1px solid #edf2f8 !important; }
   .premium-home .landing-atlas-feature:last-child { border-bottom: 0 !important; }
   .premium-home .landing-atlas-feature small { font-size: 11px; }
+  .premium-home .landing-atlas-outro { align-items: stretch; flex-direction: column; margin-top: 27px; padding: 25px 22px; }
+  .premium-home .landing-atlas-outro > a { align-self: flex-start; }
   .premium-home nav { padding: 8px 10px 0; }
   .premium-home nav > div { border-radius: 15px; }
   .premium-home .landing-container { width: min(100% - 36px, 1280px); }
@@ -470,9 +481,9 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
   .premium-home .landing-button { min-height: 48px; gap: 10px; padding: 0 14px; font-size: 12px; }
   .premium-home .landing-hero-trial { margin-top: 10px; font-size: 10px; }
   .premium-home .landing-hero-modules { margin-top: 19px; padding-top: 13px; }
-  .premium-home .landing-hero-modules-heading { margin-bottom: 9px; }
+  .premium-home .landing-hero-modules-heading { align-items: start; margin-bottom: 9px; }
   .premium-home .landing-hero-modules-heading p { font-size: 8px; }
-  .premium-home .landing-hero-modules-heading a { font-size: 9px; }
+  .premium-home .landing-hero-modules-heading .landing-all-features-link { padding: 7px 8px; font-size: 9px; }
   .premium-home .landing-hero-modules > div:last-child { gap: 7px 14px; }
   .premium-home .landing-hero-modules a { gap: 6px; font-size: 10px; }
   .premium-home .landing-hero-modules svg { width: 13px; height: 13px; }
@@ -526,6 +537,8 @@ body:has(.premium-home) a[aria-label="Chat with us on WhatsApp"] > span { animat
   .premium-home .landing-atlas-nav-progress-fill,
   .premium-home .landing-atlas-feature,
   .premium-home .landing-care-card,
+  .premium-home .landing-atlas-outro > a,
+  .premium-home .landing-hero-modules-heading .landing-all-features-link,
   .premium-home #solutions article,
   .premium-home #solutions article img { transition: none; }
 }
