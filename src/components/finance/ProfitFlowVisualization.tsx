@@ -301,7 +301,7 @@ export const ProfitFlowVisualization: React.FC<ProfitFlowVisualizationProps> = (
               {kpis.profit.formatted}
             </div>
             <div className="text-[10px] sm:text-[11px] font-bold text-emerald-700 mt-0.5">
-              {kpis.profit.margin} Margin
+              {kpis.margin.formatted} Margin
             </div>
           </div>
         </motion.div>

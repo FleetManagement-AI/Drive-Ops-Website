@@ -17,7 +17,7 @@ export type ProductPageContent = {
 export const PRODUCT_HUB = {
   title: "One platform for fleet operations",
   description:
-    "Explore how DriveOps connects vehicles, drivers, trips, live fleet, fleet care, customers, and self-drive rentals—without claiming features that are not productized yet.",
+    "Explore how DriveOps connects vehicles, drivers, trips, live fleet, fleet care, customers, and self-drive rentals in one daily workspace.",
 }
 
 export const PRODUCT_PAGES: ProductPageContent[] = [
@@ -62,12 +62,31 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
       "Manage drivers, duty, imports, and multilingual Driver App access with DriveOps.",
   },
   {
+    slug: "attendance-duty",
+    group: "fleet",
+    title: "Attendance & duty",
+    eyebrow: "Fleet Management",
+    description:
+      "Plan driver work schedules, see today's attendance and duty, and keep leave and worked time close to dispatch decisions.",
+    image: "/images/features/DriveOps Fleet Dashboard Workspace.webp",
+    imageAlt: "DriveOps fleet workspace with drivers, trips and active work",
+    capabilities: [
+      "Today's duty and attendance records",
+      "Driver work schedules and calendar views",
+      "Worked time and leave follow-up",
+      "Driver App duty sessions linked to attendance where configured",
+    ],
+    seoTitle: "Driver Attendance & Duty Software | DriveOps",
+    seoDescription:
+      "Plan driver schedules and track attendance, duty hours and leave alongside fleet operations in DriveOps.",
+  },
+  {
     slug: "trips-dispatch",
     group: "fleet",
     title: "Trips & dispatch",
     eyebrow: "Fleet Management",
     description:
-      "Create trips, allocate drivers and vehicles with availability checks, and confirm via Driver App or WhatsApp accept/reject—human-in-the-loop dispatch, not auto nearest-vehicle.",
+      "Create trips, check driver and vehicle availability, allocate the right resources, and confirm assignments through the Driver App or WhatsApp.",
     image: "/images/features/Create Trip Dashboard Mockup.webp",
     imageAlt: "DriveOps create trip and dispatch workspace",
     capabilities: [
@@ -102,7 +121,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     capabilities: [
       "Ops live fleet map (Mapbox) from driver-app GPS",
       "Customer trip tracking via secure link with live updates",
-      "Phone-based GPS—not hardware telematics trackers",
+      "Location shared from the Driver App",
       "Visibility for active trips while drivers are on the road",
     ],
     relatedFeatureId: "fleet-tracking",
@@ -116,7 +135,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Maintenance",
     eyebrow: "Fleet Management",
     description:
-      "Track maintenance jobs and logs so vehicles stay ready for the next trip—without claiming predictive or ML-based failure detection.",
+      "Track maintenance jobs, service schedules and logs so vehicles stay ready for the next trip.",
     image: "/images/features/Vehicle Maintenance Dashboard.webp",
     imageAlt: "DriveOps vehicle maintenance dashboard",
     capabilities: [
@@ -136,14 +155,14 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Compliance vault",
     eyebrow: "Fleet Management",
     description:
-      "Store vehicle and driver documents in a vault with expiry scanning and WhatsApp alerts. OCR is optional and often off—do not expect always-on AI extraction or compliance inspections.",
+      "Keep vehicle and driver documents in one vault, follow expiry dates, and send WhatsApp alerts when renewals are due.",
     image: "/images/features/Vehicle Maintenance Dashboard.webp",
     imageAlt: "DriveOps fleet care and compliance document workspace",
     capabilities: [
       "Central document vault for fleet records",
       "Expiry scanning with WhatsApp compliance alerts",
       "Role-aware ops access to compliance records",
-      "Honest scope: vault + alerts—not inspections product",
+      "Document status and renewal follow-up",
     ],
     relatedFeatureId: "fleet-compliance",
     seoTitle: "Fleet Compliance Document Vault | DriveOps",
@@ -176,7 +195,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Customer management",
     eyebrow: "Fleet Management",
     description:
-      "Link customers to trips, send confirmations with tracking links, and collect WhatsApp review replies into an ops inbox—not Google Business review autopilot.",
+      "Link customers to trips, send confirmations with tracking links, and bring WhatsApp review replies into the ops inbox.",
     image: "/images/features/Connected Taxi Tracking Journey.webp",
     imageAlt: "DriveOps customer trip confirmation and tracking journey",
     capabilities: [
@@ -196,19 +215,19 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Operational visibility",
     eyebrow: "Fleet Management",
     description:
-      "Stay oriented with day-to-day operational summaries around trips, fuel, and maintenance. This is not an advanced BI, P&L, or finance analytics suite.",
+      "Stay oriented with day-to-day operational summaries for trips, fuel, maintenance, and work that needs attention.",
     image: "/images/hero/DriveOps Live Fleet Dashboard and app.webp",
     imageAlt: "DriveOps operational dashboard for day-to-day fleet visibility",
     capabilities: [
       "Operational dashboards for active fleet work",
       "Fuel and maintenance visibility for daily ops",
       "Needs-attention style operational follow-ups",
-      "Reports/finance modules are not marketed as live product",
+      "Connected views of daily fleet work",
     ],
     relatedFeatureId: "fleet-analytics",
     seoTitle: "Fleet Operational Visibility | DriveOps",
     seoDescription:
-      "Day-to-day operational visibility for trips, fuel, and maintenance with DriveOps—not a BI suite.",
+      "See day-to-day trip, fuel, and maintenance activity together with DriveOps.",
   },
   {
     slug: "recurring-trips",
@@ -231,6 +250,25 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
       "Schedule recurring daily, weekly, or monthly trips with automatic materialization in DriveOps.",
   },
   {
+    slug: "packages",
+    group: "operations",
+    title: "Package templates",
+    eyebrow: "Operations",
+    description:
+      "Keep reusable package types and templates for familiar transport work, then generate a trip from an active template when a booking is ready.",
+    image: "/images/features/Fleet Trip Management Workflow Infographic.webp",
+    imageAlt: "DriveOps trip planning and dispatch workflow visual",
+    capabilities: [
+      "Reusable package types and templates",
+      "Pricing, inclusions and terms on a template",
+      "Trip generation from active package templates",
+      "Recurring and contract details for applicable package types",
+    ],
+    seoTitle: "Transport Package Templates | DriveOps",
+    seoDescription:
+      "Create reusable package types and templates, then generate trips for repeat transport work in DriveOps.",
+  },
+  {
     slug: "trip-sheets",
     group: "operations",
     title: "Trip sheets",
@@ -243,7 +281,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
       "Trip sheet draft and submit flows",
       "Driver App and ops trip sheet support",
       "WhatsApp trip sheet messaging where configured",
-      "Offline submit is not guaranteed—connectivity matters",
+      "Completed trip records linked to operational follow-up",
     ],
     seoTitle: "Digital Trip Sheets | DriveOps",
     seoDescription:
@@ -255,18 +293,18 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Notifications",
     eyebrow: "Operations",
     description:
-      "Keep drivers and customers informed through WhatsApp, push, email, and in-app channels for the events DriveOps actually sends. SMS is not implemented.",
+      "Keep drivers and customers informed through supported WhatsApp, push, email, and in-app notifications.",
     image: "/images/features/Connected Taxi Tracking Journey.webp",
     imageAlt: "DriveOps WhatsApp and notification journey for trip operations",
     capabilities: [
       "WhatsApp assignment, confirmation, OTP, compliance, reviews",
       "Mobile push and in-app notifications for drivers",
       "Email where configured for ops events",
-      "No SMS delivery product today",
+      "Trip communication connected to operational events",
     ],
     seoTitle: "Fleet Notifications & WhatsApp Ops | DriveOps",
     seoDescription:
-      "WhatsApp, push, email, and in-app notifications for DriveOps fleet operations—without SMS claims.",
+      "Use WhatsApp, push, email, and in-app notifications for connected fleet operations with DriveOps.",
   },
   {
     slug: "alerts",
@@ -303,7 +341,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
       "GPS upload for live fleet and customer tracking",
       "Trip sheets, fuel logs, and vehicle issues",
       "Languages: English, Malayalam, Hindi",
-      "Partial offline sync for selected actions—not accept/reject",
+      "Offline sync for selected driver actions",
     ],
     relatedFeatureId: "driver-management",
     seoTitle: "Driver Mobile App for Fleets | DriveOps",
@@ -316,7 +354,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     title: "Self-drive rentals",
     eyebrow: "Rentals",
     description:
-      "Run self-drive rental operations alongside chauffeur trips: availability, reservations, handover, return inspection fields, and manual payment recording—not a payment gateway or automated invoicing product.",
+      "Run self-drive rental operations alongside chauffeur trips: vehicle availability, reservations, handover, return details, and manual payment records.",
     image: "/images/features/Five-Step Vehicle Rental Workflow.webp",
     imageAlt: "DriveOps five-step self-drive rental workflow",
     capabilities: [
@@ -324,7 +362,7 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
       "Reservations and hold expiry automation",
       "Handover and return/inspection field capture",
       "Manual payment recording methods",
-      "No online checkout or automated invoicing",
+      "Rental history linked to vehicle availability",
     ],
     workflow: [
       "Availability",
@@ -353,12 +391,12 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
         id: "return",
         title: "Return & inspection",
         description:
-          "Capture return and inspection fields for the rental close-out—not a compliance inspections product.",
+          "Capture return and vehicle condition fields for the rental close-out.",
       },
       {
         id: "payments",
         title: "Payment recording",
-        description: "Record payments manually in ops. No payment gateway checkout.",
+        description: "Keep manually recorded payments alongside the rental.",
       },
     ],
     seoTitle: "Self-Drive Rental Software | DriveOps",
@@ -375,12 +413,12 @@ export const PRODUCT_GROUPS = [
   {
     id: "fleet" as const,
     title: "Fleet Management",
-    description: "Vehicles, drivers, trips, live fleet, fleet care, and customers.",
+    description: "Vehicles, drivers, attendance, trips, live fleet, fleet care, and customers.",
   },
   {
     id: "operations" as const,
     title: "Operations",
-    description: "Recurring trips, trip sheets, notifications, alerts, and Driver App.",
+    description: "Recurring trips, packages, trip sheets, notifications, alerts, and Driver App.",
   },
   {
     id: "rentals" as const,

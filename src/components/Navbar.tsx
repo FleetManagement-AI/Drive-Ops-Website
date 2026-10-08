@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useLayoutEffect, useCallback } from "react"
 import {
   Menu,
   X,
@@ -44,6 +44,7 @@ const productColumns: { title: string; links: NavLinkItem[] }[] = [
     links: [
       { label: "Vehicles", href: "/product/vehicles", icon: Car, iconColor: "text-emerald-600" },
       { label: "Drivers", href: "/product/drivers", icon: UserRound, iconColor: "text-violet-600" },
+      { label: "Attendance & Duty", href: "/product/attendance-duty", icon: CalendarCheck, iconColor: "text-sky-600" },
       { label: "Trips & Dispatch", href: "/product/trips-dispatch", icon: Route, iconColor: "text-blue-600" },
       { label: "Live Fleet", href: "/product/live-fleet", icon: MapPin, iconColor: "text-cyan-600" },
       { label: "Maintenance", href: "/product/maintenance", icon: Wrench, iconColor: "text-amber-600" },
@@ -57,6 +58,7 @@ const productColumns: { title: string; links: NavLinkItem[] }[] = [
     title: "Operations",
     links: [
       { label: "Recurring Trips", href: "/product/recurring-trips", icon: RefreshCw, iconColor: "text-sky-600" },
+      { label: "Package Templates", href: "/product/packages", icon: LayoutGrid, iconColor: "text-indigo-600" },
       { label: "Trip Sheets", href: "/product/trip-sheets", icon: ClipboardList, iconColor: "text-lime-600" },
       { label: "Notifications", href: "/product/notifications", icon: Bell, iconColor: "text-purple-600" },
       { label: "Alerts", href: "/product/alerts", icon: AlertTriangle, iconColor: "text-rose-600" },
@@ -88,15 +90,16 @@ const flatProductLinks = productColumns.flatMap((col) => col.links)
 const SCROLL_THRESHOLD = 48
 
 const Navbar = () => {
+  const location = useLocation()
+  const isHomepage = location.pathname === "/"
   const [scrolled, setScrolled] = useState(false)
+  const [overDarkSection, setOverDarkSection] = useState(isHomepage)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [productDropdown, setProductDropdown] = useState(false)
   const [solutionDropdown, setSolutionDropdown] = useState(false)
-  const location = useLocation()
 
-  const isHomepage = location.pathname === "/"
   const isFloating = scrolled || !isHomepage
-  const isDarkNav = false
+  const isDarkNav = isHomepage && overDarkSection && !mobileOpen
 
   const scrollToSection = useCallback((targetId: string) => {
     const el = document.getElementById(targetId)
@@ -138,6 +141,36 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  useLayoutEffect(() => {
+    if (!isHomepage) return
+
+    const darkSections = document.querySelectorAll<HTMLElement>(
+      ".landing-hero, .landing-workflow, #cta",
+    )
+    let frame = 0
+    const updateTheme = () => {
+      frame = 0
+      const headerMidpoint = window.innerWidth < 700 ? 42 : 62
+      const overDark = Array.from(darkSections).some((section) => {
+        const { top, bottom } = section.getBoundingClientRect()
+        return top <= headerMidpoint && bottom > headerMidpoint
+      })
+      setOverDarkSection(overDark)
+    }
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateTheme)
+    }
+
+    updateTheme()
+    window.addEventListener("scroll", scheduleUpdate, { passive: true })
+    window.addEventListener("resize", scheduleUpdate, { passive: true })
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener("scroll", scheduleUpdate)
+      window.removeEventListener("resize", scheduleUpdate)
+    }
+  }, [isHomepage])
+
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false)
@@ -165,7 +198,7 @@ const Navbar = () => {
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isDarkNav ? "landing-nav-dark" : "landing-nav-light"} ${
         isFloating ? "px-3 sm:px-4 pt-3" : "px-0 pt-0"
       }`}
     >
@@ -347,21 +380,27 @@ const Navbar = () => {
             <Link
               to="/#how-it-works"
               onClick={(e) => handleNavClick(e, "/#how-it-works")}
-              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
+              className={`rounded-lg px-3 py-2 text-[15px] font-medium transition-colors ${
+                isDarkNav ? "text-slate-200 hover:bg-white/10 hover:text-white" : "text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+              }`}
             >
               How It Works
             </Link>
 
             <Link
               to="/pricing"
-              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
+              className={`rounded-lg px-3 py-2 text-[15px] font-medium transition-colors ${
+                isDarkNav ? "text-slate-200 hover:bg-white/10 hover:text-white" : "text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+              }`}
             >
               Pricing
             </Link>
 
             <Link
               to="/faq"
-              className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
+              className={`rounded-lg px-3 py-2 text-[15px] font-medium transition-colors ${
+                isDarkNav ? "text-slate-200 hover:bg-white/10 hover:text-white" : "text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+              }`}
             >
               FAQ
             </Link>
@@ -370,13 +409,19 @@ const Navbar = () => {
           <div className="hidden items-center gap-2 sm:flex sm:gap-3">
             <a
               href="https://driveops.chatserve.in/login"
-              className="rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:text-slate-900 sm:text-sm"
+              className={`rounded-lg px-3 py-2 text-xs font-medium transition-colors sm:text-sm ${
+                isDarkNav ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900"
+              }`}
             >
               Sign in
             </a>
             <Link
               to="/contact"
-              className="flex items-center rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-blue-600 sm:text-sm"
+              className={`flex items-center rounded-xl border px-3.5 py-2 text-xs font-semibold transition-all sm:text-sm ${
+                isDarkNav
+                  ? "border-white/25 bg-white/10 text-white hover:border-sky-300/60 hover:bg-white/15"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:text-blue-600"
+              }`}
             >
               Book Demo
             </Link>
@@ -390,7 +435,9 @@ const Navbar = () => {
           </div>
 
           <button
-            className="-mr-1 flex min-h-[40px] min-w-[40px] items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 lg:hidden"
+            className={`-mr-1 flex min-h-[40px] min-w-[40px] items-center justify-center rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 lg:hidden ${
+              isDarkNav ? "text-white hover:bg-white/10" : "text-slate-700 hover:bg-slate-100"
+            }`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileOpen}
