@@ -1,3 +1,5 @@
+import RelatedOperations from "@/components/RelatedOperations"
+import FAQList from "@/components/FAQList"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
@@ -12,10 +14,7 @@ import {
   ArrowRight,
   TrendingUp,
   MapPin,
-  ChevronDown
 } from "lucide-react"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 
 const faqs = [
   {
@@ -33,7 +32,6 @@ const faqs = [
 ]
 
 export default function FleetManagementSolution() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -59,7 +57,7 @@ export default function FleetManagementSolution() {
   return (
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
-        title="Fleet Management Software in India | DriveOps"
+        title="Fleet Operations for Multi-Location Fleets | DriveOps"
         description="Cloud fleet operations software for Indian operators. Track vehicles, manage drivers, run trips and dispatch, log fuel and maintenance, and vault compliance documents."
         keywords="fleet management software India, fleet management system, commercial fleet operations, fleet software platform"
         canonicalUrl="/solutions/fleet-management"
@@ -95,7 +93,7 @@ export default function FleetManagementSolution() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/pricing"
+                to="/pricing/"
                 className="bg-white border border-slate-200 text-slate-700 font-semibold px-6 py-3.5 rounded-xl hover:bg-slate-50 transition-all shadow-xs"
               >
                 View Transparent Pricing
@@ -127,7 +125,7 @@ export default function FleetManagementSolution() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Trip dispatch with accept/reject, driver duty, live tracking links, and WhatsApp review collection into the ops inbox.
               </p>
-              <Link to="/solutions/taxi-cab-fleets" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/solutions/taxi-cab-fleets/" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore passenger solution <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -140,7 +138,7 @@ export default function FleetManagementSolution() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Multi-stop trips, Driver App tracking, trip sheets, fuel logs, and maintenance due scans for commercial vehicles.
               </p>
-              <Link to="/solutions/goods-transport" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/solutions/goods-transport/" className="text-emerald-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore goods solution <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -153,7 +151,7 @@ export default function FleetManagementSolution() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Self-drive lifecycle from hold to settle with manual payment recording—no payment gateway required.
               </p>
-              <Link to="/solutions/self-drive-rentals" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/solutions/self-drive-rentals/" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore rental solution <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -170,25 +168,25 @@ export default function FleetManagementSolution() {
               Learn how each module in DriveOps powers your business operations.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/features/fleet-tracking" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/fleet-tracking/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Fleet Tracking →
               </Link>
-              <Link to="/features/vehicle-management" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/vehicle-management/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Vehicle Management →
               </Link>
-              <Link to="/features/driver-management" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/driver-management/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Driver Management →
               </Link>
-              <Link to="/features/vehicle-maintenance" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/vehicle-maintenance/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Vehicle Maintenance →
               </Link>
-              <Link to="/features/fleet-expenses" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/fleet-expenses/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Expense & Fuel Logs →
               </Link>
-              <Link to="/features/fleet-profitability" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/fleet-profitability/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Operational Summaries →
               </Link>
-              <Link to="/fleet-management-software-india" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+              <Link to="/fleet-management-software-india/" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                 Fleet Management India →
               </Link>
             </div>
@@ -207,41 +205,10 @@ export default function FleetManagementSolution() {
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="border border-slate-200/90 rounded-xl bg-white overflow-hidden shadow-xs"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 focus:outline-none"
-                  aria-expanded={openFaq === idx}
-                >
-                  <span className="font-heading font-semibold text-slate-900 text-sm sm:text-base">
-                    {faq.q}
-                  </span>
-                  <div className={`w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform ${openFaq === idx ? "rotate-180 bg-blue-50 text-blue-600" : ""}`}>
-                    <ChevronDown size={16} />
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-4 sm:px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+            <FAQList faqs={faqs} />
           </div>
         </section>
+        <RelatedOperations />
       </main>
 
       <Footer />

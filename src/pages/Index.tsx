@@ -1,3 +1,5 @@
+import { priorityHomepageFaqs } from "@/data/homepage-faqs"
+import ReviewManagementTeaser from "@/components/ReviewManagementTeaser"
 import Navbar from "@/components/Navbar"
 import HeroSection from "@/components/HeroSection"
 import PlatformOverviewSection from "@/components/PlatformOverviewSection"
@@ -89,7 +91,7 @@ const Index = () => (
       keywords="fleet operations software, trip management software, fleet dispatch software, driver mobile app, live fleet tracking, WhatsApp fleet communication, self-drive rental software, fuel log software, fleet compliance software, taxi fleet software India"
       canonicalUrl="/"
       ogImage="/images/hero/DriveOps Live Fleet Management Dashboard.webp"
-      structuredData={homepageStructuredData}
+      structuredData={{ "@context": "https://schema.org", "@graph": [...homepageStructuredData["@graph"], { "@type": "FAQPage", mainEntity: priorityHomepageFaqs.map(faq => ({ "@type": "Question", name: faq.q, acceptedAnswer: { "@type": "Answer", text: faq.a } })) }] }}
     />
     <Navbar />
     <main>
@@ -99,6 +101,7 @@ const Index = () => (
       <SolutionsTeaserSection />
       <ProductShowcaseSection />
       <FleetCareTeaserSection />
+      <ReviewManagementTeaser />
       <PricingTeaserSection />
       <CTASection />
     </main>

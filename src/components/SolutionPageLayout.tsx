@@ -1,8 +1,8 @@
-import { useState } from "react"
+import RelatedOperations from "@/components/RelatedOperations"
+import FAQList from "@/components/FAQList"
 import { Link } from "react-router-dom"
-import { ArrowRight, Check, ChevronDown } from "lucide-react"
+import { ArrowRight, Check } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
@@ -35,7 +35,6 @@ export type SolutionPageContent = {
 type Props = { page: SolutionPageContent }
 
 export default function SolutionPageLayout({ page }: Props) {
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -100,7 +99,7 @@ export default function SolutionPageLayout({ page }: Props) {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
               >
                 Book a Demo
@@ -174,41 +173,7 @@ export default function SolutionPageLayout({ page }: Props) {
               Frequently asked questions
             </h2>
             <div className="space-y-2">
-              {page.faqs.map((faq, idx) => {
-                const open = openFaq === idx
-                return (
-                  <div
-                    key={faq.q}
-                    className="overflow-hidden rounded-xl border border-slate-200 bg-white"
-                  >
-                    <button
-                      type="button"
-                      className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-sm font-semibold text-slate-900"
-                      onClick={() => setOpenFaq(open ? null : idx)}
-                      aria-expanded={open}
-                    >
-                      {faq.q}
-                      <ChevronDown
-                        className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {open && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden"
-                        >
-                          <p className="border-t border-slate-100 px-4 py-3 text-sm leading-relaxed text-slate-600">
-                            {faq.a}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                )
-              })}
+              <FAQList faqs={page.faqs} />
             </div>
           </div>
         </section>
@@ -227,13 +192,14 @@ export default function SolutionPageLayout({ page }: Props) {
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
-              to="/product"
+              to="/product/"
               className="rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-slate-900"
             >
               Explore Product
             </Link>
           </div>
         </section>
+        <RelatedOperations />
       </main>
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import {
   Menu,
+  MessageSquare,
   X,
   ArrowRight,
   Car,
@@ -42,45 +43,46 @@ const productColumns: { title: string; links: NavLinkItem[] }[] = [
   {
     title: "Fleet Management",
     links: [
-      { label: "Vehicles", href: "/product/vehicles", icon: Car, iconColor: "text-emerald-600" },
-      { label: "Drivers", href: "/product/drivers", icon: UserRound, iconColor: "text-violet-600" },
-      { label: "Trips & Dispatch", href: "/product/trips-dispatch", icon: Route, iconColor: "text-blue-600" },
-      { label: "Live Fleet", href: "/product/live-fleet", icon: MapPin, iconColor: "text-cyan-600" },
-      { label: "Maintenance", href: "/product/maintenance", icon: Wrench, iconColor: "text-amber-600" },
-      { label: "Compliance", href: "/product/compliance", icon: ShieldCheck, iconColor: "text-indigo-600" },
-      { label: "Fuel Management", href: "/product/fuel", icon: Fuel, iconColor: "text-orange-600" },
-      { label: "Customers", href: "/product/customers", icon: Users, iconColor: "text-pink-600" },
-      { label: "Operational Visibility", href: "/product/analytics", icon: BarChart3, iconColor: "text-teal-600" },
+      { label: "Vehicles", href: "/product/vehicles/", icon: Car, iconColor: "text-emerald-600" },
+      { label: "Drivers", href: "/product/drivers/", icon: UserRound, iconColor: "text-violet-600" },
+      { label: "Trips & Dispatch", href: "/product/trips-dispatch/", icon: Route, iconColor: "text-blue-600" },
+      { label: "Live Fleet", href: "/product/live-fleet/", icon: MapPin, iconColor: "text-cyan-600" },
+      { label: "Maintenance", href: "/product/maintenance/", icon: Wrench, iconColor: "text-amber-600" },
+      { label: "Compliance Management", href: "/product/compliance/", icon: ShieldCheck, iconColor: "text-indigo-600" },
+      { label: "Fuel Logs", href: "/product/fuel/", icon: Fuel, iconColor: "text-orange-600" },
+      { label: "Customers", href: "/product/customers/", icon: Users, iconColor: "text-pink-600" },
+      { label: "Operational Visibility", href: "/product/analytics/", icon: BarChart3, iconColor: "text-teal-600" },
     ],
   },
   {
     title: "Operations",
     links: [
-      { label: "Recurring Trips", href: "/product/recurring-trips", icon: RefreshCw, iconColor: "text-sky-600" },
-      { label: "Trip Sheets", href: "/product/trip-sheets", icon: ClipboardList, iconColor: "text-lime-600" },
-      { label: "Notifications", href: "/product/notifications", icon: Bell, iconColor: "text-purple-600" },
-      { label: "Alerts", href: "/product/alerts", icon: AlertTriangle, iconColor: "text-rose-600" },
-      { label: "Driver App", href: "/product/driver-app", icon: Smartphone, iconColor: "text-cyan-700" },
+      { label: "Recurring Trips", href: "/product/recurring-trips/", icon: RefreshCw, iconColor: "text-sky-600" },
+      { label: "Trip Sheets", href: "/product/trip-sheets/", icon: ClipboardList, iconColor: "text-lime-600" },
+      { label: "Notifications", href: "/product/notifications/", icon: Bell, iconColor: "text-purple-600" },
+      { label: "Review Management", href: "/product/reviews/", icon: MessageSquare, iconColor: "text-pink-600" },
+      { label: "Alerts", href: "/product/alerts/", icon: AlertTriangle, iconColor: "text-rose-600" },
+      { label: "Driver App", href: "/product/driver-app/", icon: Smartphone, iconColor: "text-cyan-700" },
     ],
   },
   {
     title: "Rentals",
     links: [
-      { label: "Overview", href: "/product/rentals", icon: KeyRound, iconColor: "text-rose-500" },
-      { label: "Availability", href: "/product/rentals#availability", icon: CalendarCheck, iconColor: "text-emerald-500" },
-      { label: "Reservations", href: "/product/rentals#reservations", icon: Calendar, iconColor: "text-blue-500" },
-      { label: "Handover", href: "/product/rentals#handover", icon: Hand, iconColor: "text-amber-500" },
-      { label: "Return & Inspection", href: "/product/rentals#return", icon: ClipboardCheck, iconColor: "text-teal-500" },
-      { label: "Payment Recording", href: "/product/rentals#payments", icon: Wallet, iconColor: "text-violet-500" },
+      { label: "Overview", href: "/product/rentals/", icon: KeyRound, iconColor: "text-rose-500" },
+      { label: "Availability", href: "/product/rentals/#availability", icon: CalendarCheck, iconColor: "text-emerald-500" },
+      { label: "Reservations", href: "/product/rentals/#reservations", icon: Calendar, iconColor: "text-blue-500" },
+      { label: "Handover", href: "/product/rentals/#handover", icon: Hand, iconColor: "text-amber-500" },
+      { label: "Return & Inspection", href: "/product/rentals/#return", icon: ClipboardCheck, iconColor: "text-teal-500" },
+      { label: "Payment Recording", href: "/product/rentals/#payments", icon: Wallet, iconColor: "text-violet-500" },
     ],
   },
 ]
 
 const solutionLinks: NavLinkItem[] = [
-  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets", icon: Car, iconColor: "text-blue-600" },
-  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators", icon: Compass, iconColor: "text-emerald-600" },
-  { label: "Corporate Transport", href: "/solutions/corporate-transport", icon: Building2, iconColor: "text-violet-600" },
-  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals", icon: KeyRound, iconColor: "text-rose-600" },
+  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets/", icon: Car, iconColor: "text-blue-600" },
+  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators/", icon: Compass, iconColor: "text-emerald-600" },
+  { label: "Corporate Transport", href: "/solutions/corporate-transport/", icon: Building2, iconColor: "text-violet-600" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals/", icon: KeyRound, iconColor: "text-rose-600" },
 ]
 
 const flatProductLinks = productColumns.flatMap((col) => col.links)
@@ -226,7 +228,7 @@ const Navbar = () => {
               onMouseLeave={() => setProductDropdown(false)}
             >
               <Link
-                to="/product"
+                to="/product/"
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                   isDarkNav
                     ? "text-slate-200 hover:text-white hover:bg-white/10"
@@ -279,7 +281,7 @@ const Navbar = () => {
                     </div>
                     <div className="mt-4 border-t border-slate-100 pt-3">
                       <Link
-                        to="/product"
+                        to="/product/"
                         onClick={() => setProductDropdown(false)}
                         className="inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
                       >
@@ -353,14 +355,14 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/pricing"
+              to="/pricing/"
               className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
             >
               Pricing
             </Link>
 
             <Link
-              to="/faq"
+              to="/faq/"
               className="rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
             >
               FAQ
@@ -375,7 +377,7 @@ const Navbar = () => {
               Sign in
             </a>
             <Link
-              to="/contact"
+              to="/contact/"
               className="flex items-center rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-blue-600 sm:text-sm"
             >
               Book Demo
@@ -418,14 +420,14 @@ const Navbar = () => {
                 </div>
                 <div className="mb-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                   <Link
-                    to="/product"
+                    to="/product/"
                     onClick={() => setMobileOpen(false)}
                     className="flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
                   >
                     <LayoutGrid className="h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" />
                     <span className="leading-snug">Platform overview</span>
                   </Link>
-                  {flatProductLinks.slice(0, 9).map((l) => {
+                  {flatProductLinks.map((l) => {
                     const Icon = l.icon
                     return (
                       <Link
@@ -467,8 +469,8 @@ const Navbar = () => {
                 <div className="mb-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                   {[
                     { label: "How It Works", href: "/#how-it-works" },
-                    { label: "Pricing", href: "/pricing" },
-                    { label: "FAQ", href: "/faq" },
+                    { label: "Pricing", href: "/pricing/" },
+                    { label: "FAQ", href: "/faq/" },
                   ].map((l) => (
                     <Link
                       key={l.href}
@@ -493,7 +495,7 @@ const Navbar = () => {
                     Sign in
                   </a>
                   <Link
-                    to="/contact"
+                    to="/contact/"
                     onClick={() => setMobileOpen(false)}
                     className="rounded-xl border border-slate-200 py-3 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50"
                   >

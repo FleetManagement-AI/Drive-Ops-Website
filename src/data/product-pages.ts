@@ -1,4 +1,9 @@
+import { priorityProducts, reviewProduct } from "./priority-content"
+
 export type ProductPageContent = {
+  primaryKeyword?: string
+  supportingKeywords?: string[]
+  faqs?: { q: string; a: string }[]
   slug: string
   title: string
   eyebrow: string
@@ -17,10 +22,10 @@ export type ProductPageContent = {
 export const PRODUCT_HUB = {
   title: "One platform for fleet operations",
   description:
-    "Explore how DriveOps connects vehicles, drivers, trips, live fleet, fleet care, customers, and self-drive rentals—without claiming features that are not productized yet.",
+    "Explore fleet operations software for trips, drivers, live tracking, compliance management, fuel logs, customer reviews and self-drive rentals.",
 }
 
-export const PRODUCT_PAGES: ProductPageContent[] = [
+const BASE_PRODUCT_PAGES: ProductPageContent[] = [
   {
     slug: "vehicles",
     group: "fleet",
@@ -365,6 +370,11 @@ export const PRODUCT_PAGES: ProductPageContent[] = [
     seoDescription:
       "Manage self-drive availability, reservations, handover, return, and manual payment recording with DriveOps.",
   },
+]
+
+export const PRODUCT_PAGES: ProductPageContent[] = [
+  ...BASE_PRODUCT_PAGES.map(page => ({ ...page, ...priorityProducts[page.slug] })),
+  reviewProduct,
 ]
 
 export function getProductPage(slug: string): ProductPageContent | undefined {

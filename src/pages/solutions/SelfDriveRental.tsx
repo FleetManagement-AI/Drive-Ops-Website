@@ -94,7 +94,7 @@ export default function SelfDriveRental() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="bg-white border border-slate-200 text-slate-700 font-semibold px-6 py-3.5 rounded-xl hover:bg-slate-50 transition-all shadow-xs"
               >
                 Book Rental Demo
@@ -126,7 +126,7 @@ export default function SelfDriveRental() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Hold, confirm, handover, return, and settle self-drive bookings with availability awareness across your fleet.
               </p>
-              <Link to="/features/vehicle-management" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/vehicle-management/" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore vehicle registry <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -139,7 +139,7 @@ export default function SelfDriveRental() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Keep vehicle compliance documents vaulted with expiry alerts. OCR is optional and off by default. Not a contracts or inspections product.
               </p>
-              <Link to="/features/fleet-compliance" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/fleet-compliance/" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore compliance vault <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -152,7 +152,7 @@ export default function SelfDriveRental() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Record rental payments as cash, UPI, card, bank transfer, or other. No online checkout gateway or automated invoicing.
               </p>
-              <Link to="/features/fleet-expenses" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/fleet-expenses/" className="text-purple-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore fuel & cost visibility <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -169,16 +169,16 @@ export default function SelfDriveRental() {
               Learn how DriveOps powers diverse transportation workflows across India.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/solutions/passenger-transport" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/solutions/passenger-transport/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Passenger Transport →
               </Link>
-              <Link to="/solutions/goods-transport" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/solutions/goods-transport/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Goods Transport →
               </Link>
-              <Link to="/features/vehicle-maintenance" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/vehicle-maintenance/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Fleet Maintenance →
               </Link>
-              <Link to="/fleet-management-software-india" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+              <Link to="/fleet-management-software-india/" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                 Fleet Management India →
               </Link>
             </div>

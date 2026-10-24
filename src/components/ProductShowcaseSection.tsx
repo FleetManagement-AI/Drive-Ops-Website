@@ -65,7 +65,7 @@ export default function ProductShowcaseSection() {
             </p>
 
             <Link
-              to="/product/driver-app"
+              to="/product/driver-app/"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-500"
             >
               Explore Driver App

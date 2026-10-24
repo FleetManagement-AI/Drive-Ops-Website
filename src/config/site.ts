@@ -4,7 +4,7 @@ export const siteConfig = {
   siteUrl: (typeof process !== "undefined" && process.env?.VITE_SITE_URL) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_SITE_URL) || "https://driveops.info.chatserve.in",
   title: "DriveOps | Manage & Operate Your Fleet from One Platform",
   description:
-    "Plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance, WhatsApp communication, and self-drive rentals—with DriveOps.",
+    "Plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance documents, WhatsApp communication, customer reviews, and self-drive rentals—with DriveOps.",
   ogImage: "/images/hero/DriveOps Live Fleet Management Dashboard.webp",
   contact: {
     telephone: "+91 98461 99883",

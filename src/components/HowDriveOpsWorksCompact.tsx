@@ -161,7 +161,7 @@ export default function HowDriveOpsWorksCompact() {
 
         <div className="mt-8 flex justify-center">
           <Link
-            to="/product/trips-dispatch"
+            to="/product/trips-dispatch/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
           >
             Explore trips &amp; dispatch

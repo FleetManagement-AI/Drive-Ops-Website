@@ -30,8 +30,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install browser for static export
+        run: npx playwright install --with-deps chromium
+
+      - name: Test
+        run: npm test
+
       - name: Build project
         run: npm run build
+
+      - name: Verify marketing pages in browser
+        run: npm run test:marketing
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3

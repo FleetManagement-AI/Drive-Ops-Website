@@ -2,6 +2,7 @@ import { Link, useParams, Navigate } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
+import NotFound from "./NotFound"
 import SEO from "@/components/SEO"
 import ProductPageLayout from "@/components/ProductPageLayout"
 import {
@@ -53,7 +54,7 @@ export function ProductHubPage() {
                     {pages.map((page) => (
                       <Link
                         key={page.slug}
-                        to={`/product/${page.slug}`}
+                        to={`/product/${page.slug}/`}
                         className="group rounded-xl border border-slate-200 bg-white p-5 transition-colors hover:border-blue-200 hover:bg-blue-50/30"
                       >
                         <h3 className="mb-1 text-sm font-semibold text-slate-900 group-hover:text-blue-700">
@@ -82,8 +83,8 @@ export function ProductHubPage() {
 
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  if (!slug) return <Navigate to="/product" replace />
+  if (!slug) return <Navigate to="/product/" replace />
   const page = getProductPage(slug)
-  if (!page) return <Navigate to="/product" replace />
+  if (!page) return <NotFound />
   return <ProductPageLayout page={page} />
 }

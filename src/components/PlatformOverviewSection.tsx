@@ -359,7 +359,7 @@ export default function PlatformOverviewSection() {
             Everything connected. One operating system.
           </p>
           <Link
-            to="/product"
+            to="/product/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
           >
             Explore the platform

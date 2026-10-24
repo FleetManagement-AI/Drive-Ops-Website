@@ -70,7 +70,7 @@ export default function LiveFleetSection() {
 
             <div className="flex flex-wrap gap-3">
               <Link
-                to="/fleet-map"
+                to="/fleet-map/"
                 className="text-showcase-cta inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-colors"
               >
                 Preview fleet map

@@ -100,7 +100,7 @@ export default function PassengerTransport() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="bg-white border border-slate-200 text-slate-700 font-semibold px-6 py-3.5 rounded-xl hover:bg-slate-50 transition-all shadow-xs"
               >
                 Book a Live Demo
@@ -132,7 +132,7 @@ export default function PassengerTransport() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Allocate trips with candidate and conflict checks. Drivers accept or reject on the Driver App or WhatsApp. No nearest-vehicle auto-dispatch claim.
               </p>
-              <Link to="/features/taxi-dispatch" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/taxi-dispatch/" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore taxi dispatch <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -145,7 +145,7 @@ export default function PassengerTransport() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Manage driver records, shifts/duty, and license documents. Drivers use the app for GPS, navigation, trip sheets, fuel, and issues (en/ml/hi).
               </p>
-              <Link to="/features/driver-management" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/driver-management/" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore driver management <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -158,7 +158,7 @@ export default function PassengerTransport() {
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
                 Request feedback via WhatsApp after trips and review inbound replies in the ops inbox—not Google Business autopilot.
               </p>
-              <Link to="/features/whatsapp-review-management" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
+              <Link to="/features/whatsapp-review-management/" className="text-blue-600 text-sm font-semibold inline-flex items-center gap-1 hover:underline">
                 Explore review collection <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -175,16 +175,16 @@ export default function PassengerTransport() {
               Passenger transport connects to vehicle registries, live Driver App tracking, maintenance, and day-to-day operational summaries.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/features/fleet-tracking" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/fleet-tracking/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Explore vehicle tracking →
               </Link>
-              <Link to="/features/vehicle-maintenance" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/vehicle-maintenance/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Maintenance tracking →
               </Link>
-              <Link to="/features/fleet-profitability" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
+              <Link to="/features/fleet-profitability/" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
                 Operational summaries →
               </Link>
-              <Link to="/fleet-management-software-india" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+              <Link to="/fleet-management-software-india/" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                 Fleet management India →
               </Link>
             </div>

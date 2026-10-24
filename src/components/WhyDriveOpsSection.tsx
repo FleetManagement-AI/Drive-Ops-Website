@@ -380,7 +380,7 @@ function ConversionCTA({
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="text-showcase-cta inline-flex items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-5 py-2.5 text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-50"
               >
                 Book a Demo

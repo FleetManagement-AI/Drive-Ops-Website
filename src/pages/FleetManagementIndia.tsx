@@ -1,3 +1,5 @@
+import RelatedOperations from "@/components/RelatedOperations"
+import FAQList from "@/components/FAQList"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
@@ -18,8 +20,6 @@ import {
   ChevronDown,
   Building2
 } from "lucide-react"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 
 const faqs = [
   {
@@ -80,7 +80,6 @@ const indiaModules = [
 ]
 
 export default function FleetManagementIndia() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -142,7 +141,7 @@ export default function FleetManagementIndia() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/pricing"
+                to="/pricing/"
                 className="bg-white border border-slate-200 text-slate-700 font-semibold px-6 py-3.5 rounded-xl hover:bg-slate-50 transition-all shadow-xs"
               >
                 View Plans & Pricing
@@ -220,7 +219,7 @@ export default function FleetManagementIndia() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Trip dispatch with accept/reject, digital trip sheets, driver duty, live tracking links, and WhatsApp review requests into the ops inbox.
                 </p>
-                <Link to="/solutions/taxi-cab-fleets" className="text-blue-600 text-sm font-semibold hover:underline">
+                <Link to="/solutions/taxi-cab-fleets/" className="text-blue-600 text-sm font-semibold hover:underline">
                   See passenger transport features →
                 </Link>
               </div>
@@ -233,7 +232,7 @@ export default function FleetManagementIndia() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Multi-stop trips, live Driver App tracking, trip sheets, fuel logs, and maintenance due scans for commercial vehicles.
                 </p>
-                <Link to="/solutions/goods-transport" className="text-emerald-600 text-sm font-semibold hover:underline">
+                <Link to="/solutions/goods-transport/" className="text-emerald-600 text-sm font-semibold hover:underline">
                   See goods transport features →
                 </Link>
               </div>
@@ -246,7 +245,7 @@ export default function FleetManagementIndia() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Self-drive rental lifecycle from hold to settle, with manual payment recording (cash, UPI, card, bank transfer, or other).
                 </p>
-                <Link to="/solutions/self-drive-rentals" className="text-purple-600 text-sm font-semibold hover:underline">
+                <Link to="/solutions/self-drive-rentals/" className="text-purple-600 text-sm font-semibold hover:underline">
                   See rental management features →
                 </Link>
               </div>
@@ -272,7 +271,7 @@ export default function FleetManagementIndia() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all"
               >
                 Contact Indian Sales Team
@@ -293,41 +292,10 @@ export default function FleetManagementIndia() {
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="border border-slate-200/90 rounded-xl bg-white overflow-hidden shadow-xs"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 focus:outline-none"
-                  aria-expanded={openFaq === idx}
-                >
-                  <span className="font-heading font-semibold text-slate-900 text-sm sm:text-base">
-                    {faq.q}
-                  </span>
-                  <div className={`w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform ${openFaq === idx ? "rotate-180 bg-blue-50 text-blue-600" : ""}`}>
-                    <ChevronDown size={16} />
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-4 sm:px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+            <FAQList faqs={faqs} />
           </div>
         </section>
+        <RelatedOperations />
       </main>
 
       <Footer />

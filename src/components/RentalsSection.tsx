@@ -176,7 +176,7 @@ export default function RentalsSection() {
               className="mt-8 hidden lg:block"
             >
               <Link
-                to="/solutions/self-drive-rentals"
+                to="/solutions/self-drive-rentals/"
                 className="text-showcase-cta inline-flex items-center gap-2 text-blue-600 hover:text-blue-700"
               >
                 Explore rental solution
@@ -233,7 +233,7 @@ export default function RentalsSection() {
               className="grid grid-cols-1 gap-5 sm:grid-cols-2"
             />
             <Link
-              to="/solutions/self-drive-rentals"
+              to="/solutions/self-drive-rentals/"
               className="text-showcase-cta mt-6 inline-flex items-center gap-2 text-blue-600 hover:text-blue-700"
             >
               Explore rental solution

@@ -1,3 +1,7 @@
+import { legacyRoutes, publicRoutes } from "@/config/routes";
+import { canonicalPath } from "@/config/paths";
+import { trackCta } from "@/lib/analytics";
+import SEO from "@/components/SEO";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
@@ -32,13 +36,28 @@ const AnalyticsTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (document.documentElement.dataset.exporting) return;
     if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
       (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("config", "G-49093788B0", {
         page_path: location.pathname + location.search,
+        send_page_view: true,
       });
     }
   }, [location]);
 
+  return null;
+};
+
+const RouteMetadata = () => {
+  const { pathname } = useLocation();
+  const path = canonicalPath(pathname);
+  useEffect(() => {
+    document.addEventListener("click", trackCta);
+    return () => document.removeEventListener("click", trackCta);
+  }, []);
+  if (publicRoutes.some(route => route.path === path && !route.indexable)) {
+    return <SEO title="Fleet Map Preview | DriveOps" description="Explore the DriveOps fleet map demonstration." canonicalUrl={path} noIndex />;
+  }
   return null;
 };
 
@@ -55,6 +74,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AnalyticsTracker />
+        <RouteMetadata />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -68,9 +88,9 @@ const App = () => (
             <Route path="/solutions/corporate-transport" element={<CorporateTransport />} />
             <Route path="/solutions/self-drive-rentals" element={<SelfDriveRentals />} />
 
-            {/* SEO redirects from legacy solution URLs */}
-            <Route path="/solutions/passenger-transport" element={<Navigate to="/solutions/taxi-cab-fleets" replace />} />
-            <Route path="/solutions/self-drive-rental" element={<Navigate to="/solutions/self-drive-rentals" replace />} />
+            {Object.entries(legacyRoutes).map(([from, to]) => (
+              <Route key={from} path={from} element={<Navigate to={to} replace />} />
+            ))}
 
             {/* Preserved SEO routes */}
             <Route path="/solutions/goods-transport" element={<GoodsTransport />} />

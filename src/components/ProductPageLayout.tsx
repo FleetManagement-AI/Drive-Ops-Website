@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { ArrowRight, Check, ChevronDown } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { ArrowRight, Check } from "lucide-react"
+import FAQList from "@/components/FAQList"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
@@ -14,14 +14,11 @@ type Props = {
 
 export default function ProductPageLayout({ page }: Props) {
   const location = useLocation()
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
   const related = page.relatedFeatureId
     ? featureContent[page.relatedFeatureId]
     : undefined
 
-  useEffect(() => {
-    setOpenFaq(0)
-  }, [page.slug])
+  const faqs = page.faqs || related?.faqs || []
 
   useEffect(() => {
     if (location.hash) {
@@ -47,11 +44,11 @@ export default function ProductPageLayout({ page }: Props) {
           ? page.image
           : `https://driveops.info.chatserve.in${page.image}`,
       },
-      ...(related?.faqs?.length
+      ...(faqs.length
         ? [
             {
               "@type": "FAQPage",
-              mainEntity: related.faqs.map((faq) => ({
+              mainEntity: faqs.map((faq) => ({
                 "@type": "Question",
                 name: faq.q,
                 acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -93,7 +90,7 @@ export default function ProductPageLayout({ page }: Props) {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
-                to="/contact"
+                to="/contact/"
                 className="inline-flex items-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:border-blue-300 hover:text-blue-600"
               >
                 Book a Demo
@@ -174,7 +171,7 @@ export default function ProductPageLayout({ page }: Props) {
           </section>
         )}
 
-        {related && (
+        {related && !page.faqs && (
           <section className="border-t border-slate-200/70 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
             <div className="container mx-auto max-w-5xl">
               <h2 className="font-heading mb-3 text-center text-xl font-bold text-slate-900 sm:text-2xl">
@@ -205,55 +202,33 @@ export default function ProductPageLayout({ page }: Props) {
           </section>
         )}
 
-        {related?.faqs && related.faqs.length > 0 && (
-          <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        {page.relatedFeatureId && (
+          <section className="px-4 py-8 text-center">
+            <Link className="font-semibold text-blue-700 underline" to={`/features/${page.relatedFeatureId}/`}>
+              Read the practical {page.title.toLowerCase()} guide
+            </Link>
+          </section>
+        )}
+        {faqs.length > 0 && (
+          <section className="px-4 py-12 sm:px-6">
             <div className="container mx-auto max-w-3xl">
-              <h2 className="font-heading mb-6 text-center text-xl font-bold text-slate-900 sm:text-2xl">
-                Frequently asked questions
-              </h2>
-              <div className="space-y-2">
-                {related.faqs.map((faq, idx) => {
-                  const open = openFaq === idx
-                  return (
-                    <div
-                      key={faq.q}
-                      className="overflow-hidden rounded-xl border border-slate-200 bg-white"
-                    >
-                      <button
-                        type="button"
-                        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left text-sm font-semibold text-slate-900"
-                        onClick={() => setOpenFaq(open ? null : idx)}
-                        aria-expanded={open}
-                      >
-                        {faq.q}
-                        <ChevronDown
-                          className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
-                        />
-                      </button>
-                      <AnimatePresence initial={false}>
-                        {open && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden"
-                          >
-                            <p className="border-t border-slate-100 px-4 py-3 text-sm leading-relaxed text-slate-600">
-                              {faq.a}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
+              <h2 className="mb-6 text-center text-2xl font-bold">Frequently asked questions</h2>
+              <FAQList faqs={faqs} />
             </div>
           </section>
         )}
+        <section className="border-t border-slate-200 px-4 py-8">
+          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-5 text-sm font-semibold text-blue-700">
+            <Link to="/product/compliance/">Compliance management</Link>
+            <Link to="/product/fuel/">Fuel logs</Link>
+            <Link to="/product/reviews/">Review management</Link>
+            <Link to="/product/maintenance/">Maintenance</Link>
+            <Link to="/pricing/">Compare plans</Link>
+          </div>
+        </section>
 
         <section className="border-t border-slate-200/70 bg-slate-950 px-4 py-14 text-center text-white sm:px-6">
-          <h2 className="font-heading mb-3 text-2xl font-bold">Ready to try DriveOps?</h2>
+          <h2 className="font-heading mb-3 text-2xl font-bold text-white">Ready to try DriveOps?</h2>
           <p className="mx-auto mb-6 max-w-xl text-sm text-slate-400">
             Start a free trial or book a demo with the sales team.
           </p>
@@ -266,7 +241,7 @@ export default function ProductPageLayout({ page }: Props) {
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
-              to="/product"
+              to="/product/"
               className="inline-flex items-center rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-slate-900"
             >
               Back to Product

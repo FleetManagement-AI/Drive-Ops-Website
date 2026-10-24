@@ -52,7 +52,7 @@ const CAPABILITIES: Capability[] = [
   },
   {
     title: "Compliance",
-    description: "Vault and renewals—not OCR autopilot.",
+    description: "Keep documents organized and follow up on expiry alerts.",
     icon: ShieldCheck,
     iconBg: "bg-emerald-100",
     iconColor: "text-emerald-700",
@@ -90,7 +90,7 @@ export default function FleetCareTeaserSection() {
           <div>
             <p className="mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
               Fuel records, maintenance jobs, document vaulting, and expiry alerts—so
-              vehicles stay ready without predictive-maintenance or OCR claims.
+              your team can plan follow-up and keep vehicles ready.
             </p>
 
             <ul className="mb-6 space-y-3">
@@ -118,19 +118,20 @@ export default function FleetCareTeaserSection() {
 
             <div className="flex flex-wrap items-center gap-4">
               <Link
-                to="/product/maintenance"
+                to="/product/maintenance/"
                 className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-500"
               >
                 Explore Fleet Care
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
-                to="/product/compliance"
+                to="/product/compliance/"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700"
               >
                 <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                Compliance vault
+                Compliance management
               </Link>
+              <Link to="/product/fuel/" className="text-sm font-semibold text-blue-600 hover:text-blue-700">Explore fuel logs →</Link>
             </div>
           </div>
         </div>

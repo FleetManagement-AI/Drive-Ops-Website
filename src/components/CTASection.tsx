@@ -34,7 +34,7 @@ export default function CTASection() {
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
           </a>
           <Link
-            to="/contact"
+            to="/contact/"
             className="text-showcase-cta w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Mail className="w-4 h-4 text-slate-400" />

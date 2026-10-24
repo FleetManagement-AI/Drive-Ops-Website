@@ -5,28 +5,30 @@ import { Link } from "react-router-dom"
 import { siteConfig } from "@/config/site"
 
 const productLinks = [
-  { label: "Platform overview", href: "/product" },
-  { label: "Trips & Dispatch", href: "/product/trips-dispatch" },
-  { label: "Driver App", href: "/product/driver-app" },
-  { label: "Live Fleet", href: "/product/live-fleet" },
-  { label: "Compliance", href: "/product/compliance" },
-  { label: "Fleet Care", href: "/product/maintenance" },
-  { label: "Self-Drive Rentals", href: "/product/rentals" },
+  { label: "Platform overview", href: "/product/" },
+  { label: "Trips & Dispatch", href: "/product/trips-dispatch/" },
+  { label: "Driver App", href: "/product/driver-app/" },
+  { label: "Live Fleet", href: "/product/live-fleet/" },
+  { label: "Fuel Logs", href: "/product/fuel/" },
+  { label: "Review Management", href: "/product/reviews/" },
+  { label: "Compliance Management", href: "/product/compliance/" },
+  { label: "Fleet Care", href: "/product/maintenance/" },
+  { label: "Self-Drive Rentals", href: "/product/rentals/" },
 ]
 
 const solutionLinks = [
-  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets" },
-  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators" },
-  { label: "Corporate Transport", href: "/solutions/corporate-transport" },
-  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals" },
-  { label: "Fleet Software India", href: "/fleet-management-software-india" },
+  { label: "Taxi & Cab Fleets", href: "/solutions/taxi-cab-fleets/" },
+  { label: "Travel & Tour Operators", href: "/solutions/travel-tour-operators/" },
+  { label: "Corporate Transport", href: "/solutions/corporate-transport/" },
+  { label: "Self-Drive Rentals", href: "/solutions/self-drive-rentals/" },
+  { label: "Fleet Software India", href: "/fleet-management-software-india/" },
 ]
 
 const companyLinks = [
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Pricing Plans", href: "/pricing" },
-  { label: "Frequently Asked Questions", href: "/faq" },
-  { label: "Contact", href: "/contact" },
+  { label: "Pricing Plans", href: "/pricing/" },
+  { label: "Frequently Asked Questions", href: "/faq/" },
+  { label: "Contact", href: "/contact/" },
 ]
 
 function toWhatsAppUrl(telephone: string) {
@@ -99,7 +101,7 @@ export default function Footer() {
                 <FaLinkedin size={16} aria-hidden="true" />
               </a> */}
               {/* <Link
-                to="/contact"
+                to="/contact/"
                 aria-label="Contact DriveOps"
                 className={iconButtonClass}
               >
@@ -218,8 +220,8 @@ export default function Footer() {
             <span>WhatsApp powered by ChatServe Solutions</span>
           </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-5">
-            <Link to="/contact" className="hover:text-slate-300 transition-colors">Support</Link>
-            <Link to="/pricing" className="hover:text-slate-300 transition-colors">Pricing</Link>
+            <Link to="/contact/" className="hover:text-slate-300 transition-colors">Support</Link>
+            <Link to="/pricing/" className="hover:text-slate-300 transition-colors">Pricing</Link>
             <a
               href="https://driveops.chatserve.in/signup"
               className="text-blue-400 font-semibold hover:text-blue-300 transition-colors"

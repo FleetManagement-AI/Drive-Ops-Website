@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react"
-import { motion, useInView, AnimatePresence } from "framer-motion"
-import { ChevronDown, HelpCircle, Mail } from "lucide-react"
+import FAQList from "@/components/FAQList"
+import React, { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { HelpCircle, Mail } from "lucide-react"
 
 export type HomepageFaq = {
   q: string
@@ -61,7 +62,6 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
 export default function FAQSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
     <section id="faq" className="section-showcase bg-white border-b border-slate-200/70 relative overflow-hidden" ref={ref}>
@@ -80,57 +80,11 @@ export default function FAQSection() {
             Straight answers about <span className="gradient-text">what DriveOps does today.</span>
           </h2>
           <p className="text-showcase-desc mx-auto text-slate-600">
-            Grounded in the product as implemented—trips, dispatch, Driver App, live fleet, WhatsApp, rentals, and fleet care.
+            Learn about trips, dispatch, the Driver App, live tracking, compliance management, fuel logs and customer feedback.
           </p>
         </motion.div>
 
-        <div className="space-y-3.5">
-          {HOMEPAGE_FAQS.map((faq, idx) => {
-            const isOpen = openIndex === idx
-            return (
-              <motion.div
-                key={faq.q}
-                initial={{ opacity: 0, y: 12 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.35, delay: idx * 0.03 }}
-                className="border border-slate-200/90 rounded-2xl bg-white overflow-hidden shadow-2xs hover:border-blue-200 transition-colors"
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-heading font-bold text-sm sm:text-base text-slate-900 leading-snug">
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-blue-50 text-blue-600" : ""
-                    }`}
-                  >
-                    <ChevronDown size={15} />
-                  </div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 sm:px-6 pb-6 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            )
-          })}
-        </div>
+        <FAQList faqs={HOMEPAGE_FAQS} />
 
         <div className="mt-12 text-center p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
@@ -142,7 +96,7 @@ export default function FAQSection() {
             </p>
           </div>
           <a
-            href="/contact"
+            href="/contact/"
             className="px-4 py-2 bg-white border border-slate-200 hover:border-slate-300 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:text-blue-600 transition-all shrink-0 flex items-center gap-1.5"
           >
             <Mail className="w-3.5 h-3.5" />

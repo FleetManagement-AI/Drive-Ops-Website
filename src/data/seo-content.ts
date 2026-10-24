@@ -1,3 +1,5 @@
+import { priorityFeatures } from "./priority-content"
+
 export type FeatureContent = {
   keyword: string;
   title: string; // Meta Title
@@ -162,7 +164,7 @@ export const featureContent: Record<string, FeatureContent> = {
   },
   "fleet-profitability": {
     keyword: "Fleet Operational Summaries",
-    title: "Fleet Operational Visibility | DriveOps",
+    title: "Fleet Fuel & Maintenance Cost Visibility | DriveOps",
     description: "Day-to-day operational visibility from trips, fuel logs, and maintenance—not a vehicle P&L or advanced BI suite.",
     h1: "Operational Summaries That Matter Day-to-Day",
     h2: "See trip activity, fuel, and maintenance in context. Not a profitability engine or finance BI product.",
@@ -269,5 +271,6 @@ export const featureContent: Record<string, FeatureContent> = {
       { q: "Is OCR always on?", a: "No. OCR is optional/configurable and defaults off." },
       { q: "How are teams notified?", a: "Expiry scanning can trigger alerts, including WhatsApp compliance messages via ChatServe." }
     ]
-  }
+  },
+  ...priorityFeatures
 }
