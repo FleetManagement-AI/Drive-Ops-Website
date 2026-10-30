@@ -1,0 +1,7 @@
+---
+interface Props { name: string; alt: string; eager?: boolean; wide?: boolean; }
+const { name, alt, eager = false, wide = false } = Astro.props;
+const width = wide ? 1536 : 1200;
+const height = wide ? 864 : 800;
+---
+<img src={`/images/driveops/${name}.webp`} srcset={`/images/driveops/${name}-640.webp 640w, /images/driveops/${name}.webp ${width}w`} sizes={wide ? '(max-width: 800px) 100vw, 75vw' : '(max-width: 700px) 100vw, 50vw'} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />

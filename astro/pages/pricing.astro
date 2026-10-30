@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Pricing | DriveOps Fleet Operations" description="Discuss DriveOps pricing and a setup that fits your fleet size and operational workflows."><main id="main-content"><PageHero eyebrow="Pricing" title="Start with the workflows your fleet needs." description="Tell us about your fleet size, operation, and priorities. Our team will walk through the relevant capabilities and discuss pricing for your setup." /><section class="pricing-section"><div class="container pricing-grid"><div><p class="eyebrow">Build your operating picture</p><h2>One conversation.<br/>A practical starting point.</h2><p>Explore what your office and drivers need today, then decide where DriveOps fits.</p></div><div class="pricing-panel"><span class="plan-label">DRIVEOPS FOR YOUR FLEET</span><h3>Let’s find the right fit.</h3><ul>{['Trips, dispatch, and recurring schedules','Driver App and live fleet visibility','WhatsApp communication workflows','Fuel, maintenance, and document records','Self-drive rental operations'].map(item => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul><a class="button button-primary" href="/contact/">Book a demo ↗</a><p>Ask about capability availability, configuration, and onboarding for your operation.</p></div></div></section><CTA /></main></Base>
+<style>
+.pricing-section {
+  padding: var(--section-space) 0;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.pricing-grid h2 {
+  margin: 0.8rem 0 1.3rem;
+}
+.pricing-grid > div > p:not(.eyebrow) {
+  color: var(--muted);
+  max-width: 430px;
+}
+.pricing-panel {
+  padding: 2rem;
+  border-radius: var(--radius);
+  background: var(--tint);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.plan-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--brand);
+}
+.pricing-panel h3 {
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+.pricing-panel ul {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+.pricing-panel li {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.pricing-panel li span {
+  color: var(--brand);
+}
+.pricing-panel > p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 1rem 0 0;
+}
+@media (max-width: 750px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+</style>

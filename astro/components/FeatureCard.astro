@@ -1,0 +1,126 @@
+---
+import FleetImage from './FleetImage.astro';
+interface Props {
+  name: string;
+  title: string;
+  copy: string;
+  href: string;
+  alt: string;
+  expanded?: boolean;
+  documentStatuses?: boolean;
+}
+const { name, title, copy, href, alt, expanded = false, documentStatuses = false } = Astro.props;
+---
+<a class:list={['feature-card', { expanded, 'document-card': documentStatuses }]} href={href}>
+  <div class="card-art"><FleetImage name={name} alt={alt} /></div>
+  <h3>{title}<span aria-hidden="true">→</span></h3>
+  <p>{copy}</p>
+  {documentStatuses && <div class="document-status"><span>Valid</span><span>Approaching expiry</span><span>Expired</span></div>}
+</a>
+<style>
+.feature-card {
+  min-width: 0;
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: none;
+  transition:
+    transform var(--motion-fast),
+    border-color var(--motion-fast);
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+}
+.card-art {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--tint);
+}
+.card-art :global(img) {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  margin: 1rem 0 0.6rem;
+  letter-spacing: -0.035em;
+}
+h3 span {
+  color: var(--brand);
+}
+p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 0 0 0.4rem;
+}
+.expanded {
+  padding: 1rem;
+}
+.expanded h3 {
+  font-size: 1.2rem;
+}
+.expanded p {
+  font-size: 0.9rem;
+}
+.document-card .card-art :global(img) {
+  object-position: right;
+  transform: scale(1.12);
+}
+.document-status {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  font-size: 0.57rem;
+}
+.document-status span {
+  padding: 0.25rem 0.4rem;
+  border-radius: 5px;
+  background: #e7f6ee;
+  color: #126a42;
+}
+.document-status span:nth-child(2) {
+  background: #fff4dc;
+  color: #825600;
+}
+.document-status span:nth-child(3) {
+  background: #ffeded;
+  color: #a43333;
+}
+@media (max-width: 800px) {
+  .expanded {
+    padding: 0.7rem;
+  }
+  .expanded p {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 580px) {
+  .feature-card,
+  .expanded {
+    padding: 1rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  p,
+  .expanded p {
+    font-size: 0.9rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-card:hover {
+    transform: none;
+  }
+}
+</style>

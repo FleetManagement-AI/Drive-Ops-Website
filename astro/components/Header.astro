@@ -1,0 +1,215 @@
+---
+import { PRODUCT_PAGES } from '../../src/data/product-pages';
+const productGroups = [
+ {title:'Trips & drivers', slugs:['trips-dispatch','recurring-trips','trip-sheets','drivers','driver-app','rentals']},
+ {title:'Visibility & communication', slugs:['live-fleet','customers','notifications','reviews','analytics']},
+ {title:'Fleet care', slugs:['vehicles','fuel','maintenance','compliance','alerts']},
+];
+const home = Astro.url.pathname === '/';
+const solutions = [ ['taxi-cab-fleets', 'Taxi & cab fleets'], ['travel-tour-operators', 'Travel & tour operators'], ['corporate-transport', 'Corporate transport'], ['self-drive-rentals', 'Self-drive rentals'] ];
+---
+<header class:list={['site-header', { 'home-header': home }]} >
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="DriveOps home"><img src="/logo/driveops-logo-blue-edited.png" alt="" width="459" height="587" /><span>Drive<span>Ops</span><small>Manage & operate</small></span></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button>
+    <nav id="site-navigation" aria-label="Main navigation">
+      <details class="nav-disclosure"><summary>Product <span aria-hidden="true">⌄</span></summary><div class="nav-panel product-panel"><a class="nav-overview" href="/product/">Explore the platform <span aria-hidden="true">↗</span></a><div class="product-links">{productGroups.map(group => <div><span class="nav-group-title">{group.title}</span>{PRODUCT_PAGES.filter(p => group.slugs.includes(p.slug)).map(p => <a href={`/product/${p.slug}/`}>{p.title}</a>)}</div>)}</div></div></details>
+      <details class="nav-disclosure"><summary>Solutions <span aria-hidden="true">⌄</span></summary><div class="nav-panel">{solutions.map(([slug, title]) => <a href={`/solutions/${slug}/`}>{title}</a>)}</div></details>
+      <a class="nav-link" href="/pricing/">Pricing</a><a class="nav-link" href="/faq/">Resources</a>
+      <a class="nav-link login" href="https://driveops.chatserve.in/login">Log in</a><a class="button button-primary" href="/contact/">Book a demo <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const disclosures = Array.from(header?.querySelectorAll<HTMLDetailsElement>('.nav-disclosure') ?? []);
+  const closeMenus = () => disclosures.forEach(d => { d.open = false; d.querySelector('summary')?.setAttribute('aria-expanded', 'false'); });
+  disclosures.forEach(d => {
+    const summary = d.querySelector('summary');
+    summary?.setAttribute('aria-expanded', String(d.open));
+    d.addEventListener('toggle', () => { summary?.setAttribute('aria-expanded', String(d.open)); if (d.open) disclosures.filter(other => other !== d).forEach(other => { other.open = false; }); });
+  });
+  toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); header?.classList.toggle('mobile-open', open); if (!open) closeMenus(); });
+  const closeMobile = () => { toggle?.setAttribute('aria-expanded', 'false'); toggle?.setAttribute('aria-label', 'Open navigation'); header?.classList.remove('mobile-open'); };
+  document.addEventListener('click', e => { if (!header?.contains(e.target as Node)) { closeMenus(); closeMobile(); } });
+  header?.addEventListener('keydown', e => { if (e.key !== 'Escape') return; const open = disclosures.find(d => d.open); if (open) { closeMenus(); open.querySelector('summary')?.focus(); } else if (header.classList.contains('mobile-open')) { closeMobile(); toggle?.focus(); } });
+  header?.querySelectorAll('a').forEach(a => { if (a.pathname === window.location.pathname) a.setAttribute('aria-current', 'page'); a.addEventListener('click', () => { closeMenus(); closeMobile(); }); });
+  const desktop = matchMedia('(min-width: 900px)');
+  desktop.addEventListener('change', () => { closeMenus(); closeMobile(); });
+  header?.classList.add('enhanced');
+</script>
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.home-header {
+  border-bottom: 1px solid var(--line);
+}
+.home-header .header-inner {
+  width: min(1200px, calc(100% - 80px));
+}
+.header-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-right: auto;
+  flex-shrink: 0;
+  font: 600 1.25rem/1 var(--font-body);
+}
+.brand img {
+  width: 29px;
+  height: 38px;
+  object-fit: contain;
+}
+.brand > span > span {
+  color: var(--ink);
+}
+.brand small {
+  display: block;
+  color: var(--muted);
+  font: 600 0.6rem/1.5 var(--font-body);
+  letter-spacing: 0.045em;
+  margin-top: 0.25rem;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.nav-link {
+  padding-block: 0.8rem;
+}
+.nav-link:hover,
+.nav-link[aria-current] {
+  color: var(--brand);
+}
+summary {
+  list-style: none;
+  min-height: 44px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:hover,
+details[open] > summary {
+  color: var(--brand);
+}
+details {
+  position: relative;
+}
+.nav-panel {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  min-width: 280px;
+  background: var(--surface);
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px #0b142418;
+}
+.nav-panel a {
+  display: block;
+  padding: 0.65rem 0.8rem;
+  border-radius: 6px;
+}
+.nav-panel a:hover {
+  background: var(--tint);
+  color: var(--brand);
+}
+.product-panel {
+  width: min(760px, calc(100vw - 64px));
+  left: -160px;
+  right: auto;
+}
+.product-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-weight: 500;
+}
+.nav-group-title { display:block; padding:.8rem; font-size:.65rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+.nav-overview {
+  color: var(--brand);
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--muted);
+  border-radius: var(--control-radius);
+  min-width: 44px;
+  min-height: 44px;
+}
+.menu-toggle:hover {
+  background: var(--tint);
+}
+@media (max-width: 899px) {
+  .home-header .header-inner {
+    width: calc(100% - 40px);
+  }
+  .site-header:not(.enhanced) {
+    position: static;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 0;
+    padding-block: 14px;
+    min-height: 70px;
+  }
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    padding-block: 1rem;
+  }
+  .enhanced nav {
+    display: none;
+  }
+  .enhanced .menu-toggle {
+    display: block;
+  }
+  .mobile-open nav {
+    display: flex;
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+  }
+  .nav-panel,
+  .product-panel {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
+    margin-block: 0.25rem 0.75rem;
+    padding: 0.5rem;
+  }
+  summary,
+  .nav-link {
+    min-height: 44px;
+    padding: 0.6rem;
+  }
+  .product-links {
+    grid-template-columns: 1fr;
+  }
+  .login {
+    border-top: 1px solid var(--line);
+  }
+}
+</style>

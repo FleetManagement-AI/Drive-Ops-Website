@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkflowVisual from '../components/WorkflowVisual.astro';
+---
+<Base title="Fleet Map Preview | DriveOps" description="Explore the DriveOps live fleet visibility preview." noindex={true}><main><section class="map-page"><div class="container"><p class="eyebrow">Live fleet preview</p><h1>See the operating picture.</h1><p>View available location data from on-duty drivers uploading phone GPS through the Driver App, with supported tracking links for customers.</p><div class="map-card"><WorkflowVisual kind="live-fleet" /></div><a href="/contact/" class="button button-primary">Book a demo ↗</a></div></section></main></Base>
+<style>
+.map-page {
+  padding: 7rem 0;
+  background: var(--paper);
+}
+.map-page h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  margin: 1rem 0;
+}
+.map-page > div > p:not(.eyebrow) {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+.map-card {
+  max-width: 900px;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  margin: 2rem 0;
+  box-shadow: none;
+}
+.map-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>

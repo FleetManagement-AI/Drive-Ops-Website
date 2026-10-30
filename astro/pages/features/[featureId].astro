@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import { featureContent } from '../../../src/data/seo-content';
+export function getStaticPaths() { return Object.entries(featureContent).filter(([slug]) => slug !== 'customer-review-collection').map(([featureId, content]) => ({ params: { featureId }, props: { content } })); }
+const { content } = Astro.props;
+---
+<Base title={content.title} description={content.description} faqs={content.faqs}><main id="main-content"><PageHero eyebrow="Feature guide" title={content.h1} description={content.heroCopy} parent={{label:'Product',href:'/product/'}} /><section class="feature-section"><div class="container"><p class="eyebrow">How it helps</p><h2>{content.h2}</h2><div class="benefits">{content.benefits.map(benefit => <article><h3>{benefit.title}</h3><p>{benefit.desc}</p></article>)}</div></div></section><FAQ items={content.faqs} /><CTA /></main></Base>
+<style>.feature-section{padding:var(--section-space) 0}.feature-section h2{max-width:850px;margin:.8rem 0 2.5rem}.benefits{display:grid;grid-template-columns:1fr 1fr;gap:2rem 3rem}.benefits article{border-top:2px solid var(--brand);padding-top:1.4rem}.benefits h3{margin:0 0 .8rem}.benefits p{margin:0;color:var(--muted);max-width:500px}@media(max-width:650px){.benefits{grid-template-columns:1fr}}</style>

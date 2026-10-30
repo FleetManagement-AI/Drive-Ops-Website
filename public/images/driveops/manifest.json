@@ -1,0 +1,198 @@
+[
+  {
+    "name": "hero",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-4d9430dc-4fe9-4d78-8454-456ccf9d92a7.png",
+    "purpose": "Homepage hero",
+    "usage": ["Homepage hero", "India landing page", "Open Graph"],
+    "variants": [
+      {
+        "path": "/images/driveops/hero.webp",
+        "width": 1536,
+        "height": 864,
+        "format": "webp",
+        "bytes": 130046
+      },
+      {
+        "path": "/images/driveops/hero-640.webp",
+        "width": 640,
+        "height": 360,
+        "format": "webp",
+        "bytes": 34672
+      }
+    ]
+  },
+  {
+    "name": "trips",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-3d75fd9c-5149-49b6-9e58-240025a24edc.png",
+    "purpose": "Trip introduction",
+    "usage": ["Trip introduction", "Trip product pages"],
+    "variants": [
+      {
+        "path": "/images/driveops/trips.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 57156
+      },
+      {
+        "path": "/images/driveops/trips-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 23536
+      }
+    ]
+  },
+  {
+    "name": "driver",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-8e4bc6d1-c0ba-454a-9e90-5c7a51a47e99.png",
+    "purpose": "Driver App section",
+    "usage": ["Driver App section", "Driver product pages"],
+    "variants": [
+      {
+        "path": "/images/driveops/driver.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 71430
+      },
+      {
+        "path": "/images/driveops/driver-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 31464
+      }
+    ]
+  },
+  {
+    "name": "tracking",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-abc60572-46d1-41c3-b782-f83e0f3808b3.png",
+    "purpose": "Tracking section",
+    "usage": [
+      "Tracking section",
+      "Live fleet product page",
+      "Fleet map preview"
+    ],
+    "variants": [
+      {
+        "path": "/images/driveops/tracking.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 109756
+      },
+      {
+        "path": "/images/driveops/tracking-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 43122
+      }
+    ]
+  },
+  {
+    "name": "care",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-174b7b04-b605-4725-a5bf-d08b223bfe26.png",
+    "purpose": "Maintenance and compliance cards",
+    "usage": ["Maintenance and compliance cards", "Fleet care product pages"],
+    "variants": [
+      {
+        "path": "/images/driveops/care.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 50844
+      },
+      {
+        "path": "/images/driveops/care-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 21132
+      }
+    ]
+  },
+  {
+    "name": "fuel",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-5b5a5994-b013-48d5-80a5-b3efa072d54e.png",
+    "purpose": "Fuel Logs card",
+    "usage": ["Fuel Logs card", "Fuel product page"],
+    "variants": [
+      {
+        "path": "/images/driveops/fuel.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 93066
+      },
+      {
+        "path": "/images/driveops/fuel-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 39796
+      }
+    ]
+  },
+  {
+    "name": "rentals",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-29fa98ce-a121-445e-ad5c-9dacccaef2dd.png",
+    "purpose": "Rental section",
+    "usage": ["Rental section", "Rental product page"],
+    "variants": [
+      {
+        "path": "/images/driveops/rentals.webp",
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 95702
+      },
+      {
+        "path": "/images/driveops/rentals-640.webp",
+        "width": 640,
+        "height": 427,
+        "format": "webp",
+        "bytes": 37762
+      }
+    ]
+  },
+  {
+    "name": "overview",
+    "status": "generated-and-visually-inspected",
+    "generator": "built-in image_gen",
+    "source": "/home/adhwik/.codex/generated_images/01a18892-5047-75b2-85fa-c4417cd8b6d4/exec-9fd35853-2465-4720-8207-a115fce8b1b4.png",
+    "purpose": "Final CTA across public pages",
+    "usage": ["Final CTA across public pages", "Product overview"],
+    "variants": [
+      {
+        "path": "/images/driveops/overview.webp",
+        "width": 1536,
+        "height": 864,
+        "format": "webp",
+        "bytes": 141002
+      },
+      {
+        "path": "/images/driveops/overview-640.webp",
+        "width": 640,
+        "height": 360,
+        "format": "webp",
+        "bytes": 41776
+      }
+    ]
+  }
+]

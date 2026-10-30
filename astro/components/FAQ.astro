@@ -1,0 +1,6 @@
+---
+interface Props { items: { q: string; a: string }[]; title?: string; }
+const { items, title = 'A few useful answers.' } = Astro.props;
+---
+<section class="faq-section"><div class="container faq-grid"><div><p class="eyebrow">Good to know</p><h2>{title}</h2><a class="text-link" href="/contact/">Ask our team ↗</a></div><div>{items.map(item => <details><summary>{item.q}<span aria-hidden="true">+</span></summary><p>{item.a}</p></details>)}</div></div></section>
+<style>.faq-section{padding:var(--section-space) 0;background:var(--surface)}.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:5rem}.faq-grid h2{margin:.7rem 0 1rem}.faq-grid details{border-top:1px solid var(--line)}.faq-grid details:last-child{border-bottom:1px solid var(--line)}summary{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:64px;padding:1.2rem 0;list-style:none;font-weight:600;font-size:.95rem}summary::-webkit-details-marker{display:none}summary:hover{color:var(--brand)}summary span{color:var(--brand);font-size:1.3rem}details[open] summary span{transform:rotate(45deg)}details p{color:var(--muted);font-size:.93rem;margin:0 0 1.3rem}@media(max-width:750px){.faq-grid{grid-template-columns:1fr;gap:2rem}}</style>

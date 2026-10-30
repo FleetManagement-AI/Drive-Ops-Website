@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import { PRODUCT_PAGES } from '../../../src/data/product-pages';
+export function getStaticPaths() { return PRODUCT_PAGES.map(product => ({ params: { slug: product.slug }, props: { product } })); }
+const { product } = Astro.props;
+---
+<Base title={product.seoTitle} description={product.seoDescription} faqs={product.faqs}><main id="main-content"><PageHero eyebrow={product.title} title={product.title} description={product.description} image={product.image} imageAlt={product.imageAlt} parent={{label:'Product',href:'/product/'}} /><section class="capabilities"><div class="container capability-grid"><div><p class="eyebrow">Built into your day</p><h2>The details that keep the work moving.</h2><a class="text-link" href="/product/">View all capabilities ↗</a></div><ul>{product.capabilities.map(capability => <li><span aria-hidden="true">✓</span>{capability}</li>)}</ul></div></section>{product.workflow && <section class="workflow-section"><div class="container"><p class="eyebrow">The workflow</p><h2>A clear next step, all the way through.</h2><ol>{product.workflow.map(step => <li>{step}</li>)}</ol></div></section>}{product.anchors && <section class="anchor-section"><div class="container">{product.anchors.map(anchor => <article id={anchor.id}><h2>{anchor.title}</h2><p>{anchor.description}</p></article>)}</div></section>}{product.faqs && <FAQ items={product.faqs} />}<CTA /></main></Base>
+<style>
+.capabilities,
+.anchor-section {
+  padding: var(--section-space) 0;
+}
+.capability-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+.capability-grid h2 {
+  margin: 0.8rem 0 1.2rem;
+}
+.capability-grid ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.capability-grid li {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+.capability-grid li span {
+  color: var(--brand);
+  font-weight: 700;
+}
+.workflow-section {
+  padding: var(--section-space) 0;
+  background: var(--tint);
+  color: var(--ink);
+}
+.workflow-section .eyebrow {
+  color: var(--brand);
+}
+.workflow-section h2 {
+  max-width: 650px;
+  margin: 0.8rem 0 2.5rem;
+}
+.workflow-section ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  list-style-position: inside;
+  padding: 0;
+}
+.workflow-section li {
+  flex: 1 1 130px;
+  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.workflow-section li::marker {
+  color: var(--brand);
+  font-weight: 700;
+}
+.anchor-section article {
+  border-bottom: 1px solid var(--line);
+  padding: 1.5rem 0;
+  scroll-margin-top: 6rem;
+}
+.anchor-section h2 {
+  font-size: 1.5rem;
+}
+.anchor-section p {
+  color: var(--muted);
+  max-width: 700px;
+}
+@media (max-width: 750px) {
+  .capability-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+</style>

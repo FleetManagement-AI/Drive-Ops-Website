@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import CTA from '../../components/CTA.astro';
+import { solutions } from '../../data/solutions';
+import { PRODUCT_PAGES } from '../../../src/data/product-pages';
+export function getStaticPaths() { return solutions.map(solution => ({ params: { slug: solution.slug }, props: { solution } })); }
+const { solution } = Astro.props;
+---
+<Base title={`${solution.title} Software | DriveOps`} description={solution.description}><main id="main-content"><PageHero eyebrow={solution.title} title={solution.headline} description={solution.description} image={solution.image} imageAlt={`DriveOps workflow illustration for ${solution.title.toLowerCase()}`} /><Section eyebrow="A connected workflow" title="Make every handoff a little clearer."><ol class="solution-workflow">{solution.workflow.map(step => <li>{step}</li>)}</ol></Section><section class="solution-capabilities"><div class="container"><p class="eyebrow">Made for your operation</p><h2>The tools behind the workflow.</h2><div>{solution.features.map(slug => { const p = PRODUCT_PAGES.find(item => item.slug === slug)!; return <a href={`/product/${p.slug}/`}><h3>{p.title}</h3><p>{p.description}</p><span class="text-link">Explore capability ↗</span></a>; })}</div></div></section><CTA title="Let’s walk through your operation." /></main></Base>
+<style>.solution-workflow{padding:0;display:flex;flex-wrap:wrap;gap:1.5rem;list-style-position:inside}.solution-workflow li{flex:1 1 150px;padding:1.2rem;border-top:2px solid var(--brand);font-size:.9rem;background:var(--surface)}.solution-workflow li::marker{font-weight:700;color:var(--brand)}.solution-capabilities{background:var(--surface);padding:var(--section-space) 0}.solution-capabilities h2{margin:.8rem 0 2rem}.solution-capabilities .container>div{display:grid;grid-template-columns:1fr 1fr;gap:2rem 3rem}.solution-capabilities a{border-top:1px solid var(--line);padding-top:1.5rem}.solution-capabilities h3{margin:0 0 .75rem}.solution-capabilities a:hover h3{color:var(--brand)}.solution-capabilities p{color:var(--muted);font-size:.9rem}.solution-capabilities .text-link{font-size:.8rem}@media(max-width:650px){.solution-capabilities .container>div{grid-template-columns:1fr}}</style>

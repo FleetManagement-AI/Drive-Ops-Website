@@ -1,0 +1,8 @@
+---
+interface Props { title?: string; description?: string; }
+const { title = 'Let’s talk about your next working day.', description = 'Tell us what you run, how your team works, and where the day gets complicated. We’ll walk through how DriveOps could fit.' } = Astro.props;
+---
+<section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Your fleet. Your way of working.</p><h2>{title}</h2></div><div class="cta-close"><p>{description}</p><a class="button button-primary" href="/contact/">Book a demo <span aria-hidden="true">↗</span></a><span class="contact-hint">A conversation with the DriveOps team.</span></div></div></section>
+<style>
+.cta-section{background:var(--accent);padding:var(--section-space) 0;border-top:1px solid var(--line)}.cta-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:center}.cta-section .eyebrow{color:var(--ink)}h2{max-width:650px;font-size:clamp(3.2rem,5.5vw,5rem);margin:.8rem 0 0}p{color:var(--body);max-width:430px}.contact-hint{display:block;font-size:.75rem;margin-top:.8rem;color:var(--body)}.button{margin-top:.7rem}@media(max-width:750px){.cta-inner{grid-template-columns:1fr;gap:1.5rem}}
+</style>

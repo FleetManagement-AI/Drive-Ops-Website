@@ -1,0 +1,10 @@
+---
+import WorkflowVisual from './WorkflowVisual.astro';
+interface Props { eyebrow: string; title: string; description: string; image?: string; imageAlt?: string; parent?: { label: string; href: string }; }
+const { eyebrow, title, description, image, parent } = Astro.props;
+const slug = Astro.url.pathname.split('/').filter(Boolean).pop();
+---
+<section class:list={['page-hero', { 'has-media': image }]}><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span>{parent && <><a href={parent.href}>{parent.label}</a><span aria-hidden="true">/</span></>}<span aria-current="page">{eyebrow}</span></nav><div class="page-hero-grid"><div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p class="hero-description">{description}</p><div class="hero-actions"><a href="/contact/" class="button button-primary">Book a demo <span aria-hidden="true">↗</span></a><a href="/product/" class="text-link">Explore the platform →</a></div></div>{image && <WorkflowVisual kind={slug} title={eyebrow} />}</div></div></section>
+<style>
+.page-hero{padding:clamp(2rem,5vw,4rem) 0 var(--section-space);background:var(--paper);border-bottom:1px solid var(--line)}.page-hero-grid{display:grid;gap:3.5rem;align-items:center}.has-media .page-hero-grid{grid-template-columns:1.1fr 1fr}.page-hero h1{margin:.8rem 0 1.3rem;max-width:950px}.has-media h1{font-size:clamp(3.1rem,5vw,4.6rem)}.hero-description{color:var(--body);font-size:1.05rem;max-width:650px}.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1.25rem;margin-top:1.75rem}.hero-actions .text-link{font-size:.85rem}@media(max-width:800px){.has-media .page-hero-grid{grid-template-columns:1fr;gap:2rem}}
+</style>

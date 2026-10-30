@@ -1,0 +1,82 @@
+---
+const groups = [ { title: 'Platform', links: [['Trips & dispatch','/product/trips-dispatch/'],['Live fleet','/product/live-fleet/'],['Driver App','/product/driver-app/'],['Fleet care','/product/compliance/']] }, { title: 'Solutions', links: [['Taxi & cab fleets','/solutions/taxi-cab-fleets/'],['Travel & tours','/solutions/travel-tour-operators/'],['Corporate transport','/solutions/corporate-transport/'],['Self-drive rentals','/solutions/self-drive-rentals/']] }, { title: 'Get started', links: [['Pricing','/pricing/'],['FAQ','/faq/'],['Book a demo','/contact/'],['Log in','https://driveops.chatserve.in/login']] } ];
+---
+<footer class="footer"><div class="container footer-grid"><div><a class="footer-brand" href="/" aria-label="DriveOps home"><img src="/logo/driveops-logo-white-edited.png" alt="" width="48" height="40" />Drive<span>Ops</span></a><p>Bring the work behind every trip into one clear picture.</p><span class="location">Kochi, Kerala · India</span><div class="social-links"><a href="https://www.instagram.com/driveopsfleet">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61593885576574">Facebook ↗</a></div></div>{groups.map(group => <div><h2>{group.title}</h2>{group.links.map(([label,href]) => <a href={href}>{label}</a>)}</div>)}</div><div class="container footer-bottom"><span>© {new Date().getFullYear()} DriveOps</span><a href="mailto:driveopsfleet@gmail.com">driveopsfleet@gmail.com ↗</a></div></footer>
+<style>
+.footer {
+  background: var(--ink);
+  color: var(--on-dark);
+  padding: 4rem 0 1.5rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 3rem;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: 600 1.5rem var(--font-body);
+  color: var(--surface);
+}
+.footer-brand img {
+  width: 38px;
+  height: 36px;
+  object-fit: contain;
+}
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+.footer-brand span {
+  color: var(--surface);
+}
+.footer p {
+  max-width: 270px;
+  font-size: 0.95rem;
+}
+.location {
+  font-size: 0.8rem;
+}
+.footer h2 {
+  color: var(--surface);
+  font-family:var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  margin: 0 0 1rem;
+}
+.footer-grid > div > a:not(.footer-brand) {
+  display: block;
+  font-size: 0.85rem;
+  padding: 0.35rem 0;
+}
+.footer a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid #ffffff24;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+}
+@media (max-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-grid > div:first-child {
+    grid-column: 1/-1;
+  }
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+</style>

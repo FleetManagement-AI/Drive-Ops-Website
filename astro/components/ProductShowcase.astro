@@ -1,0 +1,32 @@
+---
+import WorkflowVisual from './WorkflowVisual.astro';
+const products = [
+  { name: 'Dispatch', kind: 'trips-dispatch', title: 'The right assignment. A clear response.', description: 'Plan a trip, check driver and vehicle availability, and allocate with confidence. Driver acceptance comes back into the same workflow.', image: '/images/features/Dispatch Command Center Mockup.webp', alt: 'DriveOps dispatch workspace illustration', href: '/product/trips-dispatch/', tags: ['Availability checks', 'Driver accept / reject', 'Trip lifecycle'] },
+  { name: 'Live fleet', kind: 'live-fleet', title: 'Know where the work is moving.', description: 'View active vehicles using Driver App GPS. Send secure tracking links so customers can follow their trip.', image: '/images/driveops/tracking.webp', alt: 'Illustration of the DriveOps live fleet view', href: '/product/live-fleet/', tags: ['Phone-based GPS', 'Operations map', 'Customer tracking links'] },
+  { name: 'Driver App', kind: 'driver-app', title: 'Keep the driver in the loop.', description: 'Duty, assignments, navigation, trip sheets, fuel, and vehicle issues—all in the app drivers use on the road.', image: '/images/driveops/driver.webp', alt: 'Illustration of DriveOps Driver App trip screens', href: '/product/driver-app/', tags: ['English · Hindi · Malayalam', 'Trip execution', 'Fuel & issues'] },
+  { name: 'Rentals', kind: 'rentals', title: 'See the whole rental, from hold to return.', description: 'Manage availability, reservations, handover, and return records. Keep manual payment records alongside the rental.', image: '/images/driveops/rentals.webp', alt: 'Illustration of DriveOps vehicle availability and rental reservations', href: '/product/rentals/', tags: ['Reservations', 'Handover & return', 'Payment recording'] },
+];
+---
+<section class="showcase-section" id="platform"><div class="container"><div class="showcase-heading"><div><p class="eyebrow">Explore your operating picture</p><h2>One platform.<br/>A connected day.</h2></div><p>Move between the office, the road, and the next booking without losing the context.</p></div><product-showcase><div class="product-tabs" aria-label="Product areas">{products.map((p,i) => <a href={`#showcase-${i}`} data-tab={i}>{p.name}</a>)}</div><div class="showcase-panels">{products.map((p,i) => <article id={`showcase-${i}`} class="showcase-panel"><div class="showcase-copy"><span class="area-label">{p.name}</span><h3>{p.title}</h3><p>{p.description}</p><ul>{p.tags.map(tag => <li>{tag}</li>)}</ul><a class="text-link" href={p.href}>Explore {p.name.toLowerCase()} <span aria-hidden="true">↗</span></a></div><div class="showcase-media"><WorkflowVisual kind={p.kind} /></div></article>)}</div></product-showcase></div></section>
+<script>
+  class ProductShowcase extends HTMLElement {
+    connectedCallback() {
+      const tablist = this.querySelector('.product-tabs')!;
+      const tabs = Array.from(this.querySelectorAll<HTMLAnchorElement>('[data-tab]'));
+      const panels = Array.from(this.querySelectorAll<HTMLElement>('.showcase-panel'));
+      const select = (selected: number, focus = false) => { tabs.forEach((tab,i) => { tab.setAttribute('aria-selected', String(i === selected)); tab.tabIndex = i === selected ? 0 : -1; panels[i].hidden = i !== selected; }); if (focus) tabs[selected].focus(); };
+      tablist.setAttribute('role','tablist');
+      tabs.forEach((tab,i) => {
+        tab.id = `product-tab-${i}`; tab.setAttribute('role','tab'); tab.setAttribute('aria-controls', panels[i].id);
+        panels[i].setAttribute('role','tabpanel'); panels[i].setAttribute('aria-labelledby',tab.id); panels[i].tabIndex = 0;
+        tab.addEventListener('click', e => { e.preventDefault(); select(i); });
+        tab.addEventListener('keydown', e => { let next: number | undefined; if (e.key === 'ArrowRight') next = (i + 1) % tabs.length; if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length; if (e.key === 'Home') next = 0; if (e.key === 'End') next = tabs.length - 1; if (next !== undefined) { e.preventDefault(); select(next,true); } });
+      });
+      select(0); this.classList.add('enhanced');
+    }
+  }
+  if (!customElements.get('product-showcase')) customElements.define('product-showcase', ProductShowcase);
+</script>
+<style>
+  .showcase-section{padding:var(--section-space) 0;background:var(--surface)}.showcase-heading{display:flex;justify-content:space-between;align-items:end;gap:3rem;margin-bottom:2rem}.showcase-heading h2{margin:.75rem 0 0}.showcase-heading>p{color:var(--muted);max-width:350px;font-size:1rem;margin-bottom:0}product-showcase{display:block}.product-tabs{display:flex;gap:2rem;border-bottom:1px solid var(--line);margin-bottom:2rem}.product-tabs a{display:block;min-height:48px;padding:.75rem .15rem;font-size:.9rem;font-weight:600;border-bottom:3px solid transparent}.product-tabs a:hover{color:var(--brand)}.product-tabs a[aria-selected=true]{color:var(--brand);border-color:var(--brand)}.showcase-panel{display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:3.5rem;padding-block:1rem}.showcase-copy h3{font-size:clamp(1.75rem,2.7vw,2.5rem);margin:1rem 0}.showcase-copy p{color:var(--muted);font-size:.95rem}.area-label{color:var(--brand);font-weight:600;font-size:.8rem}.showcase-copy ul{padding:0;list-style:none;margin:1.5rem 0}.showcase-copy li{font-size:.8rem;color:var(--muted);padding:.35rem 0}.showcase-copy li::before{content:'✓';color:var(--brand);margin-right:.6rem}.showcase-media{margin:0;min-width:0}.showcase-media img{width:100%;aspect-ratio:10 / 7;object-fit:contain;display:block}.showcase-media figcaption{color:var(--muted);font-size:.6rem;padding-top:.7rem}.enhanced .showcase-panels{min-height:460px}product-showcase:not(.enhanced) .showcase-panel+.showcase-panel{margin-top:2rem}@media(max-width:800px){.showcase-panel{grid-template-columns:1fr;gap:1.5rem}.showcase-heading{align-items:start;flex-direction:column;gap:.7rem}.product-tabs{gap:0;justify-content:space-between}.product-tabs a{font-size:.8rem}.enhanced .showcase-panels{min-height:770px}.showcase-copy h3{max-width:500px}.showcase-copy ul{margin:1rem 0}.showcase-media{padding:.75rem}}@media(max-width:420px){.enhanced .showcase-panels{min-height:740px}}
+</style>

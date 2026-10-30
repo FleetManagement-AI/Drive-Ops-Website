@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductShowcase from '../../components/ProductShowcase.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+import Section from '../../components/Section.astro';
+import { PRODUCT_PAGES, PRODUCT_GROUPS } from '../../../src/data/product-pages';
+---
+<Base title="Fleet Operations Platform | DriveOps" description="Explore DriveOps trips, dispatch, Driver App, live tracking, fleet care, customer communication and rentals."><main id="main-content"><PageHero eyebrow="The platform" title="Every moving part. One operating picture." description="Connect the people, vehicles, and decisions behind every trip. Explore the workflows your team can bring together in DriveOps." /><ProductShowcase />{PRODUCT_GROUPS.map(group => <Section eyebrow="Explore DriveOps" title={group.title} intro={group.description}><div class="product-grid">{PRODUCT_PAGES.filter(p => p.group === group.id).map(p => <a href={`/product/${p.slug}/`}><span class="product-entry-mark" aria-hidden="true">↗</span><h3>{p.title}</h3><p>{p.description}</p><span class="text-link">Explore capability ↗</span></a>)}</div></Section>)}<CTA /></main></Base>
+<style>
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.product-grid > a {
+  padding: 1.75rem 0;
+  background: transparent;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--motion-fast);
+}
+.product-grid > a:hover {
+  border-color: var(--brand);
+}
+.product-entry-mark { color:var(--brand); font-size:1.6rem; margin-bottom:1.5rem; }
+.product-art {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+}
+.product-grid h3 {
+  margin: 0 0 1rem;
+}
+.product-grid p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+.product-grid .text-link {
+  margin-top: auto;
+  font-size: 0.8rem;
+}
+@media (max-width: 850px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,5 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "astro/**/*", "src/vite-env.d.ts", "src/data/**/*", "src/config/paths.ts", "src/config/routes.ts", "src/lib/analytics.ts"],
+  "exclude": ["dist", "node_modules"]
+}

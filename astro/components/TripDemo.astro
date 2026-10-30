@@ -1,0 +1,81 @@
+---
+const steps = ['Scheduled', 'Assigned', 'Accepted', 'In progress', 'Completed'];
+---
+<trip-demo class="trip-demo" data-step="0" aria-label="Sample trip demonstration">
+  <div class="demo-toolbar"><span><i></i> OPERATIONS / TODAY</span><span class="demo-label">Interactive demo</span></div>
+  <div class="demo-body">
+    <div class="demo-map">
+      <div class="map-label">KOCHI <span>Driver App GPS</span></div>
+      <svg class="route-map" viewBox="0 0 500 300" role="img" aria-label="Illustrative route from Kochi airport to Fort Kochi">
+        <defs><pattern id="streets" width="70" height="55" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 0H70M0 0V55" fill="none" stroke="currentColor" stroke-width="8"/></pattern></defs>
+        <rect width="500" height="300" fill="url(#streets)" class="streets"/>
+        <path d="M0 0H80C130 55 60 95 115 145S60 230 95 300H0Z" class="water"/>
+        <path d="M380 55L350 110L285 105L250 165L178 175L150 240" class="route-base"/>
+        <path d="M380 55L350 110L285 105L250 165L178 175L150 240" class="route-progress" pathLength="100"/>
+        <circle cx="380" cy="55" r="8" class="route-end"/><circle cx="150" cy="240" r="8" class="route-end"/>
+        <g class="vehicle"><circle r="17"/><path d="M-5 7V-6Q0-11 5-6V7Z"/></g>
+        <text x="292" y="30">KOCHI AIRPORT</text><text x="170" y="266">FORT KOCHI</text>
+      </svg>
+      <div class="map-caption"><span class="status-dot"></span><span data-map-status>Trip planned · awaiting allocation</span></div>
+    </div>
+    <div class="trip-card"><div class="trip-card-top"><span>TRIP / DO-1042</span><span data-trip-status>Scheduled</span></div><h3>Airport transfer</h3><div class="trip-stops"><div><i></i><span>Kochi airport<small>Pickup · 09:30 AM</small></span></div><div><i></i><span>Fort Kochi<small>Drop-off</small></span></div></div><div class="driver-row"><span class="avatar">DR</span><div><b data-driver>Driver to be assigned</b><small data-driver-note>Availability check is next</small></div><span aria-hidden="true">↗</span></div><div class="driver-notice"><span class="phone-mark" aria-hidden="true">▯</span><div><b data-notice-title>Ready for dispatch</b><span data-notice>Check driver and vehicle availability.</span></div></div></div>
+  </div>
+  <div class="demo-controls"><div class="step-controls" aria-label="Trip stages">{steps.map((step,index) => <button type="button" data-index={index} aria-label={`Show ${step.toLowerCase()} stage`} aria-pressed={index === 0}><span>{index + 1}</span><b>{step}</b></button>)}</div><button type="button" class="playback" aria-label="Play trip demonstration" aria-pressed="false"><span data-play-label>Play</span><span aria-hidden="true">▶</span></button></div>
+  <p class="demo-disclaimer">Sample trip and illustrative route. No live customer or driver data.</p>
+</trip-demo>
+<script>
+  import { TripPlayback } from '../scripts/trip-playback';
+  class TripDemo extends HTMLElement {
+    cleanup?: () => void;
+    connectedCallback() {
+      const stages = [
+        ['Scheduled','Driver to be assigned','Availability check is next','Ready for dispatch','Check driver and vehicle availability.','Trip planned · awaiting allocation'],
+        ['Assigned','Demo driver','Demo vehicle · assigned','Assignment sent','The driver receives the trip in the app.','Allocation complete · awaiting response'],
+        ['Accepted','Demo driver','Demo vehicle · confirmed','Driver accepted','Dispatch can see the driver’s response.','Driver confirmed · ready for pickup'],
+        ['In progress','Demo driver','Demo vehicle · on trip','Trip started','The Driver App shares GPS while on duty.','On trip · Driver App GPS visibility'],
+        ['Completed','Demo driver','Demo vehicle · trip ended','Trip completed','The driver can submit the trip sheet.','Trip complete · ready for follow-up'],
+      ];
+      const fields = ['trip-status','driver','driver-note','notice-title','notice','map-status'];
+      const buttons = Array.from(this.querySelectorAll<HTMLButtonElement>('[data-index]'));
+      const playback = this.querySelector<HTMLButtonElement>('.playback')!;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      const state = new TripPlayback(stages.length, reduced.matches);
+      let timer: ReturnType<typeof setInterval> | undefined;
+      const render = () => {
+        this.dataset.step = String(state.index);
+        fields.forEach((field,index) => { const node = this.querySelector(`[data-${field}]`); if (node) node.textContent = stages[state.index][index]; });
+        buttons.forEach((button,index) => button.setAttribute('aria-pressed', String(index === state.index)));
+        playback.setAttribute('aria-pressed', String(state.playing));
+        playback.setAttribute('aria-label', state.playing ? 'Pause trip demonstration' : 'Play trip demonstration');
+        this.querySelector('[data-play-label]')!.textContent = state.playing ? 'Pause' : 'Play';
+        playback.lastElementChild!.textContent = state.playing ? 'Ⅱ' : '▶';
+      };
+      const sync = () => { if (timer) clearInterval(timer); timer = undefined; render(); if (state.running) timer = setInterval(() => { state.next(); render(); }, 3200); };
+      buttons.forEach((button,index) => button.addEventListener('click', () => { state.select(index); sync(); }));
+      playback.addEventListener('click', () => { state.toggle(); sync(); });
+      const visibility = () => { state.hidden = document.hidden; sync(); };
+      const motion = () => { state.setReducedMotion(reduced.matches); sync(); };
+      const observer = new IntersectionObserver(entries => { state.visible = entries[0].isIntersecting; sync(); }, { threshold: .2 });
+      observer.observe(this); document.addEventListener('visibilitychange', visibility); reduced.addEventListener('change', motion); visibility();
+      this.cleanup = () => { if (timer) clearInterval(timer); observer.disconnect(); document.removeEventListener('visibilitychange', visibility); reduced.removeEventListener('change', motion); };
+      this.classList.add('enhanced');
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get('trip-demo')) customElements.define('trip-demo', TripDemo);
+</script>
+<style>
+  .trip-demo{display:block;background:var(--ink);border:1px solid #ffffff20;border-radius:var(--radius);box-shadow:none;overflow:hidden;color:var(--surface)}
+  .demo-toolbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid #ffffff15;font-size:.6rem;letter-spacing:.13em;color:var(--on-dark)}
+  .demo-toolbar i{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:.5rem}.demo-label{letter-spacing:0;background:#ffffff0d;padding:.2rem .45rem;border-radius:4px}
+  .demo-body{padding:1rem;display:grid;grid-template-columns:1.05fr 1fr;gap:.8rem}.demo-map{background:var(--map-surface);border:1px solid #ffffff0a;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-width:0}.map-label{display:flex;justify-content:space-between;gap:.5rem;padding:1rem;font-size:.65rem;letter-spacing:.1em;color:var(--on-dark)}.map-label span{font-size:.55rem;letter-spacing:0}
+  .route-map{width:100%;height:auto;min-height:180px;flex:1}.streets{color:var(--map-street)}.water{fill:var(--map-water)}.route-base{stroke:var(--map-route);stroke-width:5;fill:none;stroke-linejoin:round;stroke-linecap:round}.route-progress{stroke:var(--accent);stroke-width:5;fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.5s ease}.route-end{fill:var(--ink);stroke:var(--accent);stroke-width:3}.route-map text{fill:var(--on-dark);font-size:10px;letter-spacing:1px;font-family:var(--font-body)}.vehicle{transform:translate(380px,55px);transition:transform 1.5s ease}.vehicle circle{fill:var(--brand);stroke:var(--surface);stroke-width:2}.vehicle path{fill:var(--surface)}
+  [data-step="1"] .route-progress,[data-step="2"] .route-progress{stroke-dashoffset:100}[data-step="3"] .route-progress{stroke-dashoffset:48}[data-step="4"] .route-progress{stroke-dashoffset:0}[data-step="3"] .vehicle{transform:translate(250px,165px)}[data-step="4"] .vehicle{transform:translate(150px,240px)}
+  .map-caption{display:flex;align-items:center;gap:.4rem;padding:.8rem;font-size:.6rem;color:var(--on-dark);border-top:1px solid #ffffff12;min-height:46px}.status-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}
+  .trip-card{background:var(--surface);border-radius:10px;color:var(--ink);padding:1rem;min-width:0}.trip-card-top{display:flex;justify-content:space-between;gap:.3rem;align-items:center;font-size:.55rem;color:var(--muted);letter-spacing:.05em}.trip-card-top>span:last-child{color:var(--brand);background:var(--tint);border-radius:4px;padding:.2rem .4rem;letter-spacing:0;white-space:nowrap}.trip-card h3{font-size:1.1rem;margin:.8rem 0 1rem}.trip-stops{display:grid;gap:.9rem}.trip-stops>div{display:flex;gap:.7rem;align-items:center;font-size:.75rem;font-weight:600}.trip-stops i{width:7px;height:7px;border:2px solid var(--brand);border-radius:50%;flex-shrink:0}.trip-stops small{display:block;font-size:.6rem;color:var(--muted);font-weight:400}.driver-row{display:flex;gap:.6rem;align-items:center;border-top:1px solid var(--line);padding-top:.8rem;margin-top:1rem}.avatar{background:var(--tint);color:var(--brand);border-radius:50%;width:29px;height:29px;display:grid;place-items:center;font-size:.6rem;font-weight:700;flex-shrink:0}.driver-row b{display:block;font-size:.65rem}.driver-row small{display:block;font-size:.55rem;color:var(--muted)}.driver-row>span:last-child{margin-left:auto;color:var(--brand)}.driver-notice{margin-top:.8rem;display:flex;gap:.5rem;background:var(--paper);border:1px solid var(--line);padding:.6rem;border-radius:6px;min-height:64px}.phone-mark{color:var(--brand);font-size:1.4rem;line-height:1}.driver-notice b,.driver-notice span:not(.phone-mark){display:block;font-size:.6rem}.driver-notice span:not(.phone-mark){font-size:.55rem;color:var(--muted)}
+  .demo-controls{display:none;align-items:center;gap:.6rem;padding:.25rem 1rem .75rem}.enhanced .demo-controls{display:flex}.step-controls{display:flex;flex:1;justify-content:space-between;gap:.2rem}.step-controls button{display:flex;align-items:center;flex-direction:column;gap:.35rem;background:none;border:0;color:var(--on-dark);font-size:.55rem;padding:.3rem;min-height:44px;min-width:32px}.step-controls button>span{width:20px;height:20px;border:1px solid #ffffff40;border-radius:50%;display:grid;place-items:center;font-size:.6rem}.step-controls b{font-weight:500}.step-controls button:hover,.step-controls button[aria-pressed=true]{color:var(--accent)}.step-controls button[aria-pressed=true]>span{background:var(--accent);border-color:var(--accent);color:var(--ink)}.playback{display:flex;align-items:center;justify-content:center;gap:.4rem;min-width:72px;min-height:44px;font-size:.65rem;color:var(--surface);background:#ffffff12;border:1px solid #ffffff30;border-radius:6px}.playback:hover{background:#ffffff24}.demo-disclaimer{font-size:.55rem;color:var(--on-dark);margin:0;padding:.7rem 1rem;border-top:1px solid #ffffff12}.trip-demo :focus-visible{outline-color:var(--accent)}
+  @media(max-width:520px){.demo-body{grid-template-columns:1fr 1fr;padding:.6rem;gap:.5rem}.demo-toolbar{padding:.75rem .8rem}.trip-card{padding:.65rem}.trip-card h3{font-size:.85rem}.map-label{padding:.6rem;flex-direction:column;gap:.2rem}.trip-stops>div{font-size:.65rem}.driver-notice{padding:.4rem;min-height:70px}.driver-row{gap:.35rem}.avatar{width:22px;height:22px;font-size:.5rem}.demo-controls{padding:.3rem .6rem .6rem;gap:.4rem}.step-controls b{display:none}.step-controls button{justify-content:center;flex:1}.playback{min-width:60px}.route-map{min-height:170px}.demo-disclaimer{font-size:.5rem}.map-caption{font-size:.5rem;padding:.6rem}.trip-card-top{font-size:.45rem;flex-wrap:wrap}.driver-row>span:last-child{display:none}}
+
+  .trip-demo h3{color:var(--ink)}
+  @media(max-width:520px){.demo-body{grid-template-columns:1fr;padding:1rem;gap:1rem}.demo-map{min-height:220px}.route-map{min-height:160px;max-height:200px}.map-label{flex-direction:row;font-size:.75rem}.map-label span{font-size:.65rem}.map-caption{font-size:.7rem}.trip-card{padding:1.2rem}.trip-card h3{font-size:1.35rem}.trip-card-top{font-size:.7rem}.trip-stops>div{font-size:.95rem}.trip-stops small{font-size:.8rem}.driver-row b{font-size:.85rem}.driver-row small{font-size:.75rem}.avatar{width:32px;height:32px;font-size:.7rem}.driver-notice{padding:.8rem;min-height:75px}.driver-notice b,.driver-notice span:not(.phone-mark){font-size:.8rem}.demo-disclaimer{font-size:.65rem}.demo-toolbar{font-size:.65rem}.demo-controls{padding:.4rem 1rem 1rem}.step-controls button>span{width:26px;height:26px;font-size:.7rem}.playback{font-size:.8rem;min-width:78px}.demo-label{font-size:.65rem}}
+</style>

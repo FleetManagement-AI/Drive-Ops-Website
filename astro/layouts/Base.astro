@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../consts';
+interface Props { title?: string; description?: string; canonical?: string; noindex?: boolean; faqs?: { q: string; a: string }[]; }
+const { title = site.name, description = site.description, canonical = Astro.url.pathname, noindex = false, faqs = [] } = Astro.props;
+const canonicalUrl = new URL(canonical, site.url).toString();
+const graph = [
+  { '@type': 'Organization', '@id': `${site.url}/#organization`, name: site.name, url: site.url, logo: `${site.url}/logo/driveops-logo-blue-edited.png` },
+  { '@type': 'WebSite', '@id': `${site.url}/#website`, name: site.name, url: site.url, inLanguage: 'en-IN' },
+  ...(Astro.url.pathname === '/' ? [{ '@type': 'SoftwareApplication', name: site.name, applicationCategory: 'BusinessApplication', operatingSystem: 'Web, Android', description: site.description, url: site.url }] : []),
+  ...(faqs.length ? [{ '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) }] : []),
+];
+---
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={noindex ? "noindex,follow" : "index,follow"} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={`${site.url}/images/driveops/hero.webp`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/barlow-condensed-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')} />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-49093788B0"></script>
+    <script is:inline>window.dataLayer = window.dataLayer || []; window.gtag = function(){window.dataLayer.push(arguments)}; window.gtag('js', new Date()); window.gtag('config', 'G-49093788B0');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <slot />
+    <Footer />
+    <script>
+      import { trackCta } from '../../src/lib/analytics';
+      document.querySelector('main')?.setAttribute('id', 'main-content');
+      document.addEventListener('click', trackCta);
+    </script>
+  </body>
+</html>
