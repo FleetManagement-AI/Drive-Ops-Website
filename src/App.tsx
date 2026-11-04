@@ -17,6 +17,8 @@ const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const FleetMapPreview = lazy(() => import("./pages/FleetMapPreview.tsx"));
 const FAQ = lazy(() => import("./pages/FAQ.tsx"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.tsx"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions.tsx"));
 const ProductDetailPage = lazy(() => import("./pages/ProductPage.tsx"));
 const ProductHubPage = lazy(() =>
   import("./pages/ProductPage.tsx").then((m) => ({ default: m.ProductHubPage }))
@@ -102,6 +104,8 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

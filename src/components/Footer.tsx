@@ -29,6 +29,8 @@ const companyLinks = [
   { label: "Pricing Plans", href: "/pricing/" },
   { label: "Frequently Asked Questions", href: "/faq/" },
   { label: "Contact", href: "/contact/" },
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions/" },
 ]
 
 function toWhatsAppUrl(telephone: string) {
@@ -220,6 +222,8 @@ export default function Footer() {
             <span>WhatsApp powered by ChatServe Solutions</span>
           </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-5">
+            <Link to="/privacy-policy/" className="hover:text-slate-300 transition-colors">Privacy</Link>
+            <Link to="/terms-and-conditions/" className="hover:text-slate-300 transition-colors">Terms</Link>
             <Link to="/contact/" className="hover:text-slate-300 transition-colors">Support</Link>
             <Link to="/pricing/" className="hover:text-slate-300 transition-colors">Pricing</Link>
             <a
