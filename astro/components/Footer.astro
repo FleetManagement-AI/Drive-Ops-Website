@@ -1,82 +1,97 @@
 ---
-const groups = [ { title: 'Platform', links: [['Trips & dispatch','/product/trips-dispatch/'],['Live fleet','/product/live-fleet/'],['Driver App','/product/driver-app/'],['Fleet care','/product/compliance/']] }, { title: 'Solutions', links: [['Taxi & cab fleets','/solutions/taxi-cab-fleets/'],['Travel & tours','/solutions/travel-tour-operators/'],['Corporate transport','/solutions/corporate-transport/'],['Self-drive rentals','/solutions/self-drive-rentals/']] }, { title: 'Get started', links: [['Pricing','/pricing/'],['FAQ','/faq/'],['Book a demo','/contact/'],['Log in','https://driveops.chatserve.in/login']] } ];
+const year = new Date().getFullYear();
+const contact = {
+  telephone: '+91 98461 99883',
+  supportTelephone: '+91 98478 51049',
+  email: 'driveopsfleet@gmail.com',
+};
+const social = {
+  instagram: 'https://www.instagram.com/driveopsfleet',
+  facebook: 'https://www.facebook.com/profile.php?id=61593885576574',
+};
+const salesWhatsApp = `https://wa.me/${contact.telephone.replace(/\D/g, '')}`;
+const supportWhatsApp = `https://wa.me/${contact.supportTelephone.replace(/\D/g, '')}`;
+const productLinks = [['Features','/product/'],['How It Works','/#how-it-works'],['Use Cases','/solutions/taxi-cab-fleets/'],['Pricing','/pricing/'],['FAQ','/faq/']];
+const companyLinks = [['Contact Us','/contact/'],['Privacy Policy','/privacy/'],['Terms of Service','/terms/']];
+const resourceLinks = [['Help Center','/faq/']];
+const capabilities = [
+  { label: 'Manage Trips', icon: 'car' },
+  { label: 'Coordinate Drivers', icon: 'people' },
+  { label: 'Track Vehicles', icon: 'pin' },
+  { label: 'Streamline Operations', icon: 'settings' },
+];
 ---
-<footer class="footer"><div class="container footer-grid"><div><a class="footer-brand" href="/" aria-label="DriveOps home"><img src="/logo/driveops-logo-white-edited.png" alt="" width="48" height="40" />Drive<span>Ops</span></a><p>Bring the work behind every trip into one clear picture.</p><span class="location">Kochi, Kerala · India</span><div class="social-links"><a href="https://www.instagram.com/driveopsfleet">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61593885576574">Facebook ↗</a></div></div>{groups.map(group => <div><h2>{group.title}</h2>{group.links.map(([label,href]) => <a href={href}>{label}</a>)}</div>)}</div><div class="container footer-bottom"><span>© {new Date().getFullYear()} DriveOps</span><a href="mailto:driveopsfleet@gmail.com">driveopsfleet@gmail.com ↗</a></div></footer>
+
+<footer class="footer" aria-labelledby="footer-brand-name">
+  <div class="footer-visual" aria-hidden="true">
+    <img src="/images/illustrations/Waterfront Fleet Transport Dashboard.webp" alt="" width="1983" height="793" loading="lazy" decoding="async" />
+  </div>
+  <div class="footer-shade" aria-hidden="true"></div>
+
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <section class="brand-column" aria-labelledby="footer-brand-name">
+        <a class="footer-brand" href="/" aria-label="DriveOps home">
+          <img src="/logo/driveops-logo-white-edited.png" alt="" width="48" height="40" />
+          <span id="footer-brand-name">Drive<span>Ops</span></span>
+        </a>
+        <p class="brand-copy">A complete fleet management platform for taxi operators, travel companies and vehicle-based businesses.</p>
+
+        <ul class="capabilities" aria-label="DriveOps capabilities">
+          {capabilities.map((item) => (
+            <li>
+              <span class={`capability-icon capability-icon--${item.icon}`} aria-hidden="true">
+                {item.icon === 'car' && <svg viewBox="0 0 24 24"><path d="M5 11 6.6 6.8A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11m-15 0h16v7H4v-7Zm2 7v2m12-2v2M7.5 14.5h.01m8.99 0h.01" /></svg>}
+                {item.icon === 'people' && <svg viewBox="0 0 24 24"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19m6-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7.5 2a3 3 0 0 1 2.5 3v3m-4.5-14a3 3 0 0 1 0 6" /></svg>}
+                {item.icon === 'pin' && <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>}
+                {item.icon === 'settings' && <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l.1.1-2.8 2.8-.1-.1a1.8 1.8 0 0 0-2-.4 1.8 1.8 0 0 0-1.1 1.7v.2h-4v-.2A1.8 1.8 0 0 0 8.8 19a1.8 1.8 0 0 0-2 .4l-.1.1-2.8-2.8.1-.1a1.8 1.8 0 0 0 .4-2 1.8 1.8 0 0 0-1.7-1.1h-.2v-4h.2A1.8 1.8 0 0 0 4.4 8a1.8 1.8 0 0 0-.4-2l-.1-.1 2.8-2.8.1.1a1.8 1.8 0 0 0 2 .4A1.8 1.8 0 0 0 9.9 2h4v.2A1.8 1.8 0 0 0 15 3.9a1.8 1.8 0 0 0 2-.4l.1-.1 2.8 2.8-.1.1a1.8 1.8 0 0 0-.4 2 1.8 1.8 0 0 0 1.7 1.1h.2v4h-.2A1.8 1.8 0 0 0 19.4 15Z" /></svg>}
+              </span>
+              <span>{item.label}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="social-links" aria-label="DriveOps social media">
+          <a class="social-link social-link--facebook" href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="DriveOps on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v2H6v4h3v7h4v-7h3l1-4h-4V9c0-.7.3-1 1-1Z" /></svg></a>
+          <a class="social-link social-link--instagram" href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="DriveOps on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" class="fill-dot" /></svg></a>
+          <a class="social-link social-link--whatsapp" href={salesWhatsApp} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp sales ${contact.telephone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="M9 8.5c.3 2.2 2.3 4.2 4.5 4.5l1.2-1.2 2 1c-.3 1.5-1.5 2.2-2.8 2.2-3.5-.3-6.6-3.4-6.9-6.9 0-1.3.7-2.5 2.2-2.8l1 2L9 8.5Z" /></svg></a>
+          <a class="social-link social-link--whatsapp" href={supportWhatsApp} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp support ${contact.supportTelephone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="M9 8.5c.3 2.2 2.3 4.2 4.5 4.5l1.2-1.2 2 1c-.3 1.5-1.5 2.2-2.8 2.2-3.5-.3-6.6-3.4-6.9-6.9 0-1.3.7-2.5 2.2-2.8l1 2L9 8.5Z" /></svg></a>
+          <a class="social-link social-link--email" href={`mailto:${contact.email}`} aria-label={`Email ${contact.email}`}><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg></a>
+        </div>
+      </section>
+
+      <nav class="link-column" aria-labelledby="footer-product"><h2 id="footer-product">Product</h2><span class="heading-rule" aria-hidden="true"></span><ul>{productLinks.map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>
+      <nav class="link-column" aria-labelledby="footer-company"><h2 id="footer-company">Company</h2><span class="heading-rule" aria-hidden="true"></span><ul>{companyLinks.map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>
+      <nav class="link-column" aria-labelledby="footer-resources"><h2 id="footer-resources">Resources</h2><span class="heading-rule" aria-hidden="true"></span><ul>{resourceLinks.map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} DriveOps. All rights reserved.</span>
+      <span class="made-in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>Built for businesses in Kerala <span aria-hidden="true">|</span> Made in India 🇮🇳</span>
+    </div>
+  </div>
+
+  <svg class="footer-waves" viewBox="0 0 1600 180" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 78C230 180 385 20 645 94c246 70 326 135 556 68 170-50 277-48 399-10v28H0Z" fill="#06357c" fill-opacity=".66" />
+    <path d="M0 110c224 86 397-57 642 3 247 60 343 113 570 42 154-49 276-43 388-10v35H0Z" fill="#052962" fill-opacity=".8" />
+    <path d="M0 138c217 52 403-44 624-1 244 48 373 84 594 26 154-40 271-34 382-5v22H0Z" fill="#041d49" />
+  </svg>
+</footer>
+
 <style>
-.footer {
-  background: var(--ink);
-  color: var(--on-dark);
-  padding: 4rem 0 1.5rem;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.6fr repeat(3, 1fr);
-  gap: 3rem;
-}
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font: 600 1.5rem var(--font-body);
-  color: var(--surface);
-}
-.footer-brand img {
-  width: 38px;
-  height: 36px;
-  object-fit: contain;
-}
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  font-size: 0.8rem;
-}
-.footer-brand span {
-  color: var(--surface);
-}
-.footer p {
-  max-width: 270px;
-  font-size: 0.95rem;
-}
-.location {
-  font-size: 0.8rem;
-}
-.footer h2 {
-  color: var(--surface);
-  font-family:var(--font-body);
-  font-size: 0.85rem;
-  letter-spacing: 0;
-  margin: 0 0 1rem;
-}
-.footer-grid > div > a:not(.footer-brand) {
-  display: block;
-  font-size: 0.85rem;
-  padding: 0.35rem 0;
-}
-.footer a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  border-top: 1px solid #ffffff24;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  font-size: 0.8rem;
-}
-@media (max-width: 700px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  .footer-grid > div:first-child {
-    grid-column: 1/-1;
-  }
-  .footer-bottom {
-    flex-direction: column;
-  }
-}
+.footer{--footer-blue:#1778ff;position:relative;isolation:isolate;min-height:560px;overflow:hidden;color:#b8c9e2;background:radial-gradient(circle at 78% 12%,rgba(53,106,191,.38),transparent 32%),linear-gradient(112deg,#031b3b 0%,#052956 54%,#0a3263 100%)}
+.footer-visual,.footer-shade{position:absolute;inset:0;pointer-events:none}.footer-visual{z-index:-3}.footer-visual img{position:absolute;right:-2.5%;bottom:25px;width:min(75vw,1450px);height:auto;opacity:.94;object-fit:contain;object-position:right bottom;filter:saturate(.96) contrast(1.02)}
+.footer-shade{z-index:-2;background:linear-gradient(90deg,#031b3b 0%,rgba(3,27,59,.96) 25%,rgba(3,27,59,.78) 47%,rgba(3,27,59,.12) 78%),linear-gradient(0deg,rgba(3,20,47,.82) 0%,transparent 48%)}
+.footer-inner{position:relative;z-index:2;width:min(1540px,calc(100% - 96px));margin-inline:auto;padding:76px 0 28px}.footer-grid{display:grid;grid-template-columns:minmax(300px,1.65fr) repeat(3,minmax(115px,.68fr));gap:clamp(30px,3.4vw,66px);align-items:start}
+.footer-brand{display:inline-flex;align-items:center;gap:10px;color:#fff;font-family:var(--font-display);font-size:clamp(2rem,2.6vw,2.85rem);font-weight:700;line-height:1;letter-spacing:-.055em}.footer-brand>img{width:42px;height:38px;object-fit:contain}.footer-brand span span{color:var(--footer-blue)}
+.brand-copy{max-width:355px;margin:20px 0 22px;color:#b8c9e2;font-size:.98rem;line-height:1.55}.capabilities{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:390px;margin:0;padding:0;list-style:none}.capabilities li{color:#eff6ff;font-size:.69rem;font-weight:600;line-height:1.3;text-align:center}
+.capability-icon{display:grid;width:46px;height:46px;place-items:center;margin:0 auto 8px;border:1px solid rgba(255,255,255,.06);border-radius:12px;background:rgba(49,123,234,.2);color:#438fff;box-shadow:inset 0 1px rgba(255,255,255,.07)}.capability-icon--people{color:#2fdfa1;background:rgba(21,157,138,.17)}.capability-icon--pin{color:#ff862f;background:rgba(244,123,44,.17)}.capability-icon--settings{color:#9d7aff;background:rgba(112,96,226,.18)}.capability-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.social-links{display:flex;gap:12px;margin-top:24px}.social-link{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.08);border-radius:50%;background:rgba(75,131,205,.18);transition:transform 180ms ease,background-color 180ms ease,border-color 180ms ease}.social-link svg{width:18px;height:18px;fill:currentColor;stroke:currentColor;stroke-width:1.8}.social-link--facebook{color:#1877f2}.social-link--instagram{color:#e4405f}.social-link--whatsapp{color:#25d366}.social-link--email{color:#60a5fa}.social-links .fill-dot{fill:currentColor;stroke:none}.social-link:hover{transform:translateY(-2px);border-color:rgba(75,149,255,.7);background:rgba(23,120,255,.35)}
+.link-column h2{margin:3px 0 9px;color:#fff;font-family:var(--font-display);font-size:.94rem;font-weight:700;letter-spacing:-.01em}.heading-rule{display:block;width:22px;height:2px;margin-bottom:15px;background:var(--footer-blue)}.link-column ul{margin:0;padding:0;list-style:none}.link-column li+li{margin-top:9px}.link-column a{display:inline-block;color:#b8c9e2;font-size:.88rem;line-height:1.45;transition:color 180ms ease,transform 180ms ease}.link-column a:hover{color:#fff;transform:translateX(3px)}
+.footer-bottom{display:flex;min-height:58px;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:52px;border-top:1px solid rgba(181,211,251,.32);padding:19px 0 4px;color:#afc2de;font-size:.78rem}.made-in{display:inline-flex;align-items:center;gap:7px}.made-in svg{width:15px;height:15px;fill:none;stroke:#3b8cff;stroke-width:2}.footer-waves{position:absolute;z-index:1;right:0;bottom:0;left:0;width:100%;height:145px;pointer-events:none}.footer a:focus-visible{border-radius:5px;outline:3px solid #6eacff;outline-offset:4px}
+@media(max-width:1180px){.footer{min-height:650px}.footer-inner{width:min(100% - 64px,1120px)}.footer-grid{grid-template-columns:minmax(260px,1.5fr) repeat(3,minmax(105px,.7fr));gap:clamp(24px,3vw,40px)}.footer-visual img{width:91vw;bottom:10px;right:-15%;opacity:.74}.footer-shade{background:linear-gradient(90deg,#031b3b 0%,rgba(3,27,59,.93) 42%,rgba(3,27,59,.32) 100%),linear-gradient(0deg,rgba(3,20,47,.9),transparent 55%)}}
+@media(max-width:800px){.footer{min-height:0}.footer-inner{width:min(100% - 40px,720px);padding-top:54px;padding-bottom:24px}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 24px}.brand-column{grid-column:1/-1}.brand-copy{max-width:470px}.capabilities{max-width:420px}.footer-visual{position:absolute;height:310px;top:auto;bottom:70px}.footer-visual img{right:0;bottom:0;width:100%;max-width:none;opacity:.9}.footer-shade{background:linear-gradient(180deg,#031b3b 0%,rgba(3,27,59,.96) 62%,rgba(3,27,59,.45) 100%)}.footer-bottom{flex-direction:column;align-items:flex-start;margin-top:300px}.footer-waves{height:115px}}
+@media(max-width:520px){.footer-inner{width:min(100% - 32px,480px);padding-top:46px}.footer-grid{gap:34px 18px}.footer-brand{font-size:2rem}.footer-brand>img{width:35px;height:34px}.brand-copy{margin-top:16px;font-size:.9rem}.capabilities{grid-template-columns:repeat(2,minmax(0,1fr));max-width:270px;gap:16px}.capabilities li{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:9px;text-align:left}.capability-icon{width:40px;height:40px;margin:0}.social-links{margin-top:20px}.link-column a{font-size:.84rem}.footer-visual{height:190px;bottom:70px}.footer-bottom{margin-top:185px;padding-bottom:5px;line-height:1.5}.made-in{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.social-link,.link-column a{transition:none}.social-link:hover,.link-column a:hover{transform:none}}
 </style>

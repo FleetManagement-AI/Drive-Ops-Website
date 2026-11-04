@@ -1,0 +1,177 @@
+---
+const features = [
+  {
+    title: 'Trip Management',
+    description: 'Create trips, check availability, allocate a driver and vehicle, and follow the trip through completion.',
+    slug: 'trips-dispatch',
+    image: '/images/driveops/features/trip-management.webp',
+    width: 960,
+    height: 640,
+    alt: 'Trip calendar, route markers and fleet vehicle',
+    tone: 'blue',
+  },
+  {
+    title: 'Driver Management',
+    description: 'Manage driver profiles, duties and assignments, with trip updates from the Driver App.',
+    slug: 'drivers',
+    image: '/images/driveops/features/driver-management.webp',
+    width: 960,
+    height: 640,
+    alt: 'DriveOps driver with mobile app and fleet dashboard',
+    tone: 'mint',
+  },
+  {
+    title: 'Vehicle Management',
+    description: 'Maintain vehicle records, operational status and linked document readiness.',
+    slug: 'vehicles',
+    image: '/images/driveops/features/vehicle-management.webp',
+    width: 960,
+    height: 803,
+    alt: 'Fleet vehicle beside a vehicle record card',
+    tone: 'peach',
+  },
+  {
+    title: 'Rental Management',
+    description: 'Manage self-drive availability, reservations, handover and return details.',
+    slug: 'rentals',
+    image: '/images/driveops/features/rental-management.webp',
+    width: 960,
+    height: 802,
+    alt: 'Rental car key, reservation record and access key',
+    tone: 'lavender',
+  },
+  {
+    title: 'Live Tracking',
+    description: 'View active locations from on-duty drivers uploading phone GPS; share supported customer tracking links.',
+    slug: 'live-fleet',
+    image: '/images/driveops/features/live-tracking.webp',
+    width: 960,
+    height: 803,
+    alt: 'Fleet vehicle on a map with a live location marker',
+    tone: 'blue',
+  },
+  {
+    title: 'Fuel Logs',
+    description: 'Record fuel quantity, price, odometer readings and receipts from drivers or operations staff.',
+    slug: 'fuel',
+    image: '/images/driveops/features/fuel-logs.webp',
+    width: 960,
+    height: 739,
+    alt: 'Fuel nozzle beside a fuel record and usage chart',
+    tone: 'peach',
+  },
+  {
+    title: 'Maintenance',
+    description: 'Track maintenance jobs, service logs and reported vehicle issues to keep vehicles ready.',
+    slug: 'maintenance',
+    image: '/images/driveops/features/maintenance.webp',
+    width: 960,
+    height: 738,
+    alt: 'Wrench, gear and vehicle maintenance checklist',
+    tone: 'mint',
+  },
+  {
+    title: 'Compliance',
+    description: 'Store vehicle and driver documents, track expiry dates and follow configured WhatsApp alerts.',
+    slug: 'compliance',
+    image: '/images/driveops/features/compliance.webp',
+    width: 960,
+    height: 802,
+    alt: 'Fleet compliance document protected by a shield',
+    tone: 'lavender',
+  },
+  {
+    title: 'Review Management',
+    description: 'Collect passenger feedback through configured WhatsApp requests and review replies in the operations inbox.',
+    slug: 'reviews',
+    image: '/images/driveops/features/review-management.webp',
+    width: 960,
+    height: 640,
+    alt: 'Customer feedback card with five stars and a driver profile',
+    tone: 'cream',
+  },
+];
+---
+
+<section class="feature-overview" aria-labelledby="feature-overview-title">
+  <div class="feature-intro container">
+    <img class="overview-plane" src="/images/illustrations/Blue Paper Plane Through Clouds.webp" width="2076" height="758" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <img class="overview-cityscape" src="/images/illustrations/Pastel Blue Cityscape with Location Pin.webp" width="1774" height="887" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <h2 id="feature-overview-title"><span>Everything Your Fleet Needs.</span><span>One Connected Platform.</span></h2>
+    <p class="feature-lede">Manage trips, drivers, vehicles and daily operations without switching between spreadsheets, WhatsApp conversations and disconnected tools.</p>
+  </div>
+
+  <div class="feature-grid container">
+    {features.map((feature) => (
+      <a class:list={['feature-card', feature.tone]} href={`/product/${feature.slug}/`}>
+        <span class="feature-art">
+          <img src={feature.image} width={feature.width} height={feature.height} alt={feature.alt} loading="lazy" decoding="async" />
+        </span>
+        <span class="feature-copy">
+          <h3>{feature.title}</h3>
+          <span class="feature-description">{feature.description}</span>
+          <span class="feature-link">Learn More <span aria-hidden="true">→</span></span>
+        </span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+.feature-overview { position: relative; padding: clamp(2.8rem, 5vw, 4rem) 0 4.5rem; background: linear-gradient(180deg, #eff7ff 0%, #fff 26%); color: #101b35; }
+.feature-intro { position: relative; isolation: isolate; text-align: center; padding-bottom: 2rem; }
+.feature-eyebrow { display: inline-block; margin: 0 0 .7rem; padding: .45rem .9rem; border-radius: 999px; background: #e2f0ff; color: #1765f5; font-size: .68rem; font-weight: 600; letter-spacing: .04em; line-height: 1.3; }
+.feature-intro h2 { margin: 0 auto; max-width: 900px; color: #101b35; font-size: clamp(2.1rem, 3.8vw, 3.4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.035em; text-transform: none; }
+.feature-intro h2 span { display: block; }
+.feature-intro h2 span + span { color: #1765f5; }
+.feature-lede { max-width: 700px; margin: .8rem auto 0; color: #536582; font-size: clamp(.95rem, 1.3vw, 1.08rem); line-height: 1.5; }
+.overview-plane, .overview-cityscape { position: absolute; z-index: -1; top: 0; width: clamp(145px, 19vw, 235px); height: auto; object-fit: contain; opacity: .72; pointer-events: none; }
+.overview-plane { left: 0; }
+.overview-cityscape { right: 0; }
+.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+.feature-card { display: flex; align-items: center; gap: .75rem; min-width: 0; min-height: 164px; padding: 1rem; border: 1px solid #dfe8f566; border-radius: 16px; box-shadow: 0 5px 18px #101b3506; color: #101b35; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.feature-card.blue { background: #eff7ff; }
+.feature-card.mint { background: #effaf6; }
+.feature-card.peach { background: #fff5ec; }
+.feature-card.lavender { background: #f6f3ff; }
+.feature-card.cream { background: #fff9e9; }
+.feature-art { display: grid; place-items: center; flex: 0 0 43%; min-width: 0; aspect-ratio: 1.05; }
+.feature-art img { display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; }
+.feature-copy { display: flex; flex: 1 1 0; min-width: 0; flex-direction: column; align-items: flex-start; }
+.feature-copy h3 { margin: 0 0 .35rem; color: #101b35; font-size: clamp(.98rem, 1.25vw, 1.12rem); font-weight: 700; line-height: 1.25; letter-spacing: -.025em; }
+.feature-description { color: #536582; font-size: .82rem; line-height: 1.45; }
+.feature-link { display: inline-flex; gap: .3rem; align-items: center; margin-top: .65rem; color: #1765f5; font-size: .8rem; font-weight: 600; }
+.feature-card:hover { transform: translateY(-2px); border-color: #a9d1ff; box-shadow: 0 10px 24px #1765f51a; }
+.feature-card:hover .feature-link span { transform: translateX(3px); }
+.feature-card:focus-visible { outline: 3px solid #1765f5; outline-offset: 3px; }
+.feature-link span { transition: transform 180ms ease; }
+@media (max-width: 1000px) {
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature-card { min-height: 170px; }
+  .feature-art { flex-basis: 40%; }
+  .feature-copy h3 { font-size: 1.08rem; }
+  .feature-description { font-size: .84rem; }
+  .overview-plane, .overview-cityscape { width: 150px; opacity: .4; }
+}
+@media (max-width: 650px) {
+  .feature-overview { padding-top: 2.5rem; }
+  .feature-intro { padding-bottom: 1.6rem; }
+  .feature-intro h2 { font-size: clamp(1.55rem, 6.3vw, 2.1rem); line-height: 1.15; }
+  .feature-lede { margin-top: .7rem; font-size: .92rem; }
+  .overview-plane, .overview-cityscape { display: none; }
+  .feature-grid { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+  .feature-card { min-height: 150px; padding: .85rem; }
+  .feature-art { flex-basis: 38%; }
+  .feature-copy h3 { font-size: 1.05rem; }
+  .feature-description { font-size: .83rem; }
+}
+@media (max-width: 380px) {
+  .feature-card { flex-direction: column; align-items: stretch; gap: .35rem; }
+  .feature-art { flex: initial; width: 100%; height: 130px; aspect-ratio: auto; }
+  .feature-copy { padding: 0 .25rem .25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-card, .feature-link span { transition: none; }
+  .feature-card:hover { transform: none; }
+}
+</style>

@@ -1,0 +1,142 @@
+{
+  "format": "webp",
+  "quality": 84,
+  "maxDimension": 960,
+  "assets": [
+    {
+      "source": "/public/images/illustrations/feature_cards/trip_management.webp",
+      "output": "/public/images/driveops/features/trip-management.webp",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 640
+      },
+      "alpha": true,
+      "sourceBytes": 125010,
+      "outputBytes": 76056
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/driver_management.webp",
+      "output": "/public/images/driveops/features/driver-management.webp",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 640
+      },
+      "alpha": true,
+      "sourceBytes": 135576,
+      "outputBytes": 81494
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/vehicle_management.png",
+      "output": "/public/images/driveops/features/vehicle-management.webp",
+      "sourceDimensions": {
+        "width": 1372,
+        "height": 1147
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 803
+      },
+      "alpha": true,
+      "sourceBytes": 1328685,
+      "outputBytes": 78704
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/rental_management.png",
+      "output": "/public/images/driveops/features/rental-management.webp",
+      "sourceDimensions": {
+        "width": 1372,
+        "height": 1146
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 802
+      },
+      "alpha": true,
+      "sourceBytes": 1003742,
+      "outputBytes": 80288
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/live_tracking.png",
+      "output": "/public/images/driveops/features/live-tracking.webp",
+      "sourceDimensions": {
+        "width": 1372,
+        "height": 1147
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 803
+      },
+      "alpha": true,
+      "sourceBytes": 1298702,
+      "outputBytes": 85518
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/fuel_log.png",
+      "output": "/public/images/driveops/features/fuel-logs.webp",
+      "sourceDimensions": {
+        "width": 1429,
+        "height": 1100
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 739
+      },
+      "alpha": true,
+      "sourceBytes": 994892,
+      "outputBytes": 66176
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/maintenance.png",
+      "output": "/public/images/driveops/features/maintenance.webp",
+      "sourceDimensions": {
+        "width": 1430,
+        "height": 1100
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 738
+      },
+      "alpha": true,
+      "sourceBytes": 1082114,
+      "outputBytes": 60902
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/compliance.png",
+      "output": "/public/images/driveops/features/compliance.webp",
+      "sourceDimensions": {
+        "width": 1372,
+        "height": 1146
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 802
+      },
+      "alpha": true,
+      "sourceBytes": 999970,
+      "outputBytes": 41500
+    },
+    {
+      "source": "/public/images/illustrations/feature_cards/review.png",
+      "output": "/public/images/driveops/features/review-management.webp",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "outputDimensions": {
+        "width": 960,
+        "height": 640
+      },
+      "alpha": true,
+      "sourceBytes": 1265017,
+      "outputBytes": 32648
+    }
+  ]
+}

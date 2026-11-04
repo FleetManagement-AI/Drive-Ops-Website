@@ -13,10 +13,10 @@ const solutions = [ ['taxi-cab-fleets', 'Taxi & cab fleets'], ['travel-tour-oper
     <a class="brand" href="/" aria-label="DriveOps home"><img src="/logo/driveops-logo-blue-edited.png" alt="" width="459" height="587" /><span>Drive<span>Ops</span><small>Manage & operate</small></span></a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button>
     <nav id="site-navigation" aria-label="Main navigation">
-      <details class="nav-disclosure"><summary>Product <span aria-hidden="true">⌄</span></summary><div class="nav-panel product-panel"><a class="nav-overview" href="/product/">Explore the platform <span aria-hidden="true">↗</span></a><div class="product-links">{productGroups.map(group => <div><span class="nav-group-title">{group.title}</span>{PRODUCT_PAGES.filter(p => group.slugs.includes(p.slug)).map(p => <a href={`/product/${p.slug}/`}>{p.title}</a>)}</div>)}</div></div></details>
+      <details class="nav-disclosure"><summary>{home ? 'Features' : 'Product'} <span aria-hidden="true">⌄</span></summary><div class="nav-panel product-panel"><a class="nav-overview" href="/product/">Explore the platform <span aria-hidden="true">↗</span></a><div class="product-links">{productGroups.map(group => <div><span class="nav-group-title">{group.title}</span>{PRODUCT_PAGES.filter(p => group.slugs.includes(p.slug)).map(p => <a href={`/product/${p.slug}/`}>{p.title}</a>)}</div>)}</div></div></details>
       <details class="nav-disclosure"><summary>Solutions <span aria-hidden="true">⌄</span></summary><div class="nav-panel">{solutions.map(([slug, title]) => <a href={`/solutions/${slug}/`}>{title}</a>)}</div></details>
       <a class="nav-link" href="/pricing/">Pricing</a><a class="nav-link" href="/faq/">Resources</a>
-      <a class="nav-link login" href="https://driveops.chatserve.in/login">Log in</a><a class="button button-primary" href="/contact/">Book a demo <span aria-hidden="true">↗</span></a>
+      <a class="nav-link login" href="https://driveops.chatserve.in/login">Log in</a><a class="button button-primary" href="/contact/">{home ? 'Book a Free Demo' : 'Book a demo'} <span aria-hidden="true">{home ? '→' : '↗'}</span></a>
     </nav>
   </div>
 </header>
@@ -40,6 +40,26 @@ const solutions = [ ['taxi-cab-fleets', 'Taxi & cab fleets'], ['travel-tour-oper
   header?.classList.add('enhanced');
 </script>
 <style>
+.home-header {
+  --brand: #1765f5;
+  --brand-hover: #0d50ca;
+  --ink: #101b35;
+  --muted: #536582;
+  --line: #dfe8f5;
+  --paper: #eff7ff;
+  --tint: #dcebff;
+  color: var(--ink);
+  border-bottom: 0;
+}
+.home-header .brand > span > span { color: var(--brand); }
+.home-header .brand small { display: none; }
+.home-header .button { border-radius: 10px; text-transform: none; letter-spacing: 0; }
+@media (min-width: 1100px) {
+  .home-header nav { flex: 1; gap: 2rem; }
+  .home-header .brand { margin-right: 5rem; }
+  .home-header .login { margin-left: auto; }
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -48,10 +68,11 @@ const solutions = [ ['taxi-cab-fleets', 'Taxi & cab fleets'], ['travel-tour-oper
   border-bottom: 1px solid var(--line);
 }
 .home-header {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
 }
 .home-header .header-inner {
   width: min(1200px, calc(100% - 80px));
+  min-height: 68px;
 }
 .header-inner {
   min-height: 76px;

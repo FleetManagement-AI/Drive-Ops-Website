@@ -89,7 +89,7 @@ try {
   );
   await page
     .locator("#site-navigation summary")
-    .filter({ hasText: "Product" })
+    .filter({ hasText: "Features" })
     .click();
   assert(
     await page
@@ -156,6 +156,23 @@ try {
       `Homepage overflow at ${width}`,
     );
     assert.equal(await client.locator(".industry-grid a").count(), 4);
+    assert.equal(await client.locator('.hero-features').count(), 0);
+    assert.equal(await client.locator('.feature-card').count(), 9);
+    assert.deepEqual(await client.locator('.feature-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname)), [
+      '/product/trips-dispatch/', '/product/drivers/', '/product/vehicles/',
+      '/product/rentals/', '/product/live-fleet/', '/product/fuel/',
+      '/product/maintenance/', '/product/compliance/', '/product/reviews/',
+    ]);
+    assert.equal(await client.locator('.feature-card img').evaluateAll(images => images.every(image => image.currentSrc.endsWith('.webp') && image.naturalWidth > 0)), true);
+    const artwork = client.locator('.hero-artwork img');
+    assert.equal(await artwork.evaluate(image => image.naturalWidth), 1983);
+    assert.equal(await artwork.evaluate(image => Math.abs(image.width / image.height - 1983 / 793) < .02), true);
+    assert.equal(await artwork.evaluate(image => getComputedStyle(image).objectFit), 'contain');
+    assert.equal(await client.locator('.brand').getAttribute('aria-current'), 'page');
+    await client.locator('.hero-actions a[href="#how-it-works"]').click();
+    assert.equal(new URL(client.url()).hash, '#how-it-works');
+    await client.evaluate(() => window.scrollTo(0, 0));
+
     assert.equal(
       await client
         .locator("img")
@@ -186,7 +203,7 @@ try {
       await toggle.click();
       await client
         .locator("#site-navigation summary")
-        .filter({ hasText: "Product" })
+        .filter({ hasText: "Features" })
         .click();
       await client
         .locator('#site-navigation a[href="/product/reviews/"]')
@@ -209,6 +226,8 @@ try {
     "/pricing/",
     "/faq/",
     "/contact/",
+    "/privacy/",
+    "/terms/",
     "/fleet-management-software-india/",
   ]) {
     await client.goto(base + route);
@@ -230,6 +249,8 @@ try {
     });
   }
   await client.goto(base + "/product/");
+  assert.equal(await client.locator('.home-header').count(), 0);
+  assert((await client.locator('#site-navigation summary').first().textContent()).includes('Product'));
   await client.getByRole("tab", { name: "Rentals", exact: true }).click();
   assert.equal(
     await client

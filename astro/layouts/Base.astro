@@ -28,7 +28,9 @@ const graph = [
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={`${site.url}/images/driveops/hero.webp`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" href="/fonts/barlow-condensed-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&display=optional" />
     <link rel="icon" href="/favicon/favicon.svg" />
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')} />
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-49093788B0"></script>

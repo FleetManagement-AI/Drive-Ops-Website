@@ -21,5 +21,7 @@ describe("public URL contract", () => {
       expect(paths).toContain(destination)
     }
     expect(publicRoutes.filter(route => !route.indexable).map(route => route.path).sort()).toEqual(["/fleet-map/", "/preview/"])
+    expect(paths).toContain("/privacy/")
+    expect(paths).toContain("/terms/")
   })
 })

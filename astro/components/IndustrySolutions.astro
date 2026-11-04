@@ -1,0 +1,169 @@
+---
+const industries = [
+  {
+    name: 'Taxi Operators',
+    slug: 'taxi-cab-fleets',
+    image: '/images/illustrations/Coastal Taxi Convoy by the City.webp',
+    width: 1536,
+    height: 1024,
+    alt: 'A convoy of taxi cars driving beside a coastal city.',
+    tone: 'taxi',
+    description: 'Manage daily trips, driver assignments, vehicle availability and customer coordination with ease.',
+    points: ['Daily and ad-hoc trips', 'Driver and vehicle assignments', 'Customer coordination', 'Trip progress'],
+    icon: 'car',
+  },
+  {
+    name: 'Travel & Tour Operators',
+    slug: 'travel-tour-operators',
+    image: '/images/illustrations/Coastal Mountain Coach Journey.webp',
+    width: 1419,
+    height: 1108,
+    alt: 'A coach travelling along a green mountain road beside the water.',
+    tone: 'travel',
+    description: 'Plan tour schedules, bookings, driver assignments and trip coordination in one place.',
+    points: ['Multi-day tour planning', 'Driver and vehicle allocation', 'Itinerary coordination', 'Trip updates'],
+    icon: 'bus',
+  },
+  {
+    name: 'Corporate Transportation',
+    slug: 'corporate-transport',
+    image: '/images/illustrations/Corporate Shuttle at a Modern Office Campus.webp',
+    width: 1536,
+    height: 1024,
+    alt: 'An employee shuttle picking up passengers at a modern office campus.',
+    tone: 'corporate',
+    description: 'Organise employee transportation, recurring trips, driver schedules and fleet operations.',
+    points: ['Employee transport routes', 'Recurring trip schedules', 'Driver schedules', 'Daily trip records'],
+    icon: 'people',
+  },
+  {
+    name: 'Rental Businesses',
+    slug: 'self-drive-rentals',
+    image: '/images/illustrations/Sunset SUV Rental Handover.webp',
+    width: 1536,
+    height: 1024,
+    alt: 'Rental SUVs lined up beside a rental office as a customer receives a vehicle key.',
+    tone: 'rental',
+    description: 'Manage vehicle availability, rental bookings, handovers, returns and daily rental operations.',
+    points: ['Vehicle availability', 'Rental bookings', 'Handover records', 'Returns and inspections'],
+    icon: 'key',
+  },
+];
+---
+
+<section class="industry-solutions" aria-labelledby="industry-solutions-title">
+  <div class="industry-solutions-inner">
+    <header class="industry-intro">
+      <p class="industry-eyebrow">Built for your business</p>
+      <h2 id="industry-solutions-title">Fleet Management for <span>Every Business.</span></h2>
+      <p class="industry-lede">Whether you manage taxis, corporate transportation or rental vehicles, DriveOps helps you organise daily fleet operations from one connected platform.</p>
+    </header>
+
+    <div class="industry-solutions-grid">
+      {industries.map((industry) => (
+        <a class:list={['industry-card', industry.tone]} href={`/solutions/${industry.slug}/`}>
+          <span class="industry-visual">
+            <img class="industry-image" src={industry.image} width={industry.width} height={industry.height} alt={industry.alt} loading="lazy" decoding="async" />
+          </span>
+          <span class="industry-content">
+            <span class="industry-title-row">
+              <span class="industry-icon" aria-hidden="true">
+                {industry.icon === 'car' && <svg viewBox="0 0 24 24"><path d="m5 11 1.6-4.2A2.7 2.7 0 0 1 9.1 5h5.8a2.7 2.7 0 0 1 2.5 1.8L19 11l1.5 1.4a2 2 0 0 1 .6 1.4V18h-2v-2H4.9v2H3v-4.2a2 2 0 0 1 .6-1.4L5 11Z"/><path d="M5 11h14M7 13h.01M17 13h.01"/></svg>}
+                {industry.icon === 'bus' && <svg viewBox="0 0 24 24"><path d="M5 18V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v13M5 10h14M5 15h14M7 21v-3m10 3v-3M8 6h.01M16 6h.01M8 12h.01M16 12h.01"/><path d="M5 18h14"/></svg>}
+                {industry.icon === 'people' && <svg viewBox="0 0 24 24"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM16 4.3a3.5 3.5 0 0 1 0 6.7M17.5 15a3.5 3.5 0 0 1 2.5 3.4V20"/></svg>}
+                {industry.icon === 'key' && <svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8 2 2-2 2 2 2-3 3-2-2-3 3M8 15h.01"/></svg>}
+              </span>
+              <span class="industry-card-title">{industry.name}</span>
+            </span>
+            <span class="industry-card-description">{industry.description}</span>
+            <ul class="industry-points">
+              {industry.points.map((point) => <li><span class="industry-check" aria-hidden="true">✓</span>{point}</li>)}
+            </ul>
+            <span class="industry-cta">Explore Solution <span class="industry-cta-arrow" aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .industry-solutions {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3.5rem, 6vw, 5.25rem) 0 clamp(3.75rem, 6vw, 5.5rem);
+    background:
+      radial-gradient(ellipse at 0% 58%, rgba(204, 230, 255, .62), transparent 32%),
+      radial-gradient(ellipse at 100% 44%, rgba(220, 239, 255, .7), transparent 34%),
+      linear-gradient(180deg, #fff 0%, #f3f9ff 100%);
+    color: #101b3a;
+  }
+  .industry-solutions-inner { width: min(1280px, calc(100% - 48px)); margin-inline: auto; }
+  .industry-intro { max-width: 1200px; margin: 0 auto clamp(2rem, 3vw, 2.7rem); text-align: center; }
+  .industry-eyebrow { display: inline-flex; margin: 0 0 .8rem; padding: .42rem .9rem; border-radius: 999px; background: #e5f1ff; color: #1765f5; font-size: .7rem; font-weight: 700; letter-spacing: .045em; line-height: 1.35; text-transform: uppercase; }
+  .industry-intro h2 { margin: 0; color: #101b3a; font-family: var(--font-display); font-size: clamp(2.2rem, 4.2vw, 3.65rem); font-weight: 750; line-height: 1.08; letter-spacing: -.045em; text-transform: none; }
+  .industry-intro h2 span { color: #1765f5; }
+  .industry-lede { max-width: 760px; margin: .75rem auto 0; color: #536582; font-size: clamp(.96rem, 1.3vw, 1.08rem); line-height: 1.55; }
+  .industry-solutions-grid { display: grid; grid-auto-rows: 1fr; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 1.6vw, 1.35rem); }
+  .industry-card { position: relative; display: block; isolation: isolate; overflow: hidden; height: 100%; min-width: 0; min-height: 292px; aspect-ratio: 2.05 / 1; border: 1px solid rgba(206, 225, 246, .95); border-radius: 20px; background: #f8fbff; box-shadow: 0 10px 28px rgba(34, 82, 133, .08); color: #101b3a; text-decoration: none; transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+  .industry-visual { position: absolute; z-index: -2; inset: 0 0 0 auto; display: block; width: 72%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%); mask-image: linear-gradient(90deg, transparent 0%, #000 20%); }
+  .industry-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; transition: transform 500ms cubic-bezier(.2,.7,.25,1); }
+  .taxi .industry-image { object-position: 61% 58%; }
+  .travel .industry-image { object-position: 53% 66%; }
+  .corporate .industry-image { object-position: 55% 59%; }
+  .rental .industry-image { object-position: 64% 57%; }
+  .industry-card::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.99) 35%, rgba(250,253,255,.94) 47%, rgba(248,252,255,.72) 56%, rgba(244,250,255,.2) 68%, transparent 78%); content: ''; pointer-events: none; }
+  .industry-content { position: relative; display: flex; flex-direction: column; align-items: flex-start; width: 62%; height: 100%; padding: clamp(1.1rem, 2.1vw, 1.65rem); }
+  .industry-title-row { display: flex; align-items: center; gap: .8rem; width: 100%; min-height: 56px; }
+  .industry-icon { display: grid; flex: 0 0 52px; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--industry-tone); color: #fff; }
+  .industry-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .industry-card-title { color: #101b3a; font-family: var(--font-display); font-size: clamp(1.08rem, 1.55vw, 1.35rem); font-weight: 750; line-height: 1.16; letter-spacing: -.035em; }
+  .industry-card-description { display: block; margin: .45rem 0 .65rem 4.05rem; color: #536582; font-size: clamp(.78rem, .98vw, .88rem); line-height: 1.45; }
+  .industry-points { display: grid; gap: .33rem; margin: 0 0 .8rem 4.05rem; padding: 0; color: #33435e; font-size: clamp(.73rem, .9vw, .82rem); line-height: 1.25; list-style: none; }
+  .industry-points li { display: flex; align-items: center; gap: .48rem; }
+  .industry-check { display: grid; flex: 0 0 18px; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--industry-tone); color: #fff; font-size: .7rem; font-weight: 700; line-height: 1; }
+  .industry-cta { display: inline-flex; align-items: center; gap: .75rem; min-height: 38px; margin: auto 0 0 4.05rem; padding: .25rem .35rem .25rem .85rem; border: 1px solid rgba(23, 101, 245, .2); border-radius: 999px; background: rgba(255, 255, 255, .96); color: #1765f5; font-size: .8rem; font-weight: 700; box-shadow: 0 4px 12px rgba(23, 101, 245, .1); }
+  .industry-cta-arrow { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #1765f5; color: white; font-size: 1rem; line-height: 1; transition: transform 180ms ease; }
+  .taxi { --industry-tone: #ff790b; }
+  .travel { --industry-tone: #1765f5; }
+  .corporate { --industry-tone: #12a765; }
+  .rental { --industry-tone: #ff790b; }
+  .industry-card:hover { transform: translateY(-3px); border-color: rgba(23, 101, 245, .45); box-shadow: 0 16px 34px rgba(34, 82, 133, .16); }
+  .industry-card:hover .industry-image { transform: scale(1.045); }
+  .industry-card:hover .industry-cta-arrow { transform: translateX(3px); }
+  .industry-card:focus-visible { outline: 3px solid #1765f5; outline-offset: 4px; }
+  @media (max-width: 900px) {
+    .industry-solutions-inner { width: min(760px, calc(100% - 40px)); }
+    .industry-solutions-grid { gap: 1rem; }
+    .industry-card { min-height: 318px; aspect-ratio: auto; }
+    .industry-content { width: 70%; padding: 1.2rem; }
+    .industry-card-title { font-size: 1.08rem; }
+    .industry-card-description { margin-left: 0; font-size: .8rem; }
+    .industry-points, .industry-cta { margin-left: 0; }
+    .industry-points { font-size: .76rem; }
+  }
+  @media (max-width: 700px) {
+    .industry-solutions { padding-block: 3rem; }
+    .industry-solutions-inner { width: calc(100% - 32px); }
+    .industry-intro { margin-bottom: 1.65rem; }
+    .industry-intro h2 { font-size: clamp(2rem, 8vw, 2.65rem); }
+    .industry-lede { margin-top: .65rem; font-size: .92rem; }
+    .industry-solutions-grid { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+    .industry-card { display: flex; height: auto; min-height: 0; aspect-ratio: auto; flex-direction: column; border-radius: 17px; }
+    .industry-card::after { display: none; }
+    .industry-visual { position: relative; inset: auto; width: 100%; height: clamp(180px, 52vw, 220px); flex: 0 0 clamp(180px, 52vw, 220px); -webkit-mask-image: none; mask-image: none; }
+    .industry-image { height: 100%; }
+    .industry-content { width: 100%; height: auto; min-height: 285px; flex: 1 0 auto; padding: 1.1rem 1.2rem 1.2rem; background: #fff; }
+    .industry-title-row { gap: .65rem; min-height: 50px; }
+    .industry-icon { flex-basis: 46px; width: 46px; height: 46px; }
+    .industry-icon svg { width: 23px; height: 23px; }
+    .industry-card-title { font-size: 1.05rem; }
+    .industry-card-description { margin: .5rem 0 .65rem; font-size: .78rem; }
+    .industry-points { gap: .36rem; margin-left: 0; font-size: .74rem; }
+    .industry-cta { margin: auto 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .industry-card, .industry-image, .industry-cta-arrow { transition: none; }
+    .industry-card:hover { transform: none; }
+  }
+</style>

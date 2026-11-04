@@ -1,0 +1,285 @@
+---
+const benefits = [
+  { number: '01', title: 'Complete Visibility', description: 'Keep track of all trips, drivers, vehicles and operations in one place.', tone: 'visibility', image: '/images/illustrations/Isometric Map Navigation UI.webp', width: 2098, height: 749, alt: 'Fleet tracking map with a vehicle location pin and trip information panel' },
+  { number: '02', title: 'Less Manual Coordination', description: 'Reduce repetitive calls, messages and spreadsheet updates.', tone: 'coordination', image: '/images/illustrations/Cheerful Smartphone Chat Illustration.webp', width: 1790, height: 878, alt: 'Driver using a smartphone with communication symbols nearby' },
+  { number: '03', title: 'Better Fleet Utilisation', description: 'Make informed driver and vehicle assignments and minimise idle time.', tone: 'utilisation', image: '/images/illustrations/White Vehicle Fleet with Growth Chart.webp', width: 1886, height: 834, alt: 'Taxi, passenger van and coach bus alongside an upward fleet growth chart' },
+  { number: '04', title: 'Stay Ahead of Operations', description: 'Keep maintenance, fuel, documents and renewals organised with timely reminders.', tone: 'operations', image: '/images/illustrations/3D Productivity and Maintenance Icons.webp', width: 2098, height: 750, alt: 'Calendar, maintenance wrench, fuel pump, checklist and notification bell' },
+];
+---
+
+<section class="fleet-showcase" aria-labelledby="fleet-showcase-title">
+  <div class="showcase-atmosphere" aria-hidden="true">
+    <img class="atmosphere-art atmosphere-left" src="/images/illustrations/Cloud Navigation Analytics Orbit.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async" />
+    <img class="atmosphere-art atmosphere-right" src="/images/illustrations/Cloud Network with User and Settings Icons.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async" />
+  </div>
+
+  <div class="showcase-layout">
+    <header class="showcase-intro">
+      <p class="showcase-eyebrow">WHY BUSINESSES CHOOSE DRIVEOPS</p>
+      <h2 id="fleet-showcase-title">
+        <span class="heading-line">More Control Over Your Fleet.</span>
+        <span class="heading-line heading-accent">Less Work Managing It.</span>
+      </h2>
+      <p class="showcase-description">DriveOps helps you run your fleet operations more efficiently with better visibility, fewer manual tasks and smarter coordination.</p>
+    </header>
+
+    <div class="showcase-benefits" aria-label="Why businesses choose DriveOps">
+      {benefits.map((benefit) => (
+        <article class:list={['benefit-card', benefit.tone]}>
+          <div class="benefit-content">
+            <span class="benefit-number" aria-hidden="true">{benefit.number}</span>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.description}</p>
+            <span class="benefit-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5" /></svg>
+            </span>
+          </div>
+          <div class="benefit-art">
+            <img class="benefit-illustration" src={benefit.image} width={benefit.width} height={benefit.height} alt={benefit.alt} loading="lazy" decoding="async" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .fleet-showcase {
+    --showcase-blue: #1765f5;
+    --showcase-navy: #101d3a;
+    --showcase-muted: #536582;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(3.5rem, 4.2vw, 4rem) 0 clamp(2.5rem, 3.2vw, 3rem);
+    color: var(--showcase-navy);
+    background:
+      radial-gradient(circle at 50% 12%, #fff 0 17%, transparent 43%),
+      linear-gradient(180deg, #fbfdff 0%, #f4faff 48%, #eef8ff 100%);
+  }
+  .fleet-showcase::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 28rem 18rem at 11% 30%, #caeaff8c 0%, transparent 72%),
+      radial-gradient(ellipse 34rem 21rem at 90% 23%, #d8efffa8 0%, transparent 72%),
+      radial-gradient(ellipse 42rem 18rem at 50% 100%, #dcefff78 0%, transparent 74%);
+  }
+  .showcase-atmosphere { position: absolute; z-index: -1; inset: 0; pointer-events: none; }
+  .atmosphere-art {
+    position: absolute;
+    display: block;
+    width: clamp(300px, 27vw, 460px);
+    height: auto;
+    opacity: .38;
+    object-fit: contain;
+    filter: saturate(.88);
+    animation: atmosphere-drift 8s ease-in-out infinite;
+  }
+  .atmosphere-left { top: .5rem; left: max(-9rem, calc(50% - 58rem)); }
+  .atmosphere-right { top: .25rem; right: max(-9rem, calc(50% - 58rem)); animation-delay: -4s; }
+  .showcase-layout { width: min(1440px, calc(100% - 80px)); margin-inline: auto; }
+  .showcase-intro {
+    position: relative;
+    z-index: 1;
+    max-width: 920px;
+    margin-inline: auto;
+    text-align: center;
+    animation: showcase-rise 600ms ease-out both;
+  }
+  .showcase-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 .8rem;
+    padding: .42rem .9rem;
+    border-radius: 999px;
+    background: #e4f0ff;
+    color: var(--showcase-blue);
+    font-size: .7rem;
+    font-weight: 750;
+    letter-spacing: .025em;
+    line-height: 1.25;
+  }
+  .showcase-intro h2 {
+    margin: 0;
+    color: var(--showcase-navy);
+    font-family: var(--font-display);
+    font-size: clamp(2.65rem, 3.45vw, 3.375rem);
+    font-weight: 750;
+    line-height: 1.06;
+    letter-spacing: -.045em;
+    text-transform: none;
+  }
+  .heading-line { display: block; }
+  .heading-accent { margin-top: .12em; color: var(--showcase-blue); }
+  .showcase-description {
+    max-width: 650px;
+    margin: .8rem auto 0;
+    color: var(--showcase-muted);
+    font-size: clamp(.96rem, 1.1vw, 1.06rem);
+    line-height: 1.5;
+  }
+  .showcase-benefits {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    margin-top: clamp(2.15rem, 2.6vw, 2.5rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: clamp(1rem, 1.25vw, 1.2rem);
+  }
+  .benefit-card {
+    --card-accent: #2687ed;
+    --card-soft: #e6f3ff;
+    position: relative;
+    display: grid;
+    min-width: 0;
+    min-height: clamp(185px, 14vw, 205px);
+    grid-template-columns: minmax(0, 1.18fr) minmax(210px, .82fr);
+    overflow: hidden;
+    border: 1px solid #cfe4f8;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #fff 0%, #edf7ff 100%);
+    box-shadow: 0 14px 34px #174b7d0a;
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    animation: showcase-rise 540ms ease-out both;
+  }
+  .benefit-card:nth-child(2) { animation-delay: 80ms; }
+  .benefit-card:nth-child(3) { animation-delay: 150ms; }
+  .benefit-card:nth-child(4) { animation-delay: 220ms; }
+  .benefit-card.coordination { --card-accent: #ff6b21; --card-soft: #fff0e7; border-color: #f5ddcc; background: linear-gradient(135deg, #fff 0%, #fff2e9 100%); }
+  .benefit-card.utilisation { --card-accent: #11b979; --card-soft: #ddf8eb; border-color: #cdeadd; background: linear-gradient(135deg, #fff 0%, #ebfbf3 100%); }
+  .benefit-card.operations { --card-accent: #8a48ee; --card-soft: #eee2ff; border-color: #e0d5f4; background: linear-gradient(135deg, #fff 0%, #f3edff 100%); }
+  .benefit-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    min-width: 0;
+    padding: clamp(1.35rem, 1.7vw, 1.55rem) 0 clamp(1.2rem, 1.5vw, 1.4rem) clamp(1.35rem, 1.7vw, 1.55rem);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .benefit-number {
+    display: grid;
+    min-width: 2.25rem;
+    height: 2.1rem;
+    padding-inline: .55rem;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--card-soft);
+    color: var(--card-accent);
+    font-size: .82rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .benefit-content h3 {
+    max-width: 330px;
+    margin: .65rem 0 .3rem;
+    color: var(--showcase-navy);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.55vw, 1.45rem);
+    font-weight: 750;
+    line-height: 1.08;
+    letter-spacing: -.035em;
+  }
+  .benefit-content p { max-width: 330px; margin: 0; color: var(--showcase-muted); font-size: clamp(.9rem, 1vw, 1rem); line-height: 1.35; }
+  .benefit-arrow {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-top: auto;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    place-items: center;
+    color: var(--card-accent);
+    background: #ffffffd9;
+    box-shadow: 0 5px 14px #193b6212;
+  }
+  .benefit-arrow svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 220ms ease;
+  }
+  .benefit-art {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    padding: .75rem 1rem .55rem 0;
+    place-items: end center;
+  }
+  .benefit-art::before {
+    position: absolute;
+    z-index: -1;
+    width: 70%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--card-soft) 70%, transparent);
+    content: '';
+  }
+  .benefit-illustration {
+    display: block;
+    width: 100%;
+    max-width: 330px;
+    height: clamp(125px, 10.5vw, 155px);
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 10px 10px #173f6710);
+    transition: transform 240ms ease;
+  }
+  .benefit-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--card-accent) 35%, #d6e5f2); box-shadow: 0 18px 38px #174b7d12; }
+  .benefit-card:hover .benefit-arrow svg { transform: translateX(3px); }
+  .benefit-card:hover .benefit-illustration { transform: translateY(-2px); }
+  @keyframes showcase-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes atmosphere-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (max-width: 1100px) {
+    .showcase-layout { width: min(980px, calc(100% - 48px)); }
+    .benefit-card { min-height: 200px; grid-template-columns: minmax(0, 1.15fr) minmax(180px, .85fr); border-radius: 20px; }
+    .benefit-content { padding: 1.25rem 0 1.15rem 1.25rem; }
+    .benefit-content h3 { font-size: 1.3rem; }
+    .benefit-content p { font-size: .88rem; }
+    .benefit-illustration { height: 135px; }
+  }
+  @media (max-width: 760px) {
+    .fleet-showcase { padding: 3.5rem 0 2.75rem; }
+    .showcase-layout { width: calc(100% - 36px); }
+    .showcase-intro h2 { font-size: clamp(2.35rem, 7vw, 3rem); }
+    .showcase-description { max-width: 600px; font-size: .98rem; }
+    .showcase-benefits { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+    .benefit-card { min-height: 220px; grid-template-columns: minmax(220px, 1.15fr) minmax(210px, .85fr); }
+    .benefit-content h3 { font-size: 1.35rem; }
+    .benefit-content p { font-size: .94rem; }
+    .benefit-illustration { height: 150px; }
+    .atmosphere-art { width: 300px; opacity: .24; }
+    .atmosphere-left { top: 0; left: -16rem; }
+    .atmosphere-right { top: 1rem; right: -16rem; }
+  }
+  @media (max-width: 520px) {
+    .fleet-showcase { padding: 3.25rem 0; }
+    .showcase-layout { width: calc(100% - 32px); }
+    .showcase-eyebrow { margin-bottom: .8rem; padding: .45rem .8rem; font-size: .64rem; }
+    .showcase-intro h2 { font-size: clamp(2.05rem, 10.4vw, 2.75rem); line-height: 1.08; }
+    .showcase-description { margin-top: .85rem; font-size: .93rem; line-height: 1.5; }
+    .showcase-benefits { margin-top: 2rem; }
+    .benefit-card { min-height: 350px; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; border-radius: 20px; }
+    .benefit-content { padding: 1.3rem 1.3rem 0; }
+    .benefit-content h3 { max-width: none; margin-top: .85rem; font-size: 1.45rem; }
+    .benefit-content p { max-width: 330px; font-size: .92rem; }
+    .benefit-arrow { position: absolute; top: 1.3rem; right: 1.3rem; margin: 0; }
+    .benefit-art { min-height: 155px; padding: .2rem .8rem .55rem; place-items: end center; }
+    .benefit-illustration { width: 100%; max-width: 360px; height: 155px; }
+    .atmosphere-art { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-intro, .benefit-card, .atmosphere-art { animation: none; }
+    .benefit-card, .benefit-arrow svg, .benefit-illustration { transition: none; }
+    .benefit-card:hover, .benefit-card:hover .benefit-illustration { transform: none; }
+  }
+</style>

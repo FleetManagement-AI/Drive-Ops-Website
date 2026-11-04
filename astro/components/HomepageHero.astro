@@ -1,0 +1,68 @@
+---
+---
+<section class="fleet-hero" aria-labelledby="hero-title">
+  <div class="hero-atmosphere" aria-hidden="true"></div>
+  <div class="hero-heading container">
+    <h1 id="hero-title">Your Fleet Operations.<br /><span>Under Control.</span></h1>
+    <p class="hero-description">Manage trips, drivers, vehicles, rentals, and everyday fleet operations — all in one organised platform.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/contact/">Book a Free Demo <span aria-hidden="true">→</span></a>
+      <a class="button hero-secondary" href="#how-it-works"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" /><path d="m10 7 7 5-7 5Z" fill="white" /></svg>Explore Features</a>
+    </div>
+  </div>
+  <div class="hero-artwork">
+    <img src="/images/illustrations/Modern Fleet Management Dashboard.webp" width="1983" height="793" alt="Illustration of a fleet operator with the DriveOps dashboard, SUV, passenger van and bus, alongside trip, tracking, service and insurance reminders." loading="eager" fetchpriority="high" />
+  </div>
+</section>
+<style>
+.fleet-hero {
+  --brand: #1765f5;
+  --brand-hover: #0d50ca;
+  --ink: #101b35;
+  --muted: #536582;
+  --line: #dfe8f5;
+  --scroll-thumb: #9bb7dc;
+  --scroll-track: #eff7ff;
+  --scroll-hover: #536582;
+  --scroll-active: #1765f5;
+  position: relative;
+  isolation: isolate;
+  background: #eff7ff;
+  color: var(--ink);
+  padding: 10px 0 18px;
+}
+.hero-atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: min(250px, 30vw);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 26rem 10rem at 6% 38%, #ffffff52 0%, transparent 72%),
+    radial-gradient(ellipse 30rem 11rem at 96% 40%, #ffffff38 0%, transparent 74%),
+    radial-gradient(ellipse 42rem 12rem at 50% 58%, #ffffff24 0%, transparent 76%);
+}
+.hero-heading { text-align: center; position: relative; z-index: 1; padding-bottom: 0; }
+.hero-eyebrow { display: inline-block; padding: 5px 14px; margin: 0 0 8px; background: #dcebff; color: #0d50ca; border-radius: 30px; font-size: .7rem; font-weight: 600; letter-spacing: .025em; }
+h1 { font-family: var(--font-display); font-size: clamp(2.25rem, 4vw, 3.625rem); font-weight: 800; line-height: 1.02; letter-spacing: -.035em; text-transform: none; margin: 0; }
+h1 span { color: var(--brand); }
+.hero-description { max-width: 620px; margin: 10px auto 12px; color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.125rem); line-height: 1.45; }
+.hero-actions { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hero-actions .button { min-height: 46px; padding: 11px 20px; border-radius: 10px; font-size: .85rem; text-transform: none; letter-spacing: 0; transition: background-color var(--motion-fast), box-shadow var(--motion-fast); }
+.hero-actions .button:active { box-shadow: inset 0 2px 5px #101b3526; }
+.hero-secondary { background: white; border: 1px solid var(--line); color: #1047b0; display: inline-flex; align-items: center; gap: 8px; }
+.hero-secondary:hover { background: #dcebff; border-color: #9bb7dc; }
+.fleet-hero a:focus-visible { outline: 3px solid #0d50ca; outline-offset: 4px; }
+.hero-artwork { width: 100vw; margin: -152px 0 0; position: relative; z-index: 0; display: flex; justify-content: center; }
+.hero-artwork img { display: block; width: 100%; max-width: none; height: auto; object-fit: contain; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%); mask-image: linear-gradient(to bottom, transparent 0%, #000 12%); }
+@media (max-width: 599px) {
+  .fleet-hero { padding-top: 20px; }
+  .hero-eyebrow { font-size: .6rem; padding: 6px 12px; }
+  .hero-description { margin: 16px auto 20px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .button { padding: 11px 14px; font-size: .75rem; }
+  .hero-artwork { margin-top: -58px; }
+  .hero-atmosphere { height: 220px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-actions .button { transition: none; } }
+</style>

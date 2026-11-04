@@ -13,7 +13,7 @@ export const legacyRoutes: Record<string, string> = {
 }
 
 export const publicRoutes: PublicRoute[] = [
-  "/", "/fleet-management-software-india", "/product", "/pricing", "/faq", "/contact",
+  "/", "/fleet-management-software-india", "/product", "/pricing", "/faq", "/contact", "/privacy", "/terms",
   ...["taxi-cab-fleets", "travel-tour-operators", "corporate-transport", "self-drive-rentals", "goods-transport", "fleet-management"].map(slug => `/solutions/${slug}`),
   ...PRODUCT_PAGES.map(page => `/product/${page.slug}`),
   ...Object.keys(featureContent).map(slug => `/features/${slug}`),

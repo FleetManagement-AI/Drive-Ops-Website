@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<Base title="Terms of Service | DriveOps" description="Terms that govern use of the DriveOps fleet operations platform.">
+  <main id="main-content">
+    <PageHero
+      eyebrow="Terms"
+      title="Terms of Service"
+      description="These terms outline acceptable use of DriveOps for fleet operators and their authorized users."
+    />
+    <section class="legal-section">
+      <div class="container legal-copy">
+        <p>By creating an account or using DriveOps, you agree to use the platform only for legitimate fleet operations and to keep login credentials confidential within your organization.</p>
+        <p>You are responsible for the accuracy of data you enter, for complying with applicable transport and employment laws, and for ensuring only authorized staff access your workspace.</p>
+        <p>DriveOps is provided as a business software service. Features may evolve over time. We may suspend access for unpaid accounts, misuse, or activity that threatens platform security.</p>
+        <p>For questions about these terms, reach us through the <a href="/contact/">contact page</a>.</p>
+        <p class="legal-updated">Last updated: November 2026</p>
+      </div>
+    </section>
+  </main>
+</Base>
+<style>
+.legal-section { padding: var(--section-space) 0; background: var(--paper); }
+.legal-copy { max-width: 720px; display: grid; gap: 1.1rem; color: var(--muted); font-size: 1.02rem; line-height: 1.65; }
+.legal-copy a { color: var(--brand); font-weight: 600; }
+.legal-copy a:hover { text-decoration: underline; }
+.legal-updated { margin-top: .5rem; font-size: .85rem; }
+</style>

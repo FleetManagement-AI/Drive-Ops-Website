@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<Base title="Privacy Policy | DriveOps" description="How DriveOps collects, uses, and protects information when you use our fleet operations platform.">
+  <main id="main-content">
+    <PageHero
+      eyebrow="Privacy"
+      title="Privacy Policy"
+      description="This summary explains how DriveOps handles account and operational data for fleet teams using our platform."
+    />
+    <section class="legal-section">
+      <div class="container legal-copy">
+        <p>DriveOps processes account details, fleet records, and operational activity you enter so your team can run trips, compliance, maintenance, and related workflows.</p>
+        <p>We use that information to provide the product, support your account, improve reliability, and meet legal or security obligations. We do not sell personal information.</p>
+        <p>Access is limited to authorized users in your organization and to DriveOps staff who need it for support or platform operations. Data is retained while your account is active and as needed for legal or security purposes.</p>
+        <p>Questions about privacy can be sent through our <a href="/contact/">contact page</a>.</p>
+        <p class="legal-updated">Last updated: November 2026</p>
+      </div>
+    </section>
+  </main>
+</Base>
+<style>
+.legal-section { padding: var(--section-space) 0; background: var(--paper); }
+.legal-copy { max-width: 720px; display: grid; gap: 1.1rem; color: var(--muted); font-size: 1.02rem; line-height: 1.65; }
+.legal-copy a { color: var(--brand); font-weight: 600; }
+.legal-copy a:hover { text-decoration: underline; }
+.legal-updated { margin-top: .5rem; font-size: .85rem; }
+</style>
