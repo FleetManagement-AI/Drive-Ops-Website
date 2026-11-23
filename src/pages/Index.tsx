@@ -11,14 +11,17 @@ import PricingTeaserSection from "@/components/PricingTeaserSection"
 import CTASection from "@/components/CTASection"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
+import { siteConfig } from "@/config/site"
+
+const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
 
 const homepageStructuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://driveops.info.chatserve.in/#website",
-      url: "https://driveops.info.chatserve.in/",
+      "@id": `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
       name: "DriveOps",
       description:
         "DriveOps is a fleet operations platform to plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance, WhatsApp communication, and self-drive rentals.",
@@ -26,12 +29,12 @@ const homepageStructuredData = {
     },
     {
       "@type": "Organization",
-      "@id": "https://driveops.info.chatserve.in/#organization",
+      "@id": `${siteUrl}/#organization`,
       name: "DriveOps",
-      url: "https://driveops.info.chatserve.in/",
+      url: `${siteUrl}/`,
       logo: {
         "@type": "ImageObject",
-        url: "https://driveops.info.chatserve.in/logo/driveops-logo-blue-edited.png",
+        url: `${siteUrl}/logo/driveops-logo-blue-edited.png`,
         width: 200,
         height: 60,
       },
@@ -60,9 +63,9 @@ const homepageStructuredData = {
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://driveops.info.chatserve.in/#software",
+      "@id": `${siteUrl}/#software`,
       name: "DriveOps",
-      url: "https://driveops.info.chatserve.in/",
+      url: `${siteUrl}/`,
       applicationCategory: "BusinessApplication",
       applicationSubCategory: "Fleet Operations Software",
       operatingSystem: "Web, Android",

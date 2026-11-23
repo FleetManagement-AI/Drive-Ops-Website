@@ -7,6 +7,7 @@ import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
 import type { ProductPageContent } from "@/data/product-pages"
 import { featureContent } from "@/data/seo-content"
+import { siteConfig } from "@/config/site"
 
 type Props = {
   page: ProductPageContent
@@ -14,6 +15,7 @@ type Props = {
 
 export default function ProductPageLayout({ page }: Props) {
   const location = useLocation()
+  const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
   const related = page.relatedFeatureId
     ? featureContent[page.relatedFeatureId]
     : undefined
@@ -39,10 +41,10 @@ export default function ProductPageLayout({ page }: Props) {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web, Android",
         description: page.seoDescription,
-        url: `https://driveops.info.chatserve.in/product/${page.slug}`,
+        url: `${siteUrl}/product/${page.slug}`,
         image: page.image.startsWith("http")
           ? page.image
-          : `https://driveops.info.chatserve.in${page.image}`,
+          : `${siteUrl}${page.image}`,
       },
       ...(faqs.length
         ? [

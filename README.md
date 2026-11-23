@@ -1,6 +1,6 @@
 # DriveOps marketing website
 
-React, TypeScript, Tailwind and Vite, published to GitHub Pages as prerendered HTML.
+React, TypeScript, Tailwind and Vite. Production builds are prerendered HTML, packaged into an nginx Docker image, pushed to GHCR, and deployed to the VPS at `https://www.driveopsfleet.com`.
 
 ## Local development
 
@@ -25,10 +25,23 @@ then validates SEO output. The capture blocks third-party traffic and analytics.
 `npm run build:client` is available for client-only troubleshooting; it does not
 produce the deployable static route files. `npm run preview` previews `dist`.
 
-The deployment workflow runs the unit tests, full build and browser checks before
-uploading `dist`. No SPA fallback is required: valid routes have their own files
-and unknown routes use GitHub Pages' genuine 404 response. GitHub Pages aliases
-use an immediate HTML redirect and a destination canonical, not an HTTP 301.
+## Deployment
+
+The [Build And Deploy](.github/workflows/deploy.yml) workflow (push to `main` or
+manual dispatch) runs unit tests, full build, and browser checks, then:
+
+1. Builds an nginx image from prebuilt `dist` + [`nginx.conf`](nginx.conf)
+2. Pushes to GHCR (`production-<sha>` and `production-latest`)
+3. SSHs to the VPS, pulls the image, and runs `driveops-website-production`
+4. Verifies `http://$VPS_HOST:$PORT/health`
+
+See [GitHub environment secrets](.github/GITHUB_ENVIRONMENT_SECRETS.md) for
+required repository secrets (`VPS_*`, `GHCR_TOKEN`) and the `production`
+Environment secret `PORT`.
+
+Valid routes have their own prerendered files; unknown routes use nginx
+`error_page 404 /404.html`. Legacy aliases use an immediate HTML redirect and a
+destination canonical, not an HTTP 301.
 
 ## Content and URLs
 
@@ -48,7 +61,7 @@ with `noindex` and excluded from the sitemap. Do not add a hand-written sitemap
 to `public`; the production build generates it from the route manifest.
 
 Set `VITE_SITE_URL` at build time to override the canonical origin. Its default
-is `https://driveops.info.chatserve.in`. No origin or hosting migration is needed.
+(and production deploy value) is `https://www.driveopsfleet.com`.
 
 ## SEO strategy and measurement
 

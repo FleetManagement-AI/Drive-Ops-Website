@@ -88,7 +88,7 @@ export default function PricingTeaserSection() {
     let cancelled = false
     const load = async () => {
       try {
-        const res = await fetch("https://api.driveops.chatserve.in/plans")
+        const res = await fetch("https://api.driveopsfleet.com/plans")
         if (!res.ok) return
         const json = await res.json()
         if (!cancelled && Array.isArray(json?.data) && json.data.length > 0) {

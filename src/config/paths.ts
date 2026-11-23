@@ -1,4 +1,4 @@
-/** GitHub Pages serves exported routes as directories. */
+/** Static hosting serves exported routes as directories. */
 export function canonicalPath(path: string): string {
   const suffixAt = path.search(/[?#]/)
   const pathname = suffixAt === -1 ? path : path.slice(0, suffixAt)

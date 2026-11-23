@@ -1,30 +1,36 @@
-name: Deploy DriveOps to GitHub Pages
+name: Build And Deploy
+run-name: Build And Deploy - production
 
+# Production-only: push to main or manual dispatch.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  DEPLOY_ENV: production
+  DEPLOY_SHA: ${{ github.sha }}
+  SITE_URL: https://www.driveopsfleet.com
+  NGINX_SERVER_NAME: www.driveopsfleet.com
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
           cache: npm
 
       - name: Install dependencies
@@ -33,27 +39,198 @@ jobs:
       - name: Install browser for static export
         run: npx playwright install --with-deps chromium
 
+      - name: Verify repository secrets
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        run: |
+          MISSING=()
+          for key in VPS_SSH_KEY VPS_HOST VPS_USER GHCR_TOKEN; do
+            if [ -z "${!key}" ]; then
+              MISSING+=("$key")
+            fi
+          done
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "ERROR: Missing required repository secrets"
+            echo "Set under Settings → Secrets and variables → Actions → Repository secrets:"
+            for key in "${MISSING[@]}"; do
+              echo "  - ${key}"
+            done
+            exit 1
+          fi
+
+      - name: Set image name
+        run: |
+          echo "IMAGE_NAME=$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Test
         run: npm test
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_SITE_URL: ${{ env.SITE_URL }}
 
       - name: Verify marketing pages in browser
         run: npm run test:marketing
 
-      - name: Upload build artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          path: dist
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=${{ env.DEPLOY_ENV }}-{{sha}}
+            type=raw,value=${{ env.DEPLOY_ENV }}-latest
+
+      - name: Build and push Docker image to GHCR
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Output image info
+        id: image-info
+        run: |
+          COMMIT_SHA=$(echo ${{ env.DEPLOY_SHA }} | cut -c1-7)
+          IMAGE_TAG="${{ env.DEPLOY_ENV }}-${COMMIT_SHA}"
+          FULL_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}"
+          echo "tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+          echo "full_image=${FULL_IMAGE}" >> $GITHUB_OUTPUT
+          echo "Image pushed: ${FULL_IMAGE}"
+
+    outputs:
+      image_tag: ${{ steps.image-info.outputs.tag }}
+      full_image: ${{ steps.image-info.outputs.full_image }}
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    environment: production
+
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Verify repository secrets
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        run: |
+          MISSING=()
+          for key in VPS_SSH_KEY VPS_HOST VPS_USER GHCR_TOKEN; do
+            if [ -z "${!key}" ]; then
+              MISSING+=("$key")
+            fi
+          done
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "ERROR: Missing required repository secrets"
+            echo "Set under Settings → Secrets and variables → Actions → Repository secrets:"
+            for key in "${MISSING[@]}"; do
+              echo "  - ${key}"
+            done
+            exit 1
+          fi
+
+      - name: Resolve deploy config
+        id: config
+        env:
+          PORT: ${{ secrets.PORT }}
+        run: |
+          if [ -z "$PORT" ]; then
+            echo "ERROR: Missing required Environment secret for production"
+            echo "Missing Secrets (Settings → Environments → production → Secrets):"
+            echo "  - PORT"
+            exit 1
+          fi
+
+          echo "port=${PORT}" >> $GITHUB_OUTPUT
+          echo "Using host port: ${PORT}"
+          echo "NGINX_SERVER_NAME: ${{ env.NGINX_SERVER_NAME }}"
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Test SSH connection
+        run: |
+          ssh -v ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo 'SSH OK'"
+
+      - name: Deploy to VPS
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            set -e
+
+            FULL_IMAGE="${{ needs.build.outputs.full_image }}"
+            PORT="${{ steps.config.outputs.port }}"
+            NGINX_SERVER_NAME="${{ env.NGINX_SERVER_NAME }}"
+            CONTAINER_NAME="driveops-website-production"
+
+            echo "Pulling image from GHCR: ${FULL_IMAGE}"
+            echo "Using host port: ${PORT}"
+
+            # Login to GHCR
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # Pull the image from GHCR
+            docker pull "${FULL_IMAGE}"
+
+            # Stop and remove existing container if running
+            if [ "$(docker ps -aq -f name=${CONTAINER_NAME})" ]; then
+              docker stop ${CONTAINER_NAME} || true
+              docker rm ${CONTAINER_NAME} || true
+            fi
+
+            # Run new container
+            docker run -d \
+              --name "${CONTAINER_NAME}" \
+              -p "${PORT}:80" \
+              -e "NGINX_SERVER_NAME=${NGINX_SERVER_NAME}" \
+              --restart unless-stopped \
+              "${FULL_IMAGE}"
+
+            sleep 5
+
+            docker ps | grep ${CONTAINER_NAME}
+
+            # Cleanup old images
+            docker image prune -f
+          EOF
+
+      - name: Verify deployment
+        env:
+          PORT: ${{ steps.config.outputs.port }}
+        run: |
+          sleep 3
+          HEALTH_CHECK_URL="http://${{ secrets.VPS_HOST }}:${PORT}/health"
+
+          if curl -f -s "${HEALTH_CHECK_URL}" > /dev/null; then
+            echo "Deployment successful! Health check passed."
+            echo "Application is available at:"
+            echo "  - Direct IP: http://${{ secrets.VPS_HOST }}:${PORT}"
+            echo "  - Canonical: ${{ env.SITE_URL }}"
+          else
+            echo "Health check failed, but container may still be starting. Please verify manually."
+            exit 1
+          fi

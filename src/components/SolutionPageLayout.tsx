@@ -6,6 +6,7 @@ import type { LucideIcon } from "lucide-react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
+import { siteConfig } from "@/config/site"
 
 export type SolutionCapability = {
   title: string
@@ -35,6 +36,7 @@ export type SolutionPageContent = {
 type Props = { page: SolutionPageContent }
 
 export default function SolutionPageLayout({ page }: Props) {
+  const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -45,10 +47,10 @@ export default function SolutionPageLayout({ page }: Props) {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web, Android",
         description: page.seoDescription,
-        url: `https://driveops.info.chatserve.in/solutions/${page.slug}`,
+        url: `${siteUrl}/solutions/${page.slug}`,
         image: page.image.startsWith("http")
           ? page.image
-          : `https://driveops.info.chatserve.in${page.image}`,
+          : `${siteUrl}${page.image}`,
       },
       {
         "@type": "FAQPage",

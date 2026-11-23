@@ -2,11 +2,14 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
 import FAQSection, { HOMEPAGE_FAQS } from "@/components/FAQSection"
+import { siteConfig } from "@/config/site"
+
+const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://driveops.info.chatserve.in/faq#faq",
+  "@id": `${siteUrl}/faq#faq`,
   mainEntity: HOMEPAGE_FAQS.map((faq) => ({
     "@type": "Question",
     name: faq.q,

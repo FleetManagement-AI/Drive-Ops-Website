@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "DriveOps",
   shortName: "DriveOps",
-  siteUrl: (typeof process !== "undefined" && process.env?.VITE_SITE_URL) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_SITE_URL) || "https://driveops.info.chatserve.in",
+  siteUrl: (typeof process !== "undefined" && process.env?.VITE_SITE_URL) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_SITE_URL) || "https://www.driveopsfleet.com",
   title: "DriveOps | Manage & Operate Your Fleet from One Platform",
   description:
     "Plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance documents, WhatsApp communication, customer reviews, and self-drive rentals—with DriveOps.",

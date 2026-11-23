@@ -104,7 +104,7 @@ const PricingSection = () => {
     let isMounted = true
     const fetchPlans = async () => {
       try {
-        const res = await fetch("https://api.driveops.chatserve.in/plans")
+        const res = await fetch("https://api.driveopsfleet.com/plans")
         if (!res.ok) throw new Error(`HTTP error ${res.status}`)
         const json: ApiResponse = await res.json()
         if (isMounted && json.data && Array.isArray(json.data) && json.data.length > 0) {

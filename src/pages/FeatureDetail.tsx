@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import { featureContent } from "@/data/seo-content"
 import FAQList from "@/components/FAQList"
+import { siteConfig } from "@/config/site"
 
 /** Maps SEO feature landings to primary product pages + OG imagery */
 const FEATURE_PRODUCT_LINKS: Record<string, { productSlug: string; ogImage: string }> = {
@@ -85,7 +86,7 @@ const FeatureDetail = () => {
         "@type": "WebPage",
         name: content.title,
         description: content.description,
-        url: `https://driveops.info.chatserve.in/features/${featureId}`,
+        url: `${siteConfig.siteUrl.replace(/\/$/, "")}/features/${featureId}`,
       },
       {
         "@type": "FAQPage",
