@@ -1,6 +1,7 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { X, Check, ArrowRight } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 const COMPARISONS = [
   {
@@ -125,7 +126,7 @@ export default function ComparisonSection() {
               </p>
             </div>
             <a
-              href="https://driveops.chatserve.in/signup"
+              href={siteConfig.signupUrl}
               className="gradient-accent text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow-xs hover:opacity-95 transition-all flex items-center gap-1.5 shrink-0"
             >
               <span>Get Started Free</span>

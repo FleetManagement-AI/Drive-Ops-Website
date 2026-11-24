@@ -7,6 +7,7 @@ import dispatchImg from "@/assets/trip-dispatch.jpg"
 import documentVaultImg from "@/assets/document-vault.jpg"
 import vehicleImg from "@/assets/vehicle-management.jpg"
 import driverImg from "@/assets/driver-management.jpg"
+import { siteConfig } from "@/config/site"
 
 const TOUR_ITEMS = [
   {
@@ -219,7 +220,7 @@ export default function ProductTourSection() {
 
               <div className="pt-2">
                 <a
-                  href="https://driveops.chatserve.in/signup"
+                  href={siteConfig.signupUrl}
                   className="gradient-accent text-white px-5 py-2.5 rounded-xl font-bold text-xs inline-flex items-center gap-1.5 shadow-sm hover:opacity-95 transition-all"
                 >
                   <span>Start with {currentItem.label}</span>

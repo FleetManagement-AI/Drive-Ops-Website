@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Check, Star } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 interface ApiPlanLimit {
   maxVehicles: number
@@ -18,7 +19,7 @@ interface ApiPlan {
   limits: ApiPlanLimit
 }
 
-const SIGNUP_URL = "https://driveops.chatserve.in/signup"
+const SIGNUP_URL = siteConfig.signupUrl
 
 const FALLBACK: ApiPlan[] = [
   {

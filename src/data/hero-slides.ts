@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site"
 export type HeroSlideCta = {
   label: string
   href: string
@@ -39,7 +40,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       "DriveOps fleet operations dashboard showing today's trips, active vehicles, drivers on duty, and live fleet map",
     primaryCta: {
       label: "Start Free Trial",
-      href: "https://driveops.chatserve.in/signup",
+      href: siteConfig.signupUrl,
       external: true,
     },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -61,7 +62,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       "DriveOps trip planner showing create trip form with recommended driver and vehicle assignment",
     primaryCta: {
       label: "Start Free Trial",
-      href: "https://driveops.chatserve.in/signup",
+      href: siteConfig.signupUrl,
       external: true,
     },
     secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
@@ -82,7 +83,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       "WhatsApp trip assignment with Accept and Reject alongside the DriveOps Driver App My Trips screen",
     primaryCta: {
       label: "Start Free Trial",
-      href: "https://driveops.chatserve.in/signup",
+      href: siteConfig.signupUrl,
       external: true,
     },
     secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
@@ -121,7 +122,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       "DriveOps fleet care cards for fuel management, maintenance, compliance, and maintenance schedule",
     primaryCta: {
       label: "Start Free Trial",
-      href: "https://driveops.chatserve.in/signup",
+      href: siteConfig.signupUrl,
       external: true,
     },
     secondaryCta: { label: "See How It Works", href: "/#how-it-works" },
@@ -142,7 +143,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       "DriveOps cards for trip sheet management, customer reviews, and unassigned trip alerts",
     primaryCta: {
       label: "Start Free Trial",
-      href: "https://driveops.chatserve.in/signup",
+      href: siteConfig.signupUrl,
       external: true,
     },
     secondaryCta: { label: "See How It Works", href: "/#how-it-works" },

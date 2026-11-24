@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion"
 import { CalendarPlus, Send, Smartphone, LayoutDashboard, CheckCircle2, ArrowRight, MapPin, Users, Car, ShieldCheck } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 const STAGES = [
   {
@@ -198,7 +199,7 @@ export default function TripProductLoop() {
 
               <div className="pt-4 flex items-center gap-4">
                 <a
-                  href="https://driveops.chatserve.in/signup"
+                  href={siteConfig.signupUrl}
                   className="gradient-accent text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-sm hover:opacity-95 transition-all flex items-center gap-1.5"
                 >
                   <span>Experience this workflow</span>

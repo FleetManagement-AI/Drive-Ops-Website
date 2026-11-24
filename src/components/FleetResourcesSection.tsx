@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { Car, Users, FileText, UploadCloud, CheckCircle2, ArrowRight } from "lucide-react"
 import vehicleScreenshot from "@/assets/vehicle-management.jpg"
 import driverScreenshot from "@/assets/driver-management.jpg"
+import { siteConfig } from "@/config/site"
 
 export default function FleetResourcesSection() {
   const [activeTab, setActiveTab] = useState<"vehicles" | "drivers">("vehicles")
@@ -125,7 +126,7 @@ export default function FleetResourcesSection() {
 
               <div className="pt-3">
                 <a
-                  href="https://driveops.chatserve.in/signup"
+                  href={siteConfig.signupUrl}
                   className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700"
                 >
                   <span>Import your fleet in minutes</span>

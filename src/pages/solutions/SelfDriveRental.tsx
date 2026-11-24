@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { siteConfig } from "@/config/site"
 
 const faqs = [
   {
@@ -87,7 +88,7 @@ export default function SelfDriveRental() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-purple-500/25 transition-all flex items-center gap-2"
               >
                 <span>Start Free Trial</span>

@@ -1,6 +1,7 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, Sparkles } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 export const FleetCTA: React.FC = () => {
   const shouldReduceMotion = useReducedMotion()
@@ -28,7 +29,7 @@ export const FleetCTA: React.FC = () => {
       </div>
 
       <a
-        href="https://driveops.chatserve.in/signup"
+        href={siteConfig.signupUrl}
         id="ecosystem-cta-trial"
         className="w-full sm:w-auto shrink-0 px-6 py-3.5 gradient-accent hover:opacity-95 text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group cursor-pointer"
       >

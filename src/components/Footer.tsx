@@ -138,7 +138,7 @@ export default function Footer() {
 
             <div className="pt-1">
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="text-xs font-semibold text-blue-400 hover:text-blue-300 border border-blue-900 bg-blue-950/40 hover:border-blue-700 px-3.5 py-1.5 rounded-lg transition-all inline-flex items-center gap-1.5"
               >
                 <ExternalLink size={12} />
@@ -227,7 +227,7 @@ export default function Footer() {
             <Link to="/contact/" className="hover:text-slate-300 transition-colors">Support</Link>
             <Link to="/pricing/" className="hover:text-slate-300 transition-colors">Pricing</Link>
             <a
-              href="https://driveops.chatserve.in/signup"
+              href={siteConfig.signupUrl}
               className="text-blue-400 font-semibold hover:text-blue-300 transition-colors"
             >
               Start Free →

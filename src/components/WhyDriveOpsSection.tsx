@@ -26,8 +26,9 @@ import {
   FaWhatsapp,
 } from "react-icons/fa"
 import type { IconType } from "react-icons"
+import { siteConfig } from "@/config/site"
 
-const SIGNUP_URL = "https://driveops.chatserve.in/signup"
+const SIGNUP_URL = siteConfig.signupUrl
 
 const OLD_WAY_IMAGE =
   "/images/features/Stressed Office Worker’s Task Overload.webp"

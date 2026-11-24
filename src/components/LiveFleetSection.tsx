@@ -2,6 +2,7 @@ import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { MapPinned, Smartphone, Link2, Radio, ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
+import { siteConfig } from "@/config/site"
 
 const CAPABILITIES = [
   {
@@ -77,7 +78,7 @@ export default function LiveFleetSection() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="text-showcase-cta inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white rounded-xl hover:bg-white/10 transition-colors"
               >
                 Start free trial

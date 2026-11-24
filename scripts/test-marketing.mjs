@@ -59,7 +59,7 @@ try {
     window.gtag = (...args) => window.marketingEvents.push(args)
     document.addEventListener('click', event => {
       const a = event.target.closest?.('a')
-      if (a?.hostname === 'driveops.chatserve.in') event.preventDefault()
+      if (a?.hostname === 'app.driveopsfleet.com') event.preventDefault()
     })
   })
   const client = await context.newPage()
@@ -71,7 +71,7 @@ try {
   await client.locator('main summary').first().click()
   assert(await client.locator('main details[open] p').first().isVisible())
   assert.equal(await client.locator('link[rel="canonical"]').count(), 1)
-  await client.locator('main a[href="https://driveops.chatserve.in/signup"]').first().click()
+  await client.locator('main a[href="https://app.driveopsfleet.com/signup"]').first().click()
   const clicks = await client.evaluate(() => window.marketingEvents.filter(args => args[0] === 'event' && args[1] === 'marketing_cta_click'))
   assert.equal(clicks.length, 1)
   assert.equal(clicks[0][2].topic, 'reviews')

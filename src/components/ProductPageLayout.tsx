@@ -85,7 +85,7 @@ export default function ProductPageLayout({ page }: Props) {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/25 hover:bg-blue-500"
               >
                 Start Free Trial
@@ -236,7 +236,7 @@ export default function ProductPageLayout({ page }: Props) {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://driveops.chatserve.in/signup"
+              href={siteConfig.signupUrl}
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-500"
             >
               Start Free Trial

@@ -5,13 +5,13 @@
   <script>
     if (!window.__DRIVEOPS_EXPORT__) {
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function () { window.dataLayer.push(arguments); };
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-49093788B0', { send_page_view: false });
-      var analytics = document.createElement('script');
-      analytics.async = true;
-      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-49093788B0';
-      document.head.appendChild(analytics);
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      var gtm = document.createElement('script');
+      gtm.async = true;
+      gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TGXC9QZM';
+      document.head.appendChild(gtm);
     }
   </script>
 

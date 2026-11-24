@@ -8,13 +8,14 @@ import {
   Send,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 const RECURRING_TRIPS_IMAGE =
   "/images/features/Airport Trip Scheduling Dashboard.webp"
 const WORKFLOW_IMAGE =
   "/images/features/Five-Step Recurring Trip Workflow.webp"
 
-const SIGNUP_URL = "https://driveops.chatserve.in/signup"
+const SIGNUP_URL = siteConfig.signupUrl
 
 type BenefitItem = {
   title: string

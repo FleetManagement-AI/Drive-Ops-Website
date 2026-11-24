@@ -1,6 +1,7 @@
 import React from "react"
 import { ArrowRight, Mail } from "lucide-react"
 import { Link } from "react-router-dom"
+import { siteConfig } from "@/config/site"
 
 export default function CTASection() {
   return (
@@ -27,7 +28,7 @@ export default function CTASection() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <a
-            href="https://driveops.chatserve.in/signup"
+            href={siteConfig.signupUrl}
             className="text-showcase-cta w-full sm:w-auto px-8 py-3.5 gradient-accent hover:opacity-95 text-white rounded-xl transition-all shadow-xl shadow-blue-500/25 flex items-center justify-center gap-2 group cursor-pointer"
           >
             <span>Start Free Trial</span>

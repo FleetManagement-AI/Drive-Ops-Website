@@ -31,6 +31,7 @@ import {
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
+import { siteConfig } from "@/config/site"
 
 type NavLinkItem = {
   label: string
@@ -371,7 +372,7 @@ const Navbar = () => {
 
           <div className="hidden items-center gap-2 sm:flex sm:gap-3">
             <a
-              href="https://driveops.chatserve.in/login"
+              href={siteConfig.loginUrl}
               className="rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:text-slate-900 sm:text-sm"
             >
               Sign in
@@ -383,7 +384,7 @@ const Navbar = () => {
               Book Demo
             </Link>
             <a
-              href="https://driveops.chatserve.in/signup/account"
+              href={siteConfig.signupAccountUrl}
               className="flex min-h-[38px] items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm shadow-blue-500/25 transition-all hover:bg-blue-500 sm:px-5 sm:text-sm"
             >
               <span>Start Free</span>
@@ -488,7 +489,7 @@ const Navbar = () => {
 
                 <div className="flex flex-col gap-2.5 border-t border-slate-100 pt-4">
                   <a
-                    href="https://driveops.chatserve.in/login"
+                    href={siteConfig.loginUrl}
                     className="rounded-xl border border-slate-200 py-3 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50"
                     onClick={() => setMobileOpen(false)}
                   >
@@ -502,7 +503,7 @@ const Navbar = () => {
                     Book Demo
                   </Link>
                   <a
-                    href="https://driveops.chatserve.in/signup"
+                    href={siteConfig.signupUrl}
                     onClick={() => setMobileOpen(false)}
                     className="rounded-xl bg-blue-600 py-3.5 text-center text-sm font-semibold text-white shadow-xs shadow-blue-500/25"
                   >

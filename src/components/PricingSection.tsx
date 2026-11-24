@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { Check, ArrowRight, Star, Loader2 } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 interface ApiPlanLimit {
   maxVehicles: number
@@ -200,7 +201,7 @@ const PricingSection = () => {
                   </div>
 
                   <a
-                    href="https://driveops.chatserve.in/signup"
+                    href={siteConfig.signupUrl}
                     className={`w-full py-3 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all min-h-[44px] ${
                       isPopular
                         ? "gradient-accent text-white shadow-md shadow-blue-500/25 hover:opacity-95 active:opacity-90"

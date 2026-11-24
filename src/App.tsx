@@ -39,10 +39,9 @@ const AnalyticsTracker = () => {
 
   useEffect(() => {
     if (document.documentElement.dataset.exporting) return;
-    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("config", "G-49093788B0", {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
         page_path: location.pathname + location.search,
-        send_page_view: true,
       });
     }
   }, [location]);

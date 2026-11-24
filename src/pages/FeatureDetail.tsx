@@ -141,7 +141,7 @@ const FeatureDetail = () => {
                 {productLink && <Link className="mb-4 block text-blue-200 underline" to={`/product/${productLink.productSlug}/`}>Explore this DriveOps capability</Link>}
                 <p className="text-slate-400 mb-6 text-sm">Trips, dispatch, live tracking, Driver App, and WhatsApp—in one platform.</p>
                 <a
-                  href="https://driveops.chatserve.in/signup"
+                  href={siteConfig.signupUrl}
                   className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition-colors"
                 >
                   Start Your Free Trial

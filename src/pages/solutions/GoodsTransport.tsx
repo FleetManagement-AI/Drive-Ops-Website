@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
 import { Link } from "react-router-dom"
 import {
+import { siteConfig } from "@/config/site"
   Truck,
   Package,
   Layers,
@@ -85,7 +86,7 @@ export default function GoodsTransport() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-2"
               >
                 <span>Start Free Trial</span>

@@ -1,6 +1,7 @@
 import React from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, CheckCircle2, Car, ClipboardList, Send, Users } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 const DISPATCH_FLOW = [
   {
@@ -187,7 +188,7 @@ export default function DispatchSection() {
 
             <div className="pt-2">
               <a
-                href="https://driveops.chatserve.in/signup"
+                href={siteConfig.signupUrl}
                 className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700"
               >
                 <span>Try the dispatch queue</span>
