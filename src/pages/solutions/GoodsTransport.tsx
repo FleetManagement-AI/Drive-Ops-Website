@@ -5,7 +5,6 @@ import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
 import { Link } from "react-router-dom"
 import {
-import { siteConfig } from "@/config/site"
   Truck,
   Package,
   Layers,
@@ -15,6 +14,7 @@ import { siteConfig } from "@/config/site"
   ShieldCheck,
   MapPin,
 } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 const faqs = [
   {
