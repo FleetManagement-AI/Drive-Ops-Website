@@ -90,9 +90,15 @@ const App = () => (
             <Route path="/solutions/corporate-transport" element={<CorporateTransport />} />
             <Route path="/solutions/self-drive-rentals" element={<SelfDriveRentals />} />
 
-            {Object.entries(legacyRoutes).map(([from, to]) => (
-              <Route key={from} path={from} element={<Navigate to={to} replace />} />
-            ))}
+            {Object.entries(legacyRoutes).flatMap(([from, to]) => {
+              const trimmed = from.replace(/\/$/, "") || "/"
+              return [
+                <Route key={from} path={from} element={<Navigate to={to} replace />} />,
+                ...(trimmed !== from
+                  ? [<Route key={trimmed} path={trimmed} element={<Navigate to={to} replace />} />]
+                  : []),
+              ]
+            })}
 
             {/* Preserved SEO routes */}
             <Route path="/solutions/goods-transport" element={<GoodsTransport />} />

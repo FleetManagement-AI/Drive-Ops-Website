@@ -112,14 +112,16 @@ export const priorityProducts: Record<string, Partial<ProductPageContent>> = {
 }
 
 export const reviewProduct: ProductPageContent = {
-  slug: "reviews", group: "operations", title: "Customer review management", eyebrow: "Operations",
-  description: "Collect passenger feedback through WhatsApp and review incoming replies in a shared operations inbox. DriveOps helps Indian taxi, travel and transport teams keep post-trip feedback visible to the people running the service.",
+  slug: "reviews", group: "operations", title: "Customer review management",
+  seoH1: "Fleet Customer Review Management",
+  eyebrow: "Operations",
+  description: "Fleet customer review management via WhatsApp—send post-trip requests and review replies in a shared ops inbox for taxi, travel, and transport teams.",
   image: "/images/hero/Fleet Management Dashboard Cards review alerts.webp",
-  imageAlt: "DriveOps customer review and operational alert cards",
+  imageAlt: "DriveOps fleet customer review management and operational alert cards",
   capabilities: ["Post-trip WhatsApp review requests through configured templates", "Incoming customer feedback collected in the operations inbox", "Shared visibility for staff reviewing passenger replies", "Connected WhatsApp customer communication and tracking workflow"],
   workflow: ["Complete the trip", "Send configured review request", "Customer replies on WhatsApp", "Review feedback in the inbox", "Staff decide on follow-up"],
-  seoTitle: "Customer Review Management for Fleets | DriveOps",
-  seoDescription: "Collect passenger feedback through WhatsApp and review replies in the DriveOps operations inbox. Customer review management for taxi and transport fleets.",
+  seoTitle: "Fleet Customer Review Management | DriveOps",
+  seoDescription: "Fleet customer review management—collect WhatsApp passenger feedback and review replies in the DriveOps operations inbox.",
   primaryKeyword: "customer review management for fleet operators",
   supportingKeywords: ["passenger feedback management", "taxi customer feedback software", "post-trip review management"],
   relatedFeatureId: "whatsapp-review-management",

@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { loadManifest } from './seo-manifest.mjs'
 
-const { publicRoutes, legacyRoutes, siteUrl } = await loadManifest()
+const { publicRoutes, legacyRoutes, siteUrl, isSitemapRoute, resolveCanonicalPath } = await loadManifest()
 const server = await preview({ preview: { host: '127.0.0.1', port: 4174, strictPort: true }, logLevel: 'error' })
 let browser
 const pages = []
@@ -25,7 +25,7 @@ try {
     page.on('pageerror', onError)
     await page.goto(`http://127.0.0.1:4174${route.path}`, { waitUntil: 'networkidle' })
     await page.waitForFunction(() => document.querySelector('#root h1') && document.querySelector('link[rel="canonical"]') && document.querySelector('script[type="application/ld+json"]'))
-    await page.waitForFunction(expected => document.querySelector('link[rel="canonical"]')?.getAttribute('href') === expected, `${siteUrl}${route.path}`)
+    await page.waitForFunction(expected => document.querySelector('link[rel="canonical"]')?.getAttribute('href') === expected, `${siteUrl}${resolveCanonicalPath(route.path)}`)
     await page.evaluate(async () => {
       // Reveal scroll-triggered sections before capturing their actual rendered HTML.
       for (let y = 0; y < document.body.scrollHeight; y += 800) {
@@ -63,11 +63,12 @@ try {
     await mkdir(folder, { recursive: true })
     await writeFile(join(folder, 'index.html'), html)
   }
-  const urls = publicRoutes.filter(route => route.indexable).map(route => `  <url><loc>${escape(siteUrl + route.path)}</loc><lastmod>${route.lastmod}</lastmod></url>`).join('\n')
+  const sitemapRoutes = publicRoutes.filter(route => isSitemapRoute(route))
+  const urls = sitemapRoutes.map(route => `  <url><loc>${escape(siteUrl + route.path)}</loc><lastmod>${route.lastmod}</lastmod></url>`).join('\n')
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`)
   await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`)
   await writeFile('dist/.nojekyll', '')
-  console.log(`Static export complete: ${publicRoutes.length} pages, ${Object.keys(legacyRoutes).length} aliases, and a 404 page.`)
+  console.log(`Static export complete: ${publicRoutes.length} pages, ${Object.keys(legacyRoutes).length} aliases, ${sitemapRoutes.length} sitemap URLs, and a 404 page.`)
 } finally {
   await browser?.close()
   await new Promise((resolve, reject) => server.httpServer.close(error => error ? reject(error) : resolve()))

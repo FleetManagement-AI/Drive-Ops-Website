@@ -4,11 +4,13 @@ import { join } from 'node:path'
 import { JSDOM } from 'jsdom'
 import { loadManifest } from './seo-manifest.mjs'
 
-const { publicRoutes, legacyRoutes, siteUrl } = await loadManifest()
+const { publicRoutes, legacyRoutes, siteUrl, resolveCanonicalPath, isSitemapRoute, canonicalOverrides } = await loadManifest()
 const sitemap = new JSDOM(await readFile('dist/sitemap.xml', 'utf8'), { contentType: 'application/xml' }).window.document
 const sitemapUrls = [...sitemap.querySelectorAll('loc')].map(node => node.textContent)
-assert.equal(sitemapUrls.length, publicRoutes.filter(route => route.indexable).length)
+const expectedSitemapCount = publicRoutes.filter(route => isSitemapRoute(route)).length
+assert.equal(sitemapUrls.length, expectedSitemapCount)
 assert.equal(new Set(sitemapUrls).size, sitemapUrls.length)
+assert.equal(siteUrl, (process.env.VITE_SITE_URL || 'https://driveopsfleet.com').replace(/\/$/, ''))
 const titles = new Set()
 for (const route of [...publicRoutes, { path: '/404/', indexable: false }]) {
   const filename = route.path === '/404/' ? 'dist/404.html' : join('dist', route.path.slice(1), 'index.html')
@@ -18,7 +20,8 @@ for (const route of [...publicRoutes, { path: '/404/', indexable: false }]) {
   if (route.indexable) { assert(!titles.has(title), `Duplicate title: ${title}`); titles.add(title) }
   assert(one('h1').textContent.trim(), `${route.path}: empty H1`)
   assert(one('meta[name="description"]').content.length > 20)
-  assert.equal(one('link[rel="canonical"]').href, siteUrl + route.path)
+  const expectedCanonical = siteUrl + resolveCanonicalPath(route.path)
+  assert.equal(one('link[rel="canonical"]').href, expectedCanonical, `${route.path}: canonical`)
   assert.equal(one('meta[name="robots"]').content.includes('noindex'), !route.indexable)
   const data = JSON.parse(one('script[type="application/ld+json"]').textContent)
   assert.equal(data['@graph'].filter(node => node['@type'] === 'Organization').length, 1)
@@ -28,7 +31,7 @@ for (const route of [...publicRoutes, { path: '/404/', indexable: false }]) {
     assert(doc.querySelector('#root').textContent.includes(question.name), `${route.path}: missing FAQ question`)
     assert(doc.querySelector('#root').textContent.includes(question.acceptedAnswer.text), `${route.path}: FAQ answer missing from HTML`)
   }
-  assert.equal(sitemapUrls.includes(siteUrl + route.path), route.indexable)
+  assert.equal(sitemapUrls.includes(siteUrl + route.path), isSitemapRoute(route), `${route.path}: sitemap membership`)
   if (route.indexable) {
     for (const link of doc.querySelectorAll('a[href^="/"]')) {
       const pathname = new URL(link.getAttribute('href'), siteUrl).pathname
@@ -43,4 +46,10 @@ for (const [from, to] of Object.entries(legacyRoutes)) {
   assert(doc.querySelector('meta[http-equiv="refresh"]').content.includes(to))
   assert(!sitemapUrls.includes(siteUrl + from))
 }
-console.log(`SEO checks passed for ${publicRoutes.length} pages, ${Object.keys(legacyRoutes).length} aliases, sitemap, FAQ HTML, metadata, structured data, and internal links.`)
+for (const [from, to] of Object.entries(canonicalOverrides)) {
+  assert(publicRoutes.some(route => route.path === from), `override source missing from publicRoutes: ${from}`)
+  assert(publicRoutes.some(route => route.path === to), `override target missing from publicRoutes: ${to}`)
+  assert(!sitemapUrls.includes(siteUrl + from), `overridden URL must not be in sitemap: ${from}`)
+  assert(sitemapUrls.includes(siteUrl + to), `primary must be in sitemap: ${to}`)
+}
+console.log(`SEO checks passed for ${publicRoutes.length} pages, ${Object.keys(legacyRoutes).length} aliases, ${Object.keys(canonicalOverrides).length} canonical overrides, sitemap, FAQ HTML, metadata, structured data, and internal links.`)

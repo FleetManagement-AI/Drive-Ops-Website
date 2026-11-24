@@ -7,6 +7,7 @@ import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import { featureContent } from "@/data/seo-content"
 import FAQList from "@/components/FAQList"
 import { siteConfig } from "@/config/site"
+import { resolveCanonicalPath } from "@/config/routes"
 
 /** Maps SEO feature landings to primary product pages + OG imagery */
 const FEATURE_PRODUCT_LINKS: Record<string, { productSlug: string; ogImage: string }> = {
@@ -78,6 +79,10 @@ const FeatureDetail = () => {
 
   if (!content) return <NotFound />
 
+  const pagePath = `/features/${featureId}`
+  const canonicalPathForPage = resolveCanonicalPath(pagePath)
+  const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
+
   // AEO: FAQPage JSON-LD via Helmet
   const structuredData = {
     "@context": "https://schema.org",
@@ -86,7 +91,7 @@ const FeatureDetail = () => {
         "@type": "WebPage",
         name: content.title,
         description: content.description,
-        url: `${siteConfig.siteUrl.replace(/\/$/, "")}/features/${featureId}`,
+        url: `${siteUrl}${canonicalPathForPage}`,
       },
       {
         "@type": "FAQPage",
@@ -105,7 +110,7 @@ const FeatureDetail = () => {
         title={content.title}
         description={content.description}
         keywords={content.keyword}
-        canonicalUrl={`/features/${featureId}`}
+        canonicalUrl={canonicalPathForPage}
         ogImage={productLink?.ogImage}
         structuredData={structuredData}
       />
@@ -175,6 +180,17 @@ const FeatureDetail = () => {
             <FAQList faqs={content.faqs} />
           </div>
         </section>
+
+        <aside className="border-t border-slate-200 bg-blue-50/40 px-4 py-8" aria-label="Related fleet software">
+          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-5 text-sm font-semibold text-blue-700">
+            <Link to="/fleet-management-software-india/">Fleet management India</Link>
+            <Link to="/features/vehicle-management/">Vehicle management</Link>
+            <Link to="/features/driver-management/">Driver management</Link>
+            <Link to="/product/trips-dispatch/">Trip management</Link>
+            <Link to="/product/driver-app/">Driver App</Link>
+            <Link to="/pricing/">Pricing</Link>
+          </div>
+        </aside>
       </main>
 
       <Footer />

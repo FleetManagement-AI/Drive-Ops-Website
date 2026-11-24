@@ -25,8 +25,8 @@ Configure once at repo level:
 | Value | Setting |
 |-------|---------|
 | Environment | `production` only |
-| `NGINX_SERVER_NAME` | `www.driveopsfleet.com` |
-| `VITE_SITE_URL` | `https://www.driveopsfleet.com` |
+| `NGINX_SERVER_NAME` | `driveopsfleet.com` |
+| `VITE_SITE_URL` | `https://driveopsfleet.com` |
 | Container name | `driveops-website-production` |
 
 ## Checklist
@@ -34,6 +34,6 @@ Configure once at repo level:
 1. Create Environment `production` on this repo.
 2. Set repository secrets: `VPS_SSH_KEY`, `VPS_HOST`, `VPS_USER`, `GHCR_TOKEN`.
 3. Set Environment secret `PORT` on `production`.
-4. Point DNS for `www.driveopsfleet.com` at the VPS reverse proxy / published port.
+4. Point DNS for `driveopsfleet.com` (and `www` → apex) at the VPS reverse proxy / published port.
 5. Push to `main` or run **Build And Deploy** via workflow_dispatch.
 6. Confirm Actions logs show health check success and `docker ps` shows `driveops-website-production`.

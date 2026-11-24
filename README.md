@@ -1,6 +1,6 @@
 # DriveOps marketing website
 
-React, TypeScript, Tailwind and Vite. Production builds are prerendered HTML, packaged into an nginx Docker image, pushed to GHCR, and deployed to the VPS at `https://www.driveopsfleet.com`.
+React, TypeScript, Tailwind and Vite. Production builds are prerendered HTML, packaged into an nginx Docker image, pushed to GHCR, and deployed to the VPS at `https://driveopsfleet.com`.
 
 ## Local development
 
@@ -40,8 +40,9 @@ required repository secrets (`VPS_*`, `GHCR_TOKEN`) and the `production`
 Environment secret `PORT`.
 
 Valid routes have their own prerendered files; unknown routes use nginx
-`error_page 404 /404.html`. Legacy aliases use an immediate HTML redirect and a
-destination canonical, not an HTTP 301.
+`error_page 404 /404.html`. Short SEO aliases and legacy paths return nginx
+HTTP 301 to primary pages. Overlapping topic pages stay live with
+`rel=canonical` pointing at the primary URL and are excluded from the sitemap.
 
 ## Content and URLs
 
@@ -61,7 +62,8 @@ with `noindex` and excluded from the sitemap. Do not add a hand-written sitemap
 to `public`; the production build generates it from the route manifest.
 
 Set `VITE_SITE_URL` at build time to override the canonical origin. Its default
-(and production deploy value) is `https://www.driveopsfleet.com`.
+(and production deploy value) is `https://driveopsfleet.com`. `www` permanently
+redirects to the apex host.
 
 ## SEO strategy and measurement
 

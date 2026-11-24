@@ -69,9 +69,10 @@ const page: SolutionPageContent = {
       a: "WhatsApp trip confirmation can include a secure tracking link. SMS delivery is not implemented.",
     },
   ],
-  seoTitle: "Travel & Tour Operator Fleet Software | DriveOps",
+  seoH1: "Tour Operator Fleet Software",
+  seoTitle: "Tour Operator Software | DriveOps",
   seoDescription:
-    "Coordinate scheduled trips, recurring tours, driver assignment, and customer tracking for travel and tour operators with DriveOps.",
+    "Tour operator software for scheduled trips, recurring tours, driver assignment, and customer tracking links with DriveOps.",
   keywords:
     "tour operator software, travel fleet management, scheduled trip software India, tour dispatch software",
 }

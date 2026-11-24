@@ -3,7 +3,7 @@ const appUrl = "https://app.driveopsfleet.com"
 export const siteConfig = {
   name: "DriveOps",
   shortName: "DriveOps",
-  siteUrl: (typeof process !== "undefined" && process.env?.VITE_SITE_URL) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_SITE_URL) || "https://www.driveopsfleet.com",
+  siteUrl: (typeof process !== "undefined" && process.env?.VITE_SITE_URL) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_SITE_URL) || "https://driveopsfleet.com",
   appUrl,
   loginUrl: `${appUrl}/login`,
   signupUrl: `${appUrl}/signup`,

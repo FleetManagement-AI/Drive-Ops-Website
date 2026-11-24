@@ -6,6 +6,8 @@ export type ProductPageContent = {
   faqs?: { q: string; a: string }[]
   slug: string
   title: string
+  /** Optional SEO-focused H1; falls back to `title` in ProductPageLayout */
+  seoH1?: string
   eyebrow: string
   description: string
   image: string
@@ -30,11 +32,12 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
     slug: "vehicles",
     group: "fleet",
     title: "Vehicle management",
+    seoH1: "Vehicle Management Software",
     eyebrow: "Fleet Management",
     description:
       "Maintain your fleet registry, vehicle status, and document readiness so dispatch and rentals start from accurate vehicle data.",
     image: "/images/features/Vehicle Availability and New Reservation.webp",
-    imageAlt: "DriveOps vehicle availability and fleet registry workspace",
+    imageAlt: "DriveOps vehicle management software showing fleet registry and availability",
     capabilities: [
       "Fleet vehicle CRUD and catalog-backed records",
       "Imports for vehicles in bulk",
@@ -42,19 +45,21 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Document readiness linked to compliance vault",
     ],
     relatedFeatureId: "vehicle-management",
-    seoTitle: "Vehicle Management Software | DriveOps",
+    // Distinct from primary /features/vehicle-management/ title (canonical target)
+    seoTitle: "Fleet Vehicle Registry | DriveOps",
     seoDescription:
-      "Manage fleet vehicles, imports, issues, and document readiness in DriveOps vehicle management.",
+      "Vehicle management software for fleets—registry, imports, issues, and document readiness with DriveOps.",
   },
   {
     slug: "drivers",
     group: "fleet",
     title: "Driver management",
+    seoH1: "Driver Management Software",
     eyebrow: "Fleet Management",
     description:
       "Keep driver profiles, duty, and assignments organized—and give drivers a mobile app in English, Malayalam, and Hindi.",
     image: "/images/features/Modern Driver Fleet App Interface.webp",
-    imageAlt: "DriveOps Driver App interface for trip and duty management",
+    imageAlt: "DriveOps driver management software and Driver App for trip and duty management",
     capabilities: [
       "Driver profiles, assignment, and imports",
       "Duty and shift/attendance support for day-to-day ops",
@@ -62,19 +67,21 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Multilingual Driver App: English, Malayalam, Hindi",
     ],
     relatedFeatureId: "driver-management",
-    seoTitle: "Driver Management Software | DriveOps",
+    // Distinct from primary /features/driver-management/ title (canonical target)
+    seoTitle: "Fleet Driver Registry | DriveOps",
     seoDescription:
-      "Manage drivers, duty, imports, and multilingual Driver App access with DriveOps.",
+      "Driver management software for fleets—profiles, duty, imports, and multilingual Driver App access with DriveOps.",
   },
   {
     slug: "trips-dispatch",
     group: "fleet",
     title: "Trips & dispatch",
+    seoH1: "Trip Management Software",
     eyebrow: "Fleet Management",
     description:
-      "Create trips, allocate drivers and vehicles with availability checks, and confirm via Driver App or WhatsApp accept/reject—human-in-the-loop dispatch, not auto nearest-vehicle.",
+      "Trip management software to create trips, allocate drivers and vehicles with availability checks, and confirm via Driver App or WhatsApp accept/reject—human-in-the-loop dispatch, not auto nearest-vehicle.",
     image: "/images/features/Create Trip Dashboard Mockup.webp",
-    imageAlt: "DriveOps create trip and dispatch workspace",
+    imageAlt: "DriveOps trip management and dispatch workspace showing create trip and allocation",
     capabilities: [
       "Trip types: one-way, round-trip, and full-day",
       "Stops: pickup, drop, and waypoint",
@@ -91,19 +98,20 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Complete",
     ],
     relatedFeatureId: "taxi-dispatch",
-    seoTitle: "Trip Management & Dispatch Software | DriveOps",
+    seoTitle: "Trip Management Software | DriveOps",
     seoDescription:
-      "Create trips, allocate with conflict checks, and confirm driver accept/reject with DriveOps dispatch.",
+      "Trip management and taxi dispatch software—create trips, allocate with conflict checks, and confirm driver accept/reject in DriveOps.",
   },
   {
     slug: "live-fleet",
     group: "fleet",
     title: "Live fleet",
+    seoH1: "Live Fleet Tracking Software",
     eyebrow: "Fleet Management",
     description:
-      "See active vehicles on the ops map fed by Driver App GPS, and share secure customer tracking links for live trip updates.",
+      "Live fleet tracking from Driver App GPS on the ops map, plus secure customer tracking links for active trips—no hardware telematics required.",
     image: "/images/features/Live Fleet Tracking Dashboard.webp",
-    imageAlt: "DriveOps live fleet tracking dashboard and map",
+    imageAlt: "DriveOps live fleet tracking dashboard and GPS map for active vehicles",
     capabilities: [
       "Ops live fleet map (Mapbox) from driver-app GPS",
       "Customer trip tracking via secure link with live updates",
@@ -113,17 +121,18 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
     relatedFeatureId: "fleet-tracking",
     seoTitle: "Live Fleet Tracking Software | DriveOps",
     seoDescription:
-      "Track active vehicles on an ops map and share customer tracking links with DriveOps live fleet.",
+      "Live fleet tracking software with an ops GPS map and customer tracking links—powered by the Driver App, not hardware trackers.",
   },
   {
     slug: "maintenance",
     group: "fleet",
     title: "Maintenance",
+    seoH1: "Vehicle Maintenance Management Software",
     eyebrow: "Fleet Management",
     description:
-      "Track maintenance jobs and logs so vehicles stay ready for the next trip—without claiming predictive or ML-based failure detection.",
+      "Vehicle maintenance management software to log jobs, track service history and costs, and run due scans—practical upkeep, not predictive failure AI.",
     image: "/images/features/Vehicle Maintenance Dashboard.webp",
-    imageAlt: "DriveOps vehicle maintenance dashboard",
+    imageAlt: "DriveOps vehicle maintenance management dashboard with jobs and service history",
     capabilities: [
       "Maintenance logs and summary views",
       "Scheduled maintenance scan jobs",
@@ -131,19 +140,20 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Related vehicle issues from drivers where configured",
     ],
     relatedFeatureId: "vehicle-maintenance",
-    seoTitle: "Fleet Maintenance Software | DriveOps",
+    seoTitle: "Vehicle Maintenance Management Software | DriveOps",
     seoDescription:
-      "Track maintenance jobs and logs to keep fleet vehicles ready with DriveOps.",
+      "Vehicle maintenance management software for fleets—log jobs, track costs, and run due scans with DriveOps.",
   },
   {
     slug: "compliance",
     group: "fleet",
     title: "Compliance vault",
+    seoH1: "Fleet Compliance Management Software",
     eyebrow: "Fleet Management",
     description:
-      "Store vehicle and driver documents in a vault with expiry scanning and WhatsApp alerts. OCR is optional and often off—do not expect always-on AI extraction or compliance inspections.",
+      "Fleet compliance management software to vault vehicle and driver documents with expiry scanning and WhatsApp alerts. OCR is optional—not always-on AI inspections.",
     image: "/images/features/Vehicle Maintenance Dashboard.webp",
-    imageAlt: "DriveOps fleet care and compliance document workspace",
+    imageAlt: "DriveOps fleet compliance management vault for RC, insurance, and permits",
     capabilities: [
       "Central document vault for fleet records",
       "Expiry scanning with WhatsApp compliance alerts",
@@ -151,19 +161,20 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Honest scope: vault + alerts—not inspections product",
     ],
     relatedFeatureId: "fleet-compliance",
-    seoTitle: "Fleet Compliance Document Vault | DriveOps",
+    seoTitle: "Fleet Compliance Management Software | DriveOps",
     seoDescription:
-      "Store fleet documents and get expiry alerts over WhatsApp with the DriveOps compliance vault.",
+      "Fleet compliance management software for document vaulting, expiry alerts, and WhatsApp notifications in DriveOps.",
   },
   {
     slug: "fuel",
     group: "fleet",
     title: "Fuel management",
+    seoH1: "Fleet Fuel Management Software",
     eyebrow: "Fleet Management",
     description:
-      "Capture fuel logs from drivers and ops so everyday fuel activity stays visible alongside trips and maintenance.",
+      "Fleet fuel management software to capture fuel logs from drivers and ops—quantity, price, odometer, and receipts—alongside trips and maintenance.",
     image: "/images/hero/fleet-care-fuel-transparent.webp",
-    imageAlt: "DriveOps fuel management cards and fleet care visuals",
+    imageAlt: "DriveOps fleet fuel management and fuel log cards for operators",
     capabilities: [
       "Fuel log capture from Driver App and ops",
       "Day-to-day cost visibility for fleet operators",
@@ -171,9 +182,9 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Not a full finance or FASTag integration suite",
     ],
     relatedFeatureId: "fleet-expenses",
-    seoTitle: "Fleet Fuel Log Software | DriveOps",
+    seoTitle: "Fleet Fuel Management Software | DriveOps",
     seoDescription:
-      "Record fuel logs from drivers and ops with DriveOps fuel management.",
+      "Fleet fuel management and fuel log software—record volume, price, and odometer from drivers or ops in DriveOps.",
   },
   {
     slug: "customers",
@@ -297,11 +308,12 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
     slug: "driver-app",
     group: "operations",
     title: "Driver App",
+    seoH1: "Driver App for Fleet Management",
     eyebrow: "Operations",
     description:
-      "Equip drivers with duty, GPS, trip accept/reject, navigation, trip sheets, fuel logs, vehicle issues, and push notifications—in English, Malayalam, and Hindi.",
+      "Driver app for fleet management—duty, GPS, trip accept/reject, navigation, trip sheets, fuel logs, vehicle issues, and push notifications in English, Malayalam, and Hindi.",
     image: "/images/features/Modern Driver Fleet App Interface.webp",
-    imageAlt: "DriveOps Driver App for duty, trips, and GPS",
+    imageAlt: "DriveOps driver app for fleet management showing duty, trips, and GPS",
     capabilities: [
       "Duty start/end and trip execution",
       "Accept/reject assignments (online)",
@@ -311,9 +323,9 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
       "Partial offline sync for selected actions—not accept/reject",
     ],
     relatedFeatureId: "driver-management",
-    seoTitle: "Driver Mobile App for Fleets | DriveOps",
+    seoTitle: "Driver App for Fleet Management | DriveOps",
     seoDescription:
-      "Driver App for duty, trips, GPS, trip sheets, fuel, and push notifications in DriveOps.",
+      "Driver app for fleets—duty, trips, GPS, trip sheets, fuel logs, and push notifications in English, Malayalam, and Hindi.",
   },
   {
     slug: "rentals",
@@ -366,7 +378,7 @@ const BASE_PRODUCT_PAGES: ProductPageContent[] = [
         description: "Record payments manually in ops. No payment gateway checkout.",
       },
     ],
-    seoTitle: "Self-Drive Rental Software | DriveOps",
+    seoTitle: "Self-Drive Rental Management | DriveOps",
     seoDescription:
       "Manage self-drive availability, reservations, handover, return, and manual payment recording with DriveOps.",
   },

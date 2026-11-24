@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.driveopsfleet.com/sitemap.xml
+Sitemap: https://driveopsfleet.com/sitemap.xml

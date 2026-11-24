@@ -5,10 +5,11 @@ const page: SolutionPageContent = {
   eyebrow: "Taxi & Cab Fleets",
   title: "Run every taxi trip.",
   highlight: "Dispatch with clarity.",
+  seoH1: "Taxi Management Software",
   description:
-    "DriveOps helps taxi and cab fleets create trips, allocate drivers and vehicles with conflict checks, confirm via Driver App or WhatsApp accept/reject, share customer tracking links, capture trip sheets, and collect WhatsApp reviews into an ops inbox.",
+    "Taxi management software for cab fleets—create trips, allocate drivers and vehicles with conflict checks, confirm via Driver App or WhatsApp accept/reject, share tracking links, capture trip sheets, and collect WhatsApp reviews.",
   image: "/images/features/Create Trip Dashboard Mockup.webp",
-  imageAlt: "DriveOps trip creation and dispatch for taxi fleets",
+  imageAlt: "DriveOps taxi management software showing trip creation and cab fleet dispatch",
   capabilities: [
     {
       title: "Trip management",
@@ -73,11 +74,11 @@ const page: SolutionPageContent = {
       a: "No. DriveOps can send WhatsApp review requests and ingest replies into an ops inbox. It is not a Google Business review autopilot.",
     },
   ],
-  seoTitle: "Taxi & Cab Fleet Management Software | DriveOps",
+  seoTitle: "Taxi Management Software | DriveOps",
   seoDescription:
-    "Manage taxi and cab fleets with trip dispatch, Driver App accept/reject, live tracking, trip sheets, and WhatsApp review collection.",
+    "Taxi management software for cab fleets—trip dispatch, Driver App accept/reject, live tracking, trip sheets, and WhatsApp review collection in India.",
   keywords:
-    "taxi fleet management software, cab dispatch software India, taxi operations platform, driver app for taxi fleets",
+    "taxi management software, cab fleet management, taxi dispatch software India, taxi operations platform",
 }
 
 export default function TaxiCabFleets() {

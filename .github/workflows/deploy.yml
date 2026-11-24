@@ -12,8 +12,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   DEPLOY_ENV: production
   DEPLOY_SHA: ${{ github.sha }}
-  SITE_URL: https://www.driveopsfleet.com
-  NGINX_SERVER_NAME: www.driveopsfleet.com
+  SITE_URL: https://driveopsfleet.com
+  NGINX_SERVER_NAME: driveopsfleet.com
 
 jobs:
   build:

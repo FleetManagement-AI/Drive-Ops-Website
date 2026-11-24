@@ -50,12 +50,12 @@ export const featureContent: Record<string, FeatureContent> = {
     ]
   },
   "vehicle-management": {
-    keyword: "Vehicle Fleet Management",
-    title: "Vehicle Fleet Management Software | DriveOps",
-    description: "Centralize vehicle records, compliance documents, and fleet status. Import vehicles, track documents with expiry alerts, and manage day-to-day fleet ops.",
-    h1: "Vehicle Fleet Management Software",
-    h2: "Organize vehicle records, compliance documents, and utilization status in one registry.",
-    heroCopy: "DriveOps Vehicle Fleet Management keeps commercial vehicle records, status, and compliance documents in one place—so ops teams are not chasing paper files across branches.",
+    keyword: "Vehicle Management Software",
+    title: "Vehicle Management Software | DriveOps",
+    description: "Vehicle management software for fleets—registry, status, imports, and vehicle document readiness with expiry alerts. Built for Indian commercial operators.",
+    h1: "Vehicle Management Software",
+    h2: "Organize fleet vehicle records, documents, and status in one registry.",
+    heroCopy: "DriveOps vehicle management software keeps commercial vehicle records, utilization status, and compliance documents in one place—so ops teams are not chasing paper files across branches.",
     benefits: [
       { title: "Digital Vehicle Registry", desc: "Maintain specs, registration details, odometer context, and current status for every vehicle." },
       { title: "Compliance Document Vault", desc: "Store RC, insurance, permits, fitness, and related certificates with expiry tracking." },
@@ -65,7 +65,8 @@ export const featureContent: Record<string, FeatureContent> = {
     faqs: [
       { q: "What documents can I track in DriveOps?", a: "You can vault vehicle compliance documents such as RC, insurance, permits, fitness, and emission certificates, with expiry scanning and alerts." },
       { q: "Can I manage different vehicle types?", a: "Yes. DriveOps supports fleet catalogs and segments so passenger, rental, and goods fleets can organize vehicles by type and use." },
-      { q: "Does DriveOps do OCR on every document?", a: "OCR field extraction is optional and configurable. By default it is off; teams can enter and store documents without OCR." }
+      { q: "Does DriveOps do OCR on every document?", a: "OCR field extraction is optional and configurable. By default it is off; teams can enter and store documents without OCR." },
+      { q: "How does vehicle management connect to trips and compliance?", a: "Vehicles in the registry feed trip allocation, live fleet visibility, maintenance jobs, and the compliance document vault so ops works from one set of records." }
     ]
   },
   "fleet-management": {
@@ -89,11 +90,11 @@ export const featureContent: Record<string, FeatureContent> = {
   },
   "driver-management": {
     keyword: "Driver Management Software",
-    title: "Driver Management Software & Duty Rosters | DriveOps",
-    description: "Manage drivers, shifts, duty, license documents, and WhatsApp/app assignment. Pair with the multilingual Driver App for trips, GPS, sheets, and fuel.",
-    h1: "Driver Management for Fleet Operators",
-    h2: "Roster drivers, keep licenses current, and connect them to trips through app and WhatsApp.",
-    heroCopy: "DriveOps Driver Management helps ops teams maintain driver records, shifts and attendance, and license compliance—then assign work through the Driver App and WhatsApp, with accept/reject.",
+    title: "Driver Management Software | DriveOps",
+    description: "Driver management software for fleets—profiles, duty and shifts, license documents, and assignment via Driver App or WhatsApp accept/reject.",
+    h1: "Driver Management Software",
+    h2: "Roster drivers, keep licenses current, and assign trips through app and WhatsApp.",
+    heroCopy: "DriveOps driver management software helps ops teams maintain driver records, duty and shifts, and license compliance—then assign work through the multilingual Driver App and WhatsApp, with accept/reject.",
     benefits: [
       { title: "Driver Records & Imports", desc: "Create and maintain driver profiles; import drivers to onboard fleets faster." },
       { title: "Duty & Shifts", desc: "Track duty and shift context so dispatchers know who is available to assign." },
@@ -103,7 +104,8 @@ export const featureContent: Record<string, FeatureContent> = {
     faqs: [
       { q: "What is driver management in DriveOps?", a: "It covers driver CRUD, shifts/attendance and duty, document vaulting for licenses, assignment workflows, and the Driver App used on the road." },
       { q: "Does DriveOps include driver earnings scorecards?", a: "No. DriveOps does not market a driver earnings product, performance score product, or handover product UI." },
-      { q: "How do drivers get trip assignments?", a: "Ops allocate trips with candidate and conflict checks. Drivers can accept or reject via the Driver App or WhatsApp assignment messages." }
+      { q: "How do drivers get trip assignments?", a: "Ops allocate trips with candidate and conflict checks. Drivers can accept or reject via the Driver App or WhatsApp assignment messages." },
+      { q: "Is the Driver App separate from driver management?", a: "Driver management is the ops registry and duty workflow. The Driver App is the mobile experience for duty, GPS, trips, trip sheets, and fuel logs—available in English, Malayalam, and Hindi." }
     ]
   },
   "vehicle-maintenance": {

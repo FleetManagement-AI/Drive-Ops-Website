@@ -22,6 +22,8 @@ export type SolutionPageContent = {
   eyebrow: string
   title: string
   highlight?: string
+  /** Optional SEO-focused H1; when set, replaces title + highlight in the hero */
+  seoH1?: string
   description: string
   image: string
   imageAlt: string
@@ -81,11 +83,17 @@ export default function SolutionPageLayout({ page }: Props) {
               {page.eyebrow}
             </div>
             <h1 className="font-heading mb-5 text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              {page.title}
-              {page.highlight && (
+              {page.seoH1 ? (
+                page.seoH1
+              ) : (
                 <>
-                  <br />
-                  <span className="gradient-text">{page.highlight}</span>
+                  {page.title}
+                  {page.highlight && (
+                    <>
+                      <br />
+                      <span className="gradient-text">{page.highlight}</span>
+                    </>
+                  )}
                 </>
               )}
             </h1>

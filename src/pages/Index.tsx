@@ -89,9 +89,9 @@ const homepageStructuredData = {
 const Index = () => (
   <div className="min-h-screen bg-background text-foreground antialiased selection:bg-blue-100 selection:text-blue-900">
     <SEO
-      title="DriveOps | Manage & Operate Your Fleet from One Platform"
-      description="Plan trips, assign drivers and vehicles, run the Driver App, track live fleet location, manage fuel, maintenance, compliance, WhatsApp communication, and self-drive rentals—with DriveOps."
-      keywords="fleet operations software, trip management software, fleet dispatch software, driver mobile app, live fleet tracking, WhatsApp fleet communication, self-drive rental software, fuel log software, fleet compliance software, taxi fleet software India"
+      title="DriveOps | Fleet Management Software for Indian Operators"
+      description="DriveOps fleet management software—trip dispatch, Driver App, live tracking, compliance, fuel, maintenance, WhatsApp ops, and self-drive rentals for taxi, corporate, and rental fleets in India."
+      keywords="fleet management software, trip management software, driver app, live fleet tracking, fleet compliance software, taxi management software India"
       canonicalUrl="/"
       ogImage="/images/hero/DriveOps Live Fleet Management Dashboard.webp"
       structuredData={{ "@context": "https://schema.org", "@graph": [...homepageStructuredData["@graph"], { "@type": "FAQPage", mainEntity: priorityHomepageFaqs.map(faq => ({ "@type": "Question", name: faq.q, acceptedAnswer: { "@type": "Answer", text: faq.a } })) }] }}

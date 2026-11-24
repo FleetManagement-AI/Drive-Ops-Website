@@ -60,9 +60,10 @@ const page: SolutionPageContent = {
       a: "No. Rental return/inspection fields support the rental close-out. Compliance inspections as a product are placeholder/not marketed.",
     },
   ],
-  seoTitle: "Self-Drive Rental Management Software | DriveOps",
+  seoH1: "Self-Drive Rental Software",
+  seoTitle: "Self-Drive Rental Software | DriveOps",
   seoDescription:
-    "Manage self-drive availability, reservations, handover, return, and manual payment recording with DriveOps rentals.",
+    "Self-drive rental software for availability, reservations, handover, return inspection, and manual payment recording with DriveOps.",
   keywords:
     "self drive rental software, vehicle rental management India, rental handover software, fleet rental operations",
 }

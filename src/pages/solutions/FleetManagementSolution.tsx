@@ -3,6 +3,7 @@ import FAQList from "@/components/FAQList"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
+import { resolveCanonicalPath } from "@/config/routes"
 import { Link } from "react-router-dom"
 import {
   Layers,
@@ -61,7 +62,7 @@ export default function FleetManagementSolution() {
         title="Fleet Operations for Multi-Location Fleets | DriveOps"
         description="Cloud fleet operations software for Indian operators. Track vehicles, manage drivers, run trips and dispatch, log fuel and maintenance, and vault compliance documents."
         keywords="fleet management software India, fleet management system, commercial fleet operations, fleet software platform"
-        canonicalUrl="/solutions/fleet-management"
+        canonicalUrl={resolveCanonicalPath("/solutions/fleet-management")}
         structuredData={structuredData}
       />
 

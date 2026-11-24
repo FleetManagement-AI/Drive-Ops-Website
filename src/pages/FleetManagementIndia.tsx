@@ -28,6 +28,10 @@ const faqs = [
     a: "DriveOps is a multi-tenant fleet operations platform for chauffeur trips and self-drive rentals. It supports trip types used by Indian operators, compliance document vaulting with expiry alerts, WhatsApp ops messaging, and a multilingual Driver App (English, Malayalam, Hindi)."
   },
   {
+    q: "Is DriveOps useful for fleets in Kerala and Kochi?",
+    a: "Yes. DriveOps is built for Indian commercial operators including taxi, travel, corporate transport, goods, and rental fleets. The Driver App supports English, Malayalam, and Hindi for teams operating in Kerala and other regions."
+  },
+  {
     q: "Can DriveOps handle passenger trips and goods-style multi-stop work?",
     a: "Yes. You can run one-way, round-trip, and full-day trips with stops, plus recurring daily/weekly/monthly schedules. Dispatch uses allocation with candidate and conflict checks, and drivers accept or reject via the Driver App or WhatsApp."
   },
@@ -107,8 +111,8 @@ export default function FleetManagementIndia() {
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
         title="Fleet Management Software India | DriveOps"
-        description="DriveOps is fleet operations software for Indian operators. Manage vehicles, trips, dispatch, drivers, live tracking, fuel logs, maintenance, compliance, and self-drive rentals."
-        keywords="fleet management software India, fleet management system India, vehicle fleet management software, taxi fleet management software India, truck fleet tracking India"
+        description="Fleet management software for India—trips, dispatch, drivers, vehicles, live tracking, fuel, maintenance, compliance, and rentals. Built for operators including Kerala and Kochi fleets."
+        keywords="fleet management software India, fleet management system, fleet operations software, fleet management software Kerala, taxi fleet software India"
         canonicalUrl="/fleet-management-software-india"
         structuredData={structuredData}
       />
@@ -130,7 +134,7 @@ export default function FleetManagementIndia() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps is a cloud fleet operations platform for Indian commercial operators. Whether you run taxis, goods trips, or self-drive rentals, you get trips and dispatch, live tracking from the Driver App, WhatsApp ops messaging, fuel and maintenance logs, and a compliance document vault—without claiming a finance or P&L suite.
+              DriveOps is fleet management software for Indian commercial operators—from Kochi and Kerala to fleets nationwide. Whether you run taxis, corporate transport, goods trips, or self-drive rentals, you get trips and dispatch, live tracking from the Driver App, WhatsApp ops messaging, fuel and maintenance logs, and compliance management—without claiming a finance or P&L suite.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -211,7 +215,7 @@ export default function FleetManagementIndia() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
                 <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                   <Car className="w-5 h-5" />
@@ -221,7 +225,20 @@ export default function FleetManagementIndia() {
                   Trip dispatch with accept/reject, digital trip sheets, driver duty, live tracking links, and WhatsApp review requests into the ops inbox.
                 </p>
                 <Link to="/solutions/taxi-cab-fleets/" className="text-blue-600 text-sm font-semibold hover:underline">
-                  See passenger transport features →
+                  Taxi management software →
+                </Link>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+                <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center mb-4">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">Corporate Transport</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                  Recurring employee routes, allocation with conflict checks, and live tracking for corporate and staff transport fleets.
+                </p>
+                <Link to="/solutions/corporate-transport/" className="text-sky-600 text-sm font-semibold hover:underline">
+                  Corporate fleet management →
                 </Link>
               </div>
 
@@ -234,7 +251,7 @@ export default function FleetManagementIndia() {
                   Multi-stop trips, live Driver App tracking, trip sheets, fuel logs, and maintenance due scans for commercial vehicles.
                 </p>
                 <Link to="/solutions/goods-transport/" className="text-emerald-600 text-sm font-semibold hover:underline">
-                  See goods transport features →
+                  Truck fleet management →
                 </Link>
               </div>
 
@@ -247,7 +264,7 @@ export default function FleetManagementIndia() {
                   Self-drive rental lifecycle from hold to settle, with manual payment recording (cash, UPI, card, bank transfer, or other).
                 </p>
                 <Link to="/solutions/self-drive-rentals/" className="text-purple-600 text-sm font-semibold hover:underline">
-                  See rental management features →
+                  Self-drive rental software →
                 </Link>
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import SEO from "@/components/SEO"
@@ -8,9 +9,9 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
       <SEO 
-        title="Pricing | DriveOps Fleet Management Software"
-        description="Transparent pricing for DriveOps Fleet Management and Taxi Dispatch software. Choose from Free, Basic, Professional, and Enterprise plans tailored for transport operators in India."
-        keywords="DriveOps pricing, fleet management software cost, taxi dispatch software pricing, transport management software price"
+        title="Fleet Management Software Pricing | DriveOps"
+        description="Fleet management software pricing for Indian operators—transparent Free, Basic, Professional, and Enterprise plans for taxi, corporate, and rental fleets. No hidden fees."
+        keywords="fleet management software pricing, fleet software pricing, fleet management plans, taxi fleet management software cost"
         canonicalUrl="/pricing"
       />
       
@@ -19,10 +20,13 @@ const Pricing = () => {
       <main className="flex-1 pt-24 pb-12">
         <div className="container mx-auto px-4 mb-10 text-center max-w-3xl">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
-            Transparent Pricing for Growing Fleets
+            Fleet Management Software Pricing
           </h1>
           <p className="text-lg text-slate-600">
-            Whether you manage 2 cabs or 2,000 corporate transport vehicles, our software scales with your business. No hidden fees. No hardware locks.
+            Transparent plans for taxi, corporate transport, and rental fleets—from 2 cabs to 2,000 vehicles. No hidden fees. No hardware locks.{" "}
+            <Link to="/fleet-management-software-india/" className="text-blue-600 hover:underline">Explore fleet management</Link>
+            {" · "}
+            <Link to="/product/trips-dispatch/" className="text-blue-600 hover:underline">Trip management</Link>
           </p>
         </div>
         

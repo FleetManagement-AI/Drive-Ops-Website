@@ -5,10 +5,11 @@ const page: SolutionPageContent = {
   eyebrow: "Corporate Transport",
   title: "Employee transport that stays",
   highlight: "on schedule.",
+  seoH1: "Corporate Fleet Management Software",
   description:
-    "Run recurring employee transportation with location-aware ops, driver duty/assignment, live fleet visibility for contracted routes, and trip sheets—backed by multi-tenant roles. Attendance and Command Center exist in product but may have limited sidebar exposure depending on tenant configuration.",
+    "Corporate fleet management software for employee transport—recurring schedules, multi-location ops, driver duty and assignment, live fleet visibility, and trip sheets for contracted routes.",
   image: "/images/features/Five-Step Recurring Trip Workflow.webp",
-  imageAlt: "DriveOps recurring trip workflow for corporate transport",
+  imageAlt: "DriveOps corporate fleet management recurring trip workflow for employee transport",
   capabilities: [
     {
       title: "Recurring employee schedules",
@@ -69,11 +70,11 @@ const page: SolutionPageContent = {
       a: "No. Market day-to-day operational visibility only. Advanced reports/finance modules are not productized for marketing claims.",
     },
   ],
-  seoTitle: "Corporate Transport Fleet Software | DriveOps",
+  seoTitle: "Corporate Fleet Management Software | DriveOps",
   seoDescription:
-    "Manage recurring employee transport, multi-location ops, drivers, live fleet, and trip sheets with DriveOps.",
+    "Corporate fleet management software for employee transport—recurring schedules, multi-location ops, drivers, live fleet, and trip sheets.",
   keywords:
-    "corporate transport software, employee shuttle management, recurring trip software, multi-location fleet ops",
+    "corporate fleet management software, corporate transport software, employee shuttle management, recurring trip software",
 }
 
 export default function CorporateTransport() {

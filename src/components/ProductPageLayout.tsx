@@ -8,6 +8,7 @@ import SEO from "@/components/SEO"
 import type { ProductPageContent } from "@/data/product-pages"
 import { featureContent } from "@/data/seo-content"
 import { siteConfig } from "@/config/site"
+import { resolveCanonicalPath } from "@/config/routes"
 
 type Props = {
   page: ProductPageContent
@@ -16,6 +17,8 @@ type Props = {
 export default function ProductPageLayout({ page }: Props) {
   const location = useLocation()
   const siteUrl = siteConfig.siteUrl.replace(/\/$/, "")
+  const pagePath = `/product/${page.slug}`
+  const canonicalPathForPage = resolveCanonicalPath(pagePath)
   const related = page.relatedFeatureId
     ? featureContent[page.relatedFeatureId]
     : undefined
@@ -41,7 +44,7 @@ export default function ProductPageLayout({ page }: Props) {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web, Android",
         description: page.seoDescription,
-        url: `${siteUrl}/product/${page.slug}`,
+        url: `${siteUrl}${canonicalPathForPage}`,
         image: page.image.startsWith("http")
           ? page.image
           : `${siteUrl}${page.image}`,
@@ -66,7 +69,7 @@ export default function ProductPageLayout({ page }: Props) {
       <SEO
         title={page.seoTitle}
         description={page.seoDescription}
-        canonicalUrl={`/product/${page.slug}`}
+        canonicalUrl={canonicalPathForPage}
         ogImage={page.image}
         structuredData={structuredData}
       />
@@ -78,7 +81,7 @@ export default function ProductPageLayout({ page }: Props) {
               {page.eyebrow}
             </p>
             <h1 className="font-heading mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              {page.title}
+              {page.seoH1 ?? page.title}
             </h1>
             <p className="mb-8 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
               {page.description}
@@ -221,6 +224,9 @@ export default function ProductPageLayout({ page }: Props) {
         )}
         <section className="border-t border-slate-200 px-4 py-8">
           <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-5 text-sm font-semibold text-blue-700">
+            <Link to="/product/trips-dispatch/">Trip management</Link>
+            <Link to="/product/driver-app/">Driver App</Link>
+            <Link to="/product/live-fleet/">Live fleet tracking</Link>
             <Link to="/product/compliance/">Compliance management</Link>
             <Link to="/product/fuel/">Fuel logs</Link>
             <Link to="/product/reviews/">Review management</Link>

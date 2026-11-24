@@ -34,10 +34,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       { text: "one place.", highlight: true },
     ],
     description:
-      "Connect vehicles, drivers, trips, rentals, maintenance, compliance, and live fleet operations in one platform.",
+      "Fleet management software for Indian operators—connect vehicles, drivers, trips, rentals, maintenance, compliance, and live fleet ops in one platform.",
     image: "/images/hero/DriveOps Live Fleet Management Dashboard.webp",
     imageAlt:
-      "DriveOps fleet operations dashboard showing today's trips, active vehicles, drivers on duty, and live fleet map",
+      "DriveOps fleet management software dashboard showing today's trips, active vehicles, drivers on duty, and live fleet map",
     primaryCta: {
       label: "Start Free Trial",
       href: siteConfig.signupUrl,

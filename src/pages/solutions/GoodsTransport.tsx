@@ -57,9 +57,9 @@ export default function GoodsTransport() {
   return (
     <div className="min-h-screen bg-[#FBFBFA] text-foreground flex flex-col antialiased">
       <SEO
-        title="Goods Transport Fleet Management Software | DriveOps"
-        description="Manage trucks and delivery vehicles with DriveOps fleet tracking, driver management, trip operations, maintenance, expenses and delivery visibility."
-        keywords="goods transport fleet management software, truck fleet management software, logistics fleet tracking India, commercial vehicle software"
+        title="Truck Fleet Management Software | DriveOps"
+        description="Goods transport and truck fleet management software—multi-stop trips, driver accept/reject, live tracking from the Driver App, fuel logs, and maintenance in DriveOps."
+        keywords="goods transport software, truck fleet management software, logistics fleet tracking India, commercial vehicle software"
         canonicalUrl="/solutions/goods-transport"
         structuredData={structuredData}
       />
@@ -76,12 +76,11 @@ export default function GoodsTransport() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
-              Streamline cargo trips.<br />
-              <span className="text-emerald-600">Keep trucks visible and on schedule.</span>
+              Truck Fleet Management Software
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-sans">
-              DriveOps helps commercial truck operators and courier fleets run multi-stop trips, assign drivers with accept/reject, track vehicles from the Driver App, and log fuel and maintenance—without claiming route optimization or trip P&L engines.
+              DriveOps goods transport software helps commercial truck and courier fleets run multi-stop trips, assign drivers with accept/reject, track vehicles from the Driver App, and log fuel and maintenance—without claiming route optimization or trip P&L engines.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
