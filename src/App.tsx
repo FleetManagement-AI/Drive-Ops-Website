@@ -40,8 +40,9 @@ const AnalyticsTracker = () => {
   useEffect(() => {
     if (document.documentElement.dataset.exporting) return;
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "page_view", {
+      window.gtag("config", "G-2YPW68FRJK", {
         page_path: location.pathname + location.search,
+        send_page_view: true,
       });
     }
   }, [location]);

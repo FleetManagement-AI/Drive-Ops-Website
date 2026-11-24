@@ -120,7 +120,7 @@ export const privacyPolicy: LegalDocument = {
         },
         {
           type: "p",
-          text: "Cookies and analytics on the marketing website. The marketing site currently loads Google Tag Manager (container ID GTM-TGXC9QZM) to understand page views and selected marketing CTA events. There is no separate cookie-consent banner implemented at the time of this policy version. Application login uses bearer tokens rather than cookie-based session login.",
+          text: "Cookies and analytics on the marketing website. The marketing site currently loads Google Tag Manager (container ID GTM-NKVP9HBB) and Google Analytics 4 (measurement ID G-2YPW68FRJK) to understand page views and selected marketing CTA events. There is no separate cookie-consent banner implemented at the time of this policy version. Application login uses bearer tokens rather than cookie-based session login.",
         },
       ],
     },
@@ -141,7 +141,7 @@ export const privacyPolicy: LegalDocument = {
             "Send transactional email, WhatsApp, and push notifications that the product is configured to send",
             "Provide public tracking or trip-sheet access when a fleet business issues a link",
             "Respond to support requests and communicate about the Service",
-            "Analyze marketing website usage (currently via Google Tag Manager container GTM-TGXC9QZM)",
+            "Analyze marketing website usage (currently via Google Tag Manager GTM-NKVP9HBB and Google Analytics 4 G-2YPW68FRJK)",
             "Comply with law and enforce our Terms where applicable",
           ],
         },
@@ -227,7 +227,7 @@ export const privacyPolicy: LegalDocument = {
             "Firebase / FCM — push notifications",
             "AWS S3 — file and document storage",
             "Google Maps Platform — maps, geocoding, places/routes, and Driver App navigation features when used",
-            "Google Tag Manager (GTM-TGXC9QZM) — marketing website analytics",
+            "Google Tag Manager (GTM-NKVP9HBB) and Google Analytics 4 (G-2YPW68FRJK) — marketing website analytics",
             "Redis (when configured) — caching, rate limiting, and short-lived live location",
             "OpenTelemetry / SigNoz (when configured) — optional observability",
           ],
@@ -324,7 +324,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "p",
-          text: "The marketing website uses Google Tag Manager (GTM-TGXC9QZM) via gtag/dataLayer to measure visits and selected CTA events. Browser storage used by UI components may also hold non-essential preferences in some cases. The operator application authenticates with bearer tokens rather than classic login cookies.",
+          text: "The marketing website uses Google Tag Manager (GTM-NKVP9HBB) and Google Analytics 4 (G-2YPW68FRJK) via gtag/dataLayer to measure visits and selected CTA events. Browser storage used by UI components may also hold non-essential preferences in some cases. The operator application authenticates with bearer tokens rather than classic login cookies.",
         },
         {
           type: "p",
